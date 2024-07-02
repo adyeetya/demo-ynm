@@ -26,7 +26,7 @@ const productsData = [
     category: 'For Super Strength',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
-    rating: 4.5,
+    rating: 2.5,
     imageUrl: '/images/yes n more typo 3.1 @1.png',
   },
   {
@@ -35,7 +35,7 @@ const productsData = [
     category: 'For Longer Erection',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
-    rating: 4.5,
+    rating: 3.5,
     imageUrl: '/images/yes n more typo 3.1 @1.png',
   },
   // Add more products as needed
@@ -50,13 +50,13 @@ const Products = () => {
           View All Products
         </a>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-8">
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-8">
         {productsData.map((product) => (
           <div
             key={product.id}
             className="bg-[#190E0B] text-white rounded-2xl md:rounded-3xl shadow-md p-2 md:p-4 flex flex-col"
           >
-            <div className="relative h-40 md:h-60 w-full mb-4">
+            <div className="relative h-40 md:h-80 xl:h-60 w-full mb-4">
               <Image
                 src={product.imageUrl}
                 alt={product.name}
