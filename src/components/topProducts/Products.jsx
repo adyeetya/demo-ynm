@@ -54,7 +54,7 @@ const Products = () => {
         {productsData.map((product) => (
           <div
             key={product.id}
-            className="bg-[#190E0B] text-[#FFF5EA] rounded-2xl md:rounded-3xl shadow-md p-3 md:p-4 flex flex-col h-72 w-[185px] sm:w-44 md:h-96 md:w-60"
+            className="bg-[#190E0B] text-[#FFF5EA] rounded-2xl md:rounded-3xl shadow-md p-3 md:p-4 flex flex-col h-72 w-[165px] sm:w-44 md:h-96 md:w-60"
           >
             <div className="relative w-full h-52 md:h-52 mb-4">
               <Image
