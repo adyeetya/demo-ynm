@@ -39,7 +39,7 @@ const Experts = () => {
                 alt="expert"
                 layout="fill"
                 objectFit="cover"
-                className="rounded-t-2xl md:rounded-t-none md:rounded-l-2xl"
+                className="rounded-l-2xl"
               />
             </div>
             <div className="w-full md:w-[60%] flex flex-col text-left p-4">
