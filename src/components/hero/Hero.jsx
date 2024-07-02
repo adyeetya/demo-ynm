@@ -32,7 +32,7 @@ const Hero = () => {
         </button>
 
         {/* Mobile Text */}
-        <div className="text-white text-left absolute bottom-8 left-8 md:hidden">
+        <div className="text-[#FFF5EA] text-left absolute bottom-8 left-8 md:hidden">
           <h1 className="text-4xl font-extrabold mb-4">
             CLIMAX <br /> DELAY SPRAY
           </h1>
@@ -42,7 +42,7 @@ const Hero = () => {
         </div>
 
         {/* Desktop Text */}
-        <div className="hidden md:block text-white text-6xl font-thin text-center mb-32">
+        <div className="hidden md:block text-[#FFF5EA] text-6xl font-thin text-center mb-32">
           SAY YES TO MORE PLEASURE
         </div>
       </div>

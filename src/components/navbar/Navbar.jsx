@@ -52,7 +52,7 @@ const Navbar = () => {
   }, [isMenuOpen, isSearchOpen])
 
   return (
-    <nav className="bg-[#080808] shadow-lg text-white  sticky inset-x-0 top-0 z-30">
+    <nav className="bg-[#080808] shadow-lg text-[#FFF5EA]  sticky inset-x-0 top-0 z-30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
@@ -85,13 +85,13 @@ const Navbar = () => {
               onClick={toggleSearch}
               className="focus:outline-none md:mr-4"
             >
-              <IoIosSearch className="h-6 w-6 text-white" />
+              <IoIosSearch className="h-6 w-6 text-[#FFF5EA]" />
             </button>
             <button
               onClick={toggleMenu}
               className="md:hidden focus:outline-none"
             >
-              <RxHamburgerMenu className="h-6 w-6 text-white" />
+              <RxHamburgerMenu className="h-6 w-6 text-[#FFF5EA]" />
             </button>
           </div>
         </div>
@@ -111,7 +111,7 @@ const Navbar = () => {
             />
             <button
               onClick={handleSearch}
-              className="ml-2 px-3 py-2 bg-blue-900 text-white rounded-full hover:bg-blue-700 focus:outline-none"
+              className="ml-2 px-3 py-2 bg-blue-900 text-[#FFF5EA] rounded-full hover:bg-blue-700 focus:outline-none"
             >
               Search
             </button>
@@ -175,7 +175,7 @@ const Navbar = () => {
             />
             <button
               onClick={handleSearch}
-              className="ml-2 px-3 py-2 bg-blue-900 text-white rounded-full hover:bg-blue-700 focus:outline-none"
+              className="ml-2 px-3 py-2 bg-blue-900 text-[#FFF5EA] rounded-full hover:bg-blue-700 focus:outline-none"
             >
               Search
             </button>

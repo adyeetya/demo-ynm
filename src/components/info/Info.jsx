@@ -27,7 +27,7 @@ const cardData = [
 
 const Info = () => {
   return (
-    <div className="my-8 p-4 max-w-screen-xl mx-auto">
+    <div className="my- p-4 max-w-screen-xl mx-auto">
       <div className="mb-8">
         <h2 className="text-2xl font-bold">Info Matters</h2>
       </div>

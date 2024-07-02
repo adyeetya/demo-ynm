@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
+import { IoMdStar } from 'react-icons/io'
 
-// Example data structure for experts
 const expertsData = [
   {
     id: 1,
@@ -23,12 +23,11 @@ const expertsData = [
 
 const Experts = () => {
   return (
-    <div className="my-8 p-4 max-w-screen-xl mx-auto">
-      <div className="mb-12 ">
-        <h2 className="font-bold text-2xl">Meet Our Expert </h2>
+    <div className="p-4 md:py-6 max-w-screen-xl mx-auto">
+      <div className="mb-12">
+        <h2 className="font-bold text-2xl">Meet Our Experts</h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-4 ">
-        {/* Map through expertsData */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-4">
         {expertsData.map((expert) => (
           <div
             key={expert.id}
@@ -43,49 +42,34 @@ const Experts = () => {
                 className="rounded-t-2xl md:rounded-t-none md:rounded-l-2xl"
               />
             </div>
-            {/* text right */}
             <div className="w-full md:w-[60%] flex flex-col text-left p-4">
-              <div className="flex flex-col md:flex-row  justify-between md:items-center gap-4">
-                <h2 className="text-md font-semibold">{expert.name}</h2>
+              <h2 className="text-md font-semibold">{expert.name}</h2>
+              <div className="flex flex-row justify-between items-center gap-2 mt-1">
+                <div className="flex items-center">
+                  {[...Array(Math.floor(expert.rating))].map((_, index) => (
+                    <IoMdStar key={index} className="w-5 h-5 text-[#debb02]" />
+                  ))}
+                </div>
                 <p
                   className={`${
-                    expert.status === 'Online' ? 'bg-yellow-400' : 'bg-red-400'
-                  } rounded-full px-4 py-2 text-sm w-fit`}
+                    expert.status === 'Online' ? 'bg-green-500' : 'bg-red-400'
+                  } rounded-full px-4 py-[2px] md:py-1 text-[10px] md:text-[14px] w-fit`}
                 >
                   {expert.status}
                 </p>
               </div>
-              {/* rating */}
-              <div className="flex my-2">
-                {[...Array(Math.floor(expert.rating))].map((_, index) => (
-                  <svg
-                    key={index}
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-yellow-500 fill-current"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 0l2.5 6.5H20l-5 4.2 1.9 5.8-5-4.2-5 4.3 1.9-5.8-5-4.2h7.5L10 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ))}
-              </div>
-              {/* desc */}
-              <div className="flex-grow">
+              <div className="flex-grow mt-2">
                 <p className="text-[10px] md:text-[12px]">{expert.info}</p>
               </div>
-              <button className="bg-black w-fit text-white text-sm py-2 px-4 mt-4 rounded-full hover:bg-blue-900 transition-colors duration-300">
-                Free Concern
+              <button className="bg-black w-fit text-[#FFF5EA] text-sm py-2 px-4 mt-4 rounded-full hover:bg-blue-900 transition-colors duration-300">
+                Free Consultation
               </button>
             </div>
           </div>
         ))}
       </div>
-      <div className="my-8 flex justify-center items-center">
-        <button className="px-8 py-2 bg-black hover:bg-blue-900 text-white rounded-full">
+      <div className="mt-8 flex justify-center items-center">
+        <button className="px-8 py-2 bg-black hover:bg-blue-900 text-[#FFF5EA] rounded-full">
           Get in touch with our experts
         </button>
       </div>

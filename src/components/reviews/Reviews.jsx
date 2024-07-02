@@ -26,12 +26,7 @@ const reviewsData = [
     description: 'I had an amazing experience with this product. Five stars!',
     videoUrl: '/videos/videoplayback.mp4',
   },
-  {
-    id: 5,
-    title: 'Amazing Experience!',
-    description: 'I had an amazing experience with this product. Five stars!',
-    videoUrl: '/videos/videoplayback.mp4',
-  },
+
   // Add more review objects as needed
 ]
 
@@ -57,27 +52,25 @@ const Reviews = () => {
   }, [playingVideoId])
 
   return (
-    <div className="max-w-screen-xl mx-auto p-4">
+    <div className="p-4 md:py-6 max-w-screen-xl mx-auto">
       <div className="mb-8">
         <h2 className="text-2xl font-bold">Customer Reviews</h2>
         <p className="text-sm text-gray-600">
           See what our customers have to say about our products.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-8" >
         {reviewsData.map((review) => (
           <div
             key={review.id}
             className="bg-white shadow-md rounded-lg flex flex-col"
           >
-            <div className="relative h-0" style={{ paddingBottom: '56.25%' }}>
+            <div className="relative pb-[100%]">
               <video
                 ref={(element) => (videoRefs.current[review.id] = element)}
                 src={review.videoUrl}
                 controls={false}
-                width="100%"
-                height="100%"
-                className="absolute top-0 left-0"
+                className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 loop
               />
               <button

@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const Consult = () => {
   return (
-    <div className="p-4 my-4 max-w-screen-xl mx-auto">
+    <div className="p-4 md:py-6 mt-4 max-w-screen-xl mx-auto">
       <div className="mb-12 ">
         <h2 className="font-bold text-2xl">Expert Advice that Works</h2>
       </div>
@@ -100,7 +100,7 @@ const Consult = () => {
           </div>
 
           {/* Text Section */}
-          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-white h-full md:h-[45%]">
+          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-[#FFF5EA] h-full md:h-[45%]">
             <h2 className="text-xl font-semibold mb-2 md:mb-0">
               Performance {'>'}
             </h2>
@@ -122,7 +122,7 @@ const Consult = () => {
           </div>
 
           {/* Text Section */}
-          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-white h-full md:h-[45%]">
+          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-[#FFF5EA] h-full md:h-[45%]">
             <h2 className="text-xl font-semibold mb-2 md:mb-0">
               Nutrition {'>'}
             </h2>
@@ -143,7 +143,7 @@ const Consult = () => {
           </div>
 
           {/* Text Section */}
-          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-white h-full md:h-[45%]">
+          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-[#FFF5EA] h-full md:h-[45%]">
             <h2 className="text-xl font-semibold mb-2 md:mb-0">
               Hygiene {'>'}
             </h2>
@@ -164,7 +164,7 @@ const Consult = () => {
           </div>
 
           {/* Text Section */}
-          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-white h-full md:h-[45%]">
+          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-[#FFF5EA] h-full md:h-[45%]">
             <h2 className="text-xl font-semibold mb-2 md:mb-0">
               Wellness {'>'}
             </h2>

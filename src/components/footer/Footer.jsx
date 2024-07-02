@@ -9,7 +9,7 @@ import { GoPackageDependencies } from 'react-icons/go'
 import { RiSecurePaymentFill } from 'react-icons/ri'
 const Footer = () => {
   return (
-    <footer className="bg-[#080808] text-white py-8 ">
+    <footer className="bg-[#080808] text-[#FFF5EA] py-8 ">
       <div className="container mx-auto px-4 text-center max-w-screen-xl mx-auto">
         {/* Early Access Section */}
         <div className="mb-6">
@@ -20,7 +20,7 @@ const Footer = () => {
               placeholder="Enter your email"
               className="px-4 py-2 w-full max-w-xs border-none outline-none rounded-l-full text-gray-800"
             />
-            <button className="text-2xl font-extrabold px-4 py-3 bg-[#9f6c32] text-white rounded-r-full hover:bg-blue-700">
+            <button className="text-2xl font-extrabold px-4 py-3 bg-[#9f6c32] text-[#FFF5EA] rounded-r-full hover:bg-blue-700">
               <FaChevronRight />
             </button>
           </div>
@@ -62,22 +62,22 @@ const Footer = () => {
               {/* Replace with actual icons */}
               <li>
                 <a href="#" className="hover:underline">
-                  <FaFacebookF className="text-white md:w-6 md:h-6" />
+                  <FaFacebookF className="text-[#FFF5EA] md:w-6 md:h-6" />
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:underline">
-                  <FaTwitter className="text-white md:w-6 md:h-6" />
+                  <FaTwitter className="text-[#FFF5EA] md:w-6 md:h-6" />
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:underline">
-                  <FaInstagram className="text-white md:w-6 md:h-6" />
+                  <FaInstagram className="text-[#FFF5EA] md:w-6 md:h-6" />
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:underline">
-                  <FaLinkedinIn className="text-white md:w-6 md:h-6" />
+                  <FaLinkedinIn className="text-[#FFF5EA] md:w-6 md:h-6" />
                 </a>
               </li>
             </ul>
@@ -88,16 +88,16 @@ const Footer = () => {
             <ul className="flex justify-center  space-x-4 md:space-x-12">
               {/* Replace with actual icons */}
               <li className="flex items-center flex-col justify-center">
-                <FaShippingFast className="text-white mb-2 md:w-6 md:h-6" />
+                <FaShippingFast className="text-[#FFF5EA] mb-2 md:w-6 md:h-6" />
 
                 <p className="text-sm">Free Shipping</p>
               </li>
               <li className="flex items-center flex-col justify-center">
-                <GoPackageDependencies className="text-white mb-2 md:w-6 md:h-6" />
+                <GoPackageDependencies className="text-[#FFF5EA] mb-2 md:w-6 md:h-6" />
                 <p className="text-sm">Hassle-Free Return</p>
               </li>
               <li className="flex items-center flex-col justify-center">
-                <RiSecurePaymentFill className="text-white mb-2 md:w-6 md:h-6" />
+                <RiSecurePaymentFill className="text-[#FFF5EA] mb-2 md:w-6 md:h-6" />
                 <p className="text-sm">Secure Payments</p>
               </li>
             </ul>
