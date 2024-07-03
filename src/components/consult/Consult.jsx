@@ -174,7 +174,7 @@ const Consult = () => {
       </div>
 
       {/* Steps Section */}
-      <div className="flex justify-center mb-2 relative mx-auto max-w-4xl mt-12">
+      <div className="flex justify-center mb-2 relative mx-auto max-w-4xl mt-8">
         {/* Step 1 */}
         <div className="relative flex flex-col items-center w-1/3">
           <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#EDC800] flex items-center justify-center overflow-hidden">
@@ -216,7 +216,7 @@ const Consult = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center relative mx-auto max-w-4xl mb-12">
+      <div className="flex justify-center relative mx-auto max-w-4xl ">
         <div className="relative flex flex-col items-center w-1/3 justify-center text-center">
           <p className="text-sm font-semibold">
             Assess <br /> Yourself

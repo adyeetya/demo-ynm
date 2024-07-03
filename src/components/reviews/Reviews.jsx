@@ -59,7 +59,7 @@ const Reviews = () => {
           See what our customers have to say about our products.
         </p>
       </div>
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-8" >
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-8">
         {reviewsData.map((review) => (
           <div
             key={review.id}
@@ -72,6 +72,7 @@ const Reviews = () => {
                 controls={false}
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 loop
+                playsInline
               />
               <button
                 onClick={() => handlePlayPause(review.id)}
