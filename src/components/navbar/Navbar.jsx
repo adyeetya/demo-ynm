@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef, useEffect, useContext } from 'react'
+import { useState, useRef, useEffect, useContext, useCallback } from 'react'
 import { IoIosSearch } from 'react-icons/io'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { GlobalStateContext } from '../../context/navbarContext'
@@ -9,8 +9,7 @@ const Navbar = () => {
   const { isMenuOpen, setIsMenuOpen } = useContext(GlobalStateContext)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const menuRef = useRef()
-  const searchRef = useRef()
+  const menuRef = useRef(null)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -30,29 +29,25 @@ const Navbar = () => {
     alert(`Searching for: ${searchQuery}`)
   }
 
-  const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
+  const handleClickOutside = useCallback((event) => {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target) &&
+      !event.target.closest('.menu-button')
+    ) {
       setIsMenuOpen(false)
     }
-    if (searchRef.current && !searchRef.current.contains(event.target)) {
-      setIsSearchOpen(false)
-    }
-  }
+  }, [])
 
   useEffect(() => {
-    if (isMenuOpen || isSearchOpen) {
-      document.addEventListener('click', handleClickOutside)
-    } else {
-      document.removeEventListener('click', handleClickOutside)
-    }
-
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener('click', handleClickOutside)
+      document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isMenuOpen, isSearchOpen])
+  }, [handleClickOutside])
 
   return (
-    <nav className="bg-[#080808] shadow-lg text-[#FFF5EA]  sticky inset-x-0 top-0 z-30">
+    <nav className="bg-[#080808] shadow-lg text-[#FFF5EA] sticky inset-x-0 top-0 z-30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
@@ -66,7 +61,7 @@ const Navbar = () => {
               />
             </a>
           </div>
-          <div className="flex justify-end items-center flex-1 space-x-6 md:space-x-12 ">
+          <div className="flex justify-end items-center flex-1 space-x-6 md:space-x-12">
             <div className="hidden md:flex space-x-12">
               <a href="#" className="hover:text-gray-300">
                 Login
@@ -83,13 +78,13 @@ const Navbar = () => {
             </div>
             <button
               onClick={toggleSearch}
-              className="focus:outline-none md:mr-4"
+              className="focus:outline-none md:mr-4 search-button"
             >
               <IoIosSearch className="h-6 w-6 text-[#FFF5EA]" />
             </button>
             <button
               onClick={toggleMenu}
-              className="md:hidden focus:outline-none"
+              className="md:hidden focus:outline-none menu-button"
             >
               <RxHamburgerMenu className="h-6 w-6 text-[#FFF5EA]" />
             </button>
@@ -97,10 +92,7 @@ const Navbar = () => {
         </div>
       </div>
       {isSearchOpen && (
-        <div
-          className="absolute top-[62px] left-0 right-0 bg-[#080808] shadow-lg p-4 flex z-10"
-          ref={searchRef}
-        >
+        <div className="absolute top-[62px] left-0 right-0 bg-[#080808] shadow-lg p-4 flex z-10">
           <div className="w-full md:w-1/2 flex flex-row mx-auto">
             <input
               type="text"
