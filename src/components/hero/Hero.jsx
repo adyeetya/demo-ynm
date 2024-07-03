@@ -37,7 +37,7 @@ const Hero = () => {
             CLIMAX <br /> DELAY SPRAY
           </h1>
           <p className="text-md">
-            a brand which has solution to all your problems
+            A brand which has solution to all your problems.
           </p>
         </div>
 
