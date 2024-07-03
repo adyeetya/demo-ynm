@@ -2,13 +2,20 @@
 import { useState, useRef, useEffect, useContext, useCallback } from 'react'
 import { IoIosSearch } from 'react-icons/io'
 import { RxHamburgerMenu } from 'react-icons/rx'
+import { IoCartOutline } from 'react-icons/io5'
 import { GlobalStateContext } from '../../context/navbarContext'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useCart } from '../../context/cartContext' // Import useCart context
+import { products } from '../../data/Products'
 
 const Navbar = () => {
   const { isMenuOpen, setIsMenuOpen } = useContext(GlobalStateContext)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const { cart } = useCart() // Destructure cart from useCart context
+  const [cartCount, setCartCount] = useState(0)
   const menuRef = useRef(null)
 
   const toggleMenu = () => {
@@ -26,7 +33,14 @@ const Navbar = () => {
   }
 
   const handleSearch = () => {
-    alert(`Searching for: ${searchQuery}`)
+    if (searchQuery.trim() === '') {
+      setFilteredProducts([])
+    } else {
+      const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+      setFilteredProducts(filtered)
+    }
   }
 
   const handleClickOutside = useCallback((event) => {
@@ -39,12 +53,38 @@ const Navbar = () => {
     }
   }, [])
 
+  const handleLinkClick = () => {
+    setFilteredProducts([])
+    setIsSearchOpen(false)
+  }
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [handleClickOutside])
+
+  useEffect(() => {
+    handleSearch()
+  }, [searchQuery])
+
+  useEffect(() => {
+    const updateCartCount = () => {
+      const cartItems = cart || [] // Handle null or undefined case
+      setCartCount(cartItems.length)
+    }
+
+    // Update cart count initially
+    updateCartCount()
+
+    // Listen for changes in cart (handled by context)
+    // No need for window.localStorage event listener here
+
+    return () => {
+      // Cleanup function
+    }
+  }, [cart])
 
   return (
     <nav className="bg-[#080808] shadow-lg text-[#FFF5EA] sticky inset-x-0 top-0 z-30">
@@ -66,8 +106,8 @@ const Navbar = () => {
               <a href="#" className="hover:text-gray-300">
                 Login
               </a>
-              <a href="#" className="hover:text-gray-300">
-                Product
+              <a href="/products" className="hover:text-gray-300">
+                Products
               </a>
               <a href="#" className="hover:text-gray-300">
                 Education
@@ -76,6 +116,14 @@ const Navbar = () => {
                 Talk
               </a>
             </div>
+            <Link href="/cart">
+              <div className="relative">
+                <IoCartOutline className="h-6 w-6 text-[#FFF5EA]" />
+                <span className="absolute -top-2 -right-2 bg-blue-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              </div>
+            </Link>
             <button
               onClick={toggleSearch}
               className="focus:outline-none md:mr-4 search-button"
@@ -110,6 +158,23 @@ const Navbar = () => {
           </div>
         </div>
       )}
+      {filteredProducts.length > 0 && (
+        <div className="absolute top-[130px] left-0 right-0 bg-[#080808] shadow-lg p-4 z-10">
+          <ul>
+            {filteredProducts.map((product) => (
+              <li
+                key={product.id}
+                className="p-2 hover:bg-gray-700"
+                onClick={() => setFilteredProducts([])}
+              >
+                <Link onClick={handleLinkClick} href={`/product/${product.id}`}>
+                  {product.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {isMenuOpen && (
         <div
           className="z-50 md:hidden absolute top-16 right-0 mt-2 mr-2 bg-[#11130C] shadow-lg rounded-xl w-48"
@@ -129,10 +194,10 @@ const Navbar = () => {
               About
             </a>
             <a
-              href="#"
+              href="/products"
               className="block px-3 py-2 rounded-md text-base font-medium"
             >
-              Product
+              Products
             </a>
             <a
               href="#"
@@ -152,25 +217,6 @@ const Navbar = () => {
             >
               Contact
             </a>
-          </div>
-        </div>
-      )}
-      {isSearchOpen && (
-        <div className="hidden md:flex justify-center absolute top-16 left-0 right-0 bg-[#080808] shadow-lg py-4 z-10">
-          <div className="w-1/2 flex">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex-grow px-3 py-2 text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
-            />
-            <button
-              onClick={handleSearch}
-              className="ml-2 px-3 py-2 bg-blue-900 text-[#FFF5EA] rounded-full hover:bg-blue-700 focus:outline-none"
-            >
-              Search
-            </button>
           </div>
         </div>
       )}

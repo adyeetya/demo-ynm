@@ -2,7 +2,9 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '../components/navbar/Navbar'
 import { GlobalStateProvider } from '../context/navbarContext'
+import { CartProvider } from '../context/cartContext'
 import Footer from '@/components/footer/Footer'
+import { Toaster } from 'react-hot-toast'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -16,10 +18,13 @@ export default function RootLayout({ children }) {
       <body
         className={`'min-h-screen max-w-[100vw] overflow-x-hidden font-sans antialiased scroll-smooth ' ${inter.className}`}
       >
+        <Toaster />
         <GlobalStateProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <CartProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </CartProvider>
         </GlobalStateProvider>
       </body>
     </html>
