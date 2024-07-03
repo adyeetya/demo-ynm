@@ -53,11 +53,11 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <a href="/" className="flex justify-center items-center">
               <Image
-                src="/images/yes n more logo 4@3x 1.png"
+                src="/images/LOGO YES N MORE.png"
                 alt="logo"
                 width={1000}
                 height={1000}
-                className="w-14 md:w-20 h-14 md:h-20 md:ml-2 mt-4"
+                className="w-16 md:w-20 h-14 md:h-16 "
               />
             </a>
           </div>
