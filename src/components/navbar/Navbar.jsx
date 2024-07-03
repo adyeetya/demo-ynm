@@ -162,15 +162,15 @@ const Navbar = () => {
         <div className="absolute top-[130px] left-0 right-0 bg-[#080808] shadow-lg p-4 z-10">
           <ul>
             {filteredProducts.map((product) => (
-              <li
-                key={product.id}
-                className="p-2 hover:bg-gray-700"
-                onClick={() => setFilteredProducts([])}
-              >
-                <Link onClick={handleLinkClick} href={`/product/${product.id}`}>
+              <Link onClick={handleLinkClick} href={`/product/${product.id}`}>
+                <li
+                  key={product.id}
+                  className="p-2 hover:bg-gray-700"
+                  onClick={() => setFilteredProducts([])}
+                >
                   {product.name}
-                </Link>
-              </li>
+                </li>
+              </Link>
             ))}
           </ul>
         </div>
