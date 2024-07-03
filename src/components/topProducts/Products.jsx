@@ -9,7 +9,7 @@ const productsData = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
     rating: 4.5,
-    imageUrl: '/images/yes n more typo 3.1 @1.png',
+    imageUrl: '/images/pro1.jpg',
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const productsData = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
     rating: 4.5,
-    imageUrl: '/images/yes n more typo 3.1 @1.png',
+    imageUrl: '/images/pro2.jpg',
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const productsData = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
     rating: 2.5,
-    imageUrl: '/images/yes n more typo 3.1 @1.png',
+    imageUrl: '/images/pro1.jpg',
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ const productsData = [
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
     rating: 3.5,
-    imageUrl: '/images/yes n more typo 3.1 @1.png',
+    imageUrl: '/images/pro2.jpg',
   },
   // Add more products as needed
 ]
@@ -54,9 +54,9 @@ const Products = () => {
         {productsData.map((product) => (
           <div
             key={product.id}
-            className="bg-[#190E0B] text-[#FFF5EA] rounded-2xl md:rounded-3xl shadow-md p-3 md:p-4 flex flex-col h-72 w-[165px] sm:w-44 md:h-96 md:w-60"
+            className="bg-[#190E0B] text-[#FFF5EA] rounded-2xl md:rounded-3xl shadow-md p-3 md:p-4 flex flex-col h-[20rem] w-[165px] sm:w-44 md:h-96 md:w-60"
           >
-            <div className="relative w-full h-52 md:h-52 mb-4">
+            <div className="relative w-full h-[14rem] md:h-52 mb-4">
               <Image
                 src={product.imageUrl}
                 alt={product.name}

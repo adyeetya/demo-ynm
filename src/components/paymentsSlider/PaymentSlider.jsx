@@ -31,7 +31,7 @@ const news = [
 ]
 const PaymentSlider = () => {
   return (
-    <div className="max-w-screen-lg mx-auto p-4 my-12">
+    <div className="max-w-screen-lg mx-auto p-0 md:p-4 my-12">
       <h2 className="text-xl mb-8 text-center">
         {' '}
         Complete your Payment with any of these Payment Methods
