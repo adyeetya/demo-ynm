@@ -108,7 +108,7 @@ const ProductsPage = () => {
                   alt={product.name}
                   width={300}
                   height={300}
-                  className="w-full h-48 object-cover rounded-xl"
+                  className="w-full  object-cover rounded-xl"
                 />
               </Link>
               <div className="p-4">
