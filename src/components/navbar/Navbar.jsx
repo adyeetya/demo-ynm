@@ -3,6 +3,7 @@ import { useState, useRef, useEffect, useContext, useCallback } from 'react'
 import { IoIosSearch } from 'react-icons/io'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { IoCartOutline } from 'react-icons/io5'
+import { IoClose } from 'react-icons/io5'
 import { GlobalStateContext } from '../../context/navbarContext'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -152,7 +153,11 @@ const Navbar = () => {
               onClick={toggleMenu}
               className="md:hidden focus:outline-none menu-button"
             >
-              <RxHamburgerMenu className="h-6 w-6 text-[#FFF5EA]" />
+              {isMenuOpen ? (
+                <IoClose className="h-6 w-6 text-[#FFF5EA]" />
+              ) : (
+                <RxHamburgerMenu className="h-6 w-6 text-[#FFF5EA]" />
+              )}
             </button>
           </div>
         </div>
