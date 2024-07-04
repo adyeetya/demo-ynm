@@ -6,6 +6,7 @@ const expertsData = [
   {
     id: 1,
     name: 'Dr. Saurabh Jain',
+    
     status: 'Online',
     rating: 4,
     imageUrl: '/images/image 10.png',
@@ -13,10 +14,10 @@ const expertsData = [
   },
   {
     id: 2,
-    name: 'Dr. Jane Smith',
+    name: 'Dr. Indra Singh',
     status: 'Offline',
     rating: 3,
-    imageUrl: '/images/image 10.png',
+    imageUrl: '/images/femdoc.avif',
     info: 'Urologists are specialized health professionals who have expert training for treating the male reproductive system and urinary tracts. Mainly, they conduct diagnosis and treatment for issues like cancer kidney stones, kidney disease, urethra disease, bladder disorder, infections, and pelvic muscle problems.',
   },
 ]
@@ -47,7 +48,7 @@ const Experts = () => {
               <div className="flex flex-row justify-between items-center gap-2 mt-1">
                 <div className="flex items-center">
                   {[...Array(Math.floor(expert.rating))].map((_, index) => (
-                    <IoMdStar key={index} className="w-5 h-5 text-[#debb02]" />
+                    <IoMdStar key={index} className="w-5 h-5 text-[#fad73a]" />
                   ))}
                 </div>
                 <p

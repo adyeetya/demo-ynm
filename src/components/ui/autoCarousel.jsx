@@ -5,7 +5,7 @@ import AutoScroll from 'embla-carousel-auto-scroll'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 import { cn } from '../../lib/utils'
-import { Button } from '../../components/ui/button'
+import { Button } from './button'
 
 const CarouselContext = React.createContext(null)
 

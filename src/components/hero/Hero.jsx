@@ -24,7 +24,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-10 flex flex-col justify-between md:justify-center items-start md:items-center p-4 md:p-0">
         {/* Mobile Button */}
         <button
-          className={`bg-white text-black py-3 px-10 rounded-xl mx-auto mt-16 font-extrabold text-xl ${
+          className={`bg-white text-black py-2 px-6 rounded-xl mx-auto mt-16 font-semibold text-xl ${
             isMenuOpen ? 'hidden' : 'block'
           } md:hidden`}
         >

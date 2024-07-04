@@ -3,11 +3,9 @@ import {
   BrandsCarousel,
   BrandsCarouselContent,
   BrandsCarouselItem,
-  BrandsCarouselPrevious,
-  BrandsCarouselNext,
-} from '../ui/carousel'
+} from '../ui/autoCarousel'
 
-const news = [
+const types = [
   {
     id: 1,
     imageUrl: '/images/Visa-Emblem.jpg',
@@ -28,6 +26,10 @@ const news = [
     id: 5,
     imageUrl: '/images/Visa-Emblem.jpg',
   },
+  {
+    id: 6,
+    imageUrl: '/images/Visa-Emblem.jpg',
+  },
 ]
 const PaymentSlider = () => {
   return (
@@ -44,7 +46,7 @@ const PaymentSlider = () => {
         className="w-full overflow-hidden"
       >
         <BrandsCarouselContent>
-          {news.map((card) => (
+          {types.map((card) => (
             <BrandsCarouselItem
               key={card.id}
               className="basis-1/3 lg:basis-1/4 "

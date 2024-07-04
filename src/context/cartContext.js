@@ -5,17 +5,19 @@ import { toast } from 'react-hot-toast'
 const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([])
-
-  useEffect(() => {
-    const storedCart = localStorage.getItem('cart')
-    if (storedCart) {
-      setCart(JSON.parse(storedCart))
+  const [cart, setCart] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const storedCart = sessionStorage.getItem('cart')
+      return storedCart ? JSON.parse(storedCart) : []
+    } else {
+      return []
     }
-  }, [])
+  })
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('cart', JSON.stringify(cart))
+    }
   }, [cart])
 
   const addToCart = (product) => {
@@ -40,7 +42,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([])
-    localStorage.removeItem('cart')
+    sessionStorage.removeItem('cart')
   }
 
   const increaseQuantity = (productId) => {

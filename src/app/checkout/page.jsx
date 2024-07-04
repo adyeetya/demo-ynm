@@ -4,7 +4,8 @@ import { useCart } from '../../context/cartContext'
 import Image from 'next/image'
 import { FaRegEdit } from 'react-icons/fa'
 import { FaShippingFast } from 'react-icons/fa'
-
+import { Poppins } from 'next/font/google'
+const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 const CheckoutPage = () => {
   const { cart } = useCart()
 
@@ -15,8 +16,10 @@ const CheckoutPage = () => {
   )
 
   return (
-    <div className="p-4 md:py-12 max-w-screen-xl mx-auto min-h-screen">
-      <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+    <div
+      className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
+    >
+      <h1 className="text-3xl font-bold mb-2">Checkout</h1>
 
       <div className="mb-8 p-6 bg-white rounded-lg shadow-md">
         <div className="flex items-center mb-4 gap-2 text-gray-600">

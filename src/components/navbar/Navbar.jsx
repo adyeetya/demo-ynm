@@ -17,6 +17,7 @@ const Navbar = () => {
   const { cart } = useCart() // Destructure cart from useCart context
   const [cartCount, setCartCount] = useState(0)
   const menuRef = useRef(null)
+  const scrollTimeoutRef = useRef(null)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -58,6 +59,16 @@ const Navbar = () => {
     setIsSearchOpen(false)
   }
 
+  const handleScroll = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false)
+    }
+    clearTimeout(scrollTimeoutRef.current)
+    scrollTimeoutRef.current = setTimeout(() => {
+      document.removeEventListener('scroll', handleScroll)
+    }, 100)
+  }
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
@@ -78,13 +89,20 @@ const Navbar = () => {
     // Update cart count initially
     updateCartCount()
 
-    // Listen for changes in cart (handled by context)
-    // No need for window.localStorage event listener here
-
     return () => {
       // Cleanup function
     }
   }, [cart])
+
+  useEffect(() => {
+    // Attach scroll event listener to the document body
+    document.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      // Cleanup function to remove event listener
+      document.removeEventListener('scroll', handleScroll)
+    }
+  }, [isMenuOpen])
 
   return (
     <nav className="bg-[#080808] shadow-lg text-[#FFF5EA] sticky inset-x-0 top-0 z-30">
@@ -97,7 +115,7 @@ const Navbar = () => {
                 alt="logo"
                 width={1000}
                 height={1000}
-                className="w-16 md:w-20 h-14 md:h-16 "
+                className="w-20 md:w-24 h-14 md:h-16 "
               />
             </a>
           </div>
@@ -180,43 +198,43 @@ const Navbar = () => {
       )}
       {isMenuOpen && (
         <div
-          className="z-50 md:hidden absolute top-16 right-0 mt-2 mr-2 bg-[#11130C] shadow-lg rounded-xl w-48"
+          className="z-50 md:hidden absolute top-14 right-0 mt-2 bg-[#080808]  shadow-lg  w-full animate-slide-in-up"
           ref={menuRef}
         >
-          <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="px-4 py-4 space-y-2">
             <a
-              href="#"
-              className="block px-3 py-2 rounded-md text-base font-medium"
+              href="/"
+              className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
             >
               Home
             </a>
             <a
               href="#"
-              className="block px-3 py-2 rounded-md text-base font-medium"
+              className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
             >
               About
             </a>
             <a
               href="/products"
-              className="block px-3 py-2 rounded-md text-base font-medium"
+              className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
             >
               Products
             </a>
             <a
               href="#"
-              className="block px-3 py-2 rounded-md text-base font-medium"
+              className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
             >
               Education
             </a>
             <a
               href="#"
-              className="block px-3 py-2 rounded-md text-base font-medium"
+              className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
             >
               FAQ
             </a>
             <a
               href="#"
-              className="block px-3 py-2 rounded-md text-base font-medium"
+              className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
             >
               Contact
             </a>

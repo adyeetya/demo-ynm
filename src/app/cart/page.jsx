@@ -4,6 +4,8 @@ import { useCart } from '../../context/cartContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import { IoMdStar } from 'react-icons/io'
+import { Poppins } from 'next/font/google'
+const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 const CartPage = () => {
   const {
     cart,
@@ -34,7 +36,9 @@ const CartPage = () => {
   }
 
   return (
-    <div className="p-4 md:py-6 max-w-screen-xl mx-auto min-h-screen">
+    <div
+      className={`p-4 md:py-6 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
+    >
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl md:text-3xl font-bold">Shopping Cart</h1>
         <button

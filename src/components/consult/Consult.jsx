@@ -38,7 +38,7 @@ const Consult = () => {
                 layout="fill"
                 objectFit="cover"
                 objectPosition="top center"
-                className="absolute top-[-50%] left-0 right-0 bottom-0 -mt-[14px] ml-8 transform scale-[115%] z-10" // Adjust top position and scale the image
+                className="absolute top-[-50%] left-0 right-0 bottom-0 -mt-[6px] md:-mt-[5px] ml-[13px] md:ml-[20px] transform scale-[106%] z-10" // Adjust top position and scale the image
               />
             </div>
             <div className="w-3/5 flex justify-center items-center mb-6">
