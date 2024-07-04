@@ -1,11 +1,12 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { products } from '../../data/Products'
 import { useCart } from '../../context/cartContext'
 
 import { IoMdStar } from 'react-icons/io'
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { Poppins } from 'next/font/google'
 
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
@@ -14,6 +15,9 @@ const ProductsPage = () => {
   const { addToCart } = useCart()
   const [sortOrder, setSortOrder] = useState('')
   const [filterCategory, setFilterCategory] = useState('')
+  const [openDropdown, setOpenDropdown] = useState(null)
+  const sortRef = useRef(null)
+  const filterRef = useRef(null)
 
   const handleAddToCart = (product) => {
     addToCart(product)
@@ -23,18 +27,44 @@ const ProductsPage = () => {
     return ((mrp - price) / mrp) * 100
   }
 
-  const handleSortChange = (e) => {
-    setSortOrder(e.target.value)
+  const handleSortChange = (value) => {
+    setSortOrder(value)
+    setOpenDropdown(null)
   }
 
-  const handleFilterChange = (e) => {
-    setFilterCategory(e.target.value)
+  const handleFilterChange = (value) => {
+    setFilterCategory(value)
+    setOpenDropdown(null)
   }
+
+  const handleOutsideClick = (e) => {
+    if (
+      sortRef.current &&
+      !sortRef.current.contains(e.target) &&
+      openDropdown === 'sort'
+    ) {
+      setOpenDropdown(null)
+    }
+    if (
+      filterRef.current &&
+      !filterRef.current.contains(e.target) &&
+      openDropdown === 'filter'
+    ) {
+      setOpenDropdown(null)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick)
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [openDropdown])
 
   const sortedProducts = [...products].sort((a, b) => {
-    if (sortOrder === 'low-to-high') {
+    if (sortOrder === 'price-low-to-high') {
       return a.price - b.price
-    } else if (sortOrder === 'high-to-low') {
+    } else if (sortOrder === 'price-high-to-low') {
       return b.price - a.price
     } else if (sortOrder === 'rating') {
       return b.rating - a.rating
@@ -61,33 +91,91 @@ const ProductsPage = () => {
       <h1 className="text-3xl font-bold mb-6">All Products</h1>
 
       <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-        <div className="mb-4 md:mb-0 flex flex-col gap-2 w-full md:w-fit">
-          <label className="mr-2">Sort by</label>
-          <select
-            value={sortOrder}
-            onChange={handleSortChange}
-            className="border p-2 rounded-md"
-          >
-            <option value="">Select</option>
-            <option value="low-to-high">Price: Low to High</option>
-            <option value="high-to-low">Price: High to Low</option>
-            <option value="rating">Rating</option>
-          </select>
+        <div className="mb-4 md:mb-0 flex flex-col gap-2 w-full md:w-fit relative text-sm md:text-md">
+          <div className="relative w-full" ref={sortRef}>
+            <label
+              onClick={() =>
+                setOpenDropdown(openDropdown === 'sort' ? null : 'sort')
+              }
+              className="cursor-pointer flex items-center w-full capitalize"
+            >
+              Sort by{' '}
+              {sortOrder && (
+                <span className="font-semibold text-blue-600 ml-2">
+                  {' '}
+                  {sortOrder.replace(/-/g, ' ')}
+                </span>
+              )}
+              {openDropdown === 'sort' ? (
+                <BsChevronUp className="ml-2" />
+              ) : (
+                <BsChevronDown className="ml-2" />
+              )}
+            </label>
+            {openDropdown === 'sort' && (
+              <div className="absolute top-8 left-0 w-full md:w-56 bg-white border border-gray-300 rounded-lg shadow-md py-2 px-4 z-10">
+                <div
+                  onClick={() => handleSortChange('price-low-to-high')}
+                  className="cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-md"
+                >
+                  Price: Low to High
+                </div>
+                <div
+                  onClick={() => handleSortChange('price-high-to-low')}
+                  className="cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-md"
+                >
+                  Price: High to Low
+                </div>
+                <div
+                  onClick={() => handleSortChange('rating')}
+                  className="cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-md"
+                >
+                  Rating
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-        <div className="mb-4 md:mb-0 flex flex-col gap-2 w-full md:w-fit">
-          <label className="mr-2">Filter by Category</label>
-          <select
-            value={filterCategory}
-            onChange={handleFilterChange}
-            className="border p-2 rounded-md"
-          >
-            <option value="">All</option>
-            {uniqueCategories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
+        <div className="mb-4 md:mb-0 flex flex-col gap-2 w-full md:w-fit relative text-sm md:text-md">
+          <div className="relative w-full md:w-auto" ref={filterRef}>
+            <label
+              onClick={() =>
+                setOpenDropdown(openDropdown === 'filter' ? null : 'filter')
+              }
+              className="cursor-pointer flex items-center md:justify-end w-full"
+            >
+              Filter by Category{' '}
+              {filterCategory && (
+                <span className="font-semibold text-blue-600 ml-2">
+                  {filterCategory}
+                </span>
+              )}
+              {openDropdown === 'filter' ? (
+                <BsChevronUp className="ml-2" />
+              ) : (
+                <BsChevronDown className="ml-2" />
+              )}
+            </label>
+            {openDropdown === 'filter' && (
+              <div className="absolute top-8 right-0 w-full md:w-60 bg-white border border-gray-300 rounded-lg shadow-md py-2 px-4 z-10">
+                <div
+                  onClick={() => handleFilterChange('')}
+                  className="cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-md"
+                >
+                  All
+                </div>
+                {uniqueCategories.map((category) => (
+                  <div
+                    key={category}
+                    onClick={() => handleFilterChange(category)}
+                    className="cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-md"
+                  >
+                    {category}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -108,7 +196,7 @@ const ProductsPage = () => {
                   alt={product.name}
                   width={300}
                   height={300}
-                  className="w-full  object-cover rounded-xl"
+                  className="w-full object-cover rounded-xl"
                 />
               </Link>
               <div className="p-4">
