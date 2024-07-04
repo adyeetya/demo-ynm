@@ -11,15 +11,14 @@ import 'react-medium-image-zoom/dist/styles.css'
 const ProductPage = ({ params }) => {
   const { addToCart } = useCart()
   const { id } = params
+  const [mainImageIndex, setMainImageIndex] = useState(0)
+  const [quantity, setQuantity] = useState(1)
+  const [selectedConcern, setSelectedConcern] = useState(null)
   const product = products.find((product) => product.id === parseInt(id))
 
   if (!product) {
     return <p>Product not found</p>
   }
-
-  const [mainImageIndex, setMainImageIndex] = useState(0)
-  const [quantity, setQuantity] = useState(1)
-  const [selectedConcern, setSelectedConcern] = useState(null)
 
   const handleConcernClick = (concern) => {
     setSelectedConcern(concern)
