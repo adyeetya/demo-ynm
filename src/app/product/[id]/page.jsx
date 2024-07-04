@@ -91,10 +91,10 @@ const ProductPage = ({ params }) => {
             ))}
           </Slider>
         </div>
-        <div className="mt-4 md:mt-0 flex flex-col justify-center gap-8 w-full md:w-1/2">
+        <div className="mt-4 md:mt-0 flex flex-col justify-center gap-4 md:gap-8 w-full md:w-1/2">
           <div>
             <div className="flex justify-between">
-              <h1 className="text-3xl font-bold mb-1">{product.name}</h1>
+              <h1 className="text-xl md:text-3xl font-bold mb-1 mt-2 md:mt-0">{product.name}</h1>
               <div className="text-gray-600 flex justify-center items-center gap-2">
                 <p className="text-lg">{product.rating}</p>
                 <IoMdStar className="w-4 h-4 md:w-6 md:h-6 text-[#debb02]" />
@@ -103,7 +103,7 @@ const ProductPage = ({ params }) => {
             <p className="text-gray-900">{product.category}</p>
           </div>
           <p className="text-gray-600">{product.description}</p>
-          <div className="flex flex-col justify-between gap-4 items-start">
+          <div className="flex md:flex-col justify-between gap-4 items-start">
             <p className="mt- text-sm font-semibold text-green-600 border border-green-500 rounded px-2 py-1">
               {percentageOff.toFixed(0)}% off
             </p>
@@ -118,7 +118,7 @@ const ProductPage = ({ params }) => {
           </div>
           <button
             onClick={handleAddToCart}
-            className="w-fit mt-4 bg-black text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors"
+            className="md:w-fit mt-1 md:mt-4 bg-black text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors"
           >
             Add to Cart
           </button>
@@ -158,6 +158,9 @@ const ProductPage = ({ params }) => {
                     <p className="text-gray-300 text-sm">{product.category}</p>
                   </div>
                   <div className="flex justify-between items-center mt-4">
+                    <p className="w-fit mt- text-sm font-semibold text-green-500 border border-green-500 rounded px-2 py-1">
+                      {similarProductPercentageOff.toFixed(0)}% off
+                    </p>
                     <div className="flex items-center gap-2">
                       <p className="mt- text-sm line-through">
                         ₹{product.mrp.toFixed(2)}
@@ -166,9 +169,6 @@ const ProductPage = ({ params }) => {
                         ₹{product.price.toFixed(2)}
                       </p>
                     </div>
-                    <p className="w-fit mt- text-sm font-semibold text-green-500 border border-green-500 rounded px-2 py-1">
-                      {similarProductPercentageOff.toFixed(0)}% off
-                    </p>
                   </div>
                 </div>
               </Link>

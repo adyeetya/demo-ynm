@@ -54,6 +54,9 @@ const ProductsPage = () => {
                 </Link>
                 <p className="text-gray-400 mt-2">{product.description}</p>
                 <div className="flex justify-between items-center mt-4">
+                  <p className="mt- text-sm font-semibold text-green-600 border border-green-500 rounded px-2 py-1">
+                    {percentageOff.toFixed(0)}% off
+                  </p>
                   <div className="flex items-center gap-2">
                     <p className="mt- text-sm line-through">
                       ₹{product.mrp.toFixed(2)}
@@ -62,9 +65,6 @@ const ProductsPage = () => {
                       ₹{product.price.toFixed(2)}
                     </p>
                   </div>
-                  <p className="mt- text-sm font-semibold text-green-600 border border-green-500 rounded px-2 py-1">
-                    {percentageOff.toFixed(0)}% off
-                  </p>
                 </div>
                 <button
                   onClick={() => handleAddToCart(product)}
