@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { FaRegEdit } from 'react-icons/fa'
 import { FaShippingFast } from 'react-icons/fa'
 import { Poppins } from 'next/font/google'
+import Link from 'next/link'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 const CheckoutPage = () => {
   const { cart } = useCart()
@@ -19,9 +20,17 @@ const CheckoutPage = () => {
     <div
       className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
     >
-      <h1 className="text-3xl font-bold mb-2">Checkout</h1>
+      <div className="mb-4 md:mb-8 hidden md:flex">
+        <Link
+          href="/"
+          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white"
+        >
+          Home{' '}
+        </Link>
+      </div>
+      <h1 className="text-xl md:text-3xl font-bold mb-2">Checkout</h1>
 
-      <div className="mb-8 p-6 bg-white rounded-lg shadow-md">
+      <div className="mb-8 p-3 bg-white rounded-lg shadow-md">
         <div className="flex items-center mb-4 gap-2 text-gray-600">
           <FaShippingFast className="w-6 h-6" />
           <span className="font-semibold text-[#190E0B]">

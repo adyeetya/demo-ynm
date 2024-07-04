@@ -37,8 +37,16 @@ const CartPage = () => {
 
   return (
     <div
-      className={`p-4 md:py-6 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
+      className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
     >
+      <div className="mb-4 md:mb-8 hidden md:flex">
+        <Link
+          href="/"
+          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white"
+        >
+          Home{' '}
+        </Link>
+      </div>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl md:text-3xl font-bold">Shopping Cart</h1>
         <button
@@ -58,15 +66,16 @@ const CartPage = () => {
           {cartItems.map((item) => (
             <div
               key={item.id}
-              className="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between"
+              className="bg-white p-2 rounded-lg shadow-lg flex flex-col justify-between"
             >
-              <div className="relative w-full h-48">
+              <div className="relative w-full h-auto">
                 <Image
                   src={item.imageUrl}
                   alt={item.name}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-t-lg"
+                  width={1000}
+                  height={1000}
+                  objectFit="contain"
+                  className="rounded-t-lg w-full h-full"
                 />
               </div>
               <div className="mt-4">

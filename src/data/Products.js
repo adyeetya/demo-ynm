@@ -9,7 +9,13 @@ export const products = [
     price: 299,
     mrp: 399,
     imageUrl: '/images/pro1.jpg',
-    productImages: ['/images/pro1.jpg', '/images/pro2.jpg', '/images/pro1.jpg'],
+    productImages: [
+      '/images/pro1.jpg',
+      '/images/pro2.jpg',
+      '/images/pro1.jpg',
+      '/images/pro2.jpg',
+      '/images/pro1.jpg',
+    ],
   },
   {
     id: 2,
@@ -21,7 +27,13 @@ export const products = [
     price: 349,
     mrp: 499,
     imageUrl: '/images/pro2.jpg',
-    productImages: ['/images/pro2.jpg', '/images/pro1.jpg', '/images/pro2.jpg'],
+    productImages: [
+      '/images/pro2.jpg',
+      '/images/pro1.jpg',
+      '/images/pro2.jpg',
+      '/images/pro1.jpg',
+      '/images/pro2.jpg',
+    ],
   },
   {
     id: 3,
@@ -33,7 +45,13 @@ export const products = [
     price: 155,
     mrp: 299,
     imageUrl: '/images/pro1.jpg',
-    productImages: ['/images/pro2.jpg', '/images/pro1.jpg', '/images/pro2.jpg'],
+    productImages: [
+      '/images/pro2.jpg',
+      '/images/pro1.jpg',
+      '/images/pro2.jpg',
+      '/images/pro1.jpg',
+      '/images/pro2.jpg',
+    ],
   },
   {
     id: 4,
@@ -45,7 +63,13 @@ export const products = [
     price: 399,
     mrp: 459,
     imageUrl: '/images/pro2.jpg',
-    productImages: ['/images/pro1.jpg', '/images/pro2.jpg', '/images/pro1.jpg'],
+    productImages: [
+      '/images/pro1.jpg',
+      '/images/pro2.jpg',
+      '/images/pro1.jpg',
+      '/images/pro2.jpg',
+      '/images/pro1.jpg',
+    ],
   },
   // Add more products as needed
 ]

@@ -4,12 +4,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { products } from '../../data/Products'
 import { useCart } from '../../context/cartContext'
-
 import { IoMdStar } from 'react-icons/io'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { Poppins } from 'next/font/google'
-
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
+
+
 
 const ProductsPage = () => {
   const { addToCart } = useCart()
@@ -86,9 +86,17 @@ const ProductsPage = () => {
 
   return (
     <div
-      className={`p-4 md:py-6 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
+      className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
     >
-      <h1 className="text-3xl font-bold mb-6">All Products</h1>
+      <div className="mb-4 md:mb-8 hidden md:flex">
+        <Link
+          href="/"
+          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white"
+        >
+          Home{' '}
+        </Link>
+      </div>
+      <h1 className="text-xl md:text-3xl font-bold mb-6">All Products</h1>
 
       <div className="flex flex-col md:flex-row justify-between items-center mb-6">
         <div className="mb-4 md:mb-0 flex flex-col gap-2 w-full md:w-fit relative text-sm md:text-md">

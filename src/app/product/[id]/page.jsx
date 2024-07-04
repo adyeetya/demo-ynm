@@ -7,7 +7,13 @@ import { useCart } from '../../../context/cartContext'
 import { IoMdStar } from 'react-icons/io'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
-
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '../../../components/ui/carousel'
 const ProductPage = ({ params }) => {
   const { addToCart } = useCart()
   const { id } = params
@@ -48,29 +54,82 @@ const ProductPage = ({ params }) => {
   }
 
   return (
-    <div className="p-4 md:py-4 max-w-screen-xl mx-auto min-h-screen">
+    <div className="p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen">
+      
       <div className="flex flex-col md:flex-row md:space-x-8">
-        <div className="flex-shrink-0 flex flex-col-reverse md:flex-row gap-4 w-full md:w-1/2 relative">
-          <div className="flex md:flex-col justify-center gap-4">
-            {product.productImages.map((image, index) => (
-              <div
-                key={index}
-                onClick={() => handleThumbnailClick(index)}
-                className={`cursor-pointer w-16 h-16 rounded-lg overflow-hidden ${
-                  index === mainImageIndex ? 'border-2 border-blue-500' : ''
-                }`}
-              >
-                <Image
-                  src={image}
-                  alt={`Product thumbnail ${index + 1}`}
-                  width={1000}
-                  height={1000}
-                  objectFit="contain"
-                  className="rounded-lg w-16 h-16"
-                />
-              </div>
-            ))}
+        <div className="flex-shrink-0 flex flex-col-reverse md:flex-row  gap-4 w-full md:w-1/2 relative">
+          <div className="hidden md:flex justify-center items-center  h-">
+            <Carousel
+              opts={{
+                align: 'start',
+                loop: true,
+              }}
+              orientation="vertical"
+              className="bg flex justify-center items-center"
+            >
+              <CarouselContent className="  h-64">
+                {product.productImages.map((image, index) => (
+                  <CarouselItem key={index} className="basis-1/3  h-16">
+                    <div
+                      onClick={() => handleThumbnailClick(index)}
+                      className={`cursor-pointer w-16 h-16 rounded-lg overflow-hidden ${
+                        index === mainImageIndex
+                          ? 'border-2 border-blue-500'
+                          : ''
+                      }`}
+                    >
+                      <Image
+                        src={image}
+                        alt={`Product thumbnail ${index + 1}`}
+                        width={1000}
+                        height={1000}
+                        objectFit="contain"
+                        className="rounded-lg w-16 h-16"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="border-none" />
+              <CarouselNext className="border-none" />
+            </Carousel>
           </div>
+          <div className="md:hidden flex justify-center items-center  h-">
+            <Carousel
+              opts={{
+                align: 'start',
+                loop: true,
+              }}
+              className="bg flex justify-center items-center"
+            >
+              <CarouselContent className=" w-60">
+                {product.productImages.map((image, index) => (
+                  <CarouselItem key={index} className="basis-1/3 h-16 w-16">
+                    <div
+                      onClick={() => handleThumbnailClick(index)}
+                      className={`cursor-pointer w-16 h-16 rounded-lg overflow-hidden ${
+                        index === mainImageIndex
+                          ? 'border-2 border-blue-500'
+                          : ''
+                      }`}
+                    >
+                      <Image
+                        src={image}
+                        alt={`Product thumbnail ${index + 1}`}
+                        width={1000}
+                        height={1000}
+                        objectFit="contain"
+                        className="rounded-lg w-16 h-16"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+
           <div className="relative w-full  overflow-hidden flex ">
             <Zoom>
               <Image
