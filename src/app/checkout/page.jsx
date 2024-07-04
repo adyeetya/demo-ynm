@@ -2,16 +2,52 @@
 import React from 'react'
 import { useCart } from '../../context/cartContext'
 import Image from 'next/image'
+import { FaRegEdit } from 'react-icons/fa'
+import { FaShippingFast } from 'react-icons/fa'
 
 const CheckoutPage = () => {
   const { cart } = useCart()
 
-  // Calculate total price
-  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0)
+  // Calculate total price based on quantity
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  )
 
   return (
     <div className="p-4 md:py-12 max-w-screen-xl mx-auto min-h-screen">
       <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+
+      <div className="mb-8 p-6 bg-white rounded-lg shadow-md">
+        <div className="flex items-center mb-4 gap-2 text-gray-600">
+          <FaShippingFast className="w-6 h-6" />
+          <span className="font-semibold text-[#190E0B]">
+            Get Delivery By 5th July
+          </span>
+        </div>
+        <div className="flex justify-between items-center mb-2">
+          <h2 className="text-xl font-semibold text-[#190E0B]">
+            Delivering To
+          </h2>
+          <button
+            onClick={() =>
+              alert('Change address functionality to be implemented')
+            }
+            className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+          >
+            <FaRegEdit className="w-6 h-6" />
+            <span className="ml-1 text-sm font-medium">Change</span>
+          </button>
+        </div>
+        <div className="border-l-4 border-[#190E0B] pl-4">
+          <p className="font-medium text-gray-800">Aditya Singh</p>
+          <p className="text-gray-600">+91 8787887878</p>
+          <p className="text-gray-600">123 Main Street</p>
+          <p className="text-gray-600">City, State, ZIP</p>
+          <p className="text-gray-600">Country</p>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="col-span-1">
           <h2 className="text-xl font-semibold mb-4">Your Items</h2>
@@ -28,9 +64,12 @@ const CheckoutPage = () => {
                   objectFit="cover"
                 />
               </div>
-              <div>
+              <div className="flex flex-col">
                 <h3 className="text-lg font-semibold">{item.name}</h3>
-                <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                <p className="text-gray-600">Quantity: {item.quantity}</p>
+                <p className="text-gray-600">
+                  ₹{item.price.toFixed(2)} per item
+                </p>
               </div>
             </div>
           ))}
@@ -39,7 +78,7 @@ const CheckoutPage = () => {
           <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
           <div className="flex justify-between mb-4">
             <span>Subtotal:</span>
-            <span>${totalPrice.toFixed(2)}</span>
+            <span>₹{totalPrice.toFixed(2)}</span>
           </div>
           <div className="flex justify-between mb-4">
             <span>Shipping:</span>
@@ -47,7 +86,7 @@ const CheckoutPage = () => {
           </div>
           <div className="flex justify-between border-t border-gray-200 pt-4 mb-4">
             <span className="font-semibold">Total:</span>
-            <span className="font-semibold">${totalPrice.toFixed(2)}</span>
+            <span className="font-semibold">₹{totalPrice.toFixed(2)}</span>
           </div>
           <button
             className="rounded-full hover:bg-orange-600 transition-colors bg-black text-white px-8 py-2 text-center"

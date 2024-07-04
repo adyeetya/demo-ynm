@@ -1,6 +1,7 @@
 'use client'
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { toast } from 'react-hot-toast'
+
 const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
@@ -13,29 +14,28 @@ export const CartProvider = ({ children }) => {
     }
   }, [])
 
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
+
   const addToCart = (product) => {
     const productId = product.id
 
-    // Check if the product already exists in the cart
     const isProductInCart = cart.some((item) => item.id === productId)
 
     if (isProductInCart) {
-      // Product already exists in cart, show a toast or alert
       toast('This product is already in your cart!')
       return
     }
 
-    // Product does not exist in cart, add it
-    const updatedCart = [...cart, product]
+    const updatedCart = [...cart, { ...product, quantity: 1 }]
     setCart(updatedCart)
-    localStorage.setItem('cart', JSON.stringify(updatedCart))
     toast.success('Product added to cart!')
   }
 
   const removeFromCart = (productId) => {
     const updatedCart = cart.filter((product) => product.id !== productId)
     setCart(updatedCart)
-    localStorage.setItem('cart', JSON.stringify(updatedCart))
   }
 
   const clearCart = () => {
@@ -43,11 +43,37 @@ export const CartProvider = ({ children }) => {
     localStorage.removeItem('cart')
   }
 
-  const cartCount = cart.length
+  const increaseQuantity = (productId) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    )
+  }
+
+  const decreaseQuantity = (productId) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === productId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    )
+  }
+
+  const cartCount = cart.reduce((count, item) => count + item.quantity, 0)
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart, cartCount }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        increaseQuantity,
+        decreaseQuantity,
+        cartCount,
+      }}
     >
       {children}
     </CartContext.Provider>
