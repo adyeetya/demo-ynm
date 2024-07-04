@@ -55,7 +55,6 @@ const ProductPage = ({ params }) => {
 
   return (
     <div className="p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen">
-      
       <div className="flex flex-col md:flex-row md:space-x-8">
         <div className="flex-shrink-0 flex flex-col-reverse md:flex-row  gap-4 w-full md:w-1/2 relative">
           <div className="hidden md:flex justify-center items-center  h-">
@@ -125,8 +124,8 @@ const ProductPage = ({ params }) => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <CarouselPrevious className="border-none" />
+              <CarouselNext className="border-none" />
             </Carousel>
           </div>
 
