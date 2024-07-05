@@ -64,7 +64,7 @@ const Products = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-[#190E0B] text-[#FFF5EA] rounded-2xl md:rounded-3xl shadow-md p-2 md:p-2 flex flex-col h-[20rem] w-[165px] sm:w-44 md:h-96 md:w-60"
+            className="bg-[#190E0B] text-[#FFF5EA] rounded-2xl md:rounded-3xl shadow-md p-2 md:p-2  flex flex-col h-[20rem] w-[165px] sm:w-44 md:h-96 md:w-60"
           >
             <Link
               href={`/product/${product.id}`}
@@ -88,14 +88,14 @@ const Products = () => {
             <p className="text-[10px] md:text-sm text-gray-400 mb-4">
               {product.description}
             </p>
-            <div className="flex items-center justify-between mt-auto">
-              <div className="text-[12px] md:text-sm flex items-center justify-center gap-2">
+            <div className="flex items-center justify-between mt-auto mx-2 md:mx-3">
+              <div className="text-[12px] md:text-sm flex items-center justify-center gap-1 md:gap-2">
                 {product.rating}{' '}
-                <IoMdStar className="w-4 h-4 md:w-5 md:h-5 text-[#debb02]" />
+                <IoMdStar className="w-4 h-4 md:w-5 md:h-5 text-[#debb02] mb-[2px]" />
               </div>
               <button
                 onClick={() => handleAddToCart(product)}
-                className="bg-white text-black py-1 px-2 md:px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300 text-[9px] md:text-sm"
+                className="bg-white text-black py-1 px-2 md:px-3 rounded-lg hover:bg-gray-300 transition-colors duration-300 text-[9px] md:text-sm"
               >
                 Add to cart
               </button>

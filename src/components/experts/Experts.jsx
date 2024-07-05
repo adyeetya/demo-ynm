@@ -62,7 +62,7 @@ const Experts = () => {
               <div className="flex-grow mt-2">
                 <p className="text-[10px] md:text-[12px]">{expert.info}</p>
               </div>
-              <button className="bg-black w-fit text-[#FFF5EA] text-sm py-2 px-4 mt-4 rounded-full hover:bg-blue-900 transition-colors duration-300">
+              <button className=" bg-black w-fit text-[#FFF5EA] text-[12px] md:text-sm py-2 px-4 mt-4 rounded-full hover:bg-blue-900 transition-colors duration-300">
                 Free Consultation
               </button>
             </div>

@@ -87,11 +87,11 @@ const Consult = () => {
       {/* Other Cards Section */}
       <div className="flex flex-col md:flex-row gap-4 mb-8 justify-between">
         {/* card1 */}
-        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-52 overflow-hidden">
+        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-56 overflow-hidden">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
             <Image
-              src="/images/happy couple in love lying in bed in the bedroom with a christmas tree and gifts near th-Photoroom 3.png" // dummy image
+              src="/images/happy couple in love lying in bed .png" // dummy image
               alt="Card Image"
               layout="fill"
               objectFit="cover"
@@ -109,15 +109,15 @@ const Consult = () => {
         </div>
 
         {/* card2 */}
-        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-52 overflow-hidden">
+        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-56 overflow-hidden">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
             <Image
-              src="/images/happy couple in love lying in bed in the bedroom with a christmas tree and gifts near th-Photoroom 3.png" // dummy image
+              src="/images/vecteezy_fresh-food-in-human-body.png" // dummy image
               alt="Card Image"
               layout="fill"
-              objectFit="cover"
-              className=""
+              objectFit="cover md:contain"
+              className="mt-2"
             />
           </div>
 
@@ -130,15 +130,15 @@ const Consult = () => {
           </div>
         </div>
         {/* card3 */}
-        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-52 overflow-hidden">
+        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-56 overflow-hidden">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
             <Image
-              src="/images/happy couple in love lying in bed in the bedroom with a christmas tree and gifts near th-Photoroom 3.png" // dummy image
+              src="/images/image-Photoroom (4).png" // dummy image
               alt="Card Image"
               layout="fill"
-              objectFit="cover"
-              className=""
+              objectFit="cover md:contain"
+              className="mt-2 -ml-2"
             />
           </div>
 
@@ -151,11 +151,11 @@ const Consult = () => {
           </div>
         </div>
         {/* card4 */}
-        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-52 overflow-hidden">
+        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-56 overflow-hidden">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
             <Image
-              src="/images/happy couple in love lying in bed in the bedroom with a christmas tree and gifts near th-Photoroom 3.png" // dummy image
+              src="/images/happy couple in love lying in bed .png" // dummy image
               alt="Card Image"
               layout="fill"
               objectFit="cover"
@@ -179,11 +179,11 @@ const Consult = () => {
         <div className="relative flex flex-col items-center w-1/3">
           <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#EDC800] flex items-center justify-center overflow-hidden">
             <Image
-              src="/images/happy couple in love lying in bed in the bedroom with a christmas tree and gifts near th-Photoroom 3.png"
+              src="/images/image-Photoroom (4).png"
               alt="Step 1"
-              width={50}
-              height={50}
-              className="w-16 h-16 md:w-20 md:h-20"
+              width={1000}
+              height={1000}
+              className="w-16 h-16 md:w-20 md:h-20 mt-4 mr-4 cover"
             />
           </div>
           <div className="block absolute top-1/2 left-1/2 w-full h-0.5 bg-black -translate-y-1/2 -z-10"></div>
@@ -193,7 +193,7 @@ const Consult = () => {
         <div className="relative flex flex-col items-center w-1/3">
           <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#EDC800] flex items-center justify-center overflow-hidden">
             <Image
-              src="/images/happy couple in love lying in bed in the bedroom with a christmas tree and gifts near th-Photoroom 3.png"
+              src="/images/happy couple in love lying in bed .png"
               alt="Step 1"
               width={50}
               height={50}
@@ -207,7 +207,7 @@ const Consult = () => {
         <div className="relative flex flex-col items-center w-1/3">
           <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#EDC800] flex items-center justify-center overflow-hidden">
             <Image
-              src="/images/happy couple in love lying in bed in the bedroom with a christmas tree and gifts near th-Photoroom 3.png"
+              src="/images/happy couple in love lying in bed .png"
               alt="Step 1"
               width={50}
               height={50}
