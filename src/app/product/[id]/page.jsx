@@ -352,7 +352,7 @@ const OtherInformation = ({ productId }) => {
         </div>
         <div className="w-1/2">
           <h3 className="text-sm md:text-lg text-white font- mb-2 rounded-full bg-yellow-500 w-fit px-4 py-1">
-            What it won't do
+            What it won&apos;t do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
             {otherInformation.wontDo.map((item, index) => (
