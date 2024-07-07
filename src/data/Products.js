@@ -78,11 +78,15 @@ export const products = [
       ],
       imagesWithText: [
         {
-          imageUrl: '/images/pre-ejac/pre-ejac.png',
+          imageUrl: '/images/product/pre-ejac-2.png',
           text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
         },
         {
-          imageUrl: '/images/pre-ejac/pre-ejac.png',
+          imageUrl: '/images/product/pre-ejac-3.png',
+          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+        },
+        {
+          imageUrl: '/images/product/pre-ejac-2.png',
           text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
         },
       ],
@@ -160,11 +164,15 @@ export const products = [
       ],
       imagesWithText: [
         {
-          imageUrl: '/images/pre-ejac/pre-ejac.png',
+          imageUrl: '/images/product/pre-ejac-2.png',
           text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
         },
         {
-          imageUrl: '/images/pre-ejac/pre-ejac.png',
+          imageUrl: '/images/product/pre-ejac-3.png',
+          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+        },
+        {
+          imageUrl: '/images/product/pre-ejac-2.png',
           text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
         },
       ],
@@ -242,11 +250,15 @@ export const products = [
       ],
       imagesWithText: [
         {
-          imageUrl: '/images/pre-ejac/pre-ejac.png',
+          imageUrl: '/images/product/pre-ejac-2.png',
           text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
         },
         {
-          imageUrl: '/images/pre-ejac/pre-ejac.png',
+          imageUrl: '/images/product/pre-ejac-3.png',
+          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+        },
+        {
+          imageUrl: '/images/product/pre-ejac-2.png',
           text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
         },
       ],
@@ -324,11 +336,15 @@ export const products = [
       ],
       imagesWithText: [
         {
-          imageUrl: '/images/pre-ejac/pre-ejac.png',
+          imageUrl: '/images/product/pre-ejac-2.png',
           text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
         },
         {
-          imageUrl: '/images/pre-ejac/pre-ejac.png',
+          imageUrl: '/images/product/pre-ejac-3.png',
+          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+        },
+        {
+          imageUrl: '/images/product/pre-ejac-2.png',
           text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
         },
       ],

@@ -8,6 +8,8 @@ import { useCart } from '../../../context/cartContext'
 import { IoMdStar } from 'react-icons/io'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
 import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 import {
@@ -17,6 +19,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '../../../components/ui/carousel'
+
+import { FaCheckCircle } from 'react-icons/fa'
 
 const DetailsHowToUse = ({ productId }) => {
   const [activeTab, setActiveTab] = useState('details')
@@ -74,10 +78,13 @@ const DetailsHowToUse = ({ productId }) => {
         <div>
           <h2 className="text-xl font-bold mb-2">HOW TO USE</h2>
           <h3 className="text-lg font-semibold mb-4">{product.name}</h3>
-          <ul className="list-decimal pl-5">
+          <ul className="list-decimal ">
             {product.howToUse.map((step, index) => (
-              <li key={index} className="mb-2">
-                {step}
+              <li key={index} className="flex items-start mb-3">
+                <span className="mr-2">
+                  <FaCheckCircle className="text-blue-500" />
+                </span>
+                <div className="text-xs">{step}</div>
               </li>
             ))}
           </ul>
@@ -285,19 +292,39 @@ const ProductQualities = ({ productId }) => {
         the product.
       </p>
       <h3 className="font-bold mb-2">What does it do and how does it do it?</h3>
-      <div className="flex gap-2">
-        {productQualities.imagesWithText.map((item, index) => (
-          <div key={index} className="text-left text-[8px] md:text-sm">
-            <Image
-              width={1000}
-              height={1000}
-              src={item.imageUrl}
-              alt={item.text}
-              className="mb-2 mx-auto w-30 h-30"
-            />
-            <p>{item.text}</p>
-          </div>
-        ))}
+      <div className="md:flex gap-2">
+        <div className="w-full md:hidden">
+          <Swiper spaceBetween={10} slidesPerView={1.2}>
+            {productQualities.imagesWithText.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div className="text-left text-sm p-4">
+                  <Image
+                    width={1000}
+                    height={1000}
+                    src={item.imageUrl}
+                    alt={item.text}
+                    className="mb-2 mx-auto w-30 h-30"
+                  />
+                  <p>{item.text}</p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="hidden md:flex gap-2">
+          {productQualities.imagesWithText.map((item, index) => (
+            <div key={index} className="text-left text-sm md:p-8">
+              <Image
+                width={1000}
+                height={1000}
+                src={item.imageUrl}
+                alt={item.text}
+                className="mb-2 mx-auto w-30 h-30"
+              />
+              <p>{item.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
       <p className="italic font-semibold text-xs md:text-sm mt-4">
         “Proceed with sexual activity as usual. If necessary, better if choose
@@ -318,7 +345,7 @@ const OtherInformation = ({ productId }) => {
 
   return (
     <div className="py-4">
-      <div className="mb-4 w-full md:w-[600px] mx-auto bg-[#111808] text-white text-[10px] md:text-sm p-4">
+      <div className="mb-4 w-full md:w-[600px] mx-auto bg-[#05223B] text-white text-[10px] md:text-sm p-4">
         <h2 className="text-md md:text-lg mb-2 uppercase">Product Details</h2>
 
         <p>
@@ -339,7 +366,7 @@ const OtherInformation = ({ productId }) => {
       </div>
       <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-white font- mb-2 rounded-full bg-yellow-500 w-fit px-4 py-1">
+          <h3 className="text-sm md:text-lg text-white font- mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
             What it will do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -351,7 +378,7 @@ const OtherInformation = ({ productId }) => {
           </ul>
         </div>
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-white font- mb-2 rounded-full bg-yellow-500 w-fit px-4 py-1">
+          <h3 className="text-sm md:text-lg text-white font- mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
             What it won&apos;t do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -369,17 +396,19 @@ const OtherInformation = ({ productId }) => {
 
 const GeneralInfo = ({ productId }) => {
   return (
-    <div className=" mx-auto py-4 bg-white shadow-lg rounded-lg">
+    <div className=" mx-auto py-4 bg-white rounded-lg">
       {/* Expert Section */}
-      <div className="flex w-full md:w-[500px] mx-auto items-center p-6 bg-[#05223B] rounded mb-6 text-white">
+      <div className="flex w-full md:w-[600px] md:py-12 mx-auto justify-center items-center p-4 md:p-6 bg-[#05223B] rounded mb-6 text-white">
         <img
           src="/images/femdoc.avif" // replace with actual path
           alt="Expert"
-          className="w-24 h-24 md:w-28 md:h-28 rounded-full mr-4"
+          className="w-24 h-24 md:w-32 md:h-32 rounded-full mr-4"
         />
         <div>
-          <h2 className="text-sm">Get in touch with our Experts</h2>
-          <button className="text-sm mt-2 px-8 py-1 bg-white font-semibold text-black rounded-full hover:bg-blue-700">
+          <h2 className="text-sm md:text-base mb-2">
+            Get in touch with our Experts
+          </h2>
+          <button className="text-sm md:text-base mt-2 px-8 py-1 bg-white font-semibold text-black rounded-full hover:bg-blue-700">
             CLICK HERE NOW
           </button>
         </div>
@@ -426,36 +455,36 @@ const GeneralInfo = ({ productId }) => {
       </div>
 
       {/* Compound Highlight Section */}
-      <div className="w-full md:w-[600px] md:mx-auto bg-gradient-to-b from-blue-500 to-blue-100  text-white">
+      <div className="w-full  md:mx-auto bg-gradient-to-b from-blue-500 to-white mb-4 md:mb-8  text-white">
         <div className="flex justify-between md:justify-center items-center gap-4 p-6">
           <Image
-            src="/images/product/info-1.png"
+            src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
             width={1000}
             height={1000}
-            className="w-36 h-32 md:w-44 md:h-40"
+            className="w-36 h-32 md:w-48 md:h-44"
             alt="information"
           />
           <Image
-            src="/images/product/info-1.png"
+            src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
             width={1000}
             height={1000}
-            className="w-36 h-32 md:w-44 md:h-40"
+            className="w-36 h-32 md:w-48 md:h-44"
             alt="information"
           />
         </div>
       </div>
 
-      <div className="relative w-full md:w-[600px] md:mx-auto bg-gray-200 mb-4">
+      <div className="relative w-full md:mx-auto bg-gray-200 mb-4">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/images/product/Public Analog@2x 1.png')",
+            backgroundImage: "url('/images/product/chem-bg.png')",
           }}
         />
         <div className="relative flex h-full bg-opacity-50 text-white py-4 ">
           <div className="w-1/2 flex flex-col justify-center p-2 text-right">
-            <h1 className="text-sm md:text-lg font-bold mb-1">The Hero</h1>
-            <h1 className="text-base md:text-lg italic mb-1 underline">
+            <h1 className="text-sm md:text-3xl font-thin mb-1">The Hero</h1>
+            <h1 className="text-base md:text-2xl italic mb-2 underline">
               Licodine
             </h1>
             <p className="text-[8px] md:text-sm">
@@ -465,7 +494,7 @@ const GeneralInfo = ({ productId }) => {
           </div>
           <div className="w-1/2 flex items-center justify-center p-2">
             <Image
-              src="/images/product/image-Photoroom (10)@2x 1.png"
+              src="/images/product/chem-mol.png"
               alt="Right Side Image"
               width={1000}
               height={1000}
@@ -522,7 +551,7 @@ const ProductPage = ({ params }) => {
       className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
     >
       <div className="flex flex-col md:flex-row md:space-x-8">
-        <div className="h-fit flex flex-col-reverse md:flex-row items-center gap-4 w-full md:w-1/2 relative md:sticky md:top-8">
+        <div className="h-fit flex flex-col-reverse md:flex-row items-center gap-4 w-full md:w-1/2 relative md:sticky md:top-20">
           <div className="hidden md:flex justify-center items-center h-fit">
             <Carousel
               opts={{
@@ -627,16 +656,18 @@ const ProductPage = ({ params }) => {
                     {percentageOff.toFixed(0)}% OFF
                   </p>
                 </div>
-                <p className="text-[10px] md:text-xs text-gray-700 text-right">
-                  MRP Inclusive of all taxes
-                </p>
               </div>
             </div>
 
-            <p className="text-gray-900 text-sm md:text-base -mt-2 md:mt-0 md:text-md">
-              {product.category}
-            </p>
-            <div className="text-gray-600 flex justify-end items-center">
+            <div className="flex justify-between items-center">
+              <p className="text-gray-900 text-sm md:text-base -mt-2 md:mt-0 md:text-md">
+                {product.category}
+              </p>
+              <p className="text-[10px] md:text-xs text-gray-700 text-right">
+                MRP Inclusive of all taxes
+              </p>
+            </div>
+            <div className="text-gray-600 flex justify-start items-center mt-2">
               <p className="text-xs md:text-base">1.2k</p>
               {Array.from(
                 { length: Math.floor(product.rating) },
