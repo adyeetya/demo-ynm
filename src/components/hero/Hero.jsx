@@ -1,10 +1,23 @@
+// Hero.js
 'use client'
-import React, { useContext } from 'react'
-import { GlobalStateContext } from '../../context/navbarContext'
+import React, { useContext, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import Modal from '../modal/Modal'
+import SelfAssessment from '../modal/SelfAssessment'
+import { GlobalStateContext } from '../../context/navbarContext'
 
 const Hero = () => {
   const { isMenuOpen } = useContext(GlobalStateContext)
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const openModal = () => {
+    setModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setModalOpen(false)
+  }
 
   return (
     <div className="relative h-[calc(100vh-4rem)]">
@@ -24,9 +37,10 @@ const Hero = () => {
       <div className="absolute inset-0 z-10 flex flex-col justify-between md:justify-center items-start md:items-center p-4 md:p-0">
         {/* Mobile Button */}
         <button
-          className={`bg-white text-black py-2 px-6 rounded-xl mx-auto mt-16 font-semibold text-xl ${
+          onClick={openModal}
+          className={`bg-white text-black py-2 px-6 rounded-xl mx-auto mt-16 md:mb-4 font-semibold text-xl ${
             isMenuOpen ? 'hidden' : 'block'
-          } md:hidden`}
+          } `}
         >
           TAKE HEALTH TEST
         </button>
@@ -46,6 +60,15 @@ const Hero = () => {
           SAY YES TO MORE PLEASURE
         </div>
       </div>
+
+      {/* Modal */}
+      {modalOpen && (
+        <Modal closeModal={closeModal}>
+          {/* Content of your modal */}
+
+          <SelfAssessment />
+        </Modal>
+      )}
     </div>
   )
 }
