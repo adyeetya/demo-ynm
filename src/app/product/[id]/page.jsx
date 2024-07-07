@@ -660,7 +660,7 @@ const ProductPage = ({ params }) => {
             </div>
 
             <div className="flex justify-between items-center">
-              <p className="text-gray-900 text-sm md:text-base -mt-2 md:mt-0 md:text-md">
+              <p className="text-gray-900 text-sm md:text-base md:mt-0 md:text-md">
                 {product.category}
               </p>
               <p className="text-[10px] md:text-xs text-gray-700 text-right">
@@ -668,13 +668,13 @@ const ProductPage = ({ params }) => {
               </p>
             </div>
             <div className="text-gray-600 flex justify-start items-center mt-2">
-              <p className="text-xs md:text-base">1.2k</p>
+              <p className="text-sm md:text-base mr-1">1.2k</p>
               {Array.from(
                 { length: Math.floor(product.rating) },
                 (_, index) => (
                   <IoMdStar
                     key={index}
-                    className="w-4 h-4 md:w-6 md:h-6 text-[#debb02]"
+                    className="w-4 h-4 md:w-6 md:h-6 text-[#debb02] mb-[2px]"
                   />
                 )
               )}
