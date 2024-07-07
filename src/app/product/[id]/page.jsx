@@ -398,7 +398,7 @@ const GeneralInfo = ({ productId }) => {
   return (
     <div className=" mx-auto py-4 bg-white rounded-lg">
       {/* Expert Section */}
-      <div className="flex w-full md:w-[600px] md:py-12 mx-auto justify-center items-center p-4 md:p-6 bg-[#05223B] rounded mb-6 text-white">
+      <div className="flex w-full md:w-[600px] py-8 md:py-12 mx-auto justify-center items-center p-4 md:p-6 bg-[#05223B] rounded mb-6 text-white">
         <img
           src="/images/femdoc.avif" // replace with actual path
           alt="Expert"
@@ -481,13 +481,13 @@ const GeneralInfo = ({ productId }) => {
             backgroundImage: "url('/images/product/chem-bg.png')",
           }}
         />
-        <div className="relative flex h-full bg-opacity-50 text-white py-4 ">
+        <div className="relative flex h-full bg-opacity-50 text-white py-8 ">
           <div className="w-1/2 flex flex-col justify-center p-2 text-right">
-            <h1 className="text-sm md:text-3xl font-thin mb-1">The Hero</h1>
-            <h1 className="text-base md:text-2xl italic mb-2 underline">
+            <h1 className="text-xl md:text-3xl font-[50] mb-1">The Hero</h1>
+            <h1 className="text-xl md:text-2xl italic mb-2 underline">
               Licodine
             </h1>
-            <p className="text-[8px] md:text-sm">
+            <p className="text-xs md:text-sm">
               Lidocaine (LYE doe kane) is a local anaesthetic commonly used to
               reduce sensitivity in tissues in a specific area.
             </p>
