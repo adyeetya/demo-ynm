@@ -142,11 +142,42 @@ export const products = [
       '/images/pro2.jpg',
     ],
     details: [
-      'Helps in delaying ejaculation',
-      'Safe to use with no side effects',
-      'Quick action formula',
-      'Non-greasy and non-sticky',
-      'Portable and easy to carry',
+      {
+        icon: <FaFlask className="text-[#999999]" />,
+        title: 'Innovative Ingredient:',
+        description:
+          'ingredients synergistically delay ejaculation, ensuring a natural experience.',
+      },
+      {
+        icon: <FaCheckCircle className="text-[#ff0000]" />,
+        title: 'Enhances Confidence:',
+        description:
+          'Boosts confidence by providing control over climax timing, reducing performance anxiety.',
+      },
+      {
+        icon: <FaSprayCan className="text-[#ffff00]" />,
+        title: 'Ease of Use:',
+        description:
+          'Convenient spray mechanism for quick, discreet application suitable for spontaneous moments.',
+      },
+      {
+        icon: <FaHourglass className="text-[#ff9933]" />,
+        title: 'Longevity:',
+        description:
+          'Prolongs intimate moments by reducing sensitivity without numbing, enhancing satisfaction.',
+      },
+      {
+        icon: <FaShieldAlt className="text-[#00cc00]" />,
+        title: 'Non-Transferable:',
+        description:
+          "Stays where applied, not affecting partner's sensation, ensuring mutual enjoyment.",
+      },
+      {
+        icon: <FaLeaf className="text-[#339900]" />,
+        title: 'No Side Effects:',
+        description:
+          'Free from harmful chemicals, minimizing risk of adverse reactions for a worry-free experience.',
+      },
     ],
     howToUse: [
       'Shake well before use',
@@ -228,11 +259,42 @@ export const products = [
       '/images/pro2.jpg',
     ],
     details: [
-      'Helps in delaying ejaculation',
-      'Safe to use with no side effects',
-      'Quick action formula',
-      'Non-greasy and non-sticky',
-      'Portable and easy to carry',
+      {
+        icon: <FaFlask className="text-[#999999]" />,
+        title: 'Innovative Ingredient:',
+        description:
+          'ingredients synergistically delay ejaculation, ensuring a natural experience.',
+      },
+      {
+        icon: <FaCheckCircle className="text-[#ff0000]" />,
+        title: 'Enhances Confidence:',
+        description:
+          'Boosts confidence by providing control over climax timing, reducing performance anxiety.',
+      },
+      {
+        icon: <FaSprayCan className="text-[#ffff00]" />,
+        title: 'Ease of Use:',
+        description:
+          'Convenient spray mechanism for quick, discreet application suitable for spontaneous moments.',
+      },
+      {
+        icon: <FaHourglass className="text-[#ff9933]" />,
+        title: 'Longevity:',
+        description:
+          'Prolongs intimate moments by reducing sensitivity without numbing, enhancing satisfaction.',
+      },
+      {
+        icon: <FaShieldAlt className="text-[#00cc00]" />,
+        title: 'Non-Transferable:',
+        description:
+          "Stays where applied, not affecting partner's sensation, ensuring mutual enjoyment.",
+      },
+      {
+        icon: <FaLeaf className="text-[#339900]" />,
+        title: 'No Side Effects:',
+        description:
+          'Free from harmful chemicals, minimizing risk of adverse reactions for a worry-free experience.',
+      },
     ],
     howToUse: [
       'Shake well before use',
@@ -314,11 +376,42 @@ export const products = [
       '/images/pro1.jpg',
     ],
     details: [
-      'Helps in delaying ejaculation',
-      'Safe to use with no side effects',
-      'Quick action formula',
-      'Non-greasy and non-sticky',
-      'Portable and easy to carry',
+      {
+        icon: <FaFlask className="text-[#999999]" />,
+        title: 'Innovative Ingredient:',
+        description:
+          'ingredients synergistically delay ejaculation, ensuring a natural experience.',
+      },
+      {
+        icon: <FaCheckCircle className="text-[#ff0000]" />,
+        title: 'Enhances Confidence:',
+        description:
+          'Boosts confidence by providing control over climax timing, reducing performance anxiety.',
+      },
+      {
+        icon: <FaSprayCan className="text-[#ffff00]" />,
+        title: 'Ease of Use:',
+        description:
+          'Convenient spray mechanism for quick, discreet application suitable for spontaneous moments.',
+      },
+      {
+        icon: <FaHourglass className="text-[#ff9933]" />,
+        title: 'Longevity:',
+        description:
+          'Prolongs intimate moments by reducing sensitivity without numbing, enhancing satisfaction.',
+      },
+      {
+        icon: <FaShieldAlt className="text-[#00cc00]" />,
+        title: 'Non-Transferable:',
+        description:
+          "Stays where applied, not affecting partner's sensation, ensuring mutual enjoyment.",
+      },
+      {
+        icon: <FaLeaf className="text-[#339900]" />,
+        title: 'No Side Effects:',
+        description:
+          'Free from harmful chemicals, minimizing risk of adverse reactions for a worry-free experience.',
+      },
     ],
     howToUse: [
       'Shake well before use',
