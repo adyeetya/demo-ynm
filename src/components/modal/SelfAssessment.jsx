@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
-
 import { questions } from '../../data/questions'
+import { FaArrowLeft } from 'react-icons/fa'
 
 const generateAnalysis = (responses) => {
   const analysis = responses.map((response, index) => {
@@ -22,17 +22,38 @@ const generateAnalysis = (responses) => {
 const SelfAssessment = () => {
   const [currentQuestion, setCurrentQuestion] = useState(questions[0])
   const [answers, setAnswers] = useState([])
+  const [history, setHistory] = useState([])
   const [showAnalysis, setShowAnalysis] = useState(false)
 
   const handleOptionClick = (option) => {
     const newAnswers = [...answers, { questionId: currentQuestion.id, option }]
     setAnswers(newAnswers)
+    setHistory([...history, currentQuestion])
+
     const nextQuestion = questions.find((q) => q.id === option.next)
     if (nextQuestion) {
       setCurrentQuestion(nextQuestion)
     } else {
       setShowAnalysis(true)
     }
+  }
+
+  const handleBackClick = () => {
+    const prevQuestion = history.pop()
+    setHistory([...history])
+    setCurrentQuestion(prevQuestion)
+    setAnswers(answers.slice(0, -1))
+    setShowAnalysis(false)
+  }
+
+  const handleJumpToQuestion = (index) => {
+    const targetQuestion = questions.find(
+      (q) => q.id === answers[index].questionId
+    )
+    setCurrentQuestion(targetQuestion)
+    setAnswers(answers.slice(0, index + 1))
+    setHistory(history.slice(0, index + 1))
+    setShowAnalysis(false)
   }
 
   return (
@@ -45,7 +66,9 @@ const SelfAssessment = () => {
           </>
         ) : (
           <div>
-          <div className='bg-black text-white py-4 px-4 text-center mb-2 rounded-t-lg'><h1>Take your Test</h1></div>
+            <div className="bg-black text-white py-4 px-4 text-center mb-2 rounded-t-lg">
+              <h1>Take your Test</h1>
+            </div>
             <div className="flex items-center mb-4 p-2">
               <img
                 src="/images/femdoc.avif" // replace with actual avatar image path
@@ -61,17 +84,28 @@ const SelfAssessment = () => {
                 </p>
               </div>
             </div>
+            {history.length > 0 && (
+              <button
+                className="text-blue-700 flex items-center mb-4 ml-2"
+                onClick={handleBackClick}
+              >
+                <FaArrowLeft className="mr-2" /> Back to previous question
+              </button>
+            )}
             {answers.map((answer, index) => {
               const question = questions.find((q) => q.id === answer.questionId)
               return (
                 <div key={index} className="mb-2 p-2">
                   <p className="text-lg font-semibold">{question.text}</p>
-                  <div className="flex justify-end">
-                    {' '}
-                    <p className="text-lg text-right my-2 py-2 border border-blue-500 rounded-lg px-2 w-fit">
-                      {answer.option.text}
+                  <div className="flex justify-end items-center">
+                    <p
+                      className="text-lg text-right my-2 py-2 border border-blue-500 rounded-lg px-2 w-fit cursor-pointer"
+                     
+                    >
+                      {answer.option.text}{' '}
+                      
                     </p>
-                  </div>{' '}
+                  </div>
                 </div>
               )
             })}
