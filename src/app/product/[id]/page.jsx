@@ -481,9 +481,9 @@ const GeneralInfo = ({ productId }) => {
             backgroundImage: "url('/images/product/chem-bg.png')",
           }}
         />
-        <div className="relative flex h-full bg-opacity-50 text-white py-8 ">
-          <div className="w-1/2 flex flex-col justify-center p-2 text-right">
-            <h1 className="text-xl md:text-5xl mb-1" style={{ fontWeight: 50 }}>
+        <div className="relative flex justify-center items-center h-full bg-opacity-50 text-white py-8 ">
+          <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-center">
+            <h1 className="text-2xl md:text-6xl mb-1" style={{ fontWeight: 50 }}>
               The Hero
             </h1>
             <h1 className="text-lg md:text-2xl italic mb-2 underline">

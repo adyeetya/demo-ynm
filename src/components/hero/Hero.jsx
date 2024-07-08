@@ -28,14 +28,14 @@ const Hero = () => {
           alt="Desktop Background Image"
           layout="fill"
           objectFit="cover"
-          className="absolute inset-0 brightness-50"
+          className="absolute inset-0 brightness-75"
         />
       </div>
 
       {/* Mobile Image */}
       <div className="block md:hidden absolute inset-0">
         <Image
-          src="/images/hero-bg-mob.png" // replace with your mobile image path
+          src="/images/product/chem-bg.png" // replace with your mobile image path
           alt="Mobile Background Image"
           layout="fill"
           objectFit="cover"
@@ -49,10 +49,9 @@ const Hero = () => {
         }`}
       ></div>
       <div className="absolute inset-0 z-10 flex flex-col justify-between md:justify-center items-start md:items-center p-4 md:p-0">
-        {/* Mobile Button */}
         <button
           onClick={openModal}
-          className={`bg-white text-black py-2 px-6 rounded-xl mx-auto mt-8 md:mb-8 font-semibold text-xl ${
+          className={`bg-white text-black py-2 px-6 rounded-xl mx-auto mt-8 md:mb-8 font-semibold text-xl hover:bg-black hover:text-white ${
             isMenuOpen ? 'hidden' : 'block'
           }`}
         >
@@ -60,28 +59,39 @@ const Hero = () => {
         </button>
 
         {/* Mobile Text */}
-        <div className="text-[#FFF5EA] text-left absolute bottom-24 left-8 md:hidden">
-          <h1 className="text-3xl mb-8">
-            EXPERIENCE <br /> INTIMACY <br /> LIKE NEVER <br /> BEFORE!
-          </h1>
-          <Link
-            href="/product/1"
-            className=" bg-white text-black py-2 px-6 rounded-xl mx-auto font-semibold text-xl"
-          >
-            BUY NOW
-          </Link>
+        <div className="md:hidden flex w-full overflow-hidden">
+          <div className="text-[#FFF5EA] text-left absolute bottom-32 left-4 md:hidden z-10">
+            <h1 className="text-2xl mb-8">
+              EXPERIENCE <br /> INTIMACY <br /> LIKE NEVER <br /> BEFORE!
+            </h1>
+            <Link
+              href="/product/1"
+              className=" bg-blue-200 text-black py-2 px-6 mx-auto font-semibold text-xl"
+            >
+              BUY NOW
+            </Link>
+          </div>
+          <div className="absolute bottom-24 right-4 overflow-hidden">
+            <Image
+              src="/images/product-bg.png"
+              width={1000}
+              height={1000}
+              alt="Hero Image"
+              className="h-96 w-48 rounded-xl overflow-hidden"
+            ></Image>
+          </div>
         </div>
 
         {/* Desktop Text */}
-        <div className="hidden w-full md:px-8 md:flex md:items-center text-[#FFF5EA]  font-thin text-left mb-32">
-          <div>
-            <h1 className="md:text-3xl xl:text-5xl mb-8">
+        <div className="hidden w-full  md:flex justify-center items-center md:items-center text-[#FFF5EA]  font-thin text-center mb-32">
+          <div className="flex flex-col gap-4 justify-center items-center">
+            <h1 className="md:text-3xl xl:text-4xl 2xl:text-5xl  mb-8">
               EXPERIENCE <br className="md:hidden" /> INTIMACY <br /> LIKE NEVER{' '}
               <br className="md:hidden" /> BEFORE!
             </h1>
             <Link
               href="/product/1"
-              className=" bg-white text-black py-2 px-6 rounded-xl font-semibold text-xl"
+              className=" bg-blue-200 text-black hover:text-white hover:bg-blue-400 py-2 px-6 w-fit font-semibold text-xl"
             >
               BUY NOW
             </Link>
