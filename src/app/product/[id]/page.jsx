@@ -487,7 +487,7 @@ const GeneralInfo = ({ productId }) => {
               The Hero
             </h1>
             <h1 className="text-lg md:text-2xl italic mb-2 underline">
-              Licodine
+              Lidocaine
             </h1>
             <p className="text-[10px] md:text-sm">
               Lidocaine (LYE doe kane) is a local{' '}

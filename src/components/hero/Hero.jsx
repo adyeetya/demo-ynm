@@ -20,14 +20,28 @@ const Hero = () => {
   }
 
   return (
-    <div className="relative h-[calc(100vh-4rem)]">
-      <Image
-        src="/images/yes n more dark1 desktop.png" // replace with your image path
-        alt="Background Image"
-        layout="fill"
-        objectFit="cover"
-        className="absolute inset-0"
-      />
+    <div className="relative min-h-[calc(100vh-4rem)] pt-16 md:pt-0">
+      {/* Desktop Image */}
+      <div className="hidden md:block absolute inset-0">
+        <Image
+          src="/images/hero-bg-desk.png" // replace with your desktop image path
+          alt="Desktop Background Image"
+          layout="fill"
+          objectFit="cover"
+          className="absolute inset-0 brightness-50"
+        />
+      </div>
+
+      {/* Mobile Image */}
+      <div className="block md:hidden absolute inset-0">
+        <Image
+          src="/images/hero-bg-mob.png" // replace with your mobile image path
+          alt="Mobile Background Image"
+          layout="fill"
+          objectFit="cover"
+          className="absolute inset-0 brightness-50"
+        />
+      </div>
 
       <div
         className={`absolute inset-0 z-10 ${
@@ -38,26 +52,40 @@ const Hero = () => {
         {/* Mobile Button */}
         <button
           onClick={openModal}
-          className={`bg-white text-black py-2 px-6 rounded-xl mx-auto mt-16 md:mb-4 font-semibold text-xl ${
+          className={`bg-white text-black py-2 px-6 rounded-xl mx-auto mt-8 md:mb-8 font-semibold text-xl ${
             isMenuOpen ? 'hidden' : 'block'
-          } `}
+          }`}
         >
           TAKE HEALTH TEST
         </button>
 
         {/* Mobile Text */}
-        <div className="text-[#FFF5EA] text-left absolute bottom-8 left-8 md:hidden">
-          <h1 className="text-4xl font-extrabold mb-4">
-            CLIMAX <br /> DELAY SPRAY
+        <div className="text-[#FFF5EA] text-left absolute bottom-24 left-8 md:hidden">
+          <h1 className="text-3xl mb-8">
+            EXPERIENCE <br /> INTIMACY <br /> LIKE NEVER <br /> BEFORE!
           </h1>
-          <p className="text-md">
-            A brand which has solution to all your problems.
-          </p>
+          <Link
+            href="/product/1"
+            className=" bg-white text-black py-2 px-6 rounded-xl mx-auto font-semibold text-xl"
+          >
+            BUY NOW
+          </Link>
         </div>
 
         {/* Desktop Text */}
-        <div className="hidden md:block text-[#FFF5EA] text-6xl font-thin text-center mb-32">
-          SAY YES TO MORE PLEASURE
+        <div className="hidden w-full md:px-8 md:flex md:items-center text-[#FFF5EA]  font-thin text-left mb-32">
+          <div>
+            <h1 className="md:text-3xl xl:text-5xl mb-8">
+              EXPERIENCE <br className="md:hidden" /> INTIMACY <br /> LIKE NEVER{' '}
+              <br className="md:hidden" /> BEFORE!
+            </h1>
+            <Link
+              href="/product/1"
+              className=" bg-white text-black py-2 px-6 rounded-xl font-semibold text-xl"
+            >
+              BUY NOW
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -65,7 +93,6 @@ const Hero = () => {
       {modalOpen && (
         <Modal closeModal={closeModal}>
           {/* Content of your modal */}
-
           <SelfAssessment />
         </Modal>
       )}
