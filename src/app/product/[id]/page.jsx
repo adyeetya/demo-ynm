@@ -753,7 +753,7 @@ const ProductPage = ({ params }) => {
             {/* quantity */}
             <div className="flex flex-col gap-2 mt-2">
               <p className="font-semibold">Quantity</p>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <button
                   className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
                     quantity === 1 ? 'bg-[#05213B] text-gray-100' : ''
@@ -777,6 +777,14 @@ const ProductPage = ({ params }) => {
                   onClick={() => handleQuantityChange(3)}
                 >
                   3 Months
+                </button>
+                <button
+                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
+                    quantity === 6 ? 'bg-[#05213B] text-gray-100' : ''
+                  }`}
+                  onClick={() => handleQuantityChange(6)}
+                >
+                  6 Months
                 </button>
               </div>
             </div>

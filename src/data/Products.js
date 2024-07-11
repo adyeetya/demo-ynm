@@ -39,7 +39,7 @@ export const products = [
           'Boosts confidence by providing control over climax timing, reducing performance anxiety.',
       },
       {
-        icon: <FaSprayCan className="text-[#ffff00]" />,
+        icon: <FaSprayCan className="text-[#c6c630]" />,
         title: 'Ease of Use:',
         description:
           'Convenient spray mechanism for quick, discreet application suitable for spontaneous moments.',
