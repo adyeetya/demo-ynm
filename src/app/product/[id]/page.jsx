@@ -640,7 +640,7 @@ const ProductPage = ({ params }) => {
             </Carousel>
           </div>
 
-          <div className="relative w-full  overflow-hidden flex ">
+          <div className="relative w-full shadow-lg overflow-hidden flex ">
             <Zoom>
               <Image
                 src={product.productImages[mainImageIndex]} // Displaying the selected main image
