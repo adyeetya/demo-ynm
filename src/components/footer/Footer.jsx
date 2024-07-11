@@ -93,7 +93,7 @@ const Footer = () => {
               <li className="flex items-center flex-col justify-center">
                 <FaShippingFast className="text-gray-100 mb-2 md:w-6 md:h-6" />
 
-                <p className="text-sm">Free Shipping</p>
+                <p className="text-sm">Fast Shipping</p>
               </li>
               <li className="flex items-center flex-col justify-center">
                 <GoPackageDependencies className="text-gray-100 mb-2 md:w-6 md:h-6" />
@@ -109,7 +109,7 @@ const Footer = () => {
 
         {/* Copyright Section */}
         <div className="text-center">
-          <p>&copy; 2024 Your Company. All rights reserved.</p>
+          <p>&copy; 2024 yesnmore.com | All rights reserved.</p>
         </div>
       </div>
     </footer>

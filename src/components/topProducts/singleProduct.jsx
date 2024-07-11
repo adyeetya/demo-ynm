@@ -39,7 +39,7 @@ const Products = () => {
       <div className="flex justify-center">
         <div
           key={product.id}
-          className="bg-[#190E0B] text-gray-100 rounded-2xl md:rounded-3xl shadow-md p-2 flex flex-col lg:flex-row w-full lg:max-w-4xl"
+          className="bg-[#0a172c] text-gray-100 rounded-2xl md:rounded-3xl shadow-md p-2 flex flex-col lg:flex-row w-full"
         >
           {/* left side */}
           <div className="h-fit flex flex-col-reverse md:flex-row items-center gap-4 w-full md:w-1/2 relative md:sticky md:top-20 ">
@@ -76,8 +76,8 @@ const Products = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="bg-[#190E0B] text-gray-100 border-none" />
-                <CarouselNext className="bg-[#190E0B] text-gray-100 border-none" />
+                <CarouselPrevious className="bg-[#0a172c] text-gray-100 border-none" />
+                <CarouselNext className="bg-[#0a172c] text-gray-100 border-none" />
               </Carousel>
             </div>
             {/* horizontal carousel for mobile */}
@@ -112,8 +112,8 @@ const Products = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="bg-[#190E0B] text-gray-100 border-none" />
-                <CarouselNext className="bg-[#190E0B] text-gray-100 border-none" />
+                <CarouselPrevious className="bg-[#0a172c] text-gray-100 border-none" />
+                <CarouselNext className="bg-[#0a172c] text-gray-100 border-none" />
               </Carousel>
             </div>
 
@@ -133,12 +133,14 @@ const Products = () => {
           <div className="lg:w-1/2 flex flex-col justify-between p-4">
             <div>
               <Link href={`/product/${product.id}`}>
-                <h3 className="text-lg md:text-xl mb-2">{product.name}</h3>
+                <h3 className="text-lg md:text-xl xl:text-4xl mb-2">
+                  {product.name}
+                </h3>
               </Link>
-              <p className="text-sm md:text-md text-gray-300 mb-2">
+              <p className="text-sm md:text-md xl:text-2xl text-gray-300 mb-4">
                 {product.category}
               </p>
-              <p className="text-sm md:text-md text-gray-400 mb-4">
+              <p className="text-sm md:text-md xl:text-xl text-gray-400 mb-4">
                 {product.description}
               </p>
             </div>
@@ -149,7 +151,7 @@ const Products = () => {
               </div>
               <button
                 onClick={() => handleAddToCart(product)}
-                className="bg-white text-black py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300 text-sm"
+                className="bg-white text-black py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300 text-sm md:text-base"
               >
                 Add to cart
               </button>

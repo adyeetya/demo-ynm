@@ -557,6 +557,14 @@ const ProductPage = ({ params }) => {
     <div
       className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
     >
+      <div className="mb-4 hidden md:flex">
+        <Link
+          href="/"
+          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-gray-100"
+        >
+          Home{' '}
+        </Link>
+      </div>
       <div className="flex flex-col md:flex-row md:space-x-8">
         {/* this is the left side with the carousel and the image */}
         <div className="h-fit flex flex-col-reverse md:flex-row items-center gap-4 w-full md:w-1/2 relative md:sticky md:top-20 ">

@@ -9,7 +9,7 @@ const expertsData = [
 
     status: 'Online',
     rating: 4,
-    imageUrl: '/images/image 10.png',
+    imageUrl: '/images/maledoc.jpg',
     info: 'Urologists are specialized health professionals who have expert training for treating the male reproductive system and urinary tracts. Mainly, they conduct diagnosis and treatment for issues like cancer kidney stones, kidney disease, urethra disease, bladder disorder, infections, and pelvic muscle problems.',
   },
   {

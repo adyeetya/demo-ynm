@@ -168,7 +168,7 @@ const Consult = () => {
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
             <Image
-              src="/images/happy couple in love lying in bed .png" // dummy image
+              src="/images/maledoc.jpg" // dummy image
               alt="Card Image"
               layout="fill"
               objectFit="cover"
