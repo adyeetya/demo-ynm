@@ -50,7 +50,6 @@ const Products = () => {
   const { addToCart } = useCart()
   const handleAddToCart = (product) => {
     addToCart(product)
-   
   }
   return (
     <div className="p-4 md:py-6 max-w-screen-xl mx-auto ">
@@ -64,7 +63,7 @@ const Products = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-[#190E0B] text-[#FFF5EA] rounded-2xl md:rounded-3xl shadow-md p-2 md:p-2  flex flex-col h-[20rem] w-[165px] sm:w-44 md:h-96 md:w-60"
+            className="bg-[#190E0B] text-gray-100 rounded-2xl md:rounded-3xl shadow-md p-2 md:p-2  flex flex-col h-[20rem] w-[165px] sm:w-44 md:h-96 md:w-60"
           >
             <Link
               href={`/product/${product.id}`}

@@ -106,7 +106,7 @@ const Navbar = () => {
   }, [isMenuOpen])
 
   return (
-    <nav className="bg-[#080808] shadow-lg text-[#FFF5EA] sticky inset-x-0 top-0 z-30">
+    <nav className="bg-[#080808] shadow-lg text-gray-100 sticky inset-x-0 top-0 z-30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
@@ -137,8 +137,8 @@ const Navbar = () => {
             </div>
             <Link href="/cart">
               <div className="relative">
-                <IoCartOutline className="h-6 w-6 text-[#FFF5EA]" />
-                <span className="absolute -top-2 -right-2 bg-blue-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                <IoCartOutline className="h-6 w-6 text-gray-100" />
+                <span className="absolute -top-2 -right-2 bg-blue-600 text-gray-100 rounded-full text-xs w-5 h-5 flex items-center justify-center">
                   {cartCount}
                 </span>
               </div>
@@ -147,16 +147,16 @@ const Navbar = () => {
               onClick={toggleSearch}
               className="focus:outline-none md:mr-4 search-button"
             >
-              <IoIosSearch className="h-6 w-6 text-[#FFF5EA]" />
+              <IoIosSearch className="h-6 w-6 text-gray-100" />
             </button>
             <button
               onClick={toggleMenu}
               className="md:hidden focus:outline-none menu-button"
             >
               {isMenuOpen ? (
-                <IoClose className="h-6 w-6 text-[#FFF5EA]" />
+                <IoClose className="h-6 w-6 text-gray-100" />
               ) : (
-                <RxHamburgerMenu className="h-6 w-6 text-[#FFF5EA]" />
+                <RxHamburgerMenu className="h-6 w-6 text-gray-100" />
               )}
             </button>
           </div>
@@ -174,7 +174,7 @@ const Navbar = () => {
             />
             <button
               onClick={handleSearch}
-              className="ml-2 px-3 py-2 bg-blue-900 text-[#FFF5EA] rounded-full hover:bg-blue-700 focus:outline-none"
+              className="ml-2 px-3 py-2 bg-blue-900 text-gray-100 rounded-full hover:bg-blue-700 focus:outline-none"
             >
               Search
             </button>

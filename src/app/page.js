@@ -5,6 +5,7 @@ import Info from '@/components/info/Info'
 import PaymentSlider from '@/components/paymentsSlider/PaymentSlider'
 import Reviews from '@/components/reviews/Reviews'
 import Products from '@/components/topProducts/Products'
+import SingleProduct from '@/components/topProducts/singleProduct'
 import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 export default function Home() {
@@ -13,7 +14,8 @@ export default function Home() {
       <Hero />
       <Consult />
       <Experts />
-      <Products />
+      {/* <Products /> */}
+      <SingleProduct />
       <Reviews />
       <Info />
       <PaymentSlider />

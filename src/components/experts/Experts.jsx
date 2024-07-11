@@ -6,7 +6,7 @@ const expertsData = [
   {
     id: 1,
     name: 'Dr. Saurabh Jain',
-    
+
     status: 'Online',
     rating: 4,
     imageUrl: '/images/image 10.png',
@@ -62,7 +62,7 @@ const Experts = () => {
               <div className="flex-grow mt-2">
                 <p className="text-[10px] md:text-[12px]">{expert.info}</p>
               </div>
-              <button className=" bg-black w-fit text-[#FFF5EA] text-[12px] md:text-sm py-2 px-4 mt-4 rounded-full hover:bg-blue-900 transition-colors duration-300">
+              <button className=" bg-black w-fit text-gray-100 text-[12px] md:text-sm py-2 px-4 mt-4 rounded-full hover:bg-blue-900 transition-colors duration-300">
                 Free Consultation
               </button>
             </div>
@@ -70,7 +70,7 @@ const Experts = () => {
         ))}
       </div>
       <div className="mt-8 flex justify-center items-center">
-        <button className="px-8 py-2 bg-black hover:bg-blue-900 text-[#FFF5EA] rounded-full">
+        <button className="px-8 py-2 bg-black hover:bg-blue-900 text-gray-100 rounded-full">
           Get in touch with our experts
         </button>
       </div>

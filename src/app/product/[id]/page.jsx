@@ -345,7 +345,7 @@ const OtherInformation = ({ productId }) => {
 
   return (
     <div className="py-4">
-      <div className="mb-4 w-full md:w-[600px] mx-auto bg-[#05223B] text-white text-[10px] md:text-sm p-4">
+      <div className="mb-4 w-full md:w-[600px] mx-auto bg-[#05223B] text-gray-100 text-[10px] md:text-sm p-4">
         <h2 className="text-md md:text-lg mb-2 uppercase">Product Details</h2>
 
         <p>
@@ -366,7 +366,7 @@ const OtherInformation = ({ productId }) => {
       </div>
       <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-white font- mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
+          <h3 className="text-sm md:text-lg text-gray-100 font- mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
             What it will do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -378,7 +378,7 @@ const OtherInformation = ({ productId }) => {
           </ul>
         </div>
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-white font- mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
+          <h3 className="text-sm md:text-lg text-gray-100 font- mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
             What it won&apos;t do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -398,7 +398,7 @@ const GeneralInfo = ({ productId }) => {
   return (
     <div className=" mx-auto py-4 bg-white rounded-lg">
       {/* Expert Section */}
-      <div className="flex w-full md:w-[600px] py-8 md:py-12 mx-auto justify-center items-center p-4 md:p-6 bg-[#05223B] rounded mb-6 text-white">
+      <div className="flex w-full md:w-[600px] py-8 md:py-12 mx-auto justify-center items-center p-4 md:p-6 bg-[#05223B] rounded mb-6 text-gray-100">
         <img
           src="/images/femdoc.avif" // replace with actual path
           alt="Expert"
@@ -455,7 +455,7 @@ const GeneralInfo = ({ productId }) => {
       </div>
 
       {/* Compound Highlight Section */}
-      <div className="w-full  md:mx-auto bg-gradient-to-b from-blue-500 to-white mb-4 md:mb-8  text-white">
+      <div className="w-full  md:mx-auto bg-gradient-to-b from-blue-500 to-white mb-4 md:mb-8  text-gray-100">
         <div className="flex justify-between md:justify-center items-center gap-4 p-6">
           <Image
             src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
@@ -481,9 +481,12 @@ const GeneralInfo = ({ productId }) => {
             backgroundImage: "url('/images/product/chem-bg.png')",
           }}
         />
-        <div className="relative flex justify-center items-center h-full bg-opacity-50 text-white py-8 ">
+        <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
           <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-center">
-            <h1 className="text-2xl md:text-6xl mb-1" style={{ fontWeight: 50 }}>
+            <h1
+              className="text-2xl md:text-6xl mb-1"
+              style={{ fontWeight: 50 }}
+            >
               The Hero
             </h1>
             <h1 className="text-lg md:text-2xl italic mb-2 underline">
@@ -555,7 +558,8 @@ const ProductPage = ({ params }) => {
       className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
     >
       <div className="flex flex-col md:flex-row md:space-x-8">
-        <div className="h-fit flex flex-col-reverse md:flex-row items-center gap-4 w-full md:w-1/2 relative md:sticky md:top-20">
+        {/* this is the left side with the carousel and the image */}
+        <div className="h-fit flex flex-col-reverse md:flex-row items-center gap-4 w-full md:w-1/2 relative md:sticky md:top-20 ">
           <div className="hidden md:flex justify-center items-center h-fit">
             <Carousel
               opts={{
@@ -641,6 +645,8 @@ const ProductPage = ({ params }) => {
             </Zoom>
           </div>
         </div>
+
+        {/* this is the right side with the text and details */}
         <div className="mt-4 md:-mt-0 flex flex-col justify- gap-4  w-full md:w-1/2">
           <div>
             <div className="flex justify-between">
@@ -690,9 +696,9 @@ const ProductPage = ({ params }) => {
               <p className="font-semibold">Concern</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-white ${
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
                     selectedConcern === 'PREMATURE EJACULATION'
-                      ? 'bg-[#05213B] text-white'
+                      ? 'bg-[#05213B] text-gray-100'
                       : ''
                   }`}
                   onClick={() => handleConcernClick('PREMATURE EJACULATION')}
@@ -701,9 +707,9 @@ const ProductPage = ({ params }) => {
                 </button>
 
                 <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-white ${
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
                     selectedConcern === 'TALK TO DOCTOR'
-                      ? 'bg-[#05213B] text-white'
+                      ? 'bg-[#05213B] text-gray-100'
                       : ''
                   }`}
                   onClick={() => handleConcernClick('TALK TO DOCTOR')}
@@ -711,9 +717,9 @@ const ProductPage = ({ params }) => {
                   TALK TO DOCTOR
                 </button>
                 <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-white ${
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
                     selectedConcern === 'ASSESS YOURSELF'
-                      ? 'bg-[#05213B] text-white'
+                      ? 'bg-[#05213B] text-gray-100'
                       : ''
                   }`}
                   onClick={() => handleConcernClick('ASSESS YOURSELF')}
@@ -728,7 +734,7 @@ const ProductPage = ({ params }) => {
               <p className="font-semibold">Type</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className=" w-fit  rounded-xl border bg-[#05213B] text-white hover:border-[#05213B] px-4 py-2 text-sm hover:bg-white hover:text-black ${
+                  className=" w-fit  rounded-xl border bg-[#05213B] text-gray-100 hover:border-[#05213B] px-4 py-2 text-sm hover:bg-white hover:text-black ${
                    "
                 >
                   Performance Kit
@@ -741,24 +747,24 @@ const ProductPage = ({ params }) => {
               <p className="font-semibold">Quantity</p>
               <div className="flex gap-2">
                 <button
-                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-white ${
-                    quantity === 1 ? 'bg-[#05213B] text-white' : ''
+                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
+                    quantity === 1 ? 'bg-[#05213B] text-gray-100' : ''
                   }`}
                   onClick={() => handleQuantityChange(1)}
                 >
                   1 Month
                 </button>
                 <button
-                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-white ${
-                    quantity === 2 ? 'bg-[#05213B] text-white' : ''
+                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
+                    quantity === 2 ? 'bg-[#05213B] text-gray-100' : ''
                   }`}
                   onClick={() => handleQuantityChange(2)}
                 >
                   2 Months
                 </button>
                 <button
-                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-white ${
-                    quantity === 3 ? 'bg-[#05213B] text-white' : ''
+                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
+                    quantity === 3 ? 'bg-[#05213B] text-gray-100' : ''
                   }`}
                   onClick={() => handleQuantityChange(3)}
                 >
@@ -816,7 +822,7 @@ const ProductPage = ({ params }) => {
             <Link
               href={`/product/${product.id}`}
               key={product.id}
-              className="bg-[#190E0B] text-[#FFF5EA] rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
+              className="bg-[#190E0B] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
             >
               <Image
                 src={product.imageUrl}

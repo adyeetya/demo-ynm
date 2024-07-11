@@ -57,37 +57,40 @@ const Consult = () => {
           </h2>
         </div>
         <div className="flex flex-row justify-around items-center  md:mx-4 gap-8">
-          <div className="flex flex-col items-center bg-[#F1D7B7] rounded-xl p-2">
+          <div className="flex flex-col items-center bg-[#F1D7B7] rounded-xl p-2 w-16 h-16">
             <Image
-              src="/images/vecteezy_two-users-icon-isolated-on-a-white-background-friends-line_10287608-1-Photoroom.png"
+              src="/images/trust-icons/user icon@2x.png"
               alt="Icon 1"
-              width={60}
-              height={60}
+              width={1000}
+              height={1000}
+              className="w-12 h-12"
             />
           </div>
-          <div className="flex flex-col items-center bg-[#F1D7B7] rounded-xl p-2">
+          <div className="flex bg-[#F1D7B7] rounded-xl p-2 w-16 h-16 justify-center items-center">
             <Image
-              src="/images/vecteezy_two-users-icon-isolated-on-a-white-background-friends-line_10287608-1-Photoroom.png"
+              src="/images/trust-icons/doctor icon@3x.png"
               alt="Icon 1"
-              width={60}
-              height={60}
+              width={1000}
+              height={1000}
+              className="w-8 h-8"
             />
           </div>
-          <div className="flex flex-col items-center bg-[#F1D7B7] rounded-xl p-2">
+          <div className="flex flex-col  bg-[#F1D7B7] rounded-xl p-2 w-16 h-16 justify-center items-center">
             <Image
-              src="/images/vecteezy_two-users-icon-isolated-on-a-white-background-friends-line_10287608-1-Photoroom.png"
+              src="/images/trust-icons/phone icon@3x.png"
               alt="Icon 1"
-              width={60}
-              height={60}
+              width={1000}
+              height={1000}
+              className="w-8 h-8"
             />
           </div>
         </div>
       </div>
 
       {/* Other Cards Section */}
-      <div className="flex flex-col md:flex-row gap-4 mb-8 justify-between">
+      <div className="flex flex-col md:flex-row mb-8 justify-center gap-4 md:gap-8">
         {/* card1 */}
-        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-56 overflow-hidden">
+        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
             <Image
@@ -100,7 +103,7 @@ const Consult = () => {
           </div>
 
           {/* Text Section */}
-          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-[#FFF5EA] h-full md:h-[45%]">
+          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-gray-100 h-full md:h-[45%]">
             <h2 className="text-xl font-semibold mb-2 md:mb-0">
               Performance {'>'}
             </h2>
@@ -109,7 +112,7 @@ const Consult = () => {
         </div>
 
         {/* card2 */}
-        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-56 overflow-hidden">
+        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
             <Image
@@ -117,20 +120,25 @@ const Consult = () => {
               alt="Card Image"
               layout="fill"
               objectFit="cover md:contain"
-              className="mt-2"
+              className=""
             />
           </div>
 
           {/* Text Section */}
-          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-[#FFF5EA] h-full md:h-[45%]">
-            <h2 className="text-xl font-semibold mb-2 md:mb-0">
-              Nutrition {'>'}
-            </h2>
-            <p className="text-sm">Nutrition Metabolism Immunity</p>
+          <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
+            <div className="p-4  h-[80%] flex flex-col gap-4 justify-center text-gray-100">
+              <h2 className="text-xl font-semibold mb-2 md:mb-0">
+                Nutrition {'>'}
+              </h2>
+              <p className="text-sm">Nutrition Metabolism Immunity</p>
+            </div>
+            <div className="text-black flex justify-center items-center text-lg text-center bg-[#F1D7B7] h-[20%]">
+              Coming Soon
+            </div>
           </div>
         </div>
         {/* card3 */}
-        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-56 overflow-hidden">
+        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
             <Image
@@ -138,20 +146,25 @@ const Consult = () => {
               alt="Card Image"
               layout="fill"
               objectFit="cover md:contain"
-              className="mt-2 -ml-2"
+              className=""
             />
           </div>
 
           {/* Text Section */}
-          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-[#FFF5EA] h-full md:h-[45%]">
-            <h2 className="text-xl font-semibold mb-2 md:mb-0">
-              Hygiene {'>'}
-            </h2>
-            <p className="text-sm">Sexual Health Vitality Stamina</p>
+          <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
+            <div className="p-4  h-[80%] flex flex-col gap-4 justify-center text-gray-100">
+              <h2 className="text-xl font-semibold mb-2 md:mb-0">
+                Hygiene {'>'}
+              </h2>
+              <p className="text-sm">Sexual Health Vitality Stamina</p>
+            </div>
+            <div className="text-black flex justify-center items-center text-lg text-center bg-[#F1D7B7] h-[20%]">
+              Coming Soon
+            </div>
           </div>
         </div>
         {/* card4 */}
-        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-72 md:w-56 overflow-hidden">
+        <div className="bg-[#0A0A06] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
             <Image
@@ -164,11 +177,16 @@ const Consult = () => {
           </div>
 
           {/* Text Section */}
-          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-[#FFF5EA] h-full md:h-[45%]">
-            <h2 className="text-xl font-semibold mb-2 md:mb-0">
-              Wellness {'>'}
-            </h2>
-            <p className="text-sm">Sexual Health Vitality Stamina</p>
+          <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
+            <div className="p-4  h-[80%] flex flex-col gap-4 justify-center text-gray-100">
+              <h2 className="text-xl font-semibold mb-2 md:mb-0">
+                Wellness {'>'}
+              </h2>
+              <p className="text-sm">Nutrition Metabolism Immunity</p>
+            </div>
+            <div className="text-black flex justify-center items-center text-lg text-center bg-[#F1D7B7] h-[20%]">
+              Coming Soon
+            </div>
           </div>
         </div>
       </div>
@@ -207,11 +225,11 @@ const Consult = () => {
         <div className="relative flex flex-col items-center w-1/3">
           <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#EDC800] flex items-center justify-center overflow-hidden">
             <Image
-              src="/images/happy couple in love lying in bed .png"
+              src="/images/product-bg.png"
               alt="Step 1"
               width={50}
               height={50}
-              className="w-16 h-16 md:w-20 md:h-20"
+              className="w-6 h-12 md:w-8 md:h-16"
             />
           </div>
         </div>

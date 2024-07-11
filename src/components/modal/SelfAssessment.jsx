@@ -66,7 +66,7 @@ const SelfAssessment = () => {
           </>
         ) : (
           <div>
-            <div className="bg-black text-white py-4 px-4 text-center mb-2 rounded-t-lg">
+            <div className="bg-black text-gray-100 py-4 px-4 text-center mb-2 rounded-t-lg">
               <h1>Take your Test</h1>
             </div>
             <div className="flex items-center mb-4 p-2">
@@ -98,12 +98,8 @@ const SelfAssessment = () => {
                 <div key={index} className="mb-2 p-2">
                   <p className="text-lg font-semibold">{question.text}</p>
                   <div className="flex justify-end items-center">
-                    <p
-                      className="text-lg text-right my-2 py-2 border border-blue-500 rounded-lg px-2 w-fit cursor-pointer"
-                     
-                    >
+                    <p className="text-lg text-right my-2 py-2 border border-blue-500 rounded-lg px-2 w-fit cursor-pointer">
                       {answer.option.text}{' '}
-                      
                     </p>
                   </div>
                 </div>

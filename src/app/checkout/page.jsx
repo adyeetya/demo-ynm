@@ -23,7 +23,7 @@ const CheckoutPage = () => {
       <div className="mb-4 md:mb-8 hidden md:flex">
         <Link
           href="/"
-          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white"
+          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-gray-100"
         >
           Home{' '}
         </Link>
@@ -101,7 +101,7 @@ const CheckoutPage = () => {
             <span className="font-semibold">₹{totalPrice.toFixed(2)}</span>
           </div>
           <button
-            className="rounded-full hover:bg-orange-600 transition-colors bg-black text-white px-8 py-2 text-center"
+            className="rounded-full hover:bg-orange-600 transition-colors bg-black text-gray-100 px-8 py-2 text-center"
             onClick={() => alert('Payment functionality to be implemented')}
           >
             Proceed to Pay

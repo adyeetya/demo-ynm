@@ -18,11 +18,12 @@ export const products = [
     mrp: 399,
     imageUrl: '/images/pro1.jpg',
     productImages: [
-      '/images/pro1.jpg',
-      '/images/pro2.jpg',
-      '/images/pro1.jpg',
-      '/images/pro2.jpg',
-      '/images/pro1.jpg',
+      '/images/product-images/1.png',
+      '/images/product-images/2.png',
+      '/images/product-images/3.png',
+      '/images/product-images/4.png',
+      '/images/product-images/5.png',
+      '/images/product-images/6.png',
     ],
     details: [
       {

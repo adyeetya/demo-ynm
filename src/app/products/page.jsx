@@ -9,8 +9,6 @@ import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
-
-
 const ProductsPage = () => {
   const { addToCart } = useCart()
   const [sortOrder, setSortOrder] = useState('')
@@ -91,7 +89,7 @@ const ProductsPage = () => {
       <div className="mb-4 md:mb-8 hidden md:flex">
         <Link
           href="/"
-          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white"
+          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-gray-100"
         >
           Home{' '}
         </Link>
@@ -196,7 +194,7 @@ const ProductsPage = () => {
           return (
             <div
               key={product.id}
-              className="bg-[#190E0B] text-[#FFF5EA] rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
+              className="bg-[#190E0B] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
             >
               <Link href={`/product/${product.id}`}>
                 <Image

@@ -42,7 +42,7 @@ const CartPage = () => {
       <div className="mb-4 md:mb-8 hidden md:flex">
         <Link
           href="/"
-          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white"
+          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-gray-100"
         >
           Home{' '}
         </Link>
@@ -51,7 +51,7 @@ const CartPage = () => {
         <h1 className="text-xl md:text-3xl font-bold">Shopping Cart</h1>
         <button
           onClick={handleClearCart}
-          className="border border-red-500 text-sm hover:bg-red-500 hover:text-white text-black px-4 py-2 rounded-md shadow-md focus:outline-none"
+          className="border border-red-500 text-sm hover:bg-red-500 hover:text-gray-100 text-black px-4 py-2 rounded-md shadow-md focus:outline-none"
         >
           Clear Cart
         </button>
@@ -130,7 +130,7 @@ const CartPage = () => {
         {cartItems.length === 0 ? (
           <Link
             href="/"
-            className="block w-full md:inline-block md:w-auto rounded-full hover:bg-orange-600 transition-colors bg-black text-white px-8 py-2 text-center mb-4 md:mb-0"
+            className="block w-full md:inline-block md:w-auto rounded-full hover:bg-orange-600 transition-colors bg-black text-gray-100 px-8 py-2 text-center mb-4 md:mb-0"
           >
             Home
           </Link>
@@ -141,7 +141,7 @@ const CartPage = () => {
             </p>
             <Link
               href="/checkout"
-              className="block w-full md:inline-block md:w-auto rounded-full hover:bg-orange-600 transition-colors bg-black text-white px-8 py-2 text-center"
+              className="block w-full md:inline-block md:w-auto rounded-full hover:bg-orange-600 transition-colors bg-black text-gray-100 px-8 py-2 text-center"
             >
               Check Out
             </Link>

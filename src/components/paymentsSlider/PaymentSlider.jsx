@@ -8,15 +8,15 @@ import {
 const types = [
   {
     id: 1,
-    imageUrl: '/images/Visa-Emblem.jpg',
+    imageUrl: '/images/payments/BHIM UPI.png',
   },
   {
     id: 2,
-    imageUrl: '/images/Visa-Emblem.jpg',
+    imageUrl: '/images/payments/G pay.png',
   },
   {
     id: 3,
-    imageUrl: '/images/Visa-Emblem.jpg',
+    imageUrl: 'images/payments/mastercard.png',
   },
   {
     id: 4,
@@ -24,11 +24,12 @@ const types = [
   },
   {
     id: 5,
-    imageUrl: '/images/Visa-Emblem.jpg',
+    imageUrl: '/images/payments/netbanking.png',
   },
   {
     id: 6,
-    imageUrl: '/images/Visa-Emblem.jpg',
+
+    imageUrl: 'images/payments/mastercard.png',
   },
 ]
 const PaymentSlider = () => {
@@ -51,11 +52,11 @@ const PaymentSlider = () => {
               key={card.id}
               className="basis-1/3 lg:basis-1/4 "
             >
-              <div className="flex p-2 rounded-2xl justify-center items-center shadow-lg lg:w-[150px] lg:h-[90px] border-2 border-gray-400">
+              <div className="flex p-2 rounded lg:rounded-2xl justify-center items-center shadow-lg w-[100px] h-[60px] lg:w-[150px] lg:h-[90px] border-2 border-gray-400">
                 <img
                   src={card.imageUrl}
                   alt={card.heading}
-                  className="rounded-xl object-cover  "
+                  className="rounded lg:rounded-xl object-cover  "
                 />
               </div>
             </BrandsCarouselItem>

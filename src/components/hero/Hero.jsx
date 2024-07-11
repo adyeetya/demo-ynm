@@ -51,7 +51,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-10 flex flex-col justify-between md:justify-center items-start md:items-center p-4 md:p-0">
         <button
           onClick={openModal}
-          className={`bg-white text-black py-2 px-6 rounded-xl mx-auto mt-8 md:mb-8 font-semibold text-xl hover:bg-black hover:text-white ${
+          className={`bg-white md:hidden text-black py-2 px-6 rounded-xl mx-auto mt-8 md:mb-8 font-semibold text-xl hover:bg-black hover:text-gray-100 ${
             isMenuOpen ? 'hidden' : 'block'
           }`}
         >
@@ -60,7 +60,7 @@ const Hero = () => {
 
         {/* Mobile Text */}
         <div className="md:hidden flex w-full overflow-hidden">
-          <div className="text-[#FFF5EA] text-left absolute bottom-32 left-4 md:hidden z-10">
+          <div className="text-gray-100 text-left absolute bottom-32 left-4 md:hidden z-10">
             <h1 className="text-2xl mb-8">
               EXPERIENCE <br /> INTIMACY <br /> LIKE NEVER <br /> BEFORE!
             </h1>
@@ -83,15 +83,21 @@ const Hero = () => {
         </div>
 
         {/* Desktop Text */}
-        <div className="hidden w-full  md:flex justify-center items-center md:items-center text-[#FFF5EA]  font-thin text-center mb-32">
+        <div className="hidden w-full md:flex justify-center items-center md:items-center text-gray-100  font-thin text-center ">
           <div className="flex flex-col gap-4 justify-center items-center">
-            <h1 className="md:text-3xl xl:text-4xl 2xl:text-5xl  mb-8">
+            <button
+              onClick={openModal}
+              className={`bg-white  text-black py-2 px-6 rounded-xl mx-auto  font-semibold text-xl hover:bg-black hover:text-gray-100`}
+            >
+              TAKE HEALTH TEST
+            </button>
+            <h1 className="md:text-3xl xl:text-4xl 2xl:text-5xl font-thin tracking-wide 2xl:tracking-widest my-8">
               EXPERIENCE <br className="md:hidden" /> INTIMACY <br /> LIKE NEVER{' '}
               <br className="md:hidden" /> BEFORE!
             </h1>
             <Link
               href="/product/1"
-              className=" bg-blue-200 text-black hover:text-white hover:bg-blue-400 py-2 px-6 w-fit font-semibold text-xl"
+              className=" bg-blue-200 text-black hover:text-gray-100 hover:bg-blue-400 py-2 px-6 w-fit font-semibold text-xl"
             >
               BUY NOW
             </Link>
