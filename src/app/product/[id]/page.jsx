@@ -9,6 +9,7 @@ import { IoMdStar } from 'react-icons/io'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import 'swiper/css'
 import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
@@ -335,6 +336,7 @@ const ProductQualities = ({ productId }) => {
 }
 
 const OtherInformation = ({ productId }) => {
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false)
   const product = products.find((product) => product.id === parseInt(productId))
 
   if (!product) {
@@ -343,30 +345,53 @@ const OtherInformation = ({ productId }) => {
 
   const { otherInformation, properties } = product
 
+  const toggleDetails = () => {
+    setIsDetailsOpen(!isDetailsOpen)
+  }
+
   return (
     <div className="py-4">
-      <div className="mb-4 w-full md:w-[600px] mx-auto bg-[#05223B] text-gray-100 text-[10px] md:text-sm p-4">
-        <h2 className="text-md md:text-lg mb-2 uppercase">Product Details</h2>
-
-        <p>
-          <span className="font-">Suitable for age:</span> {properties.ageRange}
-        </p>
-        <p>
-          <span className="">Net quantity:</span> {properties.quantityPerBottle}
-        </p>
-        <p>
-          <span className="">Price:</span> {properties.price}
-        </p>
-        <p>
-          <span className="font-">Lasts for:</span> {properties.lastsFor}
-        </p>
-        <p>
-          <span className="font-">Properties:</span> {properties.properties}
-        </p>
+      <div className="mb-4 w-full md:w-[600px] mx-auto bg-[#0a172c] text-gray-100 text-[10px] md:text-sm p-4 rounded-lg shadow-md">
+        <div
+          className="flex justify-between items-center cursor-pointer"
+          onClick={toggleDetails}
+        >
+          <h2 className="text-md md:text-lg uppercase font-bold">
+            Product Details
+          </h2>
+          {isDetailsOpen ? (
+            <FaChevronUp className="w-4 h-4 text-gray-100" />
+          ) : (
+            <FaChevronDown className="w-4 h-4 text-gray-100" />
+          )}
+        </div>
+        {isDetailsOpen && (
+          <div className="mt-4 space-y-2">
+            <p>
+              <span className="font-semibold">Suitable for age:</span>{' '}
+              {properties.ageRange}
+            </p>
+            <p>
+              <span className="font-semibold">Net quantity:</span>{' '}
+              {properties.quantityPerBottle}
+            </p>
+            <p>
+              <span className="font-semibold">Price:</span> {properties.price}₹
+            </p>
+            <p>
+              <span className="font-semibold">Lasts for:</span>{' '}
+              {properties.lastsFor}
+            </p>
+            <p>
+              <span className="font-semibold">Properties:</span>{' '}
+              {properties.properties}
+            </p>
+          </div>
+        )}
       </div>
       <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-gray-100 font- mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
+          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
             What it will do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -378,7 +403,7 @@ const OtherInformation = ({ productId }) => {
           </ul>
         </div>
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-gray-100 font- mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
+          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
             What it won&apos;t do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -398,7 +423,7 @@ const GeneralInfo = ({ productId }) => {
   return (
     <div className=" mx-auto py-4 bg-white rounded-lg">
       {/* Expert Section */}
-      <div className="flex w-full md:w-[600px] py-8 md:py-12 mx-auto justify-center items-center p-4 md:p-6 bg-[#05223B] rounded mb-6 text-gray-100">
+      <div className="max-w-screen-xl mx-auto flex w-full md:w-[600px] py-8 md:py-12 mx-auto justify-center items-center p-4 md:p-6 bg-[#05223B] rounded mb-6 text-gray-100">
         <img
           src="/images/femdoc.avif" // replace with actual path
           alt="Expert"
@@ -415,7 +440,7 @@ const GeneralInfo = ({ productId }) => {
       </div>
 
       {/* Information Section */}
-      <div className="mb-6">
+      <div className="mb-6 max-w-screen-xl mx-auto">
         <h2 className="text-2xl font-bold mb-6">
           The Truth About <br className="block md:hidden" /> Premature
           Ejaculation
@@ -455,7 +480,7 @@ const GeneralInfo = ({ productId }) => {
       </div>
 
       {/* Compound Highlight Section */}
-      <div className="w-full  md:mx-auto bg-gradient-to-b from-blue-500 to-white mb-4 md:mb-8  text-gray-100">
+      <div className="max-w-screen-xl mx-auto w-full  md:mx-auto bg-gradient-to-b from-blue-500 to-white mb-4 md:mb-8  text-gray-100">
         <div className="flex justify-between md:justify-center items-center gap-4 p-6">
           <Image
             src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
@@ -474,7 +499,7 @@ const GeneralInfo = ({ productId }) => {
         </div>
       </div>
 
-      <div className="relative w-full md:mx-auto bg-gray-200 mb-4">
+      <div className=" mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -554,10 +579,8 @@ const ProductPage = ({ params }) => {
   }
 
   return (
-    <div
-      className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
-    >
-      <div className="mb-4 hidden md:flex">
+    <div className={`p-4 md:py-8 mx-auto min-h-screen ${poppins.className}`}>
+      <div className="mb-4 hidden md:flex max-w-screen-xl mx-auto">
         <Link
           href="/"
           className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-gray-100"
@@ -565,7 +588,7 @@ const ProductPage = ({ params }) => {
           Home{' '}
         </Link>
       </div>
-      <div className="flex flex-col md:flex-row md:space-x-8">
+      <div className="flex flex-col md:flex-row md:space-x-8 max-w-screen-xl mx-auto">
         {/* this is the left side with the carousel and the image */}
         <div className="h-fit flex flex-col-reverse md:flex-row items-center gap-4 w-full md:w-1/2 relative md:sticky md:top-20 ">
           <div className="hidden md:flex justify-center items-center h-fit">
@@ -818,20 +841,20 @@ const ProductPage = ({ params }) => {
       </div>
 
       {/* qualities */}
-      <div>
+      <div className="max-w-screen-xl mx-auto">
         <ProductQualities productId={id} />
       </div>
       {/* other details */}
-      <div>
+      <div className="max-w-screen-xl mx-auto">
         <OtherInformation productId={id} />
       </div>
       {/* reviewsrating */}
-      <div>
+      <div className="max-w-screen-xl mx-auto">
         <RatingsReviews productId={id} />
       </div>
 
       {/* similar products */}
-      <div className="mt-12">
+      <div className="mt-12 max-w-screen-xl mx-auto">
         <h2 className="text-2xl font-bold mb-4">Similar Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {similarProducts.map((product) => (

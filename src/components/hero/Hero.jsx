@@ -109,7 +109,7 @@ const Hero = () => {
       {modalOpen && (
         <Modal closeModal={closeModal}>
           {/* Content of your modal */}
-          <SelfAssessment />
+          <SelfAssessment closeModal={closeModal} />
         </Modal>
       )}
     </div>

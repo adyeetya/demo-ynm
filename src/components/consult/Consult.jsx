@@ -1,7 +1,19 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import Image from 'next/image'
-
+import Link from 'next/link'
+import Modal from '../modal/Modal'
+import SelfAssessment from '../modal/SelfAssessment'
 const Consult = () => {
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const openModal = () => {
+    setModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setModalOpen(false)
+  }
   return (
     <div className="p-4 md:py-6 mt-4 max-w-screen-xl mx-auto">
       <div className="mb-12 ">
@@ -22,7 +34,9 @@ const Consult = () => {
               />
             </div>
             <div className="w-3/5 flex justify-center items-center mb-6">
-              <h2 className="font-bold text-lg">Consult for free {'>'}</h2>
+              <button className="font-bold text-lg">
+                Consult for free {'>'}
+              </button>
             </div>
             <div className="absolute bottom-0 left-0 w-full h-[15%] bg-black rounded-b-3xl"></div>
           </div>
@@ -42,7 +56,9 @@ const Consult = () => {
               />
             </div>
             <div className="w-3/5 flex justify-center items-center mb-6">
-              <h2 className="font-bold text-lg">Access myself {'>'}</h2>
+              <button onClick={openModal} className="font-bold text-lg">
+                Assess myself {'>'}
+              </button>
             </div>
             <div className="absolute bottom-0 left-0 w-full h-[15%] bg-black rounded-b-3xl"></div>
           </div>
@@ -252,6 +268,14 @@ const Consult = () => {
           </p>
         </div>
       </div>
+
+      {/* Modal */}
+      {modalOpen && (
+        <Modal closeModal={closeModal}>
+          {/* Content of your modal */}
+          <SelfAssessment closeModal={closeModal} />
+        </Modal>
+      )}
     </div>
   )
 }

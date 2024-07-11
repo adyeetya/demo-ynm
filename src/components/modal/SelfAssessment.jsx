@@ -19,7 +19,7 @@ const generateAnalysis = (responses) => {
   return analysis
 }
 
-const SelfAssessment = () => {
+const SelfAssessment = ({ closeModal }) => {
   const [currentQuestion, setCurrentQuestion] = useState(questions[0])
   const [answers, setAnswers] = useState([])
   const [history, setHistory] = useState([])
@@ -57,7 +57,28 @@ const SelfAssessment = () => {
   }
 
   return (
-    <div className="max-w-xl mx-auto p-4 h-[700px] overflow-y-auto">
+    <div className="sm:w-[550px] md:w-[644px] lg:w-[900px] relative mx-auto p-4 h-[700px] overflow-y-auto">
+      <div className="absolute top-4 right-4 p-4">
+        <button
+          onClick={closeModal}
+          className="text-gray-200 hover:text-red-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
       <div className="bg-white rounded shadow-md">
         {showAnalysis ? (
           <>
@@ -86,7 +107,7 @@ const SelfAssessment = () => {
             </div>
             {history.length > 0 && (
               <button
-                className="text-blue-700 flex items-center mb-4 ml-2"
+                className="text-blue-700 text-sm flex items-center mb-4 ml-2"
                 onClick={handleBackClick}
               >
                 <FaArrowLeft className="mr-2" /> Back to previous question
@@ -96,9 +117,9 @@ const SelfAssessment = () => {
               const question = questions.find((q) => q.id === answer.questionId)
               return (
                 <div key={index} className="mb-2 p-2">
-                  <p className="text-lg font-semibold">{question.text}</p>
+                  <p className="text-sm font-semibold">{question.text}</p>
                   <div className="flex justify-end items-center">
-                    <p className="text-lg text-right my-2 py-2 border border-blue-500 rounded-lg px-2 w-fit cursor-pointer">
+                    <p className="text-sm text-right my-2 py-2 border border-blue-500 rounded-lg px-2 w-fit cursor-pointer">
                       {answer.option.text}{' '}
                     </p>
                   </div>
@@ -106,12 +127,12 @@ const SelfAssessment = () => {
               )
             })}
             <div className="bg-gray-100 p-4 rounded shadow-sm">
-              <p className="text-lg font-semibold">{currentQuestion.text}</p>
-              <div className="mt-4 space-y-2">
+              <p className="text-sm font-semibold">{currentQuestion.text}</p>
+              <div className="mt-4 space-y-2 md:space-y-4">
                 {currentQuestion.options.map((option) => (
                   <button
                     key={option.id}
-                    className="w-full text-left p-2 border rounded-md hover:bg-gray-200"
+                    className="w-full flex flex-col text-left p-2 border rounded-md hover:bg-gray-200"
                     onClick={() => handleOptionClick(option)}
                   >
                     {option.text}
