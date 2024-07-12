@@ -1,98 +1,73 @@
-'use client'
-import React, { useState } from 'react'
+import React from 'react'
 
-import { questions } from '../../data/questions'
-
-const generateAnalysis = (responses) => {
-  const analysis = responses.map((response, index) => {
-    const question = questions.find((q) => q.id === response.questionId)
-    return (
-      <div
-        key={index}
-        className="mb-4 p-4 border rounded-lg shadow-md bg-white"
-      >
-        <p className="text-gray-700 font-semibold">{question.text}</p>
-        <p className="text-blue-700 mt-2">{response.option.text}</p>
-      </div>
-    )
-  })
-  return analysis
-}
-
-const SelfAssessment = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(questions[0])
-  const [answers, setAnswers] = useState([])
-  const [showAnalysis, setShowAnalysis] = useState(false)
-
-  const handleOptionClick = (option) => {
-    const newAnswers = [...answers, { questionId: currentQuestion.id, option }]
-    setAnswers(newAnswers)
-    const nextQuestion = questions.find((q) => q.id === option.next)
-    if (nextQuestion) {
-      setCurrentQuestion(nextQuestion)
-    } else {
-      setShowAnalysis(true)
-    }
-  }
-
+const AnalysisPage = () => {
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <div className="bg-white p-4 rounded shadow-md">
-        {showAnalysis ? (
-          <>
-            <h2 className="text-xl font-semibold mb-6">Your Analysis</h2>
-            <div>{generateAnalysis(answers)}</div>
-          </>
-        ) : (
-          <div>
-            <div className="flex items-center mb-4">
-              <img
-                src="/images/femdoc.avif" // replace with actual avatar image path
-                alt="Avatar"
-                className="rounded-full mr-4"
-                width={50}
-                height={50}
-              />
-              <div>
-                <p className="text-sm text-gray-700">Hi!</p>
-                <p className="font-bold text-gray-900">
-                  I am Geet, your personal health coach.
-                </p>
-              </div>
-            </div>
-            {answers.map((answer, index) => {
-              const question = questions.find((q) => q.id === answer.questionId)
-              return (
-                <div key={index} className="mb-2">
-                  <p className="text-lg font-semibold">{question.text}</p>
-                  <div className="flex justify-end">
-                    {' '}
-                    <p className="text-lg text-right my-2 py-2 border border-blue-500 rounded-lg px-2 w-fit">
-                      {answer.option.text}
-                    </p>
-                  </div>{' '}
-                </div>
-              )
-            })}
-            <div className="bg-gray-100 p-4 rounded shadow-sm">
-              <p className="text-lg font-semibold">{currentQuestion.text}</p>
-              <div className="mt-4 space-y-2">
-                {currentQuestion.options.map((option) => (
-                  <button
-                    key={option.id}
-                    className="w-full text-left p-2 border rounded-md hover:bg-gray-200"
-                    onClick={() => handleOptionClick(option)}
-                  >
-                    {option.text}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+    <div className="p-6 max-w-4xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Here is your Wellness report</h1>
+      <div className="flex items-center mb-4">
+        <img
+          src="/images/wellness.png"
+          alt="Wellness"
+          className="w-12 h-12 mr-4"
+        />
+        <div>
+          <h2 className="text-xl font-semibold">Diagnosis</h2>
+          <p className="text-blue-700">Erectile Dysfunction</p>
+        </div>
       </div>
+      <div className="w-full h-2 bg-gray-200 rounded-full mb-6">
+        <div className="w-3/5 h-full bg-red-500 rounded-full"></div>
+      </div>
+      <h3 className="text-xl font-semibold mb-4">
+        Root causes of your concern
+      </h3>
+      <div className="flex space-x-4 mb-6">
+        <div className="flex-1 p-4 border rounded-lg shadow-md bg-white">
+          <img
+            src="/images/nutrition.png"
+            alt="Nutrition"
+            className="w-full h-32 object-cover rounded mb-4"
+          />
+          <h4 className="font-semibold">Nutrition</h4>
+          <p className="text-gray-700 text-sm">
+            Deficiencies in zinc, vitamin D, C, E can negatively impact sexual
+            health
+          </p>
+        </div>
+        <div className="flex-1 p-4 border rounded-lg shadow-md bg-white">
+          <img
+            src="/images/lifestyle.png"
+            alt="Lifestyle"
+            className="w-full h-32 object-cover rounded mb-4"
+          />
+          <h4 className="font-semibold">Lifestyle</h4>
+          <p className="text-gray-700 text-sm">
+            Lack of exercise and excessive use of alcohol can negatively impact
+            sexual performance
+          </p>
+        </div>
+      </div>
+      <h3 className="text-xl font-semibold mb-4">Your Treatment @₹549</h3>
+      <div className="flex items-center mb-4">
+        <img
+          src="/images/tostero.png"
+          alt="TOSTERO Capsules"
+          className="w-12 h-12 mr-4"
+        />
+        <div>
+          <h4 className="font-semibold">TOSTERO Capsules (60N)</h4>
+          <p className="text-gray-700">₹899 ₹549</p>
+        </div>
+      </div>
+      <div className="flex justify-between items-center mb-4">
+        <p className="font-semibold">Total price</p>
+        <p className="font-semibold">₹549</p>
+      </div>
+      <button className="bg-blue-500 text-white px-4 py-2 rounded w-full">
+        Start Treatment @₹549
+      </button>
     </div>
   )
 }
 
-export default SelfAssessment
+export default AnalysisPage
