@@ -42,9 +42,9 @@ const Products = () => {
           className="bg-[#0a172c] text-gray-100 rounded-2xl md:rounded-3xl shadow-md p-2 flex flex-col lg:flex-row w-full"
         >
           {/* left side */}
-          <div className="h-fit flex flex-col-reverse md:flex-row items-center gap-4 w-full md:w-1/2 relative md:sticky md:top-20 ">
+          <div className="h-fit flex flex-col-reverse lg:flex-row items-center justify-center gap-4 w-full md:w-1/2 mx-auto relative ">
             {/* vertical carousel for desktop */}
-            <div className="hidden md:flex justify-center items-center h-fit">
+            <div className="hidden lg:flex justify-center items-center h-fit">
               <Carousel
                 opts={{
                   align: 'center',
@@ -81,7 +81,7 @@ const Products = () => {
               </Carousel>
             </div>
             {/* horizontal carousel for mobile */}
-            <div className="md:hidden flex justify-center items-center  h-">
+            <div className="lg:hidden flex justify-center items-center">
               <Carousel
                 opts={{
                   align: 'start',
@@ -117,7 +117,7 @@ const Products = () => {
               </Carousel>
             </div>
 
-            <div className="relative w-full  overflow-hidden flex ">
+            <div className="relative w-full overflow-hidden flex ">
               <Zoom>
                 <Image
                   src={product.productImages[mainImageIndex]} // Displaying the selected main image

@@ -194,7 +194,7 @@ const ProductsPage = () => {
           return (
             <div
               key={product.id}
-              className="bg-[#190E0B] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
+              className="bg-[#0a172c] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
             >
               <Link href={`/product/${product.id}`}>
                 <Image

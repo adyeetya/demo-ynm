@@ -1,26 +1,27 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import { IoMdStar } from 'react-icons/io'
+import { expertsData } from '@/data/Experts'
+// const expertsData = [
+//   {
+//     id: 1,
+//     name: 'Dr. Saurabh Jain',
 
-const expertsData = [
-  {
-    id: 1,
-    name: 'Dr. Saurabh Jain',
-
-    status: 'Online',
-    rating: 4,
-    imageUrl: '/images/maledoc.jpg',
-    info: 'Urologists are specialized health professionals who have expert training for treating the male reproductive system and urinary tracts. Mainly, they conduct diagnosis and treatment for issues like cancer kidney stones, kidney disease, urethra disease, bladder disorder, infections, and pelvic muscle problems.',
-  },
-  {
-    id: 2,
-    name: 'Dr. Indra Singh',
-    status: 'Offline',
-    rating: 3,
-    imageUrl: '/images/femdoc.avif',
-    info: 'Urologists are specialized health professionals who have expert training for treating the male reproductive system and urinary tracts. Mainly, they conduct diagnosis and treatment for issues like cancer kidney stones, kidney disease, urethra disease, bladder disorder, infections, and pelvic muscle problems.',
-  },
-]
+//     status: 'Online',
+//     rating: 4,
+//     imageUrl: '/images/maledoc.jpg',
+//     info: 'Urologists are specialized health professionals who have expert training for treating the male reproductive system and urinary tracts. Mainly, they conduct diagnosis and treatment for issues like cancer kidney stones, kidney disease, urethra disease, bladder disorder, infections, and pelvic muscle problems.',
+//   },
+//   {
+//     id: 2,
+//     name: 'Dr. Indra Singh',
+//     status: 'Offline',
+//     rating: 3,
+//     imageUrl: '/images/femdoc.avif',
+//     info: 'Urologists are specialized health professionals who have expert training for treating the male reproductive system and urinary tracts. Mainly, they conduct diagnosis and treatment for issues like cancer kidney stones, kidney disease, urethra disease, bladder disorder, infections, and pelvic muscle problems.',
+//   },
+// ]
 
 const Experts = () => {
   return (
@@ -70,9 +71,9 @@ const Experts = () => {
         ))}
       </div>
       <div className="mt-8 flex justify-center items-center">
-        <button className="px-8 py-2 bg-black hover:bg-blue-900 text-gray-100 rounded-full">
+        <Link href='/experts' className="px-8 py-2 bg-black hover:bg-blue-900 text-gray-100 rounded-full">
           Get in touch with our experts
-        </button>
+        </Link>
       </div>
     </div>
   )

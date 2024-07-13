@@ -74,3 +74,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+.glass-shine-container::before {
+  content: ' ';
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 6rem;
+  width: 60px;
+  animation: slide 10s infinite;
+  transform: skewX(-30deg);
+  left: -70px;
+}
+
+@keyframes slide {
+  0% {
+    left: -70px;
+  }
+  60% {
+    left: 110%;
+  }
+  60.01% {
+    left: 110%;
+  }
+  100% {
+    left: 110%;
+  }
+}

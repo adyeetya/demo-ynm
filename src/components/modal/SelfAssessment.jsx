@@ -4,7 +4,7 @@ import { questions } from '../../data/questions'
 import { FaArrowLeft } from 'react-icons/fa'
 import Modal from './Modal'
 import { useRouter } from 'next/navigation'
-
+import { RxReload } from 'react-icons/rx'
 const generateAnalysis = (responses) => {
   const analysis = responses.map((response, index) => {
     const question = questions.find((q) => q.id === response.questionId)
@@ -73,6 +73,7 @@ const SelfAssessment = ({ closeModal }) => {
 
   const doneStep = () => {
     setShowModal(false)
+    console.log(userData)
     router.push('/self-assessment')
   }
 
@@ -114,12 +115,14 @@ const SelfAssessment = ({ closeModal }) => {
               className="border p-2 w-full mb-4"
               placeholder="Mobile Number"
             />
-            <button
-              onClick={nextStep}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              Next
-            </button>
+            <div className="flex justify-center items-center">
+              <button
+                onClick={nextStep}
+                className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded"
+              >
+                Next
+              </button>
+            </div>
           </div>
         )
       case 2:
@@ -156,12 +159,19 @@ const SelfAssessment = ({ closeModal }) => {
               className="border p-2 w-full mb-4"
               placeholder="OTP"
             />
-            <button
-              onClick={nextStep}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              Next
-            </button>
+            <div className="flex justify-center items-center my-2 text-sm">
+              <button className="flex justify-center items-center gap-2 hover:text-red-500">
+                <RxReload /> Resend OTP
+              </button>
+            </div>
+            <div className="flex justify-center items-center">
+              <button
+                onClick={nextStep}
+                className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded"
+              >
+                Verify OTP
+              </button>
+            </div>
           </div>
         )
       case 3:
@@ -209,12 +219,14 @@ const SelfAssessment = ({ closeModal }) => {
               className="border p-2 w-full mb-4"
               placeholder="Email"
             />
-            <button
-              onClick={doneStep}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              Done
-            </button>
+            <div className="flex justify-center items-center">
+              <button
+                onClick={doneStep}
+                className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded"
+              >
+                Done
+              </button>
+            </div>
           </div>
         )
       default:
@@ -224,10 +236,10 @@ const SelfAssessment = ({ closeModal }) => {
 
   return (
     <div className="sm:w-[550px] md:w-[644px] lg:w-[900px] relative mx-auto ">
-      <div className="bg-white rounded shadow-md">
+      <div className=" rounded shadow-md">
         {showAnalysis ? (
-          <>
-            <div className="bg-black flex items-center justify-between  fixed w-full sm:w-[550px] md:w-[644px] lg:w-[900px] mb-2 text-gray-100 py-4 px-4 text-center  rounded-t-lg">
+          <div className="flex flex-col">
+            <div className="bg-black flex items-center justify-between fixed w-full sm:w-[550px] md:w-[644px] lg:w-[900px] mb-2 text-gray-100 py-4 px-4 text-center  rounded-t-lg">
               <h1>Your Answers</h1>
               <div className="z-50">
                 <button
@@ -251,16 +263,18 @@ const SelfAssessment = ({ closeModal }) => {
                 </button>
               </div>
             </div>
-            <div className="h-[700px] overflow-y-auto">
-              <div className="mt-20">{generateAnalysis(answers)}</div>
+            <div className="h-[80vh] overflow-y-auto">
+              <div className="mt-20 text-sm">{generateAnalysis(answers)}</div>
             </div>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-              onClick={() => setShowModal(true)}
-            >
-              Done
-            </button>
-          </>
+            <div className="flex justify-center items-center py-2">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 w-fit text-white px-4 py-2 rounded"
+                onClick={() => setShowModal(true)}
+              >
+                Done
+              </button>
+            </div>
+          </div>
         ) : (
           <div>
             <div className="bg-black flex items-center justify-between  fixed w-full sm:w-[550px] md:w-[644px] lg:w-[900px] mb-2 text-gray-100 py-4 px-4 text-center  rounded-t-lg">
@@ -287,7 +301,7 @@ const SelfAssessment = ({ closeModal }) => {
                 </button>
               </div>
             </div>
-            <div className="h-[700px] overflow-y-auto">
+            <div className="h-[80vh] overflow-y-auto">
               <div className="flex items-center mb-4 p-2 mt-20">
                 <img
                   src="/images/femdoc.avif"
