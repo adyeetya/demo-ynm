@@ -5,7 +5,7 @@ import { RxReload } from 'react-icons/rx'
 import { toast } from 'react-hot-toast'
 import CustomDropdown from './StateDropdown' // Import the CustomDropdown component
 import { useRouter } from 'next/navigation'
-import { useSearchParams } from 'next/navigation'
+
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
 const Page = () => {
@@ -13,6 +13,7 @@ const Page = () => {
   const [otp, setOtp] = useState('')
   const [step, setStep] = useState(1)
   const [message, setMessage] = useState('')
+  const [referrer, setReferrer] = useState('')
   const [userData, setUserData] = useState({
     name: '',
     email: '',
@@ -23,8 +24,12 @@ const Page = () => {
     state: '',
   })
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const referrer = searchParams.get('referrer') || ''
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    setReferrer(params.get('referrer'))
+  }, [])
+
   const states = [
     'Andhra Pradesh',
     'Arunachal Pradesh',
@@ -144,11 +149,12 @@ const Page = () => {
 
     if (res.status === 200) {
       // Redirect user based on referrer
-      console.log('referrer', referrer)
+      // console.log('referrer: ', referrer)
       if (referrer === 'cart') {
         router.push('/checkout')
       } else {
         router.push('/')
+        // console.log('home')
       }
       setMessage(data.message)
       toast.success('Registration successful')

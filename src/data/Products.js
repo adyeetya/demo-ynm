@@ -16,7 +16,7 @@ export const products = [
     rating: 4.5,
     price: 299,
     mrp: 399,
-    imageUrl: '/images/pro1.jpg',
+    imageUrl: '/images/product-images/1.png',
     productImages: [
       '/images/product-images/1.png',
       '/images/product-images/2.png',
