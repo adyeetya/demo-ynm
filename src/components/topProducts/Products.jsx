@@ -63,7 +63,7 @@ const Products = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-[#0a172c] text-gray-100 rounded-2xl md:rounded-3xl shadow-md p-2 md:p-2  flex flex-col h-[20rem] w-[165px] sm:w-44 md:h-96 md:w-60"
+            className="bg-[#2d0f12] text-gray-100 rounded-2xl md:rounded-3xl shadow-md p-2 md:p-2  flex flex-col h-[20rem] w-[165px] sm:w-44 md:h-96 md:w-60"
           >
             <Link
               href={`/product/${product.id}`}

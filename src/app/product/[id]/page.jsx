@@ -351,7 +351,7 @@ const OtherInformation = ({ productId }) => {
 
   return (
     <div className="py-4">
-      <div className="mb-4 w-full md:w-[600px] mx-auto bg-[#0a172c] text-gray-100 text-[10px] md:text-sm p-4 rounded-lg shadow-md">
+      <div className="mb-4 w-full md:w-[600px] mx-auto bg-[#2d0f12] text-gray-100 text-[10px] md:text-sm p-4 rounded-lg shadow-md">
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={toggleDetails}
@@ -391,7 +391,7 @@ const OtherInformation = ({ productId }) => {
       </div>
       <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
+          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[#2d0f12] w-fit px-4 py-1">
             What it will do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -403,7 +403,7 @@ const OtherInformation = ({ productId }) => {
           </ul>
         </div>
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[#05223B] w-fit px-4 py-1">
+          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[#2d0f12] w-fit px-4 py-1">
             What it won&apos;t do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -423,7 +423,7 @@ const GeneralInfo = ({ productId }) => {
   return (
     <div className=" mx-auto py-4 bg-white rounded-lg">
       {/* Expert Section */}
-      <div className="max-w-screen-xl mx-auto flex w-full md:w-[600px] py-8 md:py-12 mx-auto justify-center items-center p-4 md:p-6 bg-[#05223B] rounded mb-6 text-gray-100">
+      <div className="max-w-screen-xl flex w-full md:w-[600px] py-8 md:py-12 mx-auto justify-center items-center p-4 md:p-6 bg-[#2d0f12] rounded mb-6 text-gray-100">
         <img
           src="/images/femdoc.avif" // replace with actual path
           alt="Expert"
@@ -727,9 +727,9 @@ const ProductPage = ({ params }) => {
               <p className="font-semibold">Concern</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
                     selectedConcern === 'PREMATURE EJACULATION'
-                      ? 'bg-[#05213B] text-gray-100'
+                      ? 'bg-[#2d0f12] text-gray-100'
                       : ''
                   }`}
                   onClick={() => handleConcernClick('PREMATURE EJACULATION')}
@@ -738,9 +738,9 @@ const ProductPage = ({ params }) => {
                 </button>
 
                 <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
                     selectedConcern === 'TALK TO DOCTOR'
-                      ? 'bg-[#05213B] text-gray-100'
+                      ? 'bg-[#2d0f12] text-gray-100'
                       : ''
                   }`}
                   onClick={() => handleConcernClick('TALK TO DOCTOR')}
@@ -748,9 +748,9 @@ const ProductPage = ({ params }) => {
                   TALK TO DOCTOR
                 </button>
                 <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
                     selectedConcern === 'ASSESS YOURSELF'
-                      ? 'bg-[#05213B] text-gray-100'
+                      ? 'bg-[#2d0f12] text-gray-100'
                       : ''
                   }`}
                   onClick={() => handleConcernClick('ASSESS YOURSELF')}
@@ -765,7 +765,7 @@ const ProductPage = ({ params }) => {
               <p className="font-semibold">Type</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className=" w-fit  rounded-xl border bg-[#05213B] text-gray-100 hover:border-[#05213B] px-4 py-2 text-sm hover:bg-white hover:text-black ${
+                  className=" w-fit  rounded-xl border bg-[#2d0f12] text-gray-100 hover:border-[#2d0f12] px-4 py-2 text-sm hover:bg-white hover:text-black ${
                    "
                 >
                   Performance Kit
@@ -778,32 +778,32 @@ const ProductPage = ({ params }) => {
               <p className="font-semibold">Quantity</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
-                    quantity === 1 ? 'bg-[#05213B] text-gray-100' : ''
+                  className={`rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
+                    quantity === 1 ? 'bg-[#2d0f12] text-gray-100' : ''
                   }`}
                   onClick={() => handleQuantityChange(1)}
                 >
                   1 Month
                 </button>
                 <button
-                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
-                    quantity === 2 ? 'bg-[#05213B] text-gray-100' : ''
+                  className={`rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
+                    quantity === 2 ? 'bg-[#2d0f12] text-gray-100' : ''
                   }`}
                   onClick={() => handleQuantityChange(2)}
                 >
                   2 Months
                 </button>
                 <button
-                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
-                    quantity === 3 ? 'bg-[#05213B] text-gray-100' : ''
+                  className={`rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
+                    quantity === 3 ? 'bg-[#2d0f12] text-gray-100' : ''
                   }`}
                   onClick={() => handleQuantityChange(3)}
                 >
                   3 Months
                 </button>
                 <button
-                  className={`rounded-xl border border-[#05213B] px-4 py-2 text-sm hover:bg-[#05213B] hover:text-gray-100 ${
-                    quantity === 6 ? 'bg-[#05213B] text-gray-100' : ''
+                  className={`rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
+                    quantity === 6 ? 'bg-[#2d0f12] text-gray-100' : ''
                   }`}
                   onClick={() => handleQuantityChange(6)}
                 >
@@ -861,7 +861,7 @@ const ProductPage = ({ params }) => {
             <Link
               href={`/product/${product.id}`}
               key={product.id}
-              className="bg-[#0a172c] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
+              className="bg-[#2d0f12] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
             >
               <Image
                 src={product.imageUrl}

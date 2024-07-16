@@ -4,6 +4,7 @@ import { useCart } from '../../context/cartContext'
 import Image from 'next/image'
 import Link from 'next/link'
 import { IoMdStar } from 'react-icons/io'
+import { useRouter } from 'next/navigation'
 import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 const CartPage = () => {
@@ -16,7 +17,8 @@ const CartPage = () => {
   } = useCart()
   const [cartItems, setCartItems] = useState([])
   const [totalPrice, setTotalPrice] = useState(0)
-
+  const [user, setUser] = useState({})
+  const router = useRouter()
   useEffect(() => {
     setCartItems(cart)
 
@@ -33,6 +35,14 @@ const CartPage = () => {
 
   const handleClearCart = () => {
     clearCart()
+  }
+
+  const handleNavigation = () => {
+    if (Object.keys(user).length) {
+      router.push('/checkout')
+    } else {
+      router.push('/login?referrer=cart')
+    }
   }
 
   return (
@@ -139,12 +149,12 @@ const CartPage = () => {
             <p className="text-2xl font-bold mb-8 md:mb-12 text-center md:text-left">
               Total: ₹{totalPrice.toFixed(2)}
             </p>
-            <Link
-              href="/checkout"
+            <button
+              onClick={handleNavigation}
               className="block w-full md:inline-block md:w-auto rounded-full hover:bg-orange-600 transition-colors bg-black text-gray-100 px-8 py-2 text-center"
             >
               Check Out
-            </Link>
+            </button>
           </>
         )}
       </div>

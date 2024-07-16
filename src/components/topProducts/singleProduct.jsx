@@ -39,7 +39,7 @@ const Products = () => {
       <div className="flex justify-center">
         <div
           key={product.id}
-          className="bg-[#0a172c] text-gray-100 rounded-2xl md:rounded-3xl shadow-md p-2 flex flex-col lg:flex-row w-full"
+          className="bg-white text-black rounded-2xl md:rounded-3xl shadow-lg p-2 flex flex-col lg:flex-row w-full"
         >
           {/* left side */}
           <div className="h-fit flex flex-col-reverse lg:flex-row items-center justify-center gap-4 w-full md:w-1/2 mx-auto relative ">
@@ -76,8 +76,8 @@ const Products = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="bg-[#0a172c] text-gray-100 border-none" />
-                <CarouselNext className="bg-[#0a172c] text-gray-100 border-none" />
+                <CarouselPrevious className="bg-white text-black border-none" />
+                <CarouselNext className="bg-white text-black border-none" />
               </Carousel>
             </div>
             {/* horizontal carousel for mobile */}
@@ -112,8 +112,8 @@ const Products = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="bg-[#0a172c] text-gray-100 border-none" />
-                <CarouselNext className="bg-[#0a172c] text-gray-100 border-none" />
+                <CarouselPrevious className="bg-white text-black border-none" />
+                <CarouselNext className="bg-white text-black border-none" />
               </Carousel>
             </div>
 
@@ -137,10 +137,10 @@ const Products = () => {
                   {product.name}
                 </h3>
               </Link>
-              <p className="text-sm md:text-md xl:text-2xl text-gray-300 mb-4">
+              <p className="text-sm md:text-md xl:text-2xl text-gray-700 mb-4">
                 {product.category}
               </p>
-              <p className="text-sm md:text-md xl:text-xl text-gray-400 mb-4">
+              <p className="text-sm md:text-md xl:text-xl text-gray-800 mb-4">
                 {product.description}
               </p>
             </div>
@@ -151,7 +151,7 @@ const Products = () => {
               </div>
               <button
                 onClick={() => handleAddToCart(product)}
-                className="bg-white text-black py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors duration-300 text-sm md:text-base"
+                className="bg-black text-gray-100 py-2 px-4 rounded-lg hover:shadow-xl transition-colors duration-300 text-sm md:text-base"
               >
                 Add to cart
               </button>

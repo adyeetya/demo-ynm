@@ -5,14 +5,14 @@ import Image from 'next/image'
 import { FaRegEdit } from 'react-icons/fa'
 import { FaShippingFast } from 'react-icons/fa'
 import { Poppins } from 'next/font/google'
+const poppins = Poppins({ weight: '400', subsets: ['latin'] })
+
 import Link from 'next/link'
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
 
-const poppins = Poppins({ weight: '400', subsets: ['latin'] })
-
 const CheckoutPage = () => {
   const { cart } = useCart()
-  const [showCoupon, setShowCoupon] = useState(false)
+
   const [showOffers, setShowOffers] = useState(false)
 
   // Calculate total price based on quantity
@@ -44,12 +44,12 @@ const CheckoutPage = () => {
       <div className="mb-8 p-3 bg-white rounded-lg shadow-md">
         <div className="flex items-center mb-4 gap-2 text-gray-600">
           <FaShippingFast className="w-6 h-6" />
-          <span className="font-semibold text-[#0a172c]">
+          <span className="font-semibold text-[#2d0f12]">
             Get Delivery By 5th July
           </span>
         </div>
         <div className="flex justify-between items-center mb-2">
-          <h2 className="text-xl font-semibold text-[#0a172c]">
+          <h2 className="text-xl font-semibold text-[#2d0f12]">
             Delivering To
           </h2>
           <button
@@ -62,7 +62,7 @@ const CheckoutPage = () => {
             <span className="ml-1 text-sm font-medium">Change</span>
           </button>
         </div>
-        <div className="border-l-4 border-[#0a172c] pl-4">
+        <div className="border-l-4 border-[#2d0f12] pl-4">
           <p className="font-medium text-gray-800">Aditya Singh</p>
           <p className="text-gray-600">+91 8787887878</p>
           <p className="text-gray-600">123 Main Street</p>

@@ -117,12 +117,13 @@ const Navbar = () => {
                 width={1000}
                 height={1000}
                 className="w-20 md:w-24 h-14 md:h-16 "
+                priority
               />
             </a>
           </div>
           <div className="flex justify-end items-center flex-1 space-x-6 md:space-x-12">
             <div className="hidden md:flex space-x-12">
-              <a href="#" className="hover:text-gray-300">
+              <a href="/login" className="hover:text-gray-300">
                 Login
               </a>
               <a href="/products" className="hover:text-gray-300">
@@ -212,6 +213,12 @@ const Navbar = () => {
               className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
             >
               Home
+            </a>
+            <a
+              href="/login"
+              className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
+            >
+              Login
             </a>
             <a
               href="#"
