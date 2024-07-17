@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
-const page = () => {
+const Page = () => {
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -194,4 +194,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

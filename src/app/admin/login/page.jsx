@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
-const page = () => {
+const Page = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -74,4 +74,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
