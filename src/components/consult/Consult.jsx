@@ -120,9 +120,9 @@ const Consult = () => {
 
           {/* Text Section */}
           <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-gray-100 h-full md:h-[45%]">
-            <h2 className="text-xl font-semibold mb-2 md:mb-0">
+            <Link href='/product/1' className="text-xl font-semibold mb-2 md:mb-0">
               Performance {'>'}
-            </h2>
+            </Link>
             <p className="text-sm">Sexual Health Vitality Stamina</p>
           </div>
         </div>

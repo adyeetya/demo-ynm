@@ -351,40 +351,44 @@ const OtherInformation = ({ productId }) => {
 
   return (
     <div className="py-4">
-      <div className="mb-4 w-full md:w-[600px] mx-auto bg-[#2d0f12] text-gray-100 text-[10px] md:text-sm p-4 rounded-lg shadow-md">
+      <div className="mb-4 w-full md:w-[600px] mx-auto   text-[10px] md:text-sm p-4 rounded-lg shadow-md">
         <div
-          className="flex justify-between items-center cursor-pointer"
+          className="flex items-center cursor-pointer"
           onClick={toggleDetails}
         >
-          <h2 className="text-md md:text-lg uppercase font-bold">
+          <h2 className="text-md flex-1 text-sm text-center md:text-lg uppercase font-bold">
             Product Details
           </h2>
           {isDetailsOpen ? (
-            <FaChevronUp className="w-4 h-4 text-gray-100" />
+            <FaChevronUp className="w-4 h-4 " />
           ) : (
-            <FaChevronDown className="w-4 h-4 text-gray-100" />
+            <FaChevronDown className="w-4 h-4 " />
           )}
         </div>
         {isDetailsOpen && (
-          <div className="mt-4 space-y-2">
-            <p>
+          <div className="mt-4 space-y-2 text-center">
+            <p className="flex justify-between">
               <span className="font-semibold">Suitable for age:</span>{' '}
-              {properties.ageRange}
+              <span>{properties.ageRange}</span>
             </p>
-            <p>
+            <p className="flex justify-between">
               <span className="font-semibold">Net quantity:</span>{' '}
-              {properties.quantityPerBottle}
+              <span>{properties.quantityPerBottle}</span>
             </p>
-            <p>
-              <span className="font-semibold">Price:</span> {properties.price}₹
+            <p className="flex justify-between">
+              <span className="font-semibold">Price:</span>{' '}
+              <span>₹{properties.price}</span>
             </p>
-            <p>
+            <p className="flex justify-between">
               <span className="font-semibold">Lasts for:</span>{' '}
-              {properties.lastsFor}
+              <span>{properties.lastsFor}</span>
             </p>
-            <p>
+            <p className="flex justify-between">
               <span className="font-semibold">Properties:</span>{' '}
-              {properties.properties}
+              <span className="text-right">
+                Optimal Dosage | Quick Absorption <br /> Fast Action | Zero
+                Transference
+              </span>
             </p>
           </div>
         )}
@@ -440,7 +444,7 @@ const GeneralInfo = ({ productId }) => {
       </div>
 
       {/* Information Section */}
-      <div className="mb-6 max-w-screen-xl mx-auto">
+      <div className="mb-6 max-w-screen-xl mx-auto p-4">
         <h2 className="text-2xl font-bold mb-6">
           The Truth About <br className="block md:hidden" /> Premature
           Ejaculation
@@ -480,8 +484,8 @@ const GeneralInfo = ({ productId }) => {
       </div>
 
       {/* Compound Highlight Section */}
-      <div className="max-w-screen-xl mx-auto w-full  md:mx-auto bg-gradient-to-b from-blue-500 to-white mb-4 md:mb-8  text-gray-100">
-        <div className="flex justify-between md:justify-center items-center gap-4 p-6">
+      <div className="max-w-screen-xl p-4 mx-auto w-full  md:mx-auto  mb-4 md:mb-8  text-gray-100">
+        <div className="bg-gradient-to-b from-red-300 to-white flex justify-between md:justify-center items-center gap-4 p-6">
           <Image
             src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
             width={1000}
@@ -499,11 +503,11 @@ const GeneralInfo = ({ productId }) => {
         </div>
       </div>
 
-      <div className=" mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
+      <div className="mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/images/product/chem-bg.png')",
+            backgroundImage: "url('/images/hero-bg-large.png')",
           }}
         />
         <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
@@ -530,7 +534,7 @@ const GeneralInfo = ({ productId }) => {
               alt="Right Side Image"
               width={1000}
               height={1000}
-              className="max-w-full h-auto rounded-lg shadow-lg"
+              className="max-w-full h-auto rounded-lg"
             />
           </div>
         </div>
@@ -579,7 +583,7 @@ const ProductPage = ({ params }) => {
   }
 
   return (
-    <div className={`p-4 md:py-8 mx-auto min-h-screen ${poppins.className}`}>
+    <div className={` md:py-8 mx-auto min-h-screen ${poppins.className}`}>
       <div className="mb-4 hidden md:flex max-w-screen-xl mx-auto">
         <Link
           href="/"
@@ -588,7 +592,7 @@ const ProductPage = ({ params }) => {
           Home{' '}
         </Link>
       </div>
-      <div className="flex flex-col md:flex-row md:space-x-8 max-w-screen-xl mx-auto">
+      <div className="p-4 flex flex-col md:flex-row md:space-x-8 max-w-screen-xl mx-auto">
         {/* this is the left side with the carousel and the image */}
         <div className="h-fit flex flex-col-reverse md:flex-row items-center gap-4 w-full md:w-1/2 relative md:sticky md:top-20 ">
           <div className="hidden md:flex justify-center items-center h-fit">
@@ -816,13 +820,13 @@ const ProductPage = ({ params }) => {
           <div className=" md:mx-0 w-full">
             <button
               onClick={handleAddToCart}
-              className="w-1/2  text-2xl mt-1 md:mt-4 bg-[#A6C9F0] font-bold px-6 py-6  hover:bg-orange-600 transition-colors"
+              className="w-1/3  text-2xl mt-1 md:mt-4 bg-[#A6C9F0] font-bold px-6 py-3  hover:bg-orange-600 hover:text-white transition-colors"
             >
               BUY
             </button>
             <button
               onClick={handleAddToCart}
-              className="w-1/2 text-2xl mt-1 md:mt-4 bg-[#E6F1FF] font-bold px-6 py-6 hover:bg-orange-600 transition-colors"
+              className="w-1/3 text-2xl mt-1 md:mt-4 bg-[#E6F1FF] font-bold px-6 py-3 hover:bg-orange-600 hover:text-white transition-colors"
             >
               CART
             </button>
@@ -841,20 +845,20 @@ const ProductPage = ({ params }) => {
       </div>
 
       {/* qualities */}
-      <div className="max-w-screen-xl mx-auto">
+      <div className="max-w-screen-xl mx-auto p-4">
         <ProductQualities productId={id} />
       </div>
       {/* other details */}
-      <div className="max-w-screen-xl mx-auto">
+      <div className="max-w-screen-xl mx-auto p-4">
         <OtherInformation productId={id} />
       </div>
       {/* reviewsrating */}
-      <div className="max-w-screen-xl mx-auto">
+      <div className="max-w-screen-xl mx-auto p-4">
         <RatingsReviews productId={id} />
       </div>
 
       {/* similar products */}
-      <div className="mt-12 max-w-screen-xl mx-auto">
+      {/* <div className="mt-12 max-w-screen-xl mx-auto">
         <h2 className="text-2xl font-bold mb-4">Similar Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {similarProducts.map((product) => (
@@ -902,7 +906,7 @@ const ProductPage = ({ params }) => {
             </Link>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

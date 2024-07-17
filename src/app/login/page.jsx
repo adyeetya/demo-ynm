@@ -1,28 +1,21 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import { Poppins } from 'next/font/google'
-import { RxReload } from 'react-icons/rx'
 import { toast } from 'react-hot-toast'
 import CustomDropdown from './StateDropdown' // Import the CustomDropdown component
 import { useRouter } from 'next/navigation'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
+
 const Page = () => {
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [otp, setOtp] = useState('')
   const [step, setStep] = useState(1)
   const [message, setMessage] = useState('')
   const [referrer, setReferrer] = useState('')
-  const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    address: '',
-    landmark: '',
-    pincode: '',
-    city: '',
-    state: '',
-  })
+  const [phoneNumber, setPhoneNumber] = useState('')
   const router = useRouter()
 
   useEffect(() => {
@@ -67,8 +60,81 @@ const Page = () => {
     'Puducherry',
   ]
 
-  const handleSendOtp = async () => {
-    const res = await fetch('/api/users/sendOTP', {
+  const step1ValidationSchema = Yup.object({
+    phoneNumber: Yup.string()
+      .matches(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits')
+      .required('Phone number is required'),
+  })
+
+  const step2ValidationSchema = Yup.object({
+    otp: Yup.string()
+      .matches(/^[0-9]{6}$/, 'OTP must be exactly 6 digits')
+      .required('OTP is required'),
+  })
+
+  const step3ValidationSchema = Yup.object({
+    name: Yup.string().required('Name is required'),
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required'),
+    address: Yup.string().required('Address is required'),
+    landmark: Yup.string().required('Landmark is required'),
+    pincode: Yup.string()
+      .matches(/^[0-9]{6}$/, 'Pincode must be exactly 6 digits')
+      .required('Pincode is required'),
+    city: Yup.string().required('City is required'),
+    state: Yup.string().required('State is required'),
+  })
+  const handleStep1Submit = async (values) => {
+    console.log('Form submitted step1:', values)
+
+    await handleSendOtp(values.phoneNumber)
+    setPhoneNumber(values.phoneNumber)
+  }
+
+  const handleStep2Submit = async (values) => {
+    console.log('Form submitted step2:', values)
+    await handleVerifyOtp(values.otp)
+  }
+
+  const handleStep3Submit = async (values) => {
+    console.log('Form submitted step3:', values)
+    await handleRegister(values)
+  }
+
+  const formikStep1 = useFormik({
+    initialValues: {
+      phoneNumber: '',
+    },
+    validationSchema: step1ValidationSchema,
+    onSubmit: handleStep1Submit,
+  })
+
+  const formikStep2 = useFormik({
+    initialValues: {
+      otp: '',
+    },
+    validationSchema: step2ValidationSchema,
+    onSubmit: handleStep2Submit,
+  })
+
+  const formikStep3 = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      address: '',
+      landmark: '',
+      pincode: '',
+      city: '',
+      state: '',
+    },
+    validationSchema: step3ValidationSchema,
+    onSubmit: handleStep3Submit,
+  })
+
+  const handleSendOtp = async (phoneNumber) => {
+    console.log('Sending OTP to:', phoneNumber)
+    const res = await fetch(`${serverUrl}/api/users/sendOTP`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -88,9 +154,9 @@ const Page = () => {
     }
   }
 
-  const handleResendOtp = async () => {
+  const handleResendOtp = async (phoneNumber) => {
     setMessage('') // Clear the previous message
-    const res = await fetch('/api/users/sendOTP', {
+    const res = await fetch(`${serverUrl}/api/users/sendOTP`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -109,8 +175,8 @@ const Page = () => {
     }
   }
 
-  const handleVerifyOtp = async () => {
-    const res = await fetch('/api/users/verifyOTP', {
+  const handleVerifyOtp = async (otp) => {
+    const res = await fetch(`${serverUrl}/api/users/verifyOTP`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -136,8 +202,8 @@ const Page = () => {
     }
   }
 
-  const handleRegister = async () => {
-    const res = await fetch('/api/users/register', {
+  const handleRegister = async (userData) => {
+    const res = await fetch(`${serverUrl}/api/users/registerUser`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -149,16 +215,13 @@ const Page = () => {
 
     if (res.status === 200) {
       // Redirect user based on referrer
-      // console.log('referrer: ', referrer)
       if (referrer === 'cart') {
         router.push('/checkout')
       } else {
         router.push('/')
-        // console.log('home')
       }
       setMessage(data.message)
       toast.success('Registration successful')
-      // setStep(1) // Reset to initial step after registration
     } else {
       setMessage(data.message)
     }
@@ -178,219 +241,230 @@ const Page = () => {
         </div>
 
         <div className="md:w-1/2 w-full p-4 text-left">
-          {step === 1 && (
-            <>
-              <h2 className="text-2xl font-semibold">
-                Enter your phone number
-              </h2>
-              <p className="mt-2 text-gray-600">
-                You will receive your OTP via SMS
-              </p>
-
-              <div className="my-4">
-                <label
-                  htmlFor="phone-number"
-                  className="block text-left text-gray-700"
-                >
-                  Phone number
-                </label>
-                <input
-                  type="tel"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  className="border border-gray-300 rounded-lg p-2 w-full"
-                />
-              </div>
-
-              <button
-                onClick={handleSendOtp}
-                className="mt-4 px-6 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md w-full"
-              >
-                Get OTP
-              </button>
-            </>
-          )}
+          {step === 1 && <Step1Form formik={formikStep1} />}
 
           {step === 2 && (
-            <>
-              <h2 className="text-2xl font-semibold">Enter your OTP</h2>
-              <div className="flex items-center mt-2">
-                <p className="text-gray-600">{message}</p>
-                <button
-                  onClick={() => setStep(1)}
-                  className="ml-2 text-blue-500 hover:underline"
-                >
-                  Edit
-                </button>
-              </div>
-
-              <div className="my-4">
-                <label htmlFor="otp" className="block text-left text-gray-700">
-                  OTP
-                </label>
-                <input
-                  type="text"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  className="border border-gray-300 rounded-lg p-2 w-full"
-                />
-              </div>
-
-              <button
-                onClick={handleVerifyOtp}
-                className="mt-4 px-6 py-2 bg-green-500 hover:bg-green-700 text-white rounded-md w-full"
-              >
-                Verify OTP
-              </button>
-
-              <button
-                onClick={handleResendOtp}
-                className="mt-4 flex justify-center items-center w-full gap-2 hover:text-red-500"
-              >
-                <RxReload /> Resend OTP
-              </button>
-            </>
+            <Step2Form
+              formik={formikStep2}
+              message={message}
+              setStep={setStep}
+              onResendOtp={() => handleResendOtp(phoneNumber)}
+            />
           )}
 
-          {step === 3 && (
-            <>
-              <h2 className="text-2xl font-semibold">Enter your details</h2>
-              <p className="mt-2 text-gray-600">
-                Please provide your information
-              </p>
-
-              <div className="my-4">
-                <label htmlFor="name" className="block text-left text-gray-700">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  value={userData.name}
-                  onChange={(e) =>
-                    setUserData({ ...userData, name: e.target.value })
-                  }
-                  className="border border-gray-300 rounded-lg p-2 w-full"
-                />
-              </div>
-
-              <div className="my-4">
-                <label
-                  htmlFor="email"
-                  className="block text-left text-gray-700"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  value={userData.email}
-                  onChange={(e) =>
-                    setUserData({ ...userData, email: e.target.value })
-                  }
-                  className="border border-gray-300 rounded-lg p-2 w-full"
-                />
-              </div>
-
-              <div className="my-4">
-                <label
-                  htmlFor="address"
-                  className="block text-left text-gray-700"
-                >
-                  Address
-                </label>
-                <input
-                  type="text"
-                  value={userData.address}
-                  onChange={(e) =>
-                    setUserData({ ...userData, address: e.target.value })
-                  }
-                  className="border border-gray-300 rounded-lg p-2 w-full"
-                />
-              </div>
-
-              <div className="my-4">
-                <label
-                  htmlFor="landmark"
-                  className="block text-left text-gray-700"
-                >
-                  Landmark
-                </label>
-                <input
-                  type="text"
-                  value={userData.landmark}
-                  onChange={(e) =>
-                    setUserData({ ...userData, landmark: e.target.value })
-                  }
-                  className="border border-gray-300 rounded-lg p-2 w-full"
-                />
-              </div>
-
-              <div className="my-4">
-                <label
-                  htmlFor="pincode"
-                  className="block text-left text-gray-700"
-                >
-                  Pincode
-                </label>
-                <input
-                  type="text"
-                  value={userData.pincode}
-                  onChange={(e) =>
-                    setUserData({ ...userData, pincode: e.target.value })
-                  }
-                  className="border border-gray-300 rounded-lg p-2 w-full"
-                />
-              </div>
-
-              <div className="my-4">
-                <label htmlFor="city" className="block text-left text-gray-700">
-                  City
-                </label>
-                <input
-                  type="text"
-                  value={userData.city}
-                  onChange={(e) =>
-                    setUserData({ ...userData, city: e.target.value })
-                  }
-                  className="border border-gray-300 rounded-lg p-2 w-full"
-                />
-              </div>
-
-              <div className="my-4">
-                <label
-                  htmlFor="state"
-                  className="block text-left text-gray-700"
-                >
-                  State
-                </label>
-                <CustomDropdown
-                  options={states}
-                  selected={userData.state}
-                  onSelectedChange={(state) =>
-                    setUserData({ ...userData, state })
-                  }
-                />
-              </div>
-
-              <button
-                onClick={handleRegister}
-                className="mt-4 px-6 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md w-full"
-              >
-                Register
-              </button>
-            </>
-          )}
+          {step === 3 && <Step3Form formik={formikStep3} states={states} />}
         </div>
-      </div>
-
-      <div className="p-4 mt-8 text-center text-gray-600">
-        <p>
-          By signing in you agree to our{' '}
-          <span className="font-bold">terms of services</span> and
-          <span className="font-bold"> privacy policy</span>.
-        </p>
       </div>
     </div>
   )
 }
+
+const Step1Form = ({ formik }) => (
+  <form onSubmit={formik.handleSubmit}>
+    <h2 className="text-xl font-semibold">Enter your phone number</h2>
+    <p className="mt-2 text-gray-600">You will receive your OTP via SMS</p>
+
+    <div className="my-4">
+      <label htmlFor="phone-number" className="block text-left text-gray-700">
+        Phone number
+      </label>
+      <input
+        type="tel"
+        name="phoneNumber"
+        value={formik.values.phoneNumber}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className="border border-gray-300 rounded-lg p-2 w-full"
+      />
+      {formik.touched.phoneNumber && formik.errors.phoneNumber && (
+        <div className="text-red-500">{formik.errors.phoneNumber}</div>
+      )}
+    </div>
+
+    <button
+      type="submit"
+      className="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600"
+    >
+      Send OTP
+    </button>
+  </form>
+)
+
+const Step2Form = ({ formik, onResendOtp, message, setStep }) => (
+  <form onSubmit={formik.handleSubmit}>
+    <h2 className="text-xl font-semibold">Verify OTP</h2>
+    <div className="flex items-center mt-2">
+      <p className="text-gray-600">{message}</p>
+      <p
+        onClick={() => setStep(1)}
+        className="ml-2 text-blue-500 hover:underline cursor-pointer"
+      >
+        Edit
+      </p>
+    </div>
+    <div className="my-4">
+      <label htmlFor="otp" className="block text-left text-gray-700">
+        OTP
+      </label>
+      <input
+        type="text"
+        name="otp"
+        value={formik.values.otp}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className="border border-gray-300 rounded-lg p-2 w-full"
+      />
+      {formik.touched.otp && formik.errors.otp && (
+        <div className="text-red-500">{formik.errors.otp}</div>
+      )}
+    </div>
+
+    <button
+      type="submit"
+      className="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600"
+    >
+      Verify OTP
+    </button>
+
+    <button
+      type="button"
+      onClick={onResendOtp}
+      className="text-blue-500 mt-2 block"
+    >
+      Resend OTP
+    </button>
+  </form>
+)
+
+const Step3Form = ({ formik, states }) => (
+  <form onSubmit={formik.handleSubmit}>
+    <h2 className="text-xl font-semibold">Complete your registration</h2>
+
+    <div className="my-2">
+      <label htmlFor="name" className="block text-left text-gray-700">
+        Name
+      </label>
+      <input
+        type="text"
+        name="name"
+        value={formik.values.name}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className="border border-gray-300 rounded-lg p-2 w-full"
+      />
+      {formik.touched.name && formik.errors.name && (
+        <div className="text-red-500">{formik.errors.name}</div>
+      )}
+    </div>
+
+    <div className="my-2">
+      <label htmlFor="email" className="block text-left text-gray-700">
+        Email
+      </label>
+      <input
+        type="email"
+        name="email"
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className="border border-gray-300 rounded-lg p-2 w-full"
+      />
+      {formik.touched.email && formik.errors.email && (
+        <div className="text-red-500">{formik.errors.email}</div>
+      )}
+    </div>
+
+    <div className="my-2">
+      <label htmlFor="address" className="block text-left text-gray-700">
+        Address
+      </label>
+      <textarea
+        name="address"
+        value={formik.values.address}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className="border border-gray-300 rounded-lg p-2 w-full h-24"
+      />
+      {formik.touched.address && formik.errors.address && (
+        <div className="text-red-500">{formik.errors.address}</div>
+      )}
+    </div>
+
+    <div className="my-2">
+      <label htmlFor="landmark" className="block text-left text-gray-700">
+        Landmark
+      </label>
+      <input
+        type="text"
+        name="landmark"
+        value={formik.values.landmark}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className="border border-gray-300 rounded-lg p-2 w-full"
+      />
+      {formik.touched.landmark && formik.errors.landmark && (
+        <div className="text-red-500">{formik.errors.landmark}</div>
+      )}
+    </div>
+
+    <div className="my-2">
+      <label htmlFor="pincode" className="block text-left text-gray-700">
+        Pincode
+      </label>
+      <input
+        type="text"
+        name="pincode"
+        value={formik.values.pincode}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className="border border-gray-300 rounded-lg p-2 w-full"
+      />
+      {formik.touched.pincode && formik.errors.pincode && (
+        <div className="text-red-500">{formik.errors.pincode}</div>
+      )}
+    </div>
+
+    <div className="my-2">
+      <label htmlFor="city" className="block text-left text-gray-700">
+        City
+      </label>
+      <input
+        type="text"
+        name="city"
+        value={formik.values.city}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        className="border border-gray-300 rounded-lg p-2 w-full"
+      />
+      {formik.touched.city && formik.errors.city && (
+        <div className="text-red-500">{formik.errors.city}</div>
+      )}
+    </div>
+
+    <div className="my-2">
+      <label htmlFor="state" className="block text-left text-gray-700">
+        State
+      </label>
+      <CustomDropdown
+        options={states}
+        selected={formik.values.state}
+        onSelectedChange={(selectedState) =>
+          formik.setFieldValue('state', selectedState)
+        }
+        className="border border-gray-300 rounded-lg p-2 w-full"
+      />
+      {formik.touched.state && formik.errors.state && (
+        <div className="text-red-500">{formik.errors.state}</div>
+      )}
+    </div>
+
+    <button
+      type="submit"
+      className="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600"
+    >
+      Login
+    </button>
+  </form>
+)
 
 export default Page

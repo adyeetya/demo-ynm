@@ -1,4 +1,3 @@
-'use client'
 import React, { useState, useRef, useEffect } from 'react'
 
 const CustomDropdown = ({ options, selected, onSelectedChange }) => {
@@ -19,7 +18,7 @@ const CustomDropdown = ({ options, selected, onSelectedChange }) => {
   }, [])
 
   const handleOptionClick = (option) => {
-    onSelectedChange(option)
+    onSelectedChange(option) // Update the selected state value
     setOpen(false)
   }
 
