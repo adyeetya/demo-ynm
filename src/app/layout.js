@@ -5,6 +5,7 @@ import { GlobalStateProvider } from '../context/navbarContext'
 import { CartProvider } from '../context/cartContext'
 import Footer from '@/components/footer/Footer'
 import { Toaster } from 'react-hot-toast'
+import { UserProvider } from '@/context/userContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -20,11 +21,13 @@ export default function RootLayout({ children }) {
       >
         <Toaster />
         <GlobalStateProvider>
-          <CartProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </CartProvider>
+          <UserProvider>
+            <CartProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </CartProvider>
+          </UserProvider>
         </GlobalStateProvider>
       </body>
     </html>

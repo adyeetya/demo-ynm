@@ -9,8 +9,8 @@ import { GoPackageDependencies } from 'react-icons/go'
 import { RiSecurePaymentFill } from 'react-icons/ri'
 const Footer = () => {
   return (
-    <footer className="bg-[#080808] text-gray-100 py-8 ">
-      <div className="container mx-auto px-4 text-center max-w-screen-xl mx-auto">
+    <footer className="bg-[var(--dark-bg)] text-gray-100 py-8 ">
+      <div className="container  px-4 text-center max-w-screen-xl mx-auto">
         {/* Early Access Section */}
         <div className="mb-6">
           <p className="text-lg font-semibold">Get early access to products</p>

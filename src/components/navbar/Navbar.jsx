@@ -7,7 +7,8 @@ import { IoClose } from 'react-icons/io5'
 import { GlobalStateContext } from '../../context/navbarContext'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useCart } from '../../context/cartContext' // Import useCart context
+import { useCart } from '../../context/cartContext'
+import { useUser } from '../../context/userContext'
 import { products } from '../../data/Products'
 
 const Navbar = () => {
@@ -20,6 +21,8 @@ const Navbar = () => {
   const menuRef = useRef(null)
   const scrollTimeoutRef = useRef(null)
 
+  const { user } = useUser()
+  console.log(user)
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
     if (!isMenuOpen) {
@@ -106,7 +109,7 @@ const Navbar = () => {
   }, [isMenuOpen])
 
   return (
-    <nav className="bg-[#080808] shadow-lg text-gray-100 sticky inset-x-0 top-0 z-30">
+    <nav className="bg-[var(--dark-bg)] shadow-lg text-gray-100 sticky inset-x-0 top-0 z-30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
@@ -123,9 +126,17 @@ const Navbar = () => {
           </div>
           <div className="flex justify-end items-center flex-1 space-x-6 md:space-x-12">
             <div className="hidden md:flex space-x-12">
-              <a href="/login" className="hover:text-gray-300">
-                Login
-              </a>
+              {!user ? (
+                <Link href="/login" className="hover:text-gray-300">
+                  Login
+                </Link>
+              ) : (
+                <>
+                  <Link href="/account" className="hover:text-gray-300">
+                    Account
+                  </Link>
+                </>
+              )}
               <a href="/products" className="hover:text-gray-300">
                 Products
               </a>
@@ -214,12 +225,17 @@ const Navbar = () => {
             >
               Home
             </a>
-            <a
-              href="/login"
-              className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
-            >
-              Login
-            </a>
+            {!user ? (
+              <Link href="/login" className="hover:text-gray-300">
+                Login
+              </Link>
+            ) : (
+              <>
+                <Link href="/account" className="hover:text-gray-300">
+                  Account
+                </Link>
+              </>
+            )}
             <a
               href="#"
               className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "

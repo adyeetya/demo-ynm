@@ -6,6 +6,7 @@ import CustomDropdown from './StateDropdown' // Import the CustomDropdown compon
 import { useRouter } from 'next/navigation'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import {useUser} from '../../context/userContext'
 
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
@@ -17,6 +18,8 @@ const Page = () => {
   const [referrer, setReferrer] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const router = useRouter()
+
+  const {login} = useUser()
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -187,15 +190,22 @@ const Page = () => {
     const data = await res.json()
 
     if (res.status === 200) {
+      toast.success('OTP verified successfully')
       setMessage(data.message)
       if (data.userExists) {
         // Handle user login
+        login(data.user)
+        toast.success(`Welcome back, ${data.user.name}`)
         setMessage(`Welcome back, ${data.user.name}`)
+        if (referrer === 'cart') {
+          router.push('/checkout')
+        } else {
+          router.push('/')
+        }
       } else {
         // Proceed to registration step
         setStep(3)
       }
-      toast.success('OTP verified successfully')
     } else {
       toast.error(data.message)
       setMessage(data.message)
@@ -215,13 +225,15 @@ const Page = () => {
 
     if (res.status === 200) {
       // Redirect user based on referrer
+      login(data.user)
+      setMessage(data.message)
+      toast.success('Registration successful')
       if (referrer === 'cart') {
         router.push('/checkout')
       } else {
         router.push('/')
       }
-      setMessage(data.message)
-      toast.success('Registration successful')
+      
     } else {
       setMessage(data.message)
     }

@@ -151,13 +151,13 @@ const Products = () => {
               </div>
               <button
                 onClick={() => handleAddToCart(product)}
-                className="bg-black text-gray-100 py-2 px-4 rounded-lg hover:shadow-xl transition-colors duration-300 text-sm md:text-base"
+                className="bg-black hover:bg-white text-gray-100 hover:text-black border border-black py-2 px-4 rounded-lg hover:shadow-xl transition-colors duration-300 text-sm md:text-base"
               >
                 Add to cart
               </button>
             </div>
             <Link href={`/product/${product.id}`}>
-              <button className="bg-blue-500 text-gray-100 py-2 px-4 rounded-lg mt-4 hover:bg-blue-600 transition-colors duration-300 text-sm w-full">
+              <button className="bg-white w-full text-blue-500 border border-blue-500 py-2 px-4 rounded-lg mt-4 hover:bg-blue-500 hover:text-white transition-colors duration-300 text-sm">
                 Details
               </button>
             </Link>

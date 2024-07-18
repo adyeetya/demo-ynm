@@ -1,7 +1,11 @@
 'use client'
-import { useState } from 'react'
+
+import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
+
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
+
 const Page = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -40,6 +44,14 @@ const Page = () => {
   })
   const [productImageFiles, setProductImageFiles] = useState([])
   const [mainImageFile, setMainImageFile] = useState(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken')
+    if (!token) {
+      router.push('/admin/login') // Redirect to login page if not logged in
+    }
+  }, [router])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -79,9 +91,11 @@ const Page = () => {
       data.append('ratingPercentage', JSON.stringify(formData.ratingPercentage))
 
       // Send request to backend
+      const token = localStorage.getItem('adminToken')
       const res = await axios.post(`${serverUrl}/api/admin/addProduct`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`, // Include token in headers
         },
       })
 

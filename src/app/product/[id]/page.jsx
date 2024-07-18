@@ -820,13 +820,13 @@ const ProductPage = ({ params }) => {
           <div className=" md:mx-0 w-full">
             <button
               onClick={handleAddToCart}
-              className="w-1/3  text-2xl mt-1 md:mt-4 bg-[#A6C9F0] font-bold px-6 py-3  hover:bg-orange-600 hover:text-white transition-colors"
+              className="w-1/2 md:w-1/3  text-2xl mt-1 md:mt-4 bg-[#A6C9F0] font-bold px-6 py-3  hover:bg-orange-600 hover:text-white transition-colors"
             >
               BUY
             </button>
             <button
               onClick={handleAddToCart}
-              className="w-1/3 text-2xl mt-1 md:mt-4 bg-[#E6F1FF] font-bold px-6 py-3 hover:bg-orange-600 hover:text-white transition-colors"
+              className="w-1/2 md:w-1/3 text-2xl mt-1 md:mt-4 bg-[#E6F1FF] font-bold px-6 py-3 hover:bg-orange-600 hover:text-white transition-colors"
             >
               CART
             </button>

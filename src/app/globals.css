@@ -74,7 +74,10 @@
     @apply bg-background text-foreground;
   }
 }
-
+:root {
+  --dark-bg: #1c1c0c;
+  --light-bg: #6f7162;
+}
 .glass-shine-container::before {
   content: ' ';
   position: absolute;

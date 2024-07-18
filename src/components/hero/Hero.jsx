@@ -20,28 +20,28 @@ const Hero = () => {
   }
 
   return (
-    <div className="relative min-h-[calc(100vh-4rem)] md:min-h-[550px] pt-16 md:pt-0">
+    <div className="relative w-full h-[calc(100vh-10rem)] lg:h-[70vh] xl:min-h-screen bg-red-500 pt-16 md:pt-0 overflow-hidden">
       {/* Desktop Image */}
-      <div className="hidden md:block absolute inset-0">
+      <div className="hidden md:block absolute inset-0 overflow-hidden">
         <Image
-          src="/images/hero-bg-large.png"
+          src="/images/hero/web-banner.png"
           alt="Desktop Background Image"
-          layout="fill"
-          objectFit="cover"
+          height={1000}
+          width={1000}
           priority
-          className="absolute inset-0 brightness-75"
+          className="absolute w-full h-full object-cover"
         />
       </div>
 
       {/* Mobile Image */}
       <div className="block md:hidden absolute inset-0">
         <Image
-          src="/images/hero-bg-mob.png"
+          src="/images/hero/banner-phone.png"
           alt="Mobile Background Image"
           width={1000}
           height={1000}
           priority
-          className="absolute inset-0 brightness-50 bg-cover h-full w-full object-cover"
+          className="absolute w-full h-full object-cover"
         />
       </div>
 
@@ -53,7 +53,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-10 flex flex-col justify-between md:justify-center items-start md:items-center p-4 md:p-0">
         <button
           onClick={openModal}
-          className={`z-10 bg-white md:hidden text-black py-2 px-6 rounded-xl mx-auto mt-8 md:mb-8 font-semibold text-xl hover:bg-black hover:text-gray-100 ${
+          className={`z-10 absolute -top-2 left-0 right-0 w-fit text-black py-1 px-6 rounded-xl mx-auto mt-8 font-semibold text-lg bg-gray-300 hover:bg-black hover:text-gray-100 ${
             isMenuOpen ? 'hidden' : 'block'
           }`}
         >
@@ -63,55 +63,32 @@ const Hero = () => {
         {/* Mobile Text */}
         <div className="md:hidden flex w-full overflow-hidden">
           <div className="text-gray-100 text-left absolute bottom-32 left-4 md:hidden z-10">
-            <h1 className="text-2xl mb-8 text-gray-300">
-              EXPERIENCE <br /> INTIMACY <br /> LIKE NEVER <br /> BEFORE!
+            <h1 className="text-3xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
+              experience <br /> intimacy
             </h1>
+            <p className="text-lg mb-12">like never before!</p>
             <Link
               href="/product/1"
-              className=" bg-blue-200 text-black py-2 px-6 mx-auto font-semibold text-xl"
+              className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full "
             >
               BUY NOW
             </Link>
-          </div>
-          <div className="absolute bottom-[5%] right-4 overflow-hidden">
-            <Image
-              src="/images/product-bg-red.png"
-              width={1000}
-              height={1000}
-              alt="Hero Image"
-              className="h-[60vh] w-48 rounded-xl overflow-hidden"
-            ></Image>
           </div>
         </div>
 
         {/* Desktop Text */}
-        <div className="hidden w-full md:flex justify-center items-center md:items-center text-gray-100  font-thin text-center ">
-          <div className="flex flex-col gap-4 justify-center items-center z-10">
-            <button
-              onClick={openModal}
-              className={`bg-white  text-black py-2 px-6 rounded-xl mx-auto  font-semibold text-xl hover:bg-black hover:text-gray-100`}
-            >
-              TAKE HEALTH TEST
-            </button>
-            <h1 className="md:text-3xl  xl:text-4xl 2xl:text-5xl font-thin text-gray-300 tracking-wide 2xl:tracking-widest my-8">
-              EXPERIENCE <br className="md:hidden" /> INTIMACY <br /> LIKE NEVER{' '}
-              <br className="md:hidden" /> BEFORE!
+        <div className="hidden w-full max-w-screen-lg md:flex px-4 items-center md:items-center text-gray-100 font-thin text-center ">
+          <div className="flex flex-col gap-4 justify-start items-start z-10">
+            <h1 className="md:text-3xl xl:text-7xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
+              experience <br /> intimacy
             </h1>
+            <p className="text-lg">like never before!</p>
             <Link
               href="/product/1"
-              className=" bg-blue-200 text-black hover:text-gray-100 hover:bg-blue-400 py-2 px-6 w-fit font-semibold text-xl"
+              className="bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full mt-4 "
             >
               BUY NOW
             </Link>
-          </div>
-          <div className="absolute right-[5%] bottom-0 overflow-hidden">
-            <Image
-              src="/images/product-bg-red.png"
-              width={1000}
-              height={1000}
-              alt="Hero Image"
-              className="h-[28rem] w-52 rounded-xl overflow-hidden"
-            ></Image>
           </div>
         </div>
       </div>
