@@ -10,7 +10,7 @@ import Link from 'next/link'
 import { useCart } from '../../context/cartContext'
 import { useUser } from '../../context/userContext'
 import { products } from '../../data/Products'
-
+import { usePathname } from 'next/navigation'
 const Navbar = () => {
   const { isMenuOpen, setIsMenuOpen } = useContext(GlobalStateContext)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -20,9 +20,10 @@ const Navbar = () => {
   const [cartCount, setCartCount] = useState(0)
   const menuRef = useRef(null)
   const scrollTimeoutRef = useRef(null)
-
   const { user } = useUser()
-  console.log(user)
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
     if (!isMenuOpen) {
@@ -108,8 +109,28 @@ const Navbar = () => {
     }
   }, [isMenuOpen])
 
+  // Dynamic navbar background based on scroll position
+  const [isScrolled, setIsScrolled] = useState(false)
+  useEffect(() => {
+    const handleScrollChange = () => {
+      const scrollTop = window.scrollY
+      const scrolled = scrollTop > 0
+      setIsScrolled(scrolled)
+    }
+
+    document.addEventListener('scroll', handleScrollChange)
+
+    return () => {
+      document.removeEventListener('scroll', handleScrollChange)
+    }
+  }, [])
+
   return (
-    <nav className="bg-[var(--dark-bg)] shadow-lg text-gray-100 sticky inset-x-0 top-0 z-30">
+    <nav
+      className={`${
+        !isScrolled > 0 && isHomePage ? 'bg-transparent' : 'bg-[var(--dark-bg)]'
+      } text-gray-100 sticky inset-x-0 top-0 z-30 transition-all duration-300 ease-in-out`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
@@ -215,7 +236,7 @@ const Navbar = () => {
       )}
       {isMenuOpen && (
         <div
-          className="z-50 md:hidden absolute top-14 right-0 mt-2 bg-[#080808]  shadow-lg  w-full animate-slide-in-up"
+          className="z-50 md:hidden absolute top-14 right-0 mt-2 bg-[#080808] text-white shadow-lg  w-full "
           ref={menuRef}
         >
           <div className="px-4 py-4 space-y-2">
@@ -226,12 +247,18 @@ const Navbar = () => {
               Home
             </a>
             {!user ? (
-              <Link href="/login" className="hover:text-gray-300">
+              <Link
+                href="/login"
+                className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
+              >
                 Login
               </Link>
             ) : (
               <>
-                <Link href="/account" className="hover:text-gray-300">
+                <Link
+                  href="/account"
+                  className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
+                >
                   Account
                 </Link>
               </>

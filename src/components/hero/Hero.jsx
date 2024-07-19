@@ -20,7 +20,7 @@ const Hero = () => {
   }
 
   return (
-    <div className="relative w-full h-[calc(100vh-10rem)] lg:h-[70vh] xl:min-h-screen bg-red-500 pt-16 md:pt-0 overflow-hidden">
+    <div className="relative z-0 w-full h-[100vh] lg:h-[70vh] xl:min-h-screen bg-red-500 -mt-16 overflow-hidden">
       {/* Desktop Image */}
       <div className="hidden md:block absolute inset-0 overflow-hidden">
         <Image
@@ -50,10 +50,10 @@ const Hero = () => {
           isMenuOpen ? 'bg-black opacity-60' : ''
         }`}
       ></div>
-      <div className="absolute inset-0 z-10 flex flex-col justify-between md:justify-center items-start md:items-center p-4 md:p-0">
+      <div className="absolute mt-16 inset-0 z-10 flex flex-col justify-between md:justify-center items-start md:items-center p-4 md:p-0">
         <button
           onClick={openModal}
-          className={`z-10 absolute -top-2 left-0 right-0 w-fit text-black py-1 px-6 rounded-xl mx-auto mt-8 font-semibold text-lg bg-gray-300 hover:bg-black hover:text-gray-100 ${
+          className={`z-10 absolute top-0 left-0 right-0 w-fit text-black py-1 px-6 rounded-xl mx-auto mt-8 font-semibold text-lg bg-gray-300 hover:bg-black hover:text-gray-100 ${
             isMenuOpen ? 'hidden' : 'block'
           }`}
         >
