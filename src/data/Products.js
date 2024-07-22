@@ -1,63 +1,83 @@
-import {
-  FaFlask,
-  FaCheckCircle,
-  FaSprayCan,
-  FaHourglass,
-  FaShieldAlt,
-  FaLeaf,
-} from 'react-icons/fa'
 export const products = [
   {
     id: 1,
     name: 'Last Longer Spray',
     category: 'For Premature Ejaculation',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
+      'The active ingredient - Lidocaine. (it is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.)',
     rating: 4.5,
     price: 299,
     mrp: 399,
-    imageUrl: '/images/last-longer/1.png',
+    imageUrl: 'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
     productImages: [
-      '/images/last-longer/1.png',
-      '/images/last-longer/2.png',
-      '/images/last-longer/3.png',
-      '/images/last-longer/4.png',
-      '/images/last-longer/5.png',
-      '/images/last-longer/6.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/2.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/3.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/4.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/5.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/6.png',
     ],
+    categoryInfo: {
+      title: 'The Truth About Premature Ejaculation',
+      images: [
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/pme-info-1.png',
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/pme-info-1.png',
+      ],
+      points: [
+        {
+          text: 'Premature ejaculation affects approximately 30% to 40% of men worldwide, peaking in younger men and remaining a prevalent issue as men age. It is considered to be the most common male sexual disorder.',
+          readMoreLink: '#',
+        },
+        {
+          text: '40% of women’s experienced sexual distress due to premature ejaculation.',
+          readMoreLink: '#',
+        },
+        {
+          text: 'Out-dated treatments for premature ejaculation have poor formulations, low efficacy, and bioavailability. They often lack clinical backing and contain substandard ingredients.',
+          readMoreLink: '#',
+        },
+      ],
+    },
+    heroElementInfo: {
+      name: 'Lidocaine',
+      description:
+        'Lidocaine (LYE doe kane) is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.',
+      image:
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/lidocaine.png',
+    },
     details: [
       {
-        icon: <FaFlask className="text-[#999999]" />,
+        icon: 'FaFlask',
         title: 'Innovative Ingredient:',
         description:
           'ingredients synergistically delay ejaculation, ensuring a natural experience.',
       },
       {
-        icon: <FaCheckCircle className="text-[#ff0000]" />,
+        icon: 'FaCheckCircle',
         title: 'Enhances Confidence:',
         description:
           'Boosts confidence by providing control over climax timing, reducing performance anxiety.',
       },
       {
-        icon: <FaSprayCan className="text-[#c6c630]" />,
+        icon: 'FaSprayCan',
         title: 'Ease of Use:',
         description:
           'Convenient spray mechanism for quick, discreet application suitable for spontaneous moments.',
       },
       {
-        icon: <FaHourglass className="text-[#ff9933]" />,
+        icon: 'FaHourglass',
         title: 'Longevity:',
         description:
           'Prolongs intimate moments by reducing sensitivity without numbing, enhancing satisfaction.',
       },
       {
-        icon: <FaShieldAlt className="text-[#00cc00]" />,
+        icon: 'FaShieldAlt',
         title: 'Non-Transferable:',
         description:
           "Stays where applied, not affecting partner's sensation, ensuring mutual enjoyment.",
       },
       {
-        icon: <FaLeaf className="text-[#339900]" />,
+        icon: 'FaLeaf',
         title: 'No Side Effects:',
         description:
           'Free from harmful chemicals, minimizing risk of adverse reactions for a worry-free experience.',
@@ -79,15 +99,18 @@ export const products = [
       ],
       imagesWithText: [
         {
-          imageUrl: '/images/product/how-to-use-1.png',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-1.png',
           text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results.',
         },
         {
-          imageUrl: '/images/product/how-to-use-2.png',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-2.png',
           text: 'The active ingredient in the spray, often a mild anesthetic like lidocaine or benzocaine, is delivered directly to the skin. The active ingredient in the spray, often a mild anesthetic like lidocaine or benzocaine, is delivered directly to the skin.',
         },
         {
-          imageUrl: '/images/product/how-to-use-3.png',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-3.png',
           text: 'With the reduced sensitivity, the man can typically last longer during intercourse. The temporary numbing effect delays the sensation that triggers ejaculation, providing more control over climax timing.',
         },
       ],
@@ -127,54 +150,83 @@ export const products = [
   },
   {
     id: 2,
-    name: 'Climax Delay Wipes',
+    name: 'Testo Booster',
     category: 'For Premature Ejaculation',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
+      'The active ingredient - Lidocaine. (it is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.)',
     rating: 4.5,
-    price: 349,
-    mrp: 499,
-    imageUrl: '/images/pro2.jpg',
+    price: 299,
+    mrp: 399,
+    imageUrl: 'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
     productImages: [
-      '/images/pro2.jpg',
-      '/images/pro1.jpg',
-      '/images/pro2.jpg',
-      '/images/pro1.jpg',
-      '/images/pro2.jpg',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/2.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/3.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/4.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/5.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/6.png',
     ],
+    categoryInfo: {
+      title: 'The Truth About Premature Ejaculation',
+      images: [
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/pme-info-1.png',
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/pme-info-1.png',
+      ],
+      points: [
+        {
+          text: 'Premature ejaculation affects approximately 30% to 40% of men worldwide, peaking in younger men and remaining a prevalent issue as men age. It is considered to be the most common male sexual disorder.',
+          readMoreLink: '#',
+        },
+        {
+          text: '40% of women’s experienced sexual distress due to premature ejaculation.',
+          readMoreLink: '#',
+        },
+        {
+          text: 'Out-dated treatments for premature ejaculation have poor formulations, low efficacy, and bioavailability. They often lack clinical backing and contain substandard ingredients.',
+          readMoreLink: '#',
+        },
+      ],
+    },
+    heroElementInfo: {
+      name: 'Lidocaine',
+      description:
+        'Lidocaine (LYE doe kane) is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.',
+      image:
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/lidocaine.png',
+    },
     details: [
       {
-        icon: <FaFlask className="text-[#999999]" />,
+        icon: 'FaFlask',
         title: 'Innovative Ingredient:',
         description:
           'ingredients synergistically delay ejaculation, ensuring a natural experience.',
       },
       {
-        icon: <FaCheckCircle className="text-[#ff0000]" />,
+        icon: 'FaCheckCircle',
         title: 'Enhances Confidence:',
         description:
           'Boosts confidence by providing control over climax timing, reducing performance anxiety.',
       },
       {
-        icon: <FaSprayCan className="text-[#ffff00]" />,
+        icon: 'FaSprayCan',
         title: 'Ease of Use:',
         description:
           'Convenient spray mechanism for quick, discreet application suitable for spontaneous moments.',
       },
       {
-        icon: <FaHourglass className="text-[#ff9933]" />,
+        icon: 'FaHourglass',
         title: 'Longevity:',
         description:
           'Prolongs intimate moments by reducing sensitivity without numbing, enhancing satisfaction.',
       },
       {
-        icon: <FaShieldAlt className="text-[#00cc00]" />,
+        icon: 'FaShieldAlt',
         title: 'Non-Transferable:',
         description:
           "Stays where applied, not affecting partner's sensation, ensuring mutual enjoyment.",
       },
       {
-        icon: <FaLeaf className="text-[#339900]" />,
+        icon: 'FaLeaf',
         title: 'No Side Effects:',
         description:
           'Free from harmful chemicals, minimizing risk of adverse reactions for a worry-free experience.',
@@ -196,16 +248,19 @@ export const products = [
       ],
       imagesWithText: [
         {
-          imageUrl: '/images/product/pre-ejac-2.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-1.png',
+          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results.',
         },
         {
-          imageUrl: '/images/product/pre-ejac-3.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-2.png',
+          text: 'The active ingredient in the spray, often a mild anesthetic like lidocaine or benzocaine, is delivered directly to the skin. The active ingredient in the spray, often a mild anesthetic like lidocaine or benzocaine, is delivered directly to the skin.',
         },
         {
-          imageUrl: '/images/product/pre-ejac-2.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-3.png',
+          text: 'With the reduced sensitivity, the man can typically last longer during intercourse. The temporary numbing effect delays the sensation that triggers ejaculation, providing more control over climax timing.',
         },
       ],
     },
@@ -244,54 +299,83 @@ export const products = [
   },
   {
     id: 3,
-    name: 'Testo Booster',
-    category: 'For Super Strength',
+    name: 'Shilajit',
+    category: 'For Premature Ejaculation',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
-    rating: 2.5,
-    price: 155,
-    mrp: 299,
-    imageUrl: '/images/pro1.jpg',
+      'The active ingredient - Lidocaine. (it is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.)',
+    rating: 4.5,
+    price: 299,
+    mrp: 399,
+    imageUrl: 'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
     productImages: [
-      '/images/pro2.jpg',
-      '/images/pro1.jpg',
-      '/images/pro2.jpg',
-      '/images/pro1.jpg',
-      '/images/pro2.jpg',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/2.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/3.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/4.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/5.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/6.png',
     ],
+    categoryInfo: {
+      title: 'The Truth About Premature Ejaculation',
+      images: [
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/pme-info-1.png',
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/pme-info-1.png',
+      ],
+      points: [
+        {
+          text: 'Premature ejaculation affects approximately 30% to 40% of men worldwide, peaking in younger men and remaining a prevalent issue as men age. It is considered to be the most common male sexual disorder.',
+          readMoreLink: '#',
+        },
+        {
+          text: '40% of women’s experienced sexual distress due to premature ejaculation.',
+          readMoreLink: '#',
+        },
+        {
+          text: 'Out-dated treatments for premature ejaculation have poor formulations, low efficacy, and bioavailability. They often lack clinical backing and contain substandard ingredients.',
+          readMoreLink: '#',
+        },
+      ],
+    },
+    heroElementInfo: {
+      name: 'Lidocaine',
+      description:
+        'Lidocaine (LYE doe kane) is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.',
+      image:
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/lidocaine.png',
+    },
     details: [
       {
-        icon: <FaFlask className="text-[#999999]" />,
+        icon: 'FaFlask',
         title: 'Innovative Ingredient:',
         description:
           'ingredients synergistically delay ejaculation, ensuring a natural experience.',
       },
       {
-        icon: <FaCheckCircle className="text-[#ff0000]" />,
+        icon: 'FaCheckCircle',
         title: 'Enhances Confidence:',
         description:
           'Boosts confidence by providing control over climax timing, reducing performance anxiety.',
       },
       {
-        icon: <FaSprayCan className="text-[#ffff00]" />,
+        icon: 'FaSprayCan',
         title: 'Ease of Use:',
         description:
           'Convenient spray mechanism for quick, discreet application suitable for spontaneous moments.',
       },
       {
-        icon: <FaHourglass className="text-[#ff9933]" />,
+        icon: 'FaHourglass',
         title: 'Longevity:',
         description:
           'Prolongs intimate moments by reducing sensitivity without numbing, enhancing satisfaction.',
       },
       {
-        icon: <FaShieldAlt className="text-[#00cc00]" />,
+        icon: 'FaShieldAlt',
         title: 'Non-Transferable:',
         description:
           "Stays where applied, not affecting partner's sensation, ensuring mutual enjoyment.",
       },
       {
-        icon: <FaLeaf className="text-[#339900]" />,
+        icon: 'FaLeaf',
         title: 'No Side Effects:',
         description:
           'Free from harmful chemicals, minimizing risk of adverse reactions for a worry-free experience.',
@@ -313,16 +397,19 @@ export const products = [
       ],
       imagesWithText: [
         {
-          imageUrl: '/images/product/pre-ejac-2.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-1.png',
+          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results.',
         },
         {
-          imageUrl: '/images/product/pre-ejac-3.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-2.png',
+          text: 'The active ingredient in the spray, often a mild anesthetic like lidocaine or benzocaine, is delivered directly to the skin. The active ingredient in the spray, often a mild anesthetic like lidocaine or benzocaine, is delivered directly to the skin.',
         },
         {
-          imageUrl: '/images/product/pre-ejac-2.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-3.png',
+          text: 'With the reduced sensitivity, the man can typically last longer during intercourse. The temporary numbing effect delays the sensation that triggers ejaculation, providing more control over climax timing.',
         },
       ],
     },
@@ -361,54 +448,83 @@ export const products = [
   },
   {
     id: 4,
-    name: 'Tadalafil',
-    category: 'For Longer Erection',
+    name: 'Sigma',
+    category: 'For Premature Ejaculation',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
-    rating: 3.5,
-    price: 399,
-    mrp: 459,
-    imageUrl: '/images/pro2.jpg',
+      'The active ingredient - Lidocaine. (it is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.)',
+    rating: 4.5,
+    price: 299,
+    mrp: 399,
+    imageUrl: 'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
     productImages: [
-      '/images/pro1.jpg',
-      '/images/pro2.jpg',
-      '/images/pro1.jpg',
-      '/images/pro2.jpg',
-      '/images/pro1.jpg',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/2.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/3.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/4.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/5.png',
+      'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/6.png',
     ],
+    categoryInfo: {
+      title: 'The Truth About Premature Ejaculation',
+      images: [
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/pme-info-1.png',
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/pme-info-1.png',
+      ],
+      points: [
+        {
+          text: 'Premature ejaculation affects approximately 30% to 40% of men worldwide, peaking in younger men and remaining a prevalent issue as men age. It is considered to be the most common male sexual disorder.',
+          readMoreLink: '#',
+        },
+        {
+          text: '40% of women’s experienced sexual distress due to premature ejaculation.',
+          readMoreLink: '#',
+        },
+        {
+          text: 'Out-dated treatments for premature ejaculation have poor formulations, low efficacy, and bioavailability. They often lack clinical backing and contain substandard ingredients.',
+          readMoreLink: '#',
+        },
+      ],
+    },
+    heroElementInfo: {
+      name: 'Lidocaine',
+      description:
+        'Lidocaine (LYE doe kane) is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.',
+      image:
+        'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/lidocaine.png',
+    },
     details: [
       {
-        icon: <FaFlask className="text-[#999999]" />,
+        icon: 'FaFlask',
         title: 'Innovative Ingredient:',
         description:
           'ingredients synergistically delay ejaculation, ensuring a natural experience.',
       },
       {
-        icon: <FaCheckCircle className="text-[#ff0000]" />,
+        icon: 'FaCheckCircle',
         title: 'Enhances Confidence:',
         description:
           'Boosts confidence by providing control over climax timing, reducing performance anxiety.',
       },
       {
-        icon: <FaSprayCan className="text-[#ffff00]" />,
+        icon: 'FaSprayCan',
         title: 'Ease of Use:',
         description:
           'Convenient spray mechanism for quick, discreet application suitable for spontaneous moments.',
       },
       {
-        icon: <FaHourglass className="text-[#ff9933]" />,
+        icon: 'FaHourglass',
         title: 'Longevity:',
         description:
           'Prolongs intimate moments by reducing sensitivity without numbing, enhancing satisfaction.',
       },
       {
-        icon: <FaShieldAlt className="text-[#00cc00]" />,
+        icon: 'FaShieldAlt',
         title: 'Non-Transferable:',
         description:
           "Stays where applied, not affecting partner's sensation, ensuring mutual enjoyment.",
       },
       {
-        icon: <FaLeaf className="text-[#339900]" />,
+        icon: 'FaLeaf',
         title: 'No Side Effects:',
         description:
           'Free from harmful chemicals, minimizing risk of adverse reactions for a worry-free experience.',
@@ -430,16 +546,19 @@ export const products = [
       ],
       imagesWithText: [
         {
-          imageUrl: '/images/product/pre-ejac-2.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-1.png',
+          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results.',
         },
         {
-          imageUrl: '/images/product/pre-ejac-3.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-2.png',
+          text: 'The active ingredient in the spray, often a mild anesthetic like lidocaine or benzocaine, is delivered directly to the skin. The active ingredient in the spray, often a mild anesthetic like lidocaine or benzocaine, is delivered directly to the skin.',
         },
         {
-          imageUrl: '/images/product/pre-ejac-2.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl:
+            'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/how-to-use-3.png',
+          text: 'With the reduced sensitivity, the man can typically last longer during intercourse. The temporary numbing effect delays the sensation that triggers ejaculation, providing more control over climax timing.',
         },
       ],
     },

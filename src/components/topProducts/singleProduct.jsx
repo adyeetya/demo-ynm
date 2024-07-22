@@ -140,9 +140,57 @@ const Products = () => {
               <p className="text-sm md:text-md xl:text-2xl text-gray-700 mb-4">
                 {product.category}
               </p>
-              <p className="text-sm md:text-md xl:text-xl text-gray-800 mb-4">
+              <p className="text-sm xl:text-base text-gray-800 mb-4">
                 {product.description}
               </p>
+            </div>
+            <div className="flex justify-around items-center overflow-hidden mt-auto mx-8">
+              <div className="flex flex-col justify-between items-center w-24">
+                <img
+                  src="/images/product/medical-globe.png"
+                  alt="WHO Certified"
+                  className="w-12 h-12"
+                />
+                <p className="mt-2 text-xs text-center">
+                  WHO <br className="hidden md:block" /> Certified
+                </p>
+              </div>
+              <div className="flex flex-col justify-between items-center w-24">
+                <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
+                  <img
+                    src="/images/product/rabit.png"
+                    alt="Cruelty Free"
+                    className="w-12 h-12"
+                  />
+                </div>
+                <p className="mt-2 text-xs text-center">
+                  Cruelty <br className="hidden md:block" /> Free
+                </p>
+              </div>
+              <div className="flex flex-col justify-between items-center w-24">
+                <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
+                  <img
+                    src="/images/product/test.png"
+                    alt="Lab Tested"
+                    className="w-8 h-8"
+                  />
+                </div>
+                <p className="mt-2 text-xs text-center">
+                  Lab <br className="hidden md:block" /> Tested
+                </p>
+              </div>
+              <div className="flex flex-col justify-between items-center w-28">
+                <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
+                  <img
+                    src="/images/product/atom.png"
+                    alt="Scientifically Proven"
+                    className="w-8 h-8"
+                  />
+                </div>
+                <p className="mt-2 text-xs text-center">
+                  Scientifically <br className="hidden md:block" /> Proven
+                </p>
+              </div>
             </div>
             <div className="flex items-center justify-between mt-auto">
               <div className="text-sm md:text-md flex items-center gap-2">

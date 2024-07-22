@@ -4,8 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Modal from '../modal/Modal'
 import SelfAssessment from '../modal/SelfAssessment'
-import { CiMobile1 } from 'react-icons/ci'
-import { PiStethoscopeLight } from 'react-icons/pi'
+import { HiMiniDevicePhoneMobile } from 'react-icons/hi2'
+import { FaStethoscope } from 'react-icons/fa6'
 import { LuUsers } from 'react-icons/lu'
 const Consult = () => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -80,10 +80,10 @@ const Consult = () => {
             <LuUsers className="w-8 h-8" />
           </div>
           <div className="flex bg-[#F1F1F1] shadow-lg rounded-xl p-2 w-16 h-16 justify-center items-center">
-            <PiStethoscopeLight className="w-8 h-8" />
+            <FaStethoscope className="w-8 h-8" />
           </div>
           <div className="flex flex-col shadow-lg bg-[#F1F1F1] rounded-xl p-2 w-16 h-16 justify-center items-center">
-            <CiMobile1 className="w-8 h-8" />
+            <HiMiniDevicePhoneMobile className="w-8 h-8" />
           </div>
         </div>
       </div>

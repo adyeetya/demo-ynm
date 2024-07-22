@@ -12,7 +12,7 @@ const Footer = () => {
     <footer className="bg-[var(--dark-bg)] text-gray-100 py-8 ">
       <div className="container  px-4 text-center max-w-screen-xl mx-auto">
         {/* Early Access Section */}
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <p className="text-lg font-semibold">Get early access to products</p>
           <div className="flex justify-center mt-4 ">
             <input
@@ -24,7 +24,7 @@ const Footer = () => {
               <FaChevronRight />
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* Links Section */}
         <div className="mb-6">

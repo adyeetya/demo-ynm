@@ -20,7 +20,7 @@ const Hero = () => {
   }
 
   return (
-    <div className="relative z-0 w-full h-[100vh] lg:h-[70vh] xl:min-h-screen bg-red-500 -mt-16 overflow-hidden">
+    <div className="relative z-0 w-full h-[100vh] lg:h-[70vh] xl:min-h-screen bg-gray-700 -mt-16 overflow-hidden">
       {/* Desktop Image */}
       <div className="hidden md:block absolute inset-0 overflow-hidden">
         <Image

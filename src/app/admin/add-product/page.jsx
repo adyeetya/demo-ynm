@@ -46,12 +46,7 @@ const Page = () => {
   const [mainImageFile, setMainImageFile] = useState(null)
   const router = useRouter()
 
-  useEffect(() => {
-    const token = localStorage.getItem('adminToken')
-    if (!token) {
-      router.push('/admin/login') // Redirect to login page if not logged in
-    }
-  }, [router])
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })

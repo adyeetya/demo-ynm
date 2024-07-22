@@ -24,12 +24,26 @@ import {
   CarouselPrevious,
 } from '../../../components/ui/carousel'
 
-import { FaCheckCircle } from 'react-icons/fa'
+import {
+  FaFlask,
+  FaCheckCircle,
+  FaSprayCan,
+  FaHourglass,
+  FaShieldAlt,
+  FaLeaf,
+} from 'react-icons/fa'
 
 const DetailsHowToUse = ({ productId }) => {
   const [activeTab, setActiveTab] = useState('details')
   const product = products.find((product) => product.id === parseInt(productId))
-
+  const iconMap = {
+    FaFlask: <FaFlask className="text-[#999999]" />,
+    FaCheckCircle: <FaCheckCircle className="text-[#ff0000]" />,
+    FaSprayCan: <FaSprayCan className="text-[#c6c630]" />,
+    FaHourglass: <FaHourglass className="text-[#ff9933]" />,
+    FaShieldAlt: <FaShieldAlt className="text-[#00cc00]" />,
+    FaLeaf: <FaLeaf className="text-[#339900]" />,
+  }
   if (!product) {
     return <div>Product not found</div>
   }
@@ -62,13 +76,13 @@ const DetailsHowToUse = ({ productId }) => {
       {activeTab === 'details' && (
         <div>
           <h2 className="text-lg font-bold mb-2">
-            LAST LONGER SPRAY by YES N MORE :
+            {product.name} by YES N MORE :
           </h2>
           <p className="font-semibold mb-4">SAY YES TO MORE PLEASURE</p>
           <ul className="list-disc ">
             {product.details.map((detail, index) => (
               <li key={index} className="flex items-start mb-3">
-                <span className="mr-2 mt-1">{detail.icon}</span>
+                <span className="mr-2 mt-1">{iconMap[detail.icon]}</span>
                 <div className="text-sm">
                   <strong>{detail.title}</strong> {detail.description}
                 </div>
@@ -448,64 +462,46 @@ const OtherInformation = ({ productId }) => {
 }
 
 const GeneralInfo = ({ productId }) => {
+  const product = products.find((product) => product.id === parseInt(productId))
+
+  if (!product) {
+    return <div>Product not found</div>
+  }
+  const { categoryInfo, heroElementInfo } = product
   return (
     <div className="mx-auto py-4 bg-white rounded-lg">
-   {/* Information Section */}
+      {/* Information Section */}
       <div className="mb-6 max-w-screen-xl mx-auto p-4">
         <h2 className={`text-3xl font-bold mb-6 ${lora.className}`}>
-          The Truth About <br  /> Premature
-          Ejaculation
+          {categoryInfo.title}
         </h2>
         {/* Compound Highlight Section */}
         <div className="max-w-screen-xl mx-auto w-full  md:mx-auto  mb-4 md:mb-8  text-gray-100">
           <div className="bg-gradient-to-b rounded-md from-blue-300 to-white flex justify-between md:justify-center items-center gap-4 p-6">
-            <Image
-              src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
-              width={1000}
-              height={1000}
-              className="w-36 h-32 md:w-48 md:h-44"
-              alt="information"
-            />
-            <Image
-              src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
-              width={1000}
-              height={1000}
-              className="w-36 h-32 md:w-48 md:h-44"
-              alt="information"
-            />
+            {categoryInfo.images.map((imageUrl, index) => (
+              <Image
+                key={index}
+                src={imageUrl}
+                width={1000}
+                height={1000}
+                className="w-36 h-32 md:w-48 md:h-44"
+                alt="information"
+              />
+            ))}
           </div>
         </div>
         <ul className="space-y-4 text-xs md:text-base">
-          <li className="flex flex-col">
-            <p>
-              <strong>Premature ejaculation</strong> affects approximately 30%
-              to 40% of men worldwide, peaking in younger men and remaining a
-              prevalent issue as men age. It is considered to be the most common
-              male sexual disorder.
-            </p>
-            <a href="#" className="text-blue-500 hover:underline mt-2">
-              read more
-            </a>
-          </li>
-          <li className="flex flex-col">
-            <p>
-              40% of women’s experienced sexual distress due to premature
-              ejaculation.
-            </p>
-            <a href="#" className="text-blue-500 hover:underline mt-2">
-              read more
-            </a>
-          </li>
-          <li className="flex flex-col">
-            <p>
-              Out-dated treatments for premature ejaculation have poor
-              formulations, low efficacy, and bioavailability. They often lack
-              clinical backing and contain substandard ingredients.
-            </p>
-            <a href="#" className="text-blue-500 hover:underline mt-2">
-              read more
-            </a>
-          </li>
+          {categoryInfo.points.map((point, index) => (
+            <li key={index} className="flex flex-col">
+              <p>{point.text}</p>
+              <a
+                href={point.readMoreLink}
+                className="text-blue-500 hover:underline mt-2"
+              >
+                read more
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -525,18 +521,15 @@ const GeneralInfo = ({ productId }) => {
               The Hero
             </h1>
             <h1 className="text-lg md:text-2xl italic mb-2 underline">
-              Lidocaine
+              {heroElementInfo.name}
             </h1>
-            <p className="text-[10px] md:text-sm">
-              Lidocaine (LYE doe kane) is a local{' '}
-              <br className="hidden md:block" /> anaesthetic commonly used to
-              reduce <br className="hidden md:block" /> sensitivity in tissues
-              in a specific area.
+            <p className="text-[10px] md:text-sm max-w-[350px]">
+              {heroElementInfo.description}
             </p>
           </div>
           <div className="w-1/2 flex items-center justify-center p-2">
             <Image
-              src="/images/product/chem-mol.png"
+              src={heroElementInfo.image}
               alt="Right Side Image"
               width={1000}
               height={1000}
