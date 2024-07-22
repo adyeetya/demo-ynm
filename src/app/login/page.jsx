@@ -6,8 +6,8 @@ import CustomDropdown from './StateDropdown' // Import the CustomDropdown compon
 import { useRouter } from 'next/navigation'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import {useUser} from '../../context/userContext'
-
+import { useUser } from '../../context/userContext'
+import axios from 'axios'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
@@ -19,7 +19,7 @@ const Page = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const router = useRouter()
 
-  const {login} = useUser()
+  const { login } = useUser()
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -178,6 +178,25 @@ const Page = () => {
     }
   }
 
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get(`${serverUrl}/api/users/getUser`, {
+        withCredentials: true, // Ensure cookies are sent with the request
+      })
+      // console.log('response from getUser:  ', response)
+      if (response.status !== 200) {
+        throw new Error('Failed to fetch user data')
+      }
+
+      // console.log('data: ', response.data.user)
+      login(response.data.user)
+      toast.success(`Welcome, ${response.data.user.name}`)
+      setMessage(`Welcome, ${response.data.user.name}`)
+    } catch (error) {
+      console.error('Failed to fetch user data', error)
+    }
+  }
+
   const handleVerifyOtp = async (otp) => {
     const res = await fetch(`${serverUrl}/api/users/verifyOTP`, {
       method: 'POST',
@@ -185,6 +204,7 @@ const Page = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ phoneNumber, otp }),
+      credentials: 'include', // Ensure cookies are sent with the request
     })
 
     const data = await res.json()
@@ -193,17 +213,14 @@ const Page = () => {
       toast.success('OTP verified successfully')
       setMessage(data.message)
       if (data.userExists) {
-        // Handle user login
-        login(data.user)
-        toast.success(`Welcome back, ${data.user.name}`)
-        setMessage(`Welcome back, ${data.user.name}`)
+        await fetchUserData()
+
         if (referrer === 'cart') {
           router.push('/checkout')
         } else {
           router.push('/')
         }
       } else {
-        // Proceed to registration step
         setStep(3)
       }
     } else {
@@ -219,21 +236,19 @@ const Page = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ phoneNumber, ...userData }),
+      credentials: 'include', // Ensure cookies are sent with the request
     })
 
     const data = await res.json()
 
     if (res.status === 200) {
-      // Redirect user based on referrer
-      login(data.user)
-      setMessage(data.message)
-      toast.success('Registration successful')
+      await fetchUserData()
+
       if (referrer === 'cart') {
         router.push('/checkout')
       } else {
         router.push('/')
       }
-      
     } else {
       setMessage(data.message)
     }

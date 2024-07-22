@@ -5,6 +5,7 @@ import { useUser } from '../../context/userContext'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import Link from 'next/link'
+import { toast } from 'react-hot-toast'
 const AccountPage = () => {
   const { user, updateUser, logout } = useUser()
   const [isEditing, setIsEditing] = useState(null)
@@ -15,6 +16,8 @@ const AccountPage = () => {
     email: '',
     address: '',
   })
+
+  if (!user) router.push('/login')
 
   useEffect(() => {
     setFormData({
@@ -50,26 +53,39 @@ const AccountPage = () => {
           headers: {
             'Content-Type': 'application/json',
           },
+          withCredentials: true,
         }
       )
 
       if (response.status !== 200) {
+        toast.error('Failed to update user information')
         throw new Error('Failed to update user information')
       }
 
       const { data } = response
       updateUser(data.user)
+      toast.success('User information updated successfully')
     } catch (error) {
       console.error(error.message)
     }
   }
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/logout`,
+      {},
+      { withCredentials: true }
+    )
     logout()
+    toast.success('Goodbye :(')
     router.push('/')
   }
 
-  return (
+  return !user ? (
+    <div className="max-w-2xl mx-auto p-4 min-h-screen flex justify-center items-center text-2xl">
+      Loading...
+    </div>
+  ) : (
     <div className="max-w-2xl mx-auto p-4">
       <div className="mb-4 md:mb-8 hidden md:flex">
         <Link

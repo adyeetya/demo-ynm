@@ -4,6 +4,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Modal from '../modal/Modal'
 import SelfAssessment from '../modal/SelfAssessment'
+import { CiMobile1 } from 'react-icons/ci'
+import { PiStethoscopeLight } from 'react-icons/pi'
+import { LuUsers } from 'react-icons/lu'
 const Consult = () => {
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -15,7 +18,7 @@ const Consult = () => {
     setModalOpen(false)
   }
   return (
-    <div className="p-4 md:py-6 mt-4 max-w-screen-xl mx-auto">
+    <div className="p-4 md:py-6 mt-4 max-w-screen-xl mx-auto z-0">
       <div className="mb-12 ">
         <h2 className="font-bold text-2xl">Expert Advice that Works</h2>
       </div>
@@ -69,36 +72,18 @@ const Consult = () => {
       <div className="flex flex-col md:flex-row-reverse md:gap-6 justify-center items-center mb-12">
         <div className="mb-4 md:mb-0 text-center">
           <h2 className="font-bold text-xl">
-            TRUSTED BY <br className="hidden md:block" /> 1L+ USERS
+            TRUSTED BY <br className="hidden md:block" /> OUR USERS
           </h2>
         </div>
         <div className="flex flex-row justify-around items-center  md:mx-4 gap-8">
-          <div className="flex flex-col items-center shadow-lg bg-[#F1F1F1] rounded-xl p-2 w-16 h-16">
-            <Image
-              src="/images/trust-icons/user icon@2x.png"
-              alt="Icon 1"
-              width={1000}
-              height={1000}
-              className="w-12 h-12"
-            />
+          <div className="flex bg-[#F1F1F1] shadow-lg rounded-xl p-2 w-16 h-16 justify-center items-center">
+            <LuUsers className="w-8 h-8" />
           </div>
           <div className="flex bg-[#F1F1F1] shadow-lg rounded-xl p-2 w-16 h-16 justify-center items-center">
-            <Image
-              src="/images/trust-icons/doctor icon@3x.png"
-              alt="Icon 1"
-              width={1000}
-              height={1000}
-              className="w-8 h-8"
-            />
+            <PiStethoscopeLight className="w-8 h-8" />
           </div>
           <div className="flex flex-col shadow-lg bg-[#F1F1F1] rounded-xl p-2 w-16 h-16 justify-center items-center">
-            <Image
-              src="/images/trust-icons/phone icon@3x.png"
-              alt="Icon 1"
-              width={1000}
-              height={1000}
-              className="w-8 h-8"
-            />
+            <CiMobile1 className="w-8 h-8" />
           </div>
         </div>
       </div>
@@ -108,7 +93,7 @@ const Consult = () => {
         {/* card1 */}
         <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden">
           {/* Image Section */}
-          <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
+          <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
               src="/images/happy couple in love lying in bed .png" // dummy image
               alt="Card Image"
@@ -133,9 +118,9 @@ const Consult = () => {
         {/* card2 */}
         <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
-          <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
+          <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
-              src="/images/vecteezy_fresh-food-in-human-body.png" // dummy image
+              src="/images/nutrition-img.png" // dummy image
               alt="Card Image"
               layout="fill"
               objectFit="cover md:contain"
@@ -159,7 +144,7 @@ const Consult = () => {
         {/* card3 */}
         <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
-          <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
+          <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
               src="/images/image-Photoroom (4).png" // dummy image
               alt="Card Image"
@@ -185,9 +170,9 @@ const Consult = () => {
         {/* card4 */}
         <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
-          <div className="relative w-[45%] md:w-full h-full md:h-[55%]">
+          <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
-              src="/images/maledoc.jpg" // dummy image
+              src="/images/maledoc.png" // dummy image
               alt="Card Image"
               layout="fill"
               objectFit="cover"
@@ -214,13 +199,13 @@ const Consult = () => {
       <div className="flex justify-center mb-2 relative mx-auto max-w-4xl mt-8">
         {/* Step 1 */}
         <div className="relative flex flex-col items-center w-1/3">
-          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[var(--dark-bg)] flex items-center justify-center overflow-hidden">
+          <div className="w-16 h-16 md:w-28 md:h-28 rounded-full bg-[var(--dark-bg)] flex items-center justify-center overflow-hidden">
             <Image
               src="/images/image-Photoroom (4).png"
               alt="Step 1"
               width={1000}
               height={1000}
-              className="w-16 h-16 md:w-20 md:h-20 mt-4 mr-4 cover"
+              className="w-16 h-16 md:w-28 md:h-28 mt-4 mr-4 cover"
             />
           </div>
           <div className="block absolute top-1/2 left-1/2 w-full h-0.5 bg-black -translate-y-1/2 -z-10"></div>
@@ -228,13 +213,13 @@ const Consult = () => {
 
         {/* Step 2 */}
         <div className="relative flex flex-col items-center w-1/3">
-          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[var(--dark-bg)] flex items-center justify-center overflow-hidden">
+          <div className="w-16 h-16 md:w-28 md:h-28 rounded-full bg-[var(--dark-bg)] flex items-center justify-center overflow-hidden">
             <Image
               src="/images/happy couple in love lying in bed .png"
               alt="Step 1"
-              width={50}
-              height={50}
-              className="w-16 h-16 md:w-20 md:h-20"
+              width={1000}
+              height={1000}
+              className="w-16 h-16 md:w-28 md:h-28"
             />
           </div>
           <div className="block absolute top-1/2 left-1/2 w-full h-0.5 bg-black -translate-y-1/2 -z-10"></div>
@@ -242,13 +227,13 @@ const Consult = () => {
 
         {/* Step 3 */}
         <div className="relative flex flex-col items-center w-1/3">
-          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[var(--dark-bg)] flex items-center justify-center overflow-hidden">
+          <div className="w-16 h-16 md:w-28 md:h-28 rounded-full bg-[var(--dark-bg)] flex items-center justify-center overflow-hidden">
             <Image
-              src="/images/product-bg-red.png"
+              src="/images/product-bg.png"
               alt="Step 1"
-              width={50}
-              height={50}
-              className="w-6 h-12 md:w-8 md:h-16"
+              width={1000}
+              height={1000}
+              className="w-6 h-12 md:w-12 md:h-24"
             />
           </div>
         </div>

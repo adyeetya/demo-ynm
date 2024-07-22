@@ -235,7 +235,7 @@ const SelfAssessment = ({ closeModal }) => {
   }
 
   return (
-    <div className="sm:w-[550px] md:w-[644px] lg:w-[900px] relative mx-auto ">
+    <div className="sm:w-[550px] md:w-[644px] lg:w-[900px] relative mx-auto z-10">
       <div className=" rounded shadow-md">
         {showAnalysis ? (
           <div className="flex flex-col">
@@ -304,7 +304,7 @@ const SelfAssessment = ({ closeModal }) => {
             <div className="h-[80vh] overflow-y-auto">
               <div className="flex items-center mb-4 p-2 mt-20">
                 <img
-                  src="/images/femdoc.avif"
+                  src="/images/femdoc.png"
                   alt="Avatar"
                   className="rounded-full mr-4"
                   width={50}

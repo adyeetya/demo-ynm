@@ -74,10 +74,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* color variables */
 :root {
   --dark-bg: #1c1c0c;
   --light-bg: #6f7162;
+  --lastlonger-dark: #0B2251;
+  --lastlonger-light: #A8D0F8;
 }
+
+/* for experts page */
 .glass-shine-container::before {
   content: ' ';
   position: absolute;

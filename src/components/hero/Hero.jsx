@@ -24,7 +24,7 @@ const Hero = () => {
       {/* Desktop Image */}
       <div className="hidden md:block absolute inset-0 overflow-hidden">
         <Image
-          src="/images/hero/web-banner.png"
+          src="/images/hero/webview_banner_blue.png"
           alt="Desktop Background Image"
           height={1000}
           width={1000}
@@ -36,7 +36,7 @@ const Hero = () => {
       {/* Mobile Image */}
       <div className="block md:hidden absolute inset-0">
         <Image
-          src="/images/hero/banner-phone.png"
+          src="/images/hero/phoneview_banner_blue.png"
           alt="Mobile Background Image"
           width={1000}
           height={1000}

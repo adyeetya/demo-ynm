@@ -15,7 +15,7 @@ const WelcomeSection = () => {
       <div className="flex justify-center space-x-4 w-full md:px-6 ">
         <div className="bg-white p-4 rounded-xl flex flex-col justify-center items-center shadow-lg text-center w-1/3">
           <Image
-            src="/images/maledoc.jpg"
+            src="/images/maledoc.png"
             alt="Specialist Panel"
             className="rounded-full w-16 h-16 md:w-20 md:h-20"
             width={500}
@@ -35,7 +35,7 @@ const WelcomeSection = () => {
         </div>
         <div className="bg-white p-4 rounded-xl flex flex-col justify-center items-center shadow-lg text-center w-1/3">
           <Image
-            src="/images/femdoc.avif"
+            src="/images/femdoc.png"
             alt="General Physician"
             className="rounded-full w-16 h-16 md:w-20 md:h-20"
             width={500}

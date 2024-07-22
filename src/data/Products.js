@@ -9,21 +9,21 @@ import {
 export const products = [
   {
     id: 1,
-    name: 'Climax Delay Spray',
+    name: 'Last Longer Spray',
     category: 'For Premature Ejaculation',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
     rating: 4.5,
     price: 299,
     mrp: 399,
-    imageUrl: '/images/product-images/1.png',
+    imageUrl: '/images/last-longer/1.png',
     productImages: [
-      '/images/product-images/1.png',
-      '/images/product-images/2.png',
-      '/images/product-images/3.png',
-      '/images/product-images/4.png',
-      '/images/product-images/5.png',
-      '/images/product-images/6.png',
+      '/images/last-longer/1.png',
+      '/images/last-longer/2.png',
+      '/images/last-longer/3.png',
+      '/images/last-longer/4.png',
+      '/images/last-longer/5.png',
+      '/images/last-longer/6.png',
     ],
     details: [
       {
@@ -79,16 +79,16 @@ export const products = [
       ],
       imagesWithText: [
         {
-          imageUrl: '/images/product/pre-ejac-2.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl: '/images/product/how-to-use-1.png',
+          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results.',
         },
         {
-          imageUrl: '/images/product/pre-ejac-3.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl: '/images/product/how-to-use-2.png',
+          text: 'The active ingredient in the spray, often a mild anesthetic like lidocaine or benzocaine, is delivered directly to the skin. The active ingredient in the spray, often a mild anesthetic like lidocaine or benzocaine, is delivered directly to the skin.',
         },
         {
-          imageUrl: '/images/product/pre-ejac-2.png',
-          text: 'Apply the spray to the penis, focusing on the most sensitive areas, typically the glans (head) and the underside. Allow the spray to absorb for a few minutes. Some products may recommend waiting 5-10 minutes to achieve optimal results. ',
+          imageUrl: '/images/product/how-to-use-3.png',
+          text: 'With the reduced sensitivity, the man can typically last longer during intercourse. The temporary numbing effect delays the sensation that triggers ejaculation, providing more control over climax timing.',
         },
       ],
     },

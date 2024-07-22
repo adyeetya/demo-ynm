@@ -13,6 +13,9 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import 'swiper/css'
 import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
+import { Lora } from 'next/font/google'
+const lora = Lora({ weight: '400', subsets: ['latin'] })
+
 import {
   Carousel,
   CarouselContent,
@@ -66,7 +69,7 @@ const DetailsHowToUse = ({ productId }) => {
             {product.details.map((detail, index) => (
               <li key={index} className="flex items-start mb-3">
                 <span className="mr-2 mt-1">{detail.icon}</span>
-                <div className="text-xs">
+                <div className="text-sm">
                   <strong>{detail.title}</strong> {detail.description}
                 </div>
               </li>
@@ -77,15 +80,15 @@ const DetailsHowToUse = ({ productId }) => {
 
       {activeTab === 'howToUse' && (
         <div>
-          <h2 className="text-xl font-bold mb-2">HOW TO USE</h2>
-          <h3 className="text-lg font-semibold mb-4">{product.name}</h3>
+          <h2 className="text-lg font-bold mb-2">HOW TO USE</h2>
+          <h3 className="font-semibold mb-4">{product.name}</h3>
           <ul className="list-decimal ">
             {product.howToUse.map((step, index) => (
               <li key={index} className="flex items-start mb-3">
                 <span className="mr-2">
                   <FaCheckCircle className="text-blue-500" />
                 </span>
-                <div className="text-xs">{step}</div>
+                <div className="text-sm">{step}</div>
               </li>
             ))}
           </ul>
@@ -304,7 +307,7 @@ const ProductQualities = ({ productId }) => {
                     height={1000}
                     src={item.imageUrl}
                     alt={item.text}
-                    className="mb-2 mx-auto w-30 h-30"
+                    className="mb-2 mx-auto"
                   />
                   <p>{item.text}</p>
                 </div>
@@ -314,20 +317,20 @@ const ProductQualities = ({ productId }) => {
         </div>
         <div className="hidden md:flex gap-2">
           {productQualities.imagesWithText.map((item, index) => (
-            <div key={index} className="text-left text-sm md:p-8">
+            <div key={index} className="text-left text-sm md:p-8 w-1/3">
               <Image
                 width={1000}
                 height={1000}
                 src={item.imageUrl}
                 alt={item.text}
-                className="mb-2 mx-auto w-30 h-30"
+                className="mb-2 mx-auto "
               />
-              <p>{item.text}</p>
+              <p clas>{item.text}</p>
             </div>
           ))}
         </div>
       </div>
-      <p className="italic font-semibold text-xs md:text-sm mt-4">
+      <p className="italic font-semibold w-full  mt-4">
         “Proceed with sexual activity as usual. If necessary, better if choose
         to wipe off any excess spray to avoid transferring it to the partner”
       </p>
@@ -395,7 +398,7 @@ const OtherInformation = ({ productId }) => {
       </div>
       <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[#2d0f12] w-fit px-4 py-1">
+          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[var(--lastlonger-dark)] w-fit px-4 py-1">
             What it will do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -407,7 +410,7 @@ const OtherInformation = ({ productId }) => {
           </ul>
         </div>
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[#2d0f12] w-fit px-4 py-1">
+          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[var(--lastlonger-dark)] w-fit px-4 py-1">
             What it won&apos;t do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -419,36 +422,59 @@ const OtherInformation = ({ productId }) => {
           </ul>
         </div>
       </div>
+      {/* Expert Section */}
+      <div className="bg-[#f5faff] w-full mt-16">
+        <div className="max-w-screen-xl flex w-full md:w-[600px] mx-auto justify-center items-center bg-[var(--lastlonger-light)] text-gray-100">
+          <img
+            src="/images/femdoc.png" // replace with actual path
+            alt="Expert"
+            className="w-1/3"
+          />
+          <div className="w-2/3">
+            <h2 className="text-sm md:text-base text-black mb-2">
+              Get in touch with our Experts
+            </h2>
+            <Link
+              href="/experts"
+              className="text-sm md:text-base mt-2 px-8 py-1 bg-white text-black rounded-full hover:bg-[var(--lastlonger-dark)] hover:text-white"
+            >
+              CLICK HERE NOW
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
 
 const GeneralInfo = ({ productId }) => {
   return (
-    <div className=" mx-auto py-4 bg-white rounded-lg">
-      {/* Expert Section */}
-      <div className="max-w-screen-xl flex w-full md:w-[600px] py-8 md:py-12 mx-auto justify-center items-center p-4 md:p-6 bg-[#2d0f12] rounded mb-6 text-gray-100">
-        <img
-          src="/images/femdoc.avif" // replace with actual path
-          alt="Expert"
-          className="w-24 h-24 md:w-32 md:h-32 rounded-full mr-4"
-        />
-        <div>
-          <h2 className="text-sm md:text-base mb-2">
-            Get in touch with our Experts
-          </h2>
-          <button className="text-sm md:text-base mt-2 px-8 py-1 bg-white font-semibold text-black rounded-full hover:bg-blue-700">
-            CLICK HERE NOW
-          </button>
-        </div>
-      </div>
-
-      {/* Information Section */}
+    <div className="mx-auto py-4 bg-white rounded-lg">
+   {/* Information Section */}
       <div className="mb-6 max-w-screen-xl mx-auto p-4">
-        <h2 className="text-2xl font-bold mb-6">
-          The Truth About <br className="block md:hidden" /> Premature
+        <h2 className={`text-3xl font-bold mb-6 ${lora.className}`}>
+          The Truth About <br  /> Premature
           Ejaculation
         </h2>
+        {/* Compound Highlight Section */}
+        <div className="max-w-screen-xl mx-auto w-full  md:mx-auto  mb-4 md:mb-8  text-gray-100">
+          <div className="bg-gradient-to-b rounded-md from-blue-300 to-white flex justify-between md:justify-center items-center gap-4 p-6">
+            <Image
+              src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
+              width={1000}
+              height={1000}
+              className="w-36 h-32 md:w-48 md:h-44"
+              alt="information"
+            />
+            <Image
+              src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
+              width={1000}
+              height={1000}
+              className="w-36 h-32 md:w-48 md:h-44"
+              alt="information"
+            />
+          </div>
+        </div>
         <ul className="space-y-4 text-xs md:text-base">
           <li className="flex flex-col">
             <p>
@@ -483,31 +509,11 @@ const GeneralInfo = ({ productId }) => {
         </ul>
       </div>
 
-      {/* Compound Highlight Section */}
-      <div className="max-w-screen-xl p-4 mx-auto w-full  md:mx-auto  mb-4 md:mb-8  text-gray-100">
-        <div className="bg-gradient-to-b from-red-300 to-white flex justify-between md:justify-center items-center gap-4 p-6">
-          <Image
-            src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
-            width={1000}
-            height={1000}
-            className="w-36 h-32 md:w-48 md:h-44"
-            alt="information"
-          />
-          <Image
-            src="/images/product/—Pngtree—buy 1 get free offer_6402685-Recoverednm@2x.png"
-            width={1000}
-            height={1000}
-            className="w-36 h-32 md:w-48 md:h-44"
-            alt="information"
-          />
-        </div>
-      </div>
-
       <div className="mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/images/hero-bg-large.png')",
+            backgroundImage: "url('/images/product/blue-bg.png')",
           }}
         />
         <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
@@ -731,9 +737,9 @@ const ProductPage = ({ params }) => {
               <p className="font-semibold">Concern</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
                     selectedConcern === 'PREMATURE EJACULATION'
-                      ? 'bg-[#2d0f12] text-gray-100'
+                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
                       : ''
                   }`}
                   onClick={() => handleConcernClick('PREMATURE EJACULATION')}
@@ -742,9 +748,9 @@ const ProductPage = ({ params }) => {
                 </button>
 
                 <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
                     selectedConcern === 'TALK TO DOCTOR'
-                      ? 'bg-[#2d0f12] text-gray-100'
+                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
                       : ''
                   }`}
                   onClick={() => handleConcernClick('TALK TO DOCTOR')}
@@ -752,9 +758,9 @@ const ProductPage = ({ params }) => {
                   TALK TO DOCTOR
                 </button>
                 <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
                     selectedConcern === 'ASSESS YOURSELF'
-                      ? 'bg-[#2d0f12] text-gray-100'
+                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
                       : ''
                   }`}
                   onClick={() => handleConcernClick('ASSESS YOURSELF')}
@@ -769,7 +775,7 @@ const ProductPage = ({ params }) => {
               <p className="font-semibold">Type</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className=" w-fit  rounded-xl border bg-[#2d0f12] text-gray-100 hover:border-[#2d0f12] px-4 py-2 text-sm hover:bg-white hover:text-black ${
+                  className=" w-fit  rounded-xl border bg-[var(--lastlonger-dark)] text-gray-100 hover:border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-white hover:text-black ${
                    "
                 >
                   Performance Kit
@@ -782,32 +788,40 @@ const ProductPage = ({ params }) => {
               <p className="font-semibold">Quantity</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className={`rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
-                    quantity === 1 ? 'bg-[#2d0f12] text-gray-100' : ''
+                  className={`rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
+                    quantity === 1
+                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
+                      : ''
                   }`}
                   onClick={() => handleQuantityChange(1)}
                 >
                   1 Month
                 </button>
                 <button
-                  className={`rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
-                    quantity === 2 ? 'bg-[#2d0f12] text-gray-100' : ''
+                  className={`rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
+                    quantity === 2
+                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
+                      : ''
                   }`}
                   onClick={() => handleQuantityChange(2)}
                 >
                   2 Months
                 </button>
                 <button
-                  className={`rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
-                    quantity === 3 ? 'bg-[#2d0f12] text-gray-100' : ''
+                  className={`rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
+                    quantity === 3
+                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
+                      : ''
                   }`}
                   onClick={() => handleQuantityChange(3)}
                 >
                   3 Months
                 </button>
                 <button
-                  className={`rounded-xl border border-[#2d0f12] px-4 py-2 text-sm hover:bg-[#2d0f12] hover:text-gray-100 ${
-                    quantity === 6 ? 'bg-[#2d0f12] text-gray-100' : ''
+                  className={`rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
+                    quantity === 6
+                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
+                      : ''
                   }`}
                   onClick={() => handleQuantityChange(6)}
                 >
@@ -820,13 +834,13 @@ const ProductPage = ({ params }) => {
           <div className=" md:mx-0 w-full">
             <button
               onClick={handleAddToCart}
-              className="w-1/2 md:w-1/3  text-2xl mt-1 md:mt-4 bg-[#A6C9F0] font-bold px-6 py-3  hover:bg-orange-600 hover:text-white transition-colors"
+              className="w-1/2 md:w-1/3  text-2xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-bold px-6 py-3  hover:bg-[var(--lastlonger-dark)] hover:text-white transition-colors"
             >
               BUY
             </button>
             <button
               onClick={handleAddToCart}
-              className="w-1/2 md:w-1/3 text-2xl mt-1 md:mt-4 bg-[#E6F1FF] font-bold px-6 py-3 hover:bg-orange-600 hover:text-white transition-colors"
+              className="w-1/2 md:w-1/3 text-2xl mt-1 md:mt-4 bg-[#E6F1FF] font-bold px-6 py-3 hover:bg-[var(--lastlonger-dark)] hover:text-white transition-colors"
             >
               CART
             </button>
@@ -865,7 +879,7 @@ const ProductPage = ({ params }) => {
             <Link
               href={`/product/${product.id}`}
               key={product.id}
-              className="bg-[#2d0f12] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
+              className="bg-[var(--lastlonger-dark)] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
             >
               <Image
                 src={product.imageUrl}
