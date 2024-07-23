@@ -133,11 +133,11 @@ const Products = () => {
           <div className="lg:w-1/2 flex flex-col justify-between p-4">
             <div>
               <Link href={`/product/${product.id}`}>
-                <h3 className="text-lg md:text-xl xl:text-4xl mb-2">
+                <h3 className="text-lg md:text-xl xl:text-4xl mb-2 font-semibold">
                   {product.name}
                 </h3>
               </Link>
-              <p className="text-sm md:text-md xl:text-2xl text-gray-700 mb-4">
+              <p className="text-sm md:text-md xl:text-xl  mb-4 text-yellow-500">
                 {product.category}
               </p>
               <p className="text-sm xl:text-base text-gray-800 mb-4">
@@ -149,18 +149,18 @@ const Products = () => {
                 <img
                   src="/images/product/medical-globe.png"
                   alt="WHO Certified"
-                  className="w-12 h-12"
+                  className="w-16 h-16"
                 />
                 <p className="mt-2 text-xs text-center">
                   WHO <br className="hidden md:block" /> Certified
                 </p>
               </div>
               <div className="flex flex-col justify-between items-center w-24">
-                <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
+                <div className="rounded-full border-2 border-gray-800 w-16 h-16 flex justify-center items-center">
                   <img
                     src="/images/product/rabit.png"
                     alt="Cruelty Free"
-                    className="w-12 h-12"
+                    className="w-16 h-16"
                   />
                 </div>
                 <p className="mt-2 text-xs text-center">
@@ -168,11 +168,11 @@ const Products = () => {
                 </p>
               </div>
               <div className="flex flex-col justify-between items-center w-24">
-                <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
+                <div className="rounded-full border-2 border-gray-800 w-16 h-16 flex justify-center items-center">
                   <img
                     src="/images/product/test.png"
                     alt="Lab Tested"
-                    className="w-8 h-8"
+                    className="w-10 h-10"
                   />
                 </div>
                 <p className="mt-2 text-xs text-center">
@@ -180,11 +180,11 @@ const Products = () => {
                 </p>
               </div>
               <div className="flex flex-col justify-between items-center w-28">
-                <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
+                <div className="rounded-full border-2 border-gray-800 w-16 h-16 flex justify-center items-center">
                   <img
                     src="/images/product/atom.png"
                     alt="Scientifically Proven"
-                    className="w-8 h-8"
+                    className="w-10 h-10"
                   />
                 </div>
                 <p className="mt-2 text-xs text-center">
@@ -195,7 +195,7 @@ const Products = () => {
             <div className="flex items-center justify-between mt-auto">
               <div className="text-sm md:text-md flex items-center gap-2">
                 {product.rating}
-                <IoMdStar className="w-5 h-5 text-[#debb02] mb-[2px]" />
+                <IoMdStar className="w-5 h-5 text-yellow-500 mb-[2px]" />
               </div>
               <button
                 onClick={() => handleAddToCart(product)}

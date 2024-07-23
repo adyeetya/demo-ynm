@@ -51,14 +51,14 @@ const Hero = () => {
         }`}
       ></div>
       <div className="absolute mt-16 inset-0 z-10 flex flex-col justify-between md:justify-center items-start md:items-center p-4 md:p-0">
-        <button
-          onClick={openModal}
+        <Link
+          href="/self-assessment"
           className={`z-10 absolute top-0 left-0 right-0 w-fit text-black py-1 px-6 rounded-xl mx-auto mt-8 font-semibold text-lg bg-gray-300 hover:bg-black hover:text-gray-100 ${
             isMenuOpen ? 'hidden' : 'block'
           }`}
         >
           TAKE HEALTH TEST
-        </button>
+        </Link>
 
         {/* Mobile Text */}
         <div className="md:hidden flex w-full overflow-hidden">

@@ -217,6 +217,8 @@ const Page = () => {
 
         if (referrer === 'cart') {
           router.push('/checkout')
+        } else if (referrer === 'self-assessment') {
+          router.push('/self-assessment/result')
         } else {
           router.push('/')
         }
@@ -246,6 +248,8 @@ const Page = () => {
 
       if (referrer === 'cart') {
         router.push('/checkout')
+      } else if (referrer === 'self-assessment') {
+        router.push('/self-assessment/result')
       } else {
         router.push('/')
       }

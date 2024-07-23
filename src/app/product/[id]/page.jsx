@@ -729,37 +729,25 @@ const ProductPage = ({ params }) => {
             <div className="flex flex-col gap-2 mt-2">
               <p className="font-semibold">Concern</p>
               <div className="flex flex-wrap gap-2">
-                <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
-                    selectedConcern === 'PREMATURE EJACULATION'
-                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
-                      : ''
-                  }`}
-                  onClick={() => handleConcernClick('PREMATURE EJACULATION')}
+                <Link
+                  href="#"
+                  className="flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 "
                 >
                   PREMATURE EJACULATION
-                </button>
+                </Link>
 
-                <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
-                    selectedConcern === 'TALK TO DOCTOR'
-                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
-                      : ''
-                  }`}
-                  onClick={() => handleConcernClick('TALK TO DOCTOR')}
+                <Link
+                  href="/experts"
+                  className="flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 "
                 >
                   TALK TO DOCTOR
-                </button>
-                <button
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
-                    selectedConcern === 'ASSESS YOURSELF'
-                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
-                      : ''
-                  }`}
-                  onClick={() => handleConcernClick('ASSESS YOURSELF')}
+                </Link>
+                <Link
+                  href="/self-assessment"
+                  className="flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 "
                 >
                   ASSESS YOURSELF
-                </button>
+                </Link>
               </div>
             </div>
 

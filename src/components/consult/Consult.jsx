@@ -37,9 +37,9 @@ const Consult = () => {
               />
             </div>
             <div className="w-3/5 flex justify-center items-center mb-6">
-              <button className="font-bold text-lg">
+              <Link href="/experts" className="font-bold text-lg">
                 Consult for free {'>'}
-              </button>
+              </Link>
             </div>
             <div className="absolute bottom-0 left-0 w-full h-[15%] bg-black rounded-b-3xl"></div>
           </div>
@@ -59,9 +59,9 @@ const Consult = () => {
               />
             </div>
             <div className="w-3/5 flex justify-center items-center mb-6">
-              <button onClick={openModal} className="font-bold text-lg">
+              <Link href="/self-assessment" className="font-bold text-lg">
                 Assess myself {'>'}
-              </button>
+              </Link>
             </div>
             <div className="absolute bottom-0 left-0 w-full h-[15%] bg-black rounded-b-3xl"></div>
           </div>
