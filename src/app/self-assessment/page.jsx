@@ -24,13 +24,13 @@ const generateAnalysis = (responses) => {
   })
   return analysis
 }
-const page = () => {
+const SelfAssessmentPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(questions[0])
   const [answers, setAnswers] = useState([])
   const [history, setHistory] = useState([])
   const [showAnalysis, setShowAnalysis] = useState(false)
 
-  const [modalStep, setModalStep] = useState(1)
+
   const router = useRouter()
   const { user } = useUser()
 
@@ -54,9 +54,7 @@ const page = () => {
     setShowAnalysis(false)
   }
 
-  const nextStep = () => {
-    setModalStep(modalStep + 1)
-  }
+
 
   const doneStep = () => {
     console.log(userData)
@@ -167,4 +165,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SelfAssessmentPage
