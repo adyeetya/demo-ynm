@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Modal from '../modal/Modal'
 import SelfAssessment from '../modal/SelfAssessment'
 import { HiMiniDevicePhoneMobile } from 'react-icons/hi2'
-import { FaStethoscope } from 'react-icons/fa6'
+import { LuStethoscope } from 'react-icons/lu'
 import { LuUsers } from 'react-icons/lu'
 const Consult = () => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -80,7 +80,7 @@ const Consult = () => {
             <LuUsers className="w-8 h-8" />
           </div>
           <div className="flex bg-[#F1F1F1] shadow-lg rounded-xl p-2 w-16 h-16 justify-center items-center">
-            <FaStethoscope className="w-8 h-8" />
+            <LuStethoscope className="w-8 h-8" />
           </div>
           <div className="flex flex-col shadow-lg bg-[#F1F1F1] rounded-xl p-2 w-16 h-16 justify-center items-center">
             <HiMiniDevicePhoneMobile className="w-8 h-8" />
