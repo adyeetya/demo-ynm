@@ -2,11 +2,12 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { IoMdStar } from 'react-icons/io'
-import { products } from '../../data/Products'
 import { useCart } from '../../context/cartContext'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import Link from 'next/link'
+import { useProducts } from '../../context/productContext'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import {
   Carousel,
   CarouselContent,
@@ -16,6 +17,8 @@ import {
 } from '../../components/ui/carousel'
 const Products = () => {
   const [mainImageIndex, setMainImageIndex] = useState(0)
+
+  const { products, isLoading, isError } = useProducts()
   const { addToCart } = useCart()
   const handleAddToCart = (product) => {
     addToCart(product)
@@ -27,7 +30,13 @@ const Products = () => {
   const handleThumbnailClick = (index) => {
     setMainImageIndex(index)
   }
-
+  if (isLoading)
+    return (
+      <div className="flex justify-center w-full text-xl">
+        <AiOutlineLoading3Quarters className="animate-spin w-8 h-8" />
+      </div>
+    )
+  if (isError) return <div>Error loading products</div>
   return (
     <div className="p-4 md:py-6 max-w-screen-xl mx-auto">
       <div className="flex justify-between items-center mb-8">
@@ -144,47 +153,47 @@ const Products = () => {
                 {product.description}
               </p>
             </div>
-            <div className="flex justify-around items-center overflow-hidden mt-auto mx-8">
-              <div className="flex flex-col justify-between items-center w-24">
+            <div className="flex justify-around items-center overflow-hidden mt-auto md:mx-8">
+              <div className="flex flex-col justify-between items-center w-16 md:w-24 my-4 md:my-0">
                 <img
                   src="/images/product/medical-globe.png"
                   alt="WHO Certified"
-                  className="w-16 h-16"
+                  className="w-12 h-12 md:w-16 md:h-16"
                 />
                 <p className="mt-2 text-xs text-center">
                   WHO <br className="hidden md:block" /> Certified
                 </p>
               </div>
-              <div className="flex flex-col justify-between items-center w-24">
-                <div className="rounded-full border-2 border-gray-800 w-16 h-16 flex justify-center items-center">
+              <div className="flex flex-col justify-between items-center w-16 md:w-24">
+                <div className="rounded-full border-2 border-gray-800 w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
                   <img
                     src="/images/product/rabit.png"
                     alt="Cruelty Free"
-                    className="w-16 h-16"
+                    className="w-12 h-12 md:w-16 md:h-16"
                   />
                 </div>
                 <p className="mt-2 text-xs text-center">
                   Cruelty <br className="hidden md:block" /> Free
                 </p>
               </div>
-              <div className="flex flex-col justify-between items-center w-24">
-                <div className="rounded-full border-2 border-gray-800 w-16 h-16 flex justify-center items-center">
+              <div className="flex flex-col justify-between items-center w-16 md:w-24">
+                <div className="rounded-full border-2 border-gray-800 w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
                   <img
                     src="/images/product/test.png"
                     alt="Lab Tested"
-                    className="w-10 h-10"
+                    className=" w-8 h-8 md:w-10 md:h-10"
                   />
                 </div>
                 <p className="mt-2 text-xs text-center">
                   Lab <br className="hidden md:block" /> Tested
                 </p>
               </div>
-              <div className="flex flex-col justify-between items-center w-28">
-                <div className="rounded-full border-2 border-gray-800 w-16 h-16 flex justify-center items-center">
+              <div className="flex flex-col justify-between items-center w-16 md:w-24">
+                <div className="rounded-full border-2 border-gray-800 w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
                   <img
                     src="/images/product/atom.png"
                     alt="Scientifically Proven"
-                    className="w-10 h-10"
+                    className="w-8 h-8 md:w-10 md:h-10"
                   />
                 </div>
                 <p className="mt-2 text-xs text-center">
@@ -204,7 +213,7 @@ const Products = () => {
                 Add to cart
               </button>
             </div>
-            <Link href={`/product/${product.id}`}>
+            <Link href={`/product/${product._id}`}>
               <button className="bg-white w-full text-blue-500 border border-blue-500 py-2 px-4 rounded-lg mt-4 hover:bg-blue-500 hover:text-white transition-colors duration-300 text-sm">
                 Details
               </button>

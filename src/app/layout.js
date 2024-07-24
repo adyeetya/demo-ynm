@@ -3,9 +3,10 @@ import './globals.css'
 import Navbar from '../components/navbar/Navbar'
 import { GlobalStateProvider } from '../context/navbarContext'
 import { CartProvider } from '../context/cartContext'
-import Footer from '@/components/footer/Footer'
+import Footer from '../components/footer/Footer'
 import { Toaster } from 'react-hot-toast'
-import { UserProvider } from '@/context/userContext'
+import { UserProvider } from '../context/userContext'
+import { ProductProvider } from '../context/productContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -21,13 +22,15 @@ export default function RootLayout({ children }) {
       >
         <Toaster />
         <GlobalStateProvider>
-          <UserProvider>
-            <CartProvider>
-              <Navbar />
-              {children}
-              <Footer />
-            </CartProvider>
-          </UserProvider>
+          <ProductProvider>
+            <UserProvider>
+              <CartProvider>
+                <Navbar />
+                {children}
+                <Footer />
+              </CartProvider>
+            </UserProvider>
+          </ProductProvider>
         </GlobalStateProvider>
       </body>
     </html>

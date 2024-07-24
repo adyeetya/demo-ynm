@@ -1,6 +1,6 @@
 'use client'
-import React, { useState } from 'react'
-import { products } from '../../../data/Products'
+import React, { useState, useEffect } from 'react'
+
 import { reviewsData } from '../../../data/Reviews'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,6 +16,7 @@ const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 import { Lora } from 'next/font/google'
 const lora = Lora({ weight: '400', subsets: ['latin'] })
 
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import {
   Carousel,
   CarouselContent,
@@ -33,9 +34,9 @@ import {
   FaLeaf,
 } from 'react-icons/fa'
 
-const DetailsHowToUse = ({ productId }) => {
+const DetailsHowToUse = ({ product }) => {
   const [activeTab, setActiveTab] = useState('details')
-  const product = products.find((product) => product.id === parseInt(productId))
+
   const iconMap = {
     FaFlask: <FaFlask className="text-[#999999]" />,
     FaCheckCircle: <FaCheckCircle className="text-[#ff0000]" />,
@@ -161,11 +162,10 @@ const DetailsHowToUse = ({ productId }) => {
   )
 }
 
-const RatingsReviews = ({ productId }) => {
+const RatingsReviews = ({ product }) => {
   const reviews = reviewsData.filter(
-    (review) => review.productId === parseInt(productId)
+    (review) => review.productId === product._id
   )
-  const product = products.find((product) => product.id === parseInt(productId))
 
   if (!product) {
     return <div>Product not found</div>
@@ -184,7 +184,7 @@ const RatingsReviews = ({ productId }) => {
       <h2 className="text-2xl font-bold mb-6">Ratings & Reviews</h2>
 
       <div className="flex items-center mb-6">
-        <div className="text-6xl font-bold mr-4">{averageRating}</div>
+        <div className="text-6xl font-bold mr-4">{product.rating}</div>
         <div className="flex flex-col">
           <div className="flex items-center">
             <div className="flex">
@@ -192,7 +192,7 @@ const RatingsReviews = ({ productId }) => {
                 <svg
                   key={i}
                   className={`w-6 h-6 ${
-                    i < Math.round(averageRating)
+                    i < Math.round(product.rating)
                       ? 'text-yellow-500'
                       : 'text-gray-300'
                   }`}
@@ -203,7 +203,7 @@ const RatingsReviews = ({ productId }) => {
                 </svg>
               ))}
             </div>
-            <div className="ml-2 text-xl">{averageRating} out of 5</div>
+            <div className="ml-2 text-xl">{product.rating} out of 5</div>
           </div>
           <div className="text-sm text-gray-600">{reviews.length} reviews</div>
         </div>
@@ -273,9 +273,7 @@ const RatingsReviews = ({ productId }) => {
   )
 }
 
-const ProductQualities = ({ productId }) => {
-  const product = products.find((product) => product.id === parseInt(productId))
-
+const ProductQualities = ({ product }) => {
   if (!product) {
     return <div>Product not found</div>
   }
@@ -339,7 +337,7 @@ const ProductQualities = ({ productId }) => {
                 alt={item.text}
                 className="mb-2 mx-auto "
               />
-              <p clas>{item.text}</p>
+              <p>{item.text}</p>
             </div>
           ))}
         </div>
@@ -352,9 +350,8 @@ const ProductQualities = ({ productId }) => {
   )
 }
 
-const OtherInformation = ({ productId }) => {
+const OtherInformation = ({ product }) => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false)
-  const product = products.find((product) => product.id === parseInt(productId))
 
   if (!product) {
     return <div>Product not found</div>
@@ -461,9 +458,7 @@ const OtherInformation = ({ productId }) => {
   )
 }
 
-const GeneralInfo = ({ productId }) => {
-  const product = products.find((product) => product.id === parseInt(productId))
-
+const GeneralInfo = ({ product }) => {
   if (!product) {
     return <div>Product not found</div>
   }
@@ -543,20 +538,41 @@ const GeneralInfo = ({ productId }) => {
 }
 
 const ProductPage = ({ params }) => {
+  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
+  // console.log('serverUrl', serverUrl)
   const { addToCart } = useCart()
   const { id } = params
   const [mainImageIndex, setMainImageIndex] = useState(0)
   const [quantity, setQuantity] = useState(1)
-  const [selectedConcern, setSelectedConcern] = useState(null)
-  const product = products.find((product) => product.id === parseInt(id))
+  const [product, setProduct] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setIsLoading(true)
+      setIsError(false)
+      try {
+        const response = await fetch(`${serverUrl}/api/products/${id}`)
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        const data = await response.json()
+        // console.log(data)
+        setProduct(data)
+      } catch (error) {
+        setIsError(true)
+      } finally {
+        setIsLoading(false)
+      }
+    }
 
-  if (!product) {
-    return <p>Product not found</p>
-  }
+    fetchProduct()
+  }, [id])
 
-  const handleConcernClick = (concern) => {
-    setSelectedConcern(concern)
-  }
+  // useEffect(() => {
+  //   console.log('products on the product page', product)
+  // }, [])
+
   const handleThumbnailClick = (index) => {
     setMainImageIndex(index)
   }
@@ -569,18 +585,38 @@ const ProductPage = ({ params }) => {
     setQuantity(months)
   }
 
-  const similarProducts = products.filter((p) => p.id !== parseInt(id))
+  // const similarProducts = products.filter((p) => p.id !== parseInt(id))
 
   const calculatePercentageOff = (mrp, price) => {
     return ((mrp - price) / mrp) * 100
   }
 
-  const percentageOff = calculatePercentageOff(product.mrp, product.price)
+  const percentageOff = product
+    ? calculatePercentageOff(product.mrp, product.price)
+    : 0
 
-  const similarProductPercentageOff = (mrp, price) => {
-    return ((mrp - price) / mrp) * 100
+  // const similarProductPercentageOff = (mrp, price) => {
+  //   return ((mrp - price) / mrp) * 100
+  // }
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center w-full text-xl min-h-screen">
+        <AiOutlineLoading3Quarters className="animate-spin w-8 h-8" />
+      </div>
+    )
+
+  if (!product) {
+    return (
+      <p className="text-red-500 flex justify-center items-center w-full text-xl min-h-screen">
+        Product not found
+      </p>
+    )
   }
-
+  if (isError) return (
+    <div className="text-red-500 flex justify-center items-center w-full text-xl min-h-screen">
+      Error loading products
+    </div>
+  )
   return (
     <div className={` md:py-8 mx-auto min-h-screen ${poppins.className}`}>
       <div className="mb-4 hidden md:flex max-w-screen-xl mx-auto">
@@ -755,10 +791,7 @@ const ProductPage = ({ params }) => {
             <div className="flex flex-col gap-2 mt-2">
               <p className="font-semibold">Type</p>
               <div className="flex flex-wrap gap-2">
-                <button
-                  className=" w-fit  rounded-xl border bg-[var(--lastlonger-dark)] text-gray-100 hover:border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-white hover:text-black ${
-                   "
-                >
+                <button className=" w-fit  rounded-xl border bg-[var(--lastlonger-dark)] text-gray-100 hover:border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-white hover:text-black">
                   Performance Kit
                 </button>
               </div>
@@ -829,27 +862,27 @@ const ProductPage = ({ params }) => {
 
           {/* details */}
           <div>
-            <DetailsHowToUse productId={id} />
+            <DetailsHowToUse product={product} />
           </div>
         </div>
       </div>
 
       {/* general info */}
       <div>
-        <GeneralInfo productId={id} />
+        <GeneralInfo product={product} />
       </div>
 
       {/* qualities */}
       <div className="max-w-screen-xl mx-auto p-4">
-        <ProductQualities productId={id} />
+        <ProductQualities product={product} />
       </div>
       {/* other details */}
       <div className="max-w-screen-xl mx-auto p-4">
-        <OtherInformation productId={id} />
+        <OtherInformation product={product} />
       </div>
       {/* reviewsrating */}
       <div className="max-w-screen-xl mx-auto p-4">
-        <RatingsReviews productId={id} />
+        <RatingsReviews product={product} />
       </div>
 
       {/* similar products */}

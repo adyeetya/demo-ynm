@@ -2,20 +2,50 @@
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { products } from '../../data/Products'
+// import { products } from '../../data/Products'
 import { useCart } from '../../context/cartContext'
 import { IoMdStar } from 'react-icons/io'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
-
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 const ProductsPage = () => {
+  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
   const { addToCart } = useCart()
   const [sortOrder, setSortOrder] = useState('')
   const [filterCategory, setFilterCategory] = useState('')
   const [openDropdown, setOpenDropdown] = useState(null)
+  const [products, setProducts] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
   const sortRef = useRef(null)
   const filterRef = useRef(null)
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setIsLoading(true)
+      setIsError(false)
+      try {
+        const response = await fetch(`${serverUrl}/api/products`)
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        const data = await response.json()
+        console.log(data)
+        setProducts(data)
+      } catch (error) {
+        setIsError(true)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchProduct()
+  }, [])
+
+  useEffect(() => {
+    console.log('products on the product page', products)
+  }, [])
 
   const handleAddToCart = (product) => {
     addToCart(product)
@@ -59,17 +89,19 @@ const ProductsPage = () => {
     }
   }, [openDropdown])
 
-  const sortedProducts = [...products].sort((a, b) => {
-    if (sortOrder === 'price-low-to-high') {
-      return a.price - b.price
-    } else if (sortOrder === 'price-high-to-low') {
-      return b.price - a.price
-    } else if (sortOrder === 'rating') {
-      return b.rating - a.rating
-    } else {
-      return 0
-    }
-  })
+  const sortedProducts = products
+    ? [...products].sort((a, b) => {
+        if (sortOrder === 'price-low-to-high') {
+          return a.price - b.price
+        } else if (sortOrder === 'price-high-to-low') {
+          return b.price - a.price
+        } else if (sortOrder === 'rating') {
+          return b.rating - a.rating
+        } else {
+          return 0
+        }
+      })
+    : []
 
   const filteredProducts = sortedProducts.filter((product) => {
     if (filterCategory) {
@@ -78,9 +110,30 @@ const ProductsPage = () => {
     return true
   })
 
-  const uniqueCategories = [
-    ...new Set(products.map((product) => product.category)),
-  ]
+  const uniqueCategories = products
+    ? [...new Set(products.map((product) => product.category))]
+    : []
+
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center w-full text-xl min-h-screen">
+        <AiOutlineLoading3Quarters className="animate-spin w-8 h-8" />
+      </div>
+    )
+
+  if (!products) {
+    return (
+      <p className="text-red-500 flex justify-center items-center w-full text-xl min-h-screen">
+        Products not found
+      </p>
+    )
+  }
+  if (isError)
+    return (
+      <div className="text-red-500 flex justify-center items-center w-full text-xl min-h-screen">
+        Error loading products
+      </div>
+    )
 
   return (
     <div
@@ -96,8 +149,8 @@ const ProductsPage = () => {
       </div>
       <h1 className="text-xl md:text-3xl font-bold mb-6">All Products</h1>
 
-      <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-        <div className="mb-4 md:mb-0 flex flex-col gap-2 w-full md:w-fit relative text-sm md:text-md">
+      <div className="flex flex-row justify-between items-center mb-6">
+        <div className="mb-4 md:mb-0 flex flex-col gap-2 w-1/2 md:w-fit relative text-sm md:text-md">
           <div className="relative w-full" ref={sortRef}>
             <label
               onClick={() =>
@@ -106,20 +159,21 @@ const ProductsPage = () => {
               className="cursor-pointer flex items-center w-full capitalize"
             >
               Sort by{' '}
-              {sortOrder && (
-                <span className="font-semibold text-blue-600 ml-2">
-                  {' '}
-                  {sortOrder.replace(/-/g, ' ')}
-                </span>
-              )}
               {openDropdown === 'sort' ? (
                 <BsChevronUp className="ml-2" />
               ) : (
                 <BsChevronDown className="ml-2" />
               )}
             </label>
+            <p>
+              {sortOrder && (
+                <span className="font-semibold text-blue-600">
+                  {sortOrder.replace(/-/g, ' ')}
+                </span>
+              )}
+            </p>
             {openDropdown === 'sort' && (
-              <div className="absolute top-8 left-0 w-full md:w-56 bg-white border border-gray-300 rounded-lg shadow-md py-2 px-4 z-10">
+              <div className="absolute top-8 left-0 w-full md:w-56 bg-white border border-gray-300 rounded-lg shadow-md p-1 z-10">
                 <div
                   onClick={() => handleSortChange('price-low-to-high')}
                   className="cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-md"
@@ -142,28 +196,32 @@ const ProductsPage = () => {
             )}
           </div>
         </div>
-        <div className="mb-4 md:mb-0 flex flex-col gap-2 w-full md:w-fit relative text-sm md:text-md">
+        <div className="mb-4 md:mb-0 flex flex-col gap-2 w-1/2 md:w-fit relative text-sm md:text-md justify-end">
           <div className="relative w-full md:w-auto" ref={filterRef}>
-            <label
-              onClick={() =>
-                setOpenDropdown(openDropdown === 'filter' ? null : 'filter')
-              }
-              className="cursor-pointer flex items-center md:justify-end w-full"
-            >
-              Filter by Category{' '}
+            <div className="flex justify-end w-full ">
+              <label
+                onClick={() =>
+                  setOpenDropdown(openDropdown === 'filter' ? null : 'filter')
+                }
+                className="cursor-pointer text-right flex items-center md:justify-end w-fit"
+              >
+                Filter by Category
+                {openDropdown === 'filter' ? (
+                  <BsChevronUp className="ml-2" />
+                ) : (
+                  <BsChevronDown className="ml-2" />
+                )}
+              </label>
+            </div>
+            <p className='text-right'>
               {filterCategory && (
-                <span className="font-semibold text-blue-600 ml-2">
+                <span className="font-semibold text-blue-600">
                   {filterCategory}
                 </span>
               )}
-              {openDropdown === 'filter' ? (
-                <BsChevronUp className="ml-2" />
-              ) : (
-                <BsChevronDown className="ml-2" />
-              )}
-            </label>
+            </p>
             {openDropdown === 'filter' && (
-              <div className="absolute top-8 right-0 w-full md:w-60 bg-white border border-gray-300 rounded-lg shadow-md py-2 px-4 z-10">
+              <div className="absolute top-8 right-0 w-full md:w-60 bg-white border border-gray-300 rounded-lg shadow-md p-1 z-10">
                 <div
                   onClick={() => handleFilterChange('')}
                   className="cursor-pointer hover:bg-gray-100 py-1 px-2 rounded-md"
@@ -193,10 +251,10 @@ const ProductsPage = () => {
           )
           return (
             <div
-              key={product.id}
+              key={product._id}
               className="bg-[var(--dark-bg)] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
             >
-              <Link href={`/product/${product.id}`}>
+              <Link href={`/product/${product._id}`}>
                 <Image
                   src={product.imageUrl}
                   alt={product.name}
@@ -206,7 +264,7 @@ const ProductsPage = () => {
                 />
               </Link>
               <div className="p-4">
-                <Link href={`/product/${product.id}`}>
+                <Link href={`/product/${product._id}`}>
                   <div>
                     <div className="flex justify-between items-center">
                       <h1 className="text-lg font-bold mb-1">{product.name}</h1>

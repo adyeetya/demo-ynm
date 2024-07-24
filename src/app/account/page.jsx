@@ -46,14 +46,18 @@ const AccountPage = () => {
 
   const handleSave = async () => {
     try {
+      // Retrieve the token from local storage
+      const token = localStorage.getItem('ynmtoken')
+
+      // Make a PUT request to update user information
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/update/${user._id}`,
         formData,
         {
           headers: {
             'Content-Type': 'application/json',
-          },
-          withCredentials: true,
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          }, 
         }
       )
 
@@ -63,22 +67,25 @@ const AccountPage = () => {
       }
 
       const { data } = response
-      updateUser(data.user)
+      updateUser(data.user) // Update the user data in context
       toast.success('User information updated successfully')
     } catch (error) {
-      console.error(error.message)
+      console.error('Error updating user information:', error.message)
+      toast.error('Error updating user information')
     }
   }
 
   const handleLogout = async () => {
-    await axios.post(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/logout`,
-      {},
-      { withCredentials: true }
-    )
-    logout()
-    toast.success('Goodbye :(')
-    router.push('/')
+    try {
+      logout()
+      toast.success('Goodbye :(')
+
+      // Redirect to the homepage
+      router.push('/')
+    } catch (error) {
+      console.error('Error logging out', error)
+      toast.error('Logout failed')
+    }
   }
 
   return !user ? (

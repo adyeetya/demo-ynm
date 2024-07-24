@@ -179,17 +179,21 @@ const Page = () => {
   }
 
   const fetchUserData = async () => {
+    const token = localStorage.getItem('ynmtoken') // Get the token from local storage
+    if (!token) {
+      console.error('No token found')
+      return
+    }
+
     try {
       const response = await axios.get(`${serverUrl}/api/users/getUser`, {
-        withCredentials: true, // Ensure cookies are sent with the request
+        headers: { Authorization: `Bearer ${token}` }, // Send token in Authorization header
       })
-      // console.log('response from getUser:  ', response)
       if (response.status !== 200) {
         throw new Error('Failed to fetch user data')
       }
 
-      // console.log('data: ', response.data.user)
-      login(response.data.user)
+      login(response.data.user, token)
       toast.success(`Welcome, ${response.data.user.name}`)
       setMessage(`Welcome, ${response.data.user.name}`)
     } catch (error) {
@@ -198,21 +202,60 @@ const Page = () => {
   }
 
   const handleVerifyOtp = async (otp) => {
-    const res = await fetch(`${serverUrl}/api/users/verifyOTP`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ phoneNumber, otp }),
-      credentials: 'include', // Ensure cookies are sent with the request
-    })
+    try {
+      const res = await fetch(`${serverUrl}/api/users/verifyOTP`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ phoneNumber, otp }),
+      })
 
-    const data = await res.json()
+      const data = await res.json()
 
-    if (res.status === 200) {
-      toast.success('OTP verified successfully')
-      setMessage(data.message)
-      if (data.userExists) {
+      if (res.status === 200) {
+        toast.success('OTP verified successfully')
+        setMessage(data.message)
+        if (data.userExists) {
+          const token = data.token??null
+          localStorage.setItem('ynmtoken', token)
+
+          await fetchUserData()
+
+          if (referrer === 'cart') {
+            router.push('/checkout')
+          } else if (referrer === 'self-assessment') {
+            router.push('/self-assessment/result')
+          } else {
+            router.push('/')
+          }
+        } else {
+          setStep(3)
+        }
+      } else {
+        toast.error(data.message)
+        setMessage(data.message)
+      }
+    } catch (error) {
+      console.error('Error verifying OTP', error)
+    }
+  }
+
+  const handleRegister = async (userData) => {
+    try {
+      const res = await fetch(`${serverUrl}/api/users/registerUser`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ phoneNumber, ...userData }),
+      })
+
+      const data = await res.json()
+
+      if (res.status === 200) {
+        const token = data.token ?? null
+        localStorage.setItem('ynmtoken', token)
         await fetchUserData()
 
         if (referrer === 'cart') {
@@ -223,38 +266,10 @@ const Page = () => {
           router.push('/')
         }
       } else {
-        setStep(3)
+        setMessage(data.message)
       }
-    } else {
-      toast.error(data.message)
-      setMessage(data.message)
-    }
-  }
-
-  const handleRegister = async (userData) => {
-    const res = await fetch(`${serverUrl}/api/users/registerUser`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ phoneNumber, ...userData }),
-      credentials: 'include', // Ensure cookies are sent with the request
-    })
-
-    const data = await res.json()
-
-    if (res.status === 200) {
-      await fetchUserData()
-
-      if (referrer === 'cart') {
-        router.push('/checkout')
-      } else if (referrer === 'self-assessment') {
-        router.push('/self-assessment/result')
-      } else {
-        router.push('/')
-      }
-    } else {
-      setMessage(data.message)
+    } catch (error) {
+      console.error('Error registering user', error)
     }
   }
 
