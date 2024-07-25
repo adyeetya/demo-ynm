@@ -64,7 +64,10 @@ const Hero = () => {
         <div className="md:hidden flex w-full overflow-hidden">
           <div className="text-gray-100 text-left absolute bottom-32 left-4 md:hidden z-10">
             <h1 className="text-3xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
-              experience <br /> intimacy
+              experience
+            </h1>
+            <h1 className="text-3xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
+              intimacy
             </h1>
             <p className="text-lg mb-12">like never before!</p>
             <Link
@@ -80,7 +83,10 @@ const Hero = () => {
         <div className="hidden w-full max-w-screen-lg md:flex px-4 items-center md:items-center text-gray-100 font-thin text-center ">
           <div className="flex flex-col gap-4 justify-start items-start z-10">
             <h1 className="md:text-3xl xl:text-7xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
-              experience <br /> intimacy
+              experience
+            </h1>
+            <h1 className="md:text-3xl xl:text-7xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
+              intimacy
             </h1>
             <p className="text-lg">like never before!</p>
             <Link
