@@ -43,7 +43,7 @@ const Footer = () => {
 
         {/* Text Section */}
         <div className="my-4 max-w-md mx-auto">
-          <p className='text-gray-300'>
+          <p className="text-gray-300">
             From superior ingredients to next-level formulation, our purposeful
             and multifunctional solutions have you covered. Welcome to the start
             of something happy.
@@ -85,7 +85,7 @@ const Footer = () => {
               </li>
               <li className="my-2">
                 <a href="#" className="hover:underline flex items-center">
-                  <FaChevronRight className="mr-2 w-2" /> FAQ's
+                  <FaChevronRight className="mr-2 w-2" /> FAQ&apos;s
                 </a>
               </li>
               <li className="my-2">
