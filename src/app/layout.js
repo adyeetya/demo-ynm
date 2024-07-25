@@ -9,8 +9,9 @@ import { UserProvider } from '../context/userContext'
 import { ProductProvider } from '../context/productContext'
 const inter = Inter({ subsets: ['latin'] })
 import Head from 'next/head'
+
 export const metadata = {
-  title: "Yes'n'more",
+  title: "Yes'n'more - India's No. 1 Sexual Wellness Brand",
   description: 'Top Sexual Wellness Brand',
 }
 
