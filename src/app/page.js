@@ -1,3 +1,4 @@
+import Aboutus from '@/components/about-us/Aboutus'
 import Consult from '@/components/consult/Consult'
 import Experts from '@/components/experts/Experts'
 import Hero from '@/components/hero/Hero'
@@ -16,6 +17,7 @@ export default function Home() {
       <Experts />
       {/* <Products /> */}
       <SingleProduct />
+      <Aboutus />
       <Reviews />
       <Info />
       <PaymentSlider />

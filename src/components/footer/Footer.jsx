@@ -1,114 +1,133 @@
+import Image from 'next/image'
 import React from 'react'
-import { FaChevronRight } from 'react-icons/fa'
-import { FaFacebookF } from 'react-icons/fa'
-import { FaTwitter } from 'react-icons/fa'
-import { FaInstagram } from 'react-icons/fa'
-import { FaLinkedinIn } from 'react-icons/fa'
-import { FaShippingFast } from 'react-icons/fa'
-import { GoPackageDependencies } from 'react-icons/go'
-import { RiSecurePaymentFill } from 'react-icons/ri'
+import {
+  FaChevronRight,
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from 'react-icons/fa'
+
 const Footer = () => {
   return (
-    <footer className="bg-[var(--dark-bg)] text-gray-100 py-8 ">
-      <div className="container  px-4 text-center max-w-screen-xl mx-auto">
-        {/* Early Access Section */}
-        {/* <div className="mb-6">
-          <p className="text-lg font-semibold">Get early access to products</p>
-          <div className="flex justify-center mt-4 ">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="px-4 py-2 w-full max-w-xs border-none outline-none rounded-l-full text-gray-800"
-            />
-            <button className="text-2xl font-extrabold px-4 py-3 bg-[#9f6c32] text-gray-100 rounded-r-full hover:bg-blue-700">
-              <FaChevronRight />
-            </button>
-          </div>
-        </div> */}
-
-        {/* Links Section */}
-        <div className="mb-6">
-          <ul className="flex flex-wrap justify-center  space-x-2">
+    <footer className="bg-[var(--dark-bg)] text-gray-100 py-8">
+      <div className="container px-4 text-center max-w-screen-xl mx-auto">
+        {/* Social Media Links Section */}
+        <div className="mb-8 max-w-md mx-auto">
+          <ul className="flex justify-center space-x-4 md:space-x-12">
             <li>
               <a href="#" className="hover:underline">
-                Connect
+                <FaFacebookF className="text-gray-100 w-6 h-6" />
               </a>
             </li>
-            <p>|</p>
             <li>
               <a href="#" className="hover:underline">
-                Mail
+                <FaTwitter className="text-gray-100 w-6 h-6" />
               </a>
             </li>
-            <p>|</p>
             <li>
-              <a href="#" className="hover:underline">
-                Address
+              <a
+                href="https://www.instagram.com/yesnmoreofficial/"
+                className="hover:underline"
+              >
+                <FaInstagram className="text-gray-100 w-6 h-6" />
               </a>
             </li>
-            <p>|</p>
             <li>
               <a href="#" className="hover:underline">
-                Manufacturing
+                <FaLinkedinIn className="text-gray-100 w-6 h-6" />
               </a>
             </li>
           </ul>
         </div>
 
-        {/* Social Media Links Section */}
-        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center">
-          <div className="my-6 md:my-0">
-            <ul className="flex justify-center  space-x-4 md:space-x-12">
-              {/* Replace with actual icons */}
-              <li>
-                <a href="#" className="hover:underline">
-                  <FaFacebookF className="text-gray-100 md:w-6 md:h-6" />
+        {/* Text Section */}
+        <div className="my-4 max-w-md mx-auto">
+          <p className='text-gray-300'>
+            From superior ingredients to next-level formulation, our purposeful
+            and multifunctional solutions have you covered. Welcome to the start
+            of something happy.
+          </p>
+        </div>
+
+        {/* Images and Text Section */}
+        <div className="my-8 flex justify-center items-center space-x-4 max-w-md mx-auto">
+          <Image
+            src="/images/LOGO YES N MORE.png"
+            width={1000}
+            height={1000}
+            alt="Image 1"
+            className="w-32 h-24"
+          />
+          <p className="text-xl font-semibold">by</p>
+          <a href="https://www.apcomedicare.com/">
+            <Image
+              src="/images/apco-logo.png"
+              width={1000}
+              height={1000}
+              alt="Image 1"
+              className="w-20 h-10"
+            />
+          </a>
+        </div>
+
+        {/* Divider */}
+        <hr className="border-gray-600 my-8" />
+
+        {/* Links Section */}
+        <div className="my-8 flex flex-row justify-between  max-w-md mx-auto">
+          <div>
+            <ul>
+              <li className="my-2">
+                <a href="#" className="hover:underline flex items-center">
+                  <FaChevronRight className="mr-2 w-2" /> About Us
                 </a>
               </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  <FaTwitter className="text-gray-100 md:w-6 md:h-6" />
+              <li className="my-2">
+                <a href="#" className="hover:underline flex items-center">
+                  <FaChevronRight className="mr-2 w-2" /> FAQ's
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/yesnmoreofficial/"
-                  className="hover:underline"
-                >
-                  <FaInstagram className="text-gray-100 md:w-6 md:h-6" />
+              <li className="my-2">
+                <a href="#" className="hover:underline flex items-center">
+                  <FaChevronRight className="mr-2 w-2" /> Contacts
                 </a>
               </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  <FaLinkedinIn className="text-gray-100 md:w-6 md:h-6" />
+              <li className="my-2">
+                <a href="#" className="hover:underline flex items-center">
+                  <FaChevronRight className="mr-2 w-2" /> Support Services
                 </a>
               </li>
             </ul>
           </div>
-
-          {/* Additional Icons Section */}
-          <div className="my-12">
-            <ul className="flex justify-center  space-x-4 md:space-x-12">
-              {/* Replace with actual icons */}
-              <li className="flex items-center flex-col justify-center">
-                <FaShippingFast className="text-gray-100 mb-2 md:w-6 md:h-6" />
-
-                <p className="text-sm">Fast Shipping</p>
+          <div>
+            <ul>
+              <li className="my-2">
+                <a href="#" className="hover:underline flex items-center">
+                  <FaChevronRight className="mr-2 w-2" /> Terms and Conditions
+                </a>
               </li>
-              <li className="flex items-center flex-col justify-center">
-                <GoPackageDependencies className="text-gray-100 mb-2 md:w-6 md:h-6" />
-                <p className="text-sm">Hassle-Free Return</p>
+              <li className="my-2">
+                <a href="#" className="hover:underline flex items-center">
+                  <FaChevronRight className="mr-2 w-2" /> Shipping Policy
+                </a>
               </li>
-              <li className="flex items-center flex-col justify-center">
-                <RiSecurePaymentFill className="text-gray-100 mb-2 md:w-6 md:h-6" />
-                <p className="text-sm">Secure Payments</p>
+              <li className="my-2">
+                <a href="#" className="hover:underline flex items-center">
+                  <FaChevronRight className="mr-2 w-2" /> Privacy Policy
+                </a>
+              </li>
+              <li className="my-2">
+                <a href="#" className="hover:underline flex items-center">
+                  <FaChevronRight className="mr-2 w-2" /> Cancellation Policy
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Copyright Section */}
-        <div className="text-center">
+        <div className="text-center mt-8">
           <p>&copy; 2024 yesnmore.com | All rights reserved.</p>
         </div>
       </div>
