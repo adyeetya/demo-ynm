@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast'
 import { UserProvider } from '../context/userContext'
 import { ProductProvider } from '../context/productContext'
 const inter = Inter({ subsets: ['latin'] })
-
+import Head from 'next/head'
 export const metadata = {
   title: "Yes'n'more",
   description: 'Top Sexual Wellness Brand',
@@ -17,6 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </Head>
       <body
         className={`'min-h-screen max-w-[100vw] overflow-x-hidden font-sans antialiased scroll-smooth ' ${inter.className}`}
       >
