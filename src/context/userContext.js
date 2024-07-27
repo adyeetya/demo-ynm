@@ -20,13 +20,13 @@ const fetchUser = async () => {
     return
   }
 
-  console.log('Fetching user from context with token')
+  // console.log('Fetching user from context with token')
   try {
     const response = await axios.get(`${serverUrl}/api/users/getUser`, {
       headers: { Authorization: `Bearer ${token}` },
     })
 
-    console.log('Response from getUser:', response)
+    // console.log('Response from getUser:', response)
     if (response.status === 200) {
       setUser(response.data.user)
     }

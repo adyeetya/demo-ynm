@@ -4,6 +4,7 @@ import { IoIosSearch } from 'react-icons/io'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { IoCartOutline } from 'react-icons/io5'
 import { IoClose } from 'react-icons/io5'
+import { RxCross1 } from 'react-icons/rx'
 import { GlobalStateContext } from '../../context/navbarContext'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -196,26 +197,26 @@ const Navbar = () => {
         </div>
       </div>
       {isSearchOpen && (
-        <div className="absolute top-[62px] left-0 right-0 bg-[#080808] shadow-lg p-4 flex z-10">
-          <div className="w-full md:w-1/2 flex flex-row mx-auto">
+        <div className="absolute top-0 left-0 right-0 bg-white shadow-lg p-4 flex z-10">
+          <div className="w-full flex flex-row mx-auto">
             <input
               type="text"
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex-grow px-3 py-2 text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
+              className="flex-grow px-3 py-2 text-black border-b border-black focus:outline-none"
             />
             <button
-              onClick={handleSearch}
-              className="ml-2 px-3 py-2 bg-blue-900 text-gray-100 rounded-full hover:bg-blue-700 focus:outline-none"
+              onClick={toggleSearch}
+              className="ml-2 flex justify-center items-center rounded-full text-black "
             >
-              Search
+              <RxCross1 className="h-6 w-6" />
             </button>
           </div>
         </div>
       )}
-      {filteredProducts.length > 0 && (
-        <div className="absolute top-[130px] left-0 right-0 bg-[#080808] shadow-lg p-4 z-10">
+      {filteredProducts.length > 0 && isSearchOpen && (
+        <div className="absolute  left-0 right-0 bg-white shadow-lg p-4 z-10">
           <ul>
             {filteredProducts.map((product) => (
               <Link
@@ -224,7 +225,7 @@ const Navbar = () => {
                 href={`/product/${product.id}`}
               >
                 <li
-                  className="p-2 hover:bg-gray-700"
+                  className="p-2 text-black hover:bg-gray-200"
                   onClick={() => setFilteredProducts([])}
                 >
                   {product.name}

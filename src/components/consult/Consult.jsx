@@ -30,10 +30,9 @@ const Consult = () => {
               <Image
                 src="/images/—Pngtree—the lab doctor smiles_14602877 1.png"
                 alt="Wide Card 1"
-                layout="fill"
-                objectFit="cover"
-                objectPosition="top center"
-                className="absolute top-[-50%] left-0 right-0 bottom-0 -mt-[14px]  ml-2 transform scale-[115%] z-10" // Adjust top position and scale the image
+                width={1000}
+                height={1000}
+                className="absolute object-cover w-full h-full bottom-3 left-0 right-0  ml-2 transform scale-[115%] z-10" // Adjust top position and scale the image
               />
             </div>
             <div className="w-3/5 flex justify-center items-center mb-6">
@@ -52,10 +51,9 @@ const Consult = () => {
               <Image
                 src="/images/SeekPng.com_hombre-png_1943212 1.png"
                 alt="Wide Card 1"
-                layout="fill"
-                objectFit="cover"
-                objectPosition="top center"
-                className="absolute top-[-50%] left-0 right-0 bottom-0 -mt-[6px] md:-mt-[5px] ml-[13px] md:ml-[20px] transform scale-[106%] z-10" // Adjust top position and scale the image
+                width={1000}
+                height={1000}
+                className="absolute left-0 right-0 -bottom-3 ml-[13px] md:ml-[20px] transform scale-[90%] z-10" // Adjust top position and scale the image
               />
             </div>
             <div className="w-3/5 flex justify-center items-center mb-6">
@@ -97,9 +95,9 @@ const Consult = () => {
             <Image
               src="/images/happy couple in love lying in bed .png" // dummy image
               alt="Card Image"
-              layout="fill"
-              objectFit="cover"
-              className=""
+              width={1000}
+              height={1000}
+              className="object-cover w-full h-full"
             />
           </div>
 
@@ -122,9 +120,9 @@ const Consult = () => {
             <Image
               src="/images/nutrition-img.png" // dummy image
               alt="Card Image"
-              layout="fill"
-              objectFit="cover md:contain"
-              className=""
+              width={1000}
+              height={1000}
+              className="object-cover w-full h-full"
             />
           </div>
 
@@ -148,9 +146,9 @@ const Consult = () => {
             <Image
               src="/images/image-Photoroom (4).png" // dummy image
               alt="Card Image"
-              layout="fill"
-              objectFit="cover md:contain"
-              className=""
+              width={1000}
+              height={1000}
+              className="object-cover w-full h-full"
             />
           </div>
 
@@ -174,9 +172,9 @@ const Consult = () => {
             <Image
               src="/images/maledoc.png" // dummy image
               alt="Card Image"
-              layout="fill"
-              objectFit="cover"
-              className=""
+              width={1000}
+              height={1000}
+              className="object-cover w-full h-full"
             />
           </div>
 

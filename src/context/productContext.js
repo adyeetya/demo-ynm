@@ -18,7 +18,7 @@ export const ProductProvider = ({ children }) => {
         const response = await fetch(`${serverUrl}/api/products/`)
 
         const data = await response.json()
-        console.log('data', data)
+        // console.log('data', data)
         setProducts(data)
       } catch (error) {
         setIsError(true)

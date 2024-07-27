@@ -1,23 +1,54 @@
 'use client'
-import React, { useState } from 'react'
-import { useCart } from '../../context/cartContext'
+import React, { useState, useEffect } from 'react'
+import { useUser } from '../../context/userContext'
+import axios from 'axios'
 import Image from 'next/image'
-import { FaRegEdit } from 'react-icons/fa'
-import { FaShippingFast } from 'react-icons/fa'
+import {
+  FaRegEdit,
+  FaShippingFast,
+  FaChevronUp,
+  FaChevronDown,
+} from 'react-icons/fa'
 import { Poppins } from 'next/font/google'
+import Link from 'next/link'
+
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
-import Link from 'next/link'
-import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
-
 const CheckoutPage = () => {
-  const { cart } = useCart()
-
+  const [cart, setCart] = useState([])
   const [showOffers, setShowOffers] = useState(false)
+  const [token, setToken] = useState(
+    typeof window !== 'undefined' ? localStorage.getItem('ynmtoken') : null
+  )
+  const { user } = useUser()
+  console.log(user)
+  const userId = user?._id
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await axios.get(
+          `${serverUrl}/api/cart/getCart/${userId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        if (response.status === 200) {
+          console.log('res cart', response.data.cart)
+          setCart(response.data.cart)
+        }
+      } catch (error) {
+        console.error('Error fetching cart:', error)
+      }
+    }
+
+    fetchCart()
+  }, [user, token])
 
   // Calculate total price based on quantity
   const totalPrice = cart.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + item?.productId?.price * item.quantity,
     0
   )
 
@@ -31,14 +62,29 @@ const CheckoutPage = () => {
     <div
       className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
     >
-      <div className="mb-4 md:mb-8 hidden md:flex">
-        <Link
-          href="/"
-          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-gray-100"
-        >
-          Home{' '}
-        </Link>
-      </div>
+      <nav className="mb-4 md:mb-8">
+        <ul className="flex space-x-2 text-sm md:text-base">
+          <li>
+            <Link href="/" className="text-blue-600 hover:underline">
+              Home
+            </Link>
+          </li>
+          <li>
+            <span className="text-gray-400">/</span>
+          </li>
+          <li>
+            <Link href="/cart" className="text-blue-600 hover:underline">
+              Cart
+            </Link>
+          </li>
+          <li>
+            <span className="text-gray-400">/</span>
+          </li>
+          <li>
+            <span className="text-gray-600">Checkout</span>
+          </li>
+        </ul>
+      </nav>
       <h1 className="text-xl md:text-3xl font-bold mb-2">Checkout</h1>
 
       <div className="mb-8 p-3 bg-white rounded-lg shadow-md">
@@ -76,22 +122,25 @@ const CheckoutPage = () => {
           <h2 className="text-xl font-semibold mb-4">Your Items</h2>
           {cart.map((item) => (
             <div
-              key={item.id}
+              key={item._id}
               className="flex items-center border-b border-gray-200 py-4"
             >
               <div className="w-20 h-20 relative rounded-lg overflow-hidden mr-4">
                 <Image
-                  src={item.imageUrl}
-                  alt={item.name}
-                  layout="fill"
-                  objectFit="cover"
+                  src={item?.productId?.imageUrl}
+                  alt={item?.productId?.name}
+                  width={1000}
+                  height={1000}
+                  className="object-cover w-full h-full"
                 />
               </div>
               <div className="flex flex-col">
-                <h3 className="text-lg font-semibold">{item.name}</h3>
+                <h3 className="text-lg font-semibold">
+                  {item?.productId?.name}
+                </h3>
                 <p className="text-gray-600">Quantity: {item.quantity}</p>
                 <p className="text-gray-600">
-                  ₹{item.price.toFixed(2)} per item
+                  ₹{item?.productId?.price?.toFixed(2)} per item
                 </p>
               </div>
             </div>

@@ -72,9 +72,9 @@ const Products = () => {
               <Image
                 src={product.imageUrl}
                 alt={product.name}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-2xl"
+                width={1000}
+                height={1000}
+                className="rounded-l-2xl object-cover w-full h-full"
               />
             </Link>
             <Link href={`/product/${product.id}`}>

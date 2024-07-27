@@ -612,11 +612,12 @@ const ProductPage = ({ params }) => {
       </p>
     )
   }
-  if (isError) return (
-    <div className="text-red-500 flex justify-center items-center w-full text-xl min-h-screen">
-      Error loading products
-    </div>
-  )
+  if (isError)
+    return (
+      <div className="text-red-500 flex justify-center items-center w-full text-xl min-h-screen">
+        Error loading products
+      </div>
+    )
   return (
     <div className={` md:py-8 mx-auto min-h-screen ${poppins.className}`}>
       <div className="mb-4 hidden md:flex max-w-screen-xl mx-auto">
@@ -655,8 +656,7 @@ const ProductPage = ({ params }) => {
                         alt={`Product thumbnail ${index + 1}`}
                         width={1000}
                         height={1000}
-                        objectFit="contain"
-                        className="rounded-lg w-16 h-16"
+                        className="rounded-lg w-16 h-16 object-contain"
                       />
                     </div>
                   </CarouselItem>
@@ -690,8 +690,8 @@ const ProductPage = ({ params }) => {
                         alt={`Product thumbnail ${index + 1}`}
                         width={1000}
                         height={1000}
-                        objectFit="contain"
-                        className="rounded-lg w-16 h-16"
+                  
+                        className="rounded-lg w-16 h-16 object-contain"
                       />
                     </div>
                   </CarouselItem>
@@ -709,8 +709,7 @@ const ProductPage = ({ params }) => {
                 alt={`Product image ${mainImageIndex + 1}`}
                 width={1000}
                 height={1000}
-                objectFit="cover"
-                className="rounded-lg "
+          className="rounded-lg object-cover"
               />
             </Zoom>
           </div>

@@ -13,6 +13,16 @@ import Head from 'next/head'
 export const metadata = {
   title: "Yes'n'more - India's No. 1 Sexual Wellness Brand",
   description: 'Top Sexual Wellness Brand',
+  referrer: 'origin-when-cross-origin',
+  metadataBase: new URL('https://yesnmore.com'),
+  keywords: [
+    'Sexual Wellness',
+    'Yesnmore',
+    'Sexual Health',
+    'Health',
+    'Products',
+  ],
+  authors: [{ name: 'Yesnmore' }],
 }
 
 export default function RootLayout({ children }) {

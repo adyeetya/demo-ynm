@@ -39,9 +39,9 @@ const Experts = () => {
               <Image
                 src={expert.imageUrl}
                 alt="expert"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-l-2xl"
+                width={1000}
+                height={1000}
+                className="rounded-l-2xl object-cover w-full h-full"
               />
             </div>
             <div className="w-full md:w-[60%] flex flex-col text-left p-4">

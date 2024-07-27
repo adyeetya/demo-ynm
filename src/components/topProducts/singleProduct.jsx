@@ -78,8 +78,7 @@ const Products = () => {
                           alt={`Product thumbnail ${index + 1}`}
                           width={1000}
                           height={1000}
-                          objectFit="contain"
-                          className="rounded-lg w-16 h-16"
+                          className="rounded-lg w-16 h-16 object-contain"
                         />
                       </div>
                     </CarouselItem>
@@ -114,8 +113,7 @@ const Products = () => {
                           alt={`Product thumbnail ${index + 1}`}
                           width={1000}
                           height={1000}
-                          objectFit="contain"
-                          className="rounded-lg w-16 h-16"
+                          className="rounded-lg w-16 h-16 object-contain"
                         />
                       </div>
                     </CarouselItem>
@@ -133,8 +131,7 @@ const Products = () => {
                   alt={`Product image ${mainImageIndex + 1}`}
                   width={1000}
                   height={1000}
-                  objectFit="cover"
-                  className="rounded-lg "
+                  className="rounded-lg object-cover"
                 />
               </Zoom>
             </div>
@@ -201,7 +198,7 @@ const Products = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center justify-between mt-auto">
+            <div className="flex items-center justify-between mt-4">
               <div className="text-sm md:text-md flex items-center gap-2">
                 {product.rating}
                 <IoMdStar className="w-5 h-5 text-yellow-500 mb-[2px]" />

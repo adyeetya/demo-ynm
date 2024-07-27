@@ -1,69 +1,157 @@
 'use client'
 import React, { createContext, useContext, useState, useEffect } from 'react'
+import axios from 'axios'
+import { useUser } from './userContext'
 import { toast } from 'react-hot-toast'
 
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
 const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const storedCart = sessionStorage.getItem('cart')
-      return storedCart ? JSON.parse(storedCart) : []
-    } else {
-      return []
-    }
-  })
+  const { user } = useUser()
+  const [cart, setCart] = useState([])
+  const [loading, setLoading] = useState(true)
+  const token =
+    typeof window !== 'undefined' ? localStorage.getItem('ynmtoken') : null
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('cart', JSON.stringify(cart))
+    const fetchCart = async () => {
+      if (user && user._id) {
+        try {
+          const response = await axios.get(
+            `${serverUrl}/api/cart/getCart/${user._id}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          )
+          if (response.status === 200) {
+            setCart(response.data.cart)
+          }
+        } catch (error) {
+          console.error('Failed to fetch cart', error)
+        } finally {
+          setLoading(false)
+        }
+      } else {
+        const localCart = localStorage.getItem('ynmc')
+        setCart(localCart ? JSON.parse(localCart) : [])
+        setLoading(false)
+      }
     }
-  }, [cart])
 
-  const addToCart = (product) => {
-    const productId = product.id
+    fetchCart()
+  }, [user, token])
 
-    const isProductInCart = cart.some((item) => item.id === productId)
-
-    if (isProductInCart) {
-      toast('This product is already in your cart!')
-      return
+  useEffect(() => {
+    if (user && user._id) {
+      const localCart = localStorage.getItem('ynmc')
+      if (localCart) {
+        syncLocalCartToDB(JSON.parse(localCart))
+      }
     }
+  }, [user])
 
-    const updatedCart = [...cart, { ...product, quantity: 1 }]
-    setCart(updatedCart)
-    toast.success('Product added to cart!')
+  const syncLocalCartToDB = async (localCart) => {
+    if (user && user._id) {
+      try {
+        await axios.post(
+          `${serverUrl}/api/cart/sync`,
+          {
+            userId: user._id,
+            cart: localCart,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        localStorage.removeItem('ynmc') // Clear local cart after syncing
+        setCart(localCart)
+      } catch (error) {
+        console.error('Failed to sync cart to DB', error)
+      }
+    }
   }
 
-  const removeFromCart = (productId) => {
-    const updatedCart = cart.filter((product) => product.id !== productId)
-    setCart(updatedCart)
+  const addToCart = async (product) => {
+    if (user && user._id) {
+      try {
+        const response = await axios.post(
+          `${serverUrl}/api/cart/add`,
+          {
+            userId: user._id,
+            productId: product._id,
+            quantity: 1,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+
+        if (response.status === 200) {
+          let itemAlreadyInCart = false
+          setCart((prevCart) => {
+            const existingItem = prevCart.find(
+              (item) => item.productId._id === product._id
+            )
+
+            if (existingItem) {
+              itemAlreadyInCart = true
+              return prevCart
+            } else {
+              return [...prevCart, { productId: product, quantity: 1 }]
+            }
+          })
+
+          if (itemAlreadyInCart) {
+            toast.error('Item Already In Cart')
+          } else {
+            toast.success('Product added to cart!')
+          }
+        }
+      } catch (error) {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          toast.error(error.response.data.message)
+        }
+        console.error('Failed to add product to cart', error)
+      }
+    } else {
+      let itemAlreadyInCart = false
+      setCart((prevCart) => {
+        const existingItem = prevCart.find(
+          (item) => item.productId._id === product._id
+        )
+
+        if (existingItem) {
+          itemAlreadyInCart = true
+          return prevCart
+        } else {
+          const newCart = [...prevCart, { productId: product, quantity: 1 }]
+          localStorage.setItem('ynmc', JSON.stringify(newCart))
+          return newCart
+        }
+      })
+
+      if (itemAlreadyInCart) {
+        toast.error('Item Already In Cart')
+      } else {
+        toast.success('Product added to cart!')
+      }
+    }
   }
 
-  const clearCart = () => {
-    setCart([])
-    sessionStorage.removeItem('cart')
+  const removeFromCart = async (updatedCart) => {
+    // console.log('cart from remove from cart', cart)
+    try {
+      setCart(updatedCart)
+    } catch (error) {
+      toast.error('Failed to remove product from cart')
+      console.error('Failed to remove product from cart', error)
+    }
   }
-
-  const increaseQuantity = (productId) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    )
-  }
-
-  const decreaseQuantity = (productId) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === productId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    )
-  }
-
-  const cartCount = cart.reduce((count, item) => count + item.quantity, 0)
 
   return (
     <CartContext.Provider
@@ -71,10 +159,7 @@ export const CartProvider = ({ children }) => {
         cart,
         addToCart,
         removeFromCart,
-        clearCart,
-        increaseQuantity,
-        decreaseQuantity,
-        cartCount,
+        loading,
       }}
     >
       {children}
