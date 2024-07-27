@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import {
   FaChevronRight,
@@ -79,9 +80,9 @@ const Footer = () => {
           <div>
             <ul>
               <li className="my-2">
-                <a href="#" className="hover:underline flex items-center">
-                  <FaChevronRight className="mr-2 w-2" /> About Us
-                </a>
+                <Link href="/about" className="hover:underline flex items-center">
+                  <FaChevronRight className="mr-2 w-2" /> Our Story
+                </Link>
               </li>
               <li className="my-2">
                 <a href="#" className="hover:underline flex items-center">

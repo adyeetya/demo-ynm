@@ -4,9 +4,16 @@ import React from 'react'
 import Typed from 'typed.js'
 const AboutUs = () => {
   const el = React.useRef(null)
+  const el2 = React.useRef(null)
   React.useEffect(() => {
     const typed = new Typed(el.current, {
       strings: ['Pleasurable', 'Stress-Free', 'Empowering', 'Discreet', 'Safe'],
+      typeSpeed: 100,
+      loop: true,
+      loopCount: Infinity,
+    })
+    const typed2 = new Typed(el2.current, {
+      strings: ['SIMPLE', 'SATISFYING', 'EFFORTLESS', 'TRUSTWORTHY'],
       typeSpeed: 100,
       loop: true,
       loopCount: Infinity,
@@ -15,6 +22,7 @@ const AboutUs = () => {
     return () => {
       // Destroy Typed instance during cleanup to stop animation
       typed.destroy()
+       typed2.destroy()
     }
   }, [])
   return (
@@ -145,9 +153,9 @@ const AboutUs = () => {
       <div className="bg-[var(--light-bg)] text-gray-200 px-4 md:px-20 flex flex-col gap-8 py-8">
         <p className="text-base">
           In a market flooded with one-dimensional generics, fads, and gimmicks,
-          we&apos;ve decided to take a different approach to supplementation. Our
-          mission at YESNMORE is to redefine how sexual wellness products are
-          built, focusing on holistic and scientifically-backed solutions.
+          we&apos;ve decided to take a different approach to supplementation.
+          Our mission at YESNMORE is to redefine how sexual wellness products
+          are built, focusing on holistic and scientifically-backed solutions.
         </p>
         <p className="text-base">
           Our journey is grounded in honesty and transparency. From sourcing
@@ -197,8 +205,10 @@ const AboutUs = () => {
       </div>
       <div className="bg-[var(--light-bg)] text-gray-200 px-4 md:px-20 flex flex-col gap-8 py-8">
         <div>
-          <h2 className="text-4xl">SIMPLE SATISFYING EFFORTLESS</h2>
-          <p className="text-sm">sex the way it should be</p>
+          <h2 className="text-4xl">
+            <span ref={el2} className="" />
+          </h2>
+          <p className="text-sm mt-2">sex the way it should be</p>
         </div>
         <div className="flex flex-col gap-2">
           <h3 className="text-xl font-semibold">Product Ideation</h3>

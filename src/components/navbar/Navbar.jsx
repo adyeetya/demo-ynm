@@ -165,9 +165,9 @@ const Navbar = () => {
               <a href="#" className="hover:text-gray-300">
                 Education
               </a>
-              <a href="#" className="hover:text-gray-300">
-                Talk
-              </a>
+              <Link href="/about" className="hover:text-gray-300">
+                Our Story
+              </Link>
             </div>
             <Link href="/cart">
               <div className="relative">
@@ -264,12 +264,12 @@ const Navbar = () => {
                 </Link>
               </>
             )}
-            <a
-              href="#"
+            <Link
+              href="/about"
               className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
             >
-              About
-            </a>
+              Our Story
+            </Link>
             <a
               href="/products"
               className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
