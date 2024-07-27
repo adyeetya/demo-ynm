@@ -53,7 +53,7 @@ const Footer = () => {
         {/* Images and Text Section */}
         <div className="my-8 flex justify-center items-center space-x-4 max-w-md mx-auto">
           <Image
-            src="/images/LOGO YES N MORE.png"
+            src="/images/logo.png"
             width={1000}
             height={1000}
             alt="Image 1"
