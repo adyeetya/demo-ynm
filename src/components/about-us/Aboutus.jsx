@@ -31,7 +31,7 @@ const Aboutus = () => {
 
             <div className="text-left">
               <Link
-                href="#"
+                href="/about"
                 className="group w-fit text-2xl md:text-3xl font-semibold flex items-center gap-2 text-white"
               >
                 ABOUT US{' '}

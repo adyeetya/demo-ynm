@@ -145,7 +145,7 @@ const AboutUs = () => {
       <div className="bg-[var(--light-bg)] text-gray-200 px-4 md:px-20 flex flex-col gap-8 py-8">
         <p className="text-base">
           In a market flooded with one-dimensional generics, fads, and gimmicks,
-          we've decided to take a different approach to supplementation. Our
+          we&apos;ve decided to take a different approach to supplementation. Our
           mission at YESNMORE is to redefine how sexual wellness products are
           built, focusing on holistic and scientifically-backed solutions.
         </p>
