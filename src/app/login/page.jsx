@@ -8,6 +8,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useUser } from '../../context/userContext'
 import axios from 'axios'
+import Image from 'next/image'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
@@ -217,7 +218,7 @@ const Page = () => {
         toast.success('OTP verified successfully')
         setMessage(data.message)
         if (data.userExists) {
-          const token = data.token??null
+          const token = data.token ?? null
           localStorage.setItem('ynmtoken', token)
 
           await fetchUserData()
@@ -279,9 +280,11 @@ const Page = () => {
     >
       <div className="flex flex-col md:flex-row justify-center items-center gap-4">
         <div className="w-full md:w-1/2 h-64 md:h-96 bg-gray-200 flex items-center justify-center rounded-lg">
-          <img
+          <Image
             src="/images/login/phone-banner.png"
             alt="Banner"
+            width={1000}
+            height={1000}
             className="w-full h-full object-cover rounded-lg"
           />
         </div>

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 const AnalysisPage = () => {
@@ -5,9 +6,11 @@ const AnalysisPage = () => {
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Here is your Wellness report</h1>
       <div className="flex items-center mb-4">
-        <img
+        <Image
           src="/images/wellness.png"
           alt="Wellness"
+          width={100}
+          height={100}
           className="w-12 h-12 mr-4"
         />
         <div>
@@ -23,9 +26,11 @@ const AnalysisPage = () => {
       </h3>
       <div className="flex space-x-4 mb-6">
         <div className="flex-1 p-4 border rounded-lg shadow-md bg-white">
-          <img
+          <Image
             src="/images/nutrition.png"
             alt="Nutrition"
+            width={100}
+            height={100}
             className="w-full h-32 object-cover rounded mb-4"
           />
           <h4 className="font-semibold">Nutrition</h4>
@@ -35,9 +40,11 @@ const AnalysisPage = () => {
           </p>
         </div>
         <div className="flex-1 p-4 border rounded-lg shadow-md bg-white">
-          <img
+          <Image
             src="/images/lifestyle.png"
             alt="Lifestyle"
+            width={100}
+            height={100}
             className="w-full h-32 object-cover rounded mb-4"
           />
           <h4 className="font-semibold">Lifestyle</h4>
@@ -49,9 +56,11 @@ const AnalysisPage = () => {
       </div>
       <h3 className="text-xl font-semibold mb-4">Your Treatment @₹549</h3>
       <div className="flex items-center mb-4">
-        <img
+        <Image
           src="/images/tostero.png"
           alt="TOSTERO Capsules"
+          width={100}
+          height={100}
           className="w-12 h-12 mr-4"
         />
         <div>

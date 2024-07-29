@@ -112,9 +112,11 @@ const DetailsHowToUse = ({ product }) => {
 
       <div className="flex justify-around mt-6 items-center overflow-hidden">
         <div className="flex flex-col justify-between items-center w-24">
-          <img
+          <Image
             src="/images/product/medical-globe.png"
             alt="WHO Certified"
+            width={100}
+            height={100}
             className="w-12 h-12"
           />
           <p className="mt-2 text-[10px] md:text-sm text-center">
@@ -123,9 +125,11 @@ const DetailsHowToUse = ({ product }) => {
         </div>
         <div className="flex flex-col justify-between items-center w-24">
           <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
-            <img
+            <Image
               src="/images/product/rabit.png"
               alt="Cruelty Free"
+              width={100}
+              height={100}
               className="w-12 h-12"
             />
           </div>
@@ -135,9 +139,11 @@ const DetailsHowToUse = ({ product }) => {
         </div>
         <div className="flex flex-col justify-between items-center w-24">
           <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
-            <img
+            <Image
               src="/images/product/test.png"
               alt="Lab Tested"
+               width={100}
+            height={100}
               className="w-8 h-8"
             />
           </div>
@@ -147,9 +153,11 @@ const DetailsHowToUse = ({ product }) => {
         </div>
         <div className="flex flex-col justify-between items-center w-28">
           <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
-            <img
+            <Image
               src="/images/product/atom.png"
               alt="Scientifically Proven"
+               width={100}
+            height={100}
               className="w-8 h-8"
             />
           </div>
@@ -436,9 +444,11 @@ const OtherInformation = ({ product }) => {
       {/* Expert Section */}
       <div className="bg-[#f5faff] w-full mt-16">
         <div className="max-w-screen-xl flex w-full md:w-[600px] mx-auto justify-center items-center bg-[var(--lastlonger-light)] text-gray-100">
-          <img
+          <Image
             src="/images/femdoc.png" // replace with actual path
             alt="Expert"
+            width={500}
+            height={500}
             className="w-1/3"
           />
           <div className="w-2/3">

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Image from 'next/image'
 // Example data
 const cardData = [
   {
@@ -38,9 +38,11 @@ const Info = () => {
               key={card.id}
               className="bg-white rounded-lg shadow-md overflow-hidden border-b-2 border-r-2 border-gray-300"
             >
-              <img
+              <Image
                 src={card.image}
                 alt={card.heading}
+                width={500}
+                height={500}
                 className="w-full h-40 object-cover object-center"
               />
               <div className="p-6">

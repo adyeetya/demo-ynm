@@ -153,9 +153,11 @@ const Products = () => {
             </div>
             <div className="flex justify-around items-center overflow-hidden mt-auto md:mx-8">
               <div className="flex flex-col justify-between items-center w-16 md:w-24 my-4 md:my-0">
-                <img
+                <Image
                   src="/images/product/medical-globe.png"
                   alt="WHO Certified"
+                  width={100}
+                  height={100}
                   className="w-12 h-12 md:w-16 md:h-16"
                 />
                 <p className="mt-2 text-xs text-center">
@@ -164,9 +166,11 @@ const Products = () => {
               </div>
               <div className="flex flex-col justify-between items-center w-16 md:w-24">
                 <div className="rounded-full border-2 border-gray-800 w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
-                  <img
+                  <Image
                     src="/images/product/rabit.png"
                     alt="Cruelty Free"
+                    width={100}
+                    height={100}
                     className="w-12 h-12 md:w-16 md:h-16"
                   />
                 </div>
@@ -176,9 +180,11 @@ const Products = () => {
               </div>
               <div className="flex flex-col justify-between items-center w-16 md:w-24">
                 <div className="rounded-full border-2 border-gray-800 w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
-                  <img
+                  <Image
                     src="/images/product/test.png"
                     alt="Lab Tested"
+                    width={100}
+                    height={100}
                     className=" w-8 h-8 md:w-10 md:h-10"
                   />
                 </div>
@@ -188,9 +194,11 @@ const Products = () => {
               </div>
               <div className="flex flex-col justify-between items-center w-16 md:w-24">
                 <div className="rounded-full border-2 border-gray-800 w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
-                  <img
+                  <Image
                     src="/images/product/atom.png"
                     alt="Scientifically Proven"
+                    width={100}
+                    height={100}
                     className="w-8 h-8 md:w-10 md:h-10"
                   />
                 </div>

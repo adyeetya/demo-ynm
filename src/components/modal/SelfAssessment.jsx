@@ -303,12 +303,12 @@ const SelfAssessment = ({ closeModal }) => {
             </div>
             <div className="h-[80vh] overflow-y-auto">
               <div className="flex items-center mb-4 p-2 mt-20">
-                <img
+                <Image
                   src="/images/femdoc.png"
                   alt="Avatar"
                   className="rounded-full mr-4"
-                  width={50}
-                  height={50}
+                  width={100}
+                  height={100}
                 />
                 <div>
                   <p className="text-sm text-gray-700">Hi!</p>
