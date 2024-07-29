@@ -173,7 +173,7 @@ const CartPage = () => {
       className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
     >
       <div className="mb-4 md:mb-8 flex justify-between items-center">
-        <nav className="mb-4 md:mb-8">
+        <nav className="">
           <ul className="flex space-x-2 text-sm md:text-base">
             <li>
               <Link href="/" className="text-blue-600 hover:underline">
@@ -196,7 +196,7 @@ const CartPage = () => {
             </li>
           </ul>
         </nav>
-        <Link href="/products" className="text-sm text-blue-500 md:p-2">
+        <Link href="/products" className="text-sm text-blue-500 md:p-2 hidden md:block">
           Continue Shopping
         </Link>
       </div>

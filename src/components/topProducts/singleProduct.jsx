@@ -26,6 +26,7 @@ const Products = () => {
 
   // Assuming you want to display only the first product
   const product = products[0]
+ 
 
   const handleThumbnailClick = (index) => {
     setMainImageIndex(index)

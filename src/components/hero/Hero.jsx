@@ -1,30 +1,25 @@
 // Hero.js
 'use client'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Modal from '../modal/Modal'
-import SelfAssessment from '../modal/SelfAssessment'
-import { GlobalStateContext } from '../../context/navbarContext'
 
+import { GlobalStateContext } from '../../context/navbarContext'
+import { useProducts } from '../../context/productContext'
 const Hero = () => {
   const { isMenuOpen } = useContext(GlobalStateContext)
-  const [modalOpen, setModalOpen] = useState(false)
 
-  const openModal = () => {
-    setModalOpen(true)
-  }
-
-  const closeModal = () => {
-    setModalOpen(false)
-  }
+  const { products } = useProducts()
+  const product = products[0]
+  console.log(product)
 
   return (
     <div className="relative z-0 w-full h-[100vh] lg:h-[70vh] xl:min-h-screen bg-gray-700 -mt-16 overflow-hidden">
+     
       {/* Desktop Image */}
       <div className="hidden md:block absolute inset-0 overflow-hidden">
         <Image
-          src="/images/hero/webview_banner_blue.png"
+          src="/images/hero/webview_banner_blue.webp"
           alt="Desktop Background Image"
           height={1000}
           width={1000}
@@ -36,7 +31,7 @@ const Hero = () => {
       {/* Mobile Image */}
       <div className="block md:hidden absolute inset-0">
         <Image
-          src="/images/hero/phoneview_banner_blue.png"
+          src="/images/hero/phoneview_banner_blue.webp"
           alt="Mobile Background Image"
           width={1000}
           height={1000}
@@ -71,7 +66,7 @@ const Hero = () => {
             </h1>
             <p className="text-lg mb-12">like never before!</p>
             <Link
-              href="/product/1"
+              href={`/product/${product?._id}`}
               className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full "
             >
               BUY NOW
@@ -90,7 +85,7 @@ const Hero = () => {
             </h1>
             <p className="text-lg">like never before!</p>
             <Link
-              href="/product/1"
+              href={`/product/${product?._id}`}
               className="bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full mt-4 "
             >
               BUY NOW
@@ -98,14 +93,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Modal */}
-      {modalOpen && (
-        <Modal closeModal={closeModal}>
-          {/* Content of your modal */}
-          <SelfAssessment closeModal={closeModal} />
-        </Modal>
-      )}
     </div>
   )
 }

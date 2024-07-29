@@ -143,7 +143,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-
+      <div className="mx-4 md:mx-20 bg-gray-500 h-[1px]" ></div>
       {/* text content */}
       <div className="text-[var(--dark-bg)]  px-4 md:px-20 flex flex-col gap-8 py-8">
         <p className="text-base md:text-lg">

@@ -2,21 +2,13 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Modal from '../modal/Modal'
-import SelfAssessment from '../modal/SelfAssessment'
+
 import { HiMiniDevicePhoneMobile } from 'react-icons/hi2'
 import { LuStethoscope } from 'react-icons/lu'
 import { LuUsers } from 'react-icons/lu'
 const Consult = () => {
   const [modalOpen, setModalOpen] = useState(false)
 
-  const openModal = () => {
-    setModalOpen(true)
-  }
-
-  const closeModal = () => {
-    setModalOpen(false)
-  }
   return (
     <div className="p-4 md:py-6 mt-4 max-w-screen-xl mx-auto z-0">
       <div className="mb-12 ">
@@ -254,14 +246,6 @@ const Consult = () => {
           </p>
         </div>
       </div>
-
-      {/* Modal */}
-      {modalOpen && (
-        <Modal closeModal={closeModal}>
-          {/* Content of your modal */}
-          <SelfAssessment closeModal={closeModal} />
-        </Modal>
-      )}
     </div>
   )
 }
