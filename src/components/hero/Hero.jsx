@@ -15,7 +15,6 @@ const Hero = () => {
 
   return (
     <div className="relative z-0 w-full h-[100vh] lg:h-[70vh] xl:min-h-screen bg-gray-700 -mt-16 overflow-hidden">
-     
       {/* Desktop Image */}
       <div className="hidden md:block absolute inset-0 overflow-hidden">
         <Image
@@ -65,12 +64,18 @@ const Hero = () => {
               intimacy
             </h1>
             <p className="text-lg mb-12">like never before!</p>
-            <Link
-              href={`/product/${product?._id}`}
-              className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full "
-            >
-              BUY NOW
-            </Link>
+            {product ? (
+              <Link
+                href={`/product/${product._id}`}
+                className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full"
+              >
+                BUY NOW
+              </Link>
+            ) : (
+              <div className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full">
+                BUY NOW
+              </div>
+            )}
           </div>
         </div>
 
@@ -84,12 +89,18 @@ const Hero = () => {
               intimacy
             </h1>
             <p className="text-lg">like never before!</p>
-            <Link
-              href={`/product/${product?._id}`}
-              className="bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full mt-4 "
-            >
-              BUY NOW
-            </Link>
+            {product ? (
+              <Link
+                href={`/product/${product._id}`}
+                className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full"
+              >
+                BUY NOW
+              </Link>
+            ) : (
+              <div className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full">
+                BUY NOW
+              </div>
+            )}
           </div>
         </div>
       </div>
