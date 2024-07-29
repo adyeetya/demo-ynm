@@ -31,7 +31,7 @@ const ProductsPage = () => {
           throw new Error('Network response was not ok')
         }
         const data = await response.json()
-        console.log(data)
+        // console.log(data)
         setProducts(data)
       } catch (error) {
         setIsError(true)
@@ -43,9 +43,9 @@ const ProductsPage = () => {
     fetchProduct()
   }, [])
 
-  useEffect(() => {
-    console.log('products on the product page', products)
-  }, [])
+  // useEffect(() => {
+  //   console.log('products on the product page', products)
+  // }, [])
 
   const handleAddToCart = (product) => {
     addToCart(product)

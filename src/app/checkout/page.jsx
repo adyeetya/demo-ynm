@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fa'
 import { Poppins } from 'next/font/google'
 import Link from 'next/link'
+import toast from 'react-hot-toast'
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
@@ -18,12 +19,26 @@ const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 const CheckoutPage = () => {
   const [cart, setCart] = useState([])
   const [showOffers, setShowOffers] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+
   const [token, setToken] = useState(
     typeof window !== 'undefined' ? localStorage.getItem('ynmtoken') : null
   )
-  const { user } = useUser()
-  console.log(user)
+  const { user, setUser } = useUser()
+  // console.log(user)
   const userId = user?._id
+  const [newAddress, setNewAddress] = useState({})
+  useEffect(() => {
+    if (user) {
+      setNewAddress({
+        address: user.address || '',
+        landmark: user.landmark || '',
+        city: user.city || '',
+        state: user.state || '',
+        pincode: user.pincode || '',
+      })
+    }
+  }, [user])
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -35,7 +50,7 @@ const CheckoutPage = () => {
           }
         )
         if (response.status === 200) {
-          console.log('res cart', response.data.cart)
+          // console.log('res cart', response.data.cart)
           setCart(response.data.cart)
         }
       } catch (error) {
@@ -58,6 +73,49 @@ const CheckoutPage = () => {
     'Buy 1 get 1 free on select items',
   ]
 
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setNewAddress((prevAddress) => ({ ...prevAddress, [name]: value }))
+  }
+
+  const handleSave = async () => {
+    try {
+      const updatedAddress = {
+        ...user,
+        ...newAddress,
+      }
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/update/${user._id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updatedAddress),
+        }
+      )
+
+      const data = await response.json()
+      if (response.ok) {
+        setIsEditing(false)
+        setUser(data.user)
+        toast.success('Address updated successfully')
+      } else {
+        toast.error(data.message || 'Failed to update address')
+      }
+    } catch (error) {
+      console.error('Error updating address:', error)
+      toast.error('Failed to update address')
+    }
+  }
+  const twoDaysFromNow = new Date()
+  twoDaysFromNow.setDate(twoDaysFromNow.getDate() + 2)
+  const deliveryDate = twoDaysFromNow.toLocaleDateString('en-IN', {
+    day: 'numeric',
+    month: 'long',
+  })
   return (
     <div
       className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
@@ -91,7 +149,7 @@ const CheckoutPage = () => {
         <div className="flex items-center mb-4 gap-2 text-gray-600">
           <FaShippingFast className="w-6 h-6" />
           <span className="font-semibold text-[#2d0f12]">
-            Get Delivery By 5th July
+            Get Delivery By {deliveryDate}
           </span>
         </div>
         <div className="flex justify-between items-center mb-2">
@@ -99,22 +157,81 @@ const CheckoutPage = () => {
             Delivering To
           </h2>
           <button
-            onClick={() =>
-              alert('Change address functionality to be implemented')
-            }
+            onClick={() => setIsEditing(true)}
             className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
           >
             <FaRegEdit className="w-6 h-6" />
             <span className="ml-1 text-sm font-medium">Change</span>
           </button>
         </div>
-        <div className="border-l-4 border-[#2d0f12] pl-4">
-          <p className="font-medium text-gray-800">Aditya Singh</p>
-          <p className="text-gray-600">+91 8787887878</p>
-          <p className="text-gray-600">123 Main Street</p>
-          <p className="text-gray-600">City, State, ZIP</p>
-          <p className="text-gray-600">Country</p>
-        </div>
+        {isEditing ? (
+          <div className="border-l-4 border-[#2d0f12] pl-4">
+            <input
+              type="text"
+              name="address"
+              value={newAddress.address}
+              onChange={handleChange}
+              className="block w-full mb-2 p-2 border border-gray-300 rounded"
+              placeholder="Address"
+            />
+            <input
+              type="text"
+              name="landmark"
+              value={newAddress.landmark}
+              onChange={handleChange}
+              className="block w-full mb-2 p-2 border border-gray-300 rounded"
+              placeholder="Landmark"
+            />
+            <input
+              type="text"
+              name="city"
+              value={newAddress.city}
+              onChange={handleChange}
+              className="block w-full mb-2 p-2 border border-gray-300 rounded"
+              placeholder="City"
+            />
+            <input
+              type="text"
+              name="state"
+              value={newAddress.state}
+              onChange={handleChange}
+              className="block w-full mb-2 p-2 border border-gray-300 rounded"
+              placeholder="State"
+            />
+            <input
+              type="text"
+              name="pincode"
+              value={newAddress.pincode}
+              onChange={handleChange}
+              className="block w-full mb-2 p-2 border border-gray-300 rounded"
+              placeholder="Pincode"
+            />
+
+            <button
+              onClick={handleSave}
+              className="px-4 py-2 bg-blue-600 text-white rounded"
+            >
+              Save
+            </button>
+            <button
+              onClick={() => setIsEditing(false)}
+              className="px-4 py-2 bg-gray-600 text-white rounded ml-2"
+            >
+              Cancel
+            </button>
+          </div>
+        ) : (
+          <div className="border-l-4 border-[#2d0f12] pl-4">
+            <p className="font-medium text-gray-800">{user?.name}</p>
+            <p className="text-gray-600">+91 {user?.phoneNumber}</p>
+            <p className="text-gray-600">{user?.address}</p>
+            <p className="text-gray-600">{user?.landmark}</p>
+            <p className="text-gray-600">
+              {user?.city}, {user?.state}, {user?.pincode}
+            </p>
+            <p className="text-gray-600">{user?.country}</p>
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -190,7 +307,7 @@ const CheckoutPage = () => {
             <span className="font-semibold">₹{totalPrice.toFixed(2)}</span>
           </div>
           <button
-            className="rounded-full hover:bg-orange-600 transition-colors bg-black text-gray-100 px-8 py-2 text-center"
+            className="rounded-full hover:bg-blue-600 transition-colors bg-black text-gray-100 px-8 py-2 text-center"
             onClick={() => alert('Payment functionality to be implemented')}
           >
             Proceed to Pay

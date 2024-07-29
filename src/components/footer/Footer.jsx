@@ -90,9 +90,9 @@ const Footer = () => {
                 </a>
               </li>
               <li className="my-2">
-                <a href="#" className="hover:underline flex items-center">
-                  <FaChevronRight className="mr-2 w-2" /> Contacts
-                </a>
+                <Link href="/contactus" className="hover:underline flex items-center">
+                  <FaChevronRight className="mr-2 w-2" /> Contact Us
+                </Link>
               </li>
               <li className="my-2">
                 <a href="#" className="hover:underline flex items-center">

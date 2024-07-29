@@ -26,7 +26,7 @@ const Page = () => {
       if (res.status === 200) {
         const { token } = res.data
         localStorage.setItem('adminToken', token) // Store token in local storage for session management
-        console.log('Login successful')
+        // console.log('Login successful')
         setError('')
         // Redirect to add product page or set a state to show the page
       } else {

@@ -55,9 +55,9 @@ const CartPage = () => {
     fetchCart()
   }, [user, token])
 
-  useEffect(() => {
-    console.log('cart from context: ', cart)
-  }, [cart])
+  // useEffect(() => {
+  //   // console.log('cart from context: ', cart)
+  // }, [cart])
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -173,12 +173,29 @@ const CartPage = () => {
       className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
     >
       <div className="mb-4 md:mb-8 flex justify-between items-center">
-        <Link
-          href="/"
-          className="px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-gray-100 hidden md:flex md:w-fit"
-        >
-          Home
-        </Link>
+        <nav className="mb-4 md:mb-8">
+          <ul className="flex space-x-2 text-sm md:text-base">
+            <li>
+              <Link href="/" className="text-blue-600 hover:underline">
+                Home
+              </Link>
+            </li>
+            <li>
+              <span className="text-gray-400">/</span>
+            </li>
+            <li>
+              <Link href="/products" className="text-blue-600 hover:underline">
+                Products
+              </Link>
+            </li>
+            <li>
+              <span className="text-gray-400">/</span>
+            </li>
+            <li>
+              <span className="text-gray-600">Cart</span>
+            </li>
+          </ul>
+        </nav>
         <Link href="/products" className="text-sm text-blue-500 md:p-2">
           Continue Shopping
         </Link>
@@ -274,32 +291,36 @@ const CartPage = () => {
         </div>
 
         {cart.length > 0 && (
-          <div className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-4 w-full md:w-1/3 gap-4 h-[360px]">
-            <h2 className="text-xl md:text-2xl font-semibold">Order Summary</h2>
-            <div className="flex justify-between text-gray-600">
-              <p>Subtotal</p>
-              <p>₹{totalPrice.toFixed(2)}</p>
+          <div className=" bg-white rounded-lg shadow-lg p-4 w-full md:w-1/3 gap-4 h-[360px] relative md:sticky md:top-20">
+            <div className="flex flex-col justify-between h-full">
+              <h2 className="text-xl md:text-2xl font-semibold">
+                Order Summary
+              </h2>
+              <div className="flex justify-between text-gray-600">
+                <p>Subtotal</p>
+                <p>₹{totalPrice.toFixed(2)}</p>
+              </div>
+              <div className="flex justify-between text-gray-600">
+                <p>Estimated Shipping</p>
+                <p>₹0.00</p>
+              </div>
+              <div className="flex justify-between text-gray-600">
+                <p>Taxes</p>
+                <p>₹0.00</p>
+              </div>
+              <div className="border-t border-gray-300 mt-2"></div>
+              <div className="flex justify-between font-semibold">
+                <p>Total</p>
+                <p>₹{totalPrice.toFixed(2)}</p>
+              </div>
+              <button
+                onClick={handleNavigation}
+                className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none"
+                disabled={cart.length === 0}
+              >
+                Proceed to Checkout
+              </button>
             </div>
-            <div className="flex justify-between text-gray-600">
-              <p>Estimated Shipping</p>
-              <p>₹0.00</p>
-            </div>
-            <div className="flex justify-between text-gray-600">
-              <p>Taxes</p>
-              <p>₹0.00</p>
-            </div>
-            <div className="border-t border-gray-300 mt-2"></div>
-            <div className="flex justify-between font-semibold">
-              <p>Total</p>
-              <p>₹{totalPrice.toFixed(2)}</p>
-            </div>
-            <button
-              onClick={handleNavigation}
-              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none"
-              disabled={cart.length === 0}
-            >
-              Proceed to Checkout
-            </button>
           </div>
         )}
       </div>

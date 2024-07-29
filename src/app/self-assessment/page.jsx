@@ -57,7 +57,7 @@ const SelfAssessmentPage = () => {
 
 
   const doneStep = () => {
-    console.log(userData)
+    // console.log(userData)
     router.push('/self-assessment')
   }
 

@@ -62,7 +62,7 @@ useEffect(() => {
   // Load user data from localStorage on initial render
 
   return (
-    <UserContext.Provider value={{ user, login, logout, updateUser, loading }}>
+    <UserContext.Provider value={{ user, login, logout, updateUser, loading, setUser }}>
       {children}
     </UserContext.Provider>
   )

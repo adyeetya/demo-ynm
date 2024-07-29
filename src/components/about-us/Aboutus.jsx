@@ -10,7 +10,7 @@ const Aboutus = () => {
       <div className="">
         <div className="bg-[var(--dark-bg)] py-2">
           <Marquee gradient={false}>
-            <p className="whitespace-nowrap mx-4 text-lg text-[#fedc00]">
+            <p className="whitespace-nowrap mx-4 text-lg text-gray-200">
               YES n MORE | PERFORMANCE | PLEASURE | PROTECTION | CONFIDENCE |
               SCIENCE BACKED | LAB TESTED | YES n MORE | PERFORMANCE | PLEASURE
               | PROTECTION | CONFIDENCE | SCIENCE BACKED | LAB TESTED |
@@ -22,7 +22,7 @@ const Aboutus = () => {
         <div className="bg-gradient-to-tr from-gray-200 via-gray-200 to-gray-200 flex items-center">
           <div className="flex flex-col items-start  max-w-screen-xl mx-auto px-4 py-16">
             <Image
-              src="/images/ynm-logo-black.png"
+              src="/images/about/YESnMore_blacklogo.png"
               alt="Placeholder"
               width={1000}
               height={1000}
@@ -54,7 +54,7 @@ const Aboutus = () => {
         {/* Bottom Marquee */}
         <div className="bg-black py-2">
           <Marquee gradient={false}>
-            <p className="whitespace-nowrap mx-4 text-lg text-[#fedc00]">
+            <p className="whitespace-nowrap mx-4 text-lg text-gray-200">
               YES n MORE | PERFORMANCE | PLEASURE | PROTECTION | CONFIDENCE |
               SCIENCE BACKED | LAB TESTED | YES n MORE | PERFORMANCE | PLEASURE
               | PROTECTION | CONFIDENCE | SCIENCE BACKED | LAB TESTED |

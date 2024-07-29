@@ -620,13 +620,30 @@ const ProductPage = ({ params }) => {
     )
   return (
     <div className={` md:py-8 mx-auto min-h-screen ${poppins.className}`}>
-      <div className="mb-4 hidden md:flex max-w-screen-xl mx-auto">
-        <Link
-          href="/"
-          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-gray-100"
-        >
-          Home{' '}
-        </Link>
+      <div className="hidden md:flex max-w-screen-xl mx-auto">
+        <nav className="mb-4 md:mb-8">
+          <ul className="flex space-x-2 text-sm md:text-base">
+            <li>
+              <Link href="/" className="text-blue-600 hover:underline">
+                Home
+              </Link>
+            </li>
+            <li>
+              <span className="text-gray-400">/</span>
+            </li>
+            <li>
+              <Link href="/products" className="text-blue-600 hover:underline">
+                Products
+              </Link>
+            </li>
+            <li>
+              <span className="text-gray-400">/</span>
+            </li>
+            <li>
+              <span className="text-gray-600">{product.name}</span>
+            </li>
+          </ul>
+        </nav>
       </div>
       <div className="p-4 flex flex-col md:flex-row md:space-x-8 max-w-screen-xl mx-auto">
         {/* this is the left side with the carousel and the image */}
@@ -690,7 +707,6 @@ const ProductPage = ({ params }) => {
                         alt={`Product thumbnail ${index + 1}`}
                         width={1000}
                         height={1000}
-                  
                         className="rounded-lg w-16 h-16 object-contain"
                       />
                     </div>
@@ -709,7 +725,7 @@ const ProductPage = ({ params }) => {
                 alt={`Product image ${mainImageIndex + 1}`}
                 width={1000}
                 height={1000}
-          className="rounded-lg object-cover"
+                className="rounded-lg object-cover"
               />
             </Zoom>
           </div>
@@ -753,10 +769,17 @@ const ProductPage = ({ params }) => {
                 (_, index) => (
                   <IoMdStar
                     key={index}
-                    className="w-4 h-4 md:w-6 md:h-6 text-[#debb02] mb-[2px]"
+                    className="w-4 h-4 md:w-6 md:h-6 text-yellow-400 mb-[2px]"
                   />
                 )
               )}
+
+              <Link
+                href="#ratings-reviews"
+                className="text-sm md:text-base ml-2 underline"
+              >
+                Ratings
+              </Link>
             </div>
           </div>
 
@@ -880,7 +903,7 @@ const ProductPage = ({ params }) => {
         <OtherInformation product={product} />
       </div>
       {/* reviewsrating */}
-      <div className="max-w-screen-xl mx-auto p-4">
+      <div id="ratings-reviews" className="max-w-screen-xl mx-auto p-4">
         <RatingsReviews product={product} />
       </div>
 

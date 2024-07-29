@@ -57,7 +57,7 @@ const AccountPage = () => {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-          }, 
+          },
         }
       )
 
@@ -94,14 +94,22 @@ const AccountPage = () => {
     </div>
   ) : (
     <div className="max-w-2xl mx-auto p-4">
-      <div className="mb-4 md:mb-8 hidden md:flex">
-        <Link
-          href="/"
-          className="text-[12px] md:text-sm px-2 py-1 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-gray-100"
-        >
-          Home{' '}
-        </Link>
-      </div>
+      <nav className="mb-4 md:mb-8">
+        <ul className="flex space-x-2 text-sm md:text-base">
+          <li>
+            <Link href="/" className="text-blue-600 hover:underline">
+              Home
+            </Link>
+          </li>
+          <li>
+            <span className="text-gray-400">/</span>
+          </li>
+
+          <li>
+            <span className="text-gray-600">Account</span>
+          </li>
+        </ul>
+      </nav>
       <h1 className="text-3xl font-bold mb-8 text-center">
         Account Information
       </h1>

@@ -73,7 +73,7 @@ const SelfAssessment = ({ closeModal }) => {
 
   const doneStep = () => {
     setShowModal(false)
-    console.log(userData)
+    // console.log(userData)
     router.push('/self-assessment')
   }
 

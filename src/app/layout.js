@@ -22,7 +22,7 @@ export const metadata = {
     'Health',
     'Products',
   ],
-  authors: [{ name: 'Yesnmore' }],
+  authors: [{ name: "Yes'n'more" }],
 }
 
 export default function RootLayout({ children }) {
