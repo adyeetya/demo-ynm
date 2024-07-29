@@ -6,9 +6,9 @@ import { CartProvider } from '../context/cartContext'
 import Footer from '../components/footer/Footer'
 import { Toaster } from 'react-hot-toast'
 import { UserProvider } from '../context/userContext'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ProductProvider } from '../context/productContext'
 const inter = Inter({ subsets: ['latin'] })
-
 
 export const metadata = {
   title: "Yes'n'more - India's No. 1 Sexual Wellness Brand",
@@ -57,7 +57,6 @@ export default function RootLayout({ children }) {
   }
   return (
     <html lang="en">
-  
       <body
         className={`'min-h-screen max-w-[100vw] overflow-x-hidden font-sans antialiased scroll-smooth ' ${inter.className}`}
       >
@@ -72,6 +71,7 @@ export default function RootLayout({ children }) {
               <CartProvider>
                 <Navbar />
                 {children}
+                <SpeedInsights />
                 <Footer />
               </CartProvider>
             </UserProvider>

@@ -4,6 +4,7 @@ import { questions } from '../../data/questions'
 import { FaArrowLeft } from 'react-icons/fa'
 import Modal from './Modal'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { RxReload } from 'react-icons/rx'
 const generateAnalysis = (responses) => {
   const analysis = responses.map((response, index) => {
