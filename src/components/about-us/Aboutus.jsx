@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Script from 'next/script'
 import React from 'react'
 import Marquee from 'react-fast-marquee'
 import { AiOutlineArrowRight } from 'react-icons/ai'
@@ -37,10 +38,10 @@ const Aboutus = () => {
                 className="group w-fit text-2xl md:text-3xl font-semibold flex items-center gap-2 text-[var(--dark-bg)]"
               >
                 <div className="w-20 md:w-24 h-20 md:h-24">
-                  <script
+                  <Script
                     src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
                     type="module"
-                  ></script>
+                  ></Script>
 
                   <dotlottie-player
                     src="https://lottie.host/e0e14799-7a40-466b-aa32-202df8c479d0/Hae5JPwY5c.json"
