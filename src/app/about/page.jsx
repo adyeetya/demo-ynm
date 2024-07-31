@@ -1,10 +1,94 @@
 'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import Typed from 'typed.js'
+
+const steps = [
+  {
+    title: 'Pleasurable',
+    description:
+      'Sex should be an enjoyable and fulfilling experience. We make sure you and your partner have the tools available to ensure you&apos;re having the best inter course possible.',
+    image: '/images/about/pleasurable.jpg',
+  },
+  {
+    title: 'Stress-Free',
+    description:
+      ' Leave the worries behind and focus on the connection with your partner. We make sure that you enjoy sex with safe and simple sexual enhancers.',
+    image: '/images/about/stress-free.jpg',
+  },
+  {
+    title: 'Empowering ',
+    description:
+      'Feel confident and in control of your sexual health. Make informed choices that enhance your self-esteem and empower you to enjoy every aspect of your sex life with yesnmore.',
+    image: '/images/about/empowering.jpg',
+  },
+  {
+    title: 'Discreet ',
+    description:
+      'Your privacy matters. All packaging you receive is completely non-branded ensuring your utmost privacy when the package arrives at home, at work or anywhere life takes you.',
+    image: '/images/about/discrete.jpg',
+  },
+  {
+    title: 'Safe ',
+    description:
+      'Safety is priority #1. Our facilities are independently reviewed on a consistent basis to ensure cGMP standards and FDA approval',
+    image: '/images/about/safe.jpg',
+  },
+]
+
+const Stepper = () => {
+  const [activeStep, setActiveStep] = useState(0)
+  const handleStepClick = (index) => {
+    setActiveStep(index)
+  }
+
+  return (
+    <div className="p-4 md:px-20 md:py-8 text-[var(--dark-bg)] flex flex-col gap-8">
+      <div className="flex justify-center space-x-4 md:space-x-8">
+        {steps.map((step, index) => (
+          <button
+            key={index}
+            onClick={() => handleStepClick(index)}
+            className={`text-xs md:text-lg font-semibold ${
+              activeStep === index
+                ? 'text-[var(--dark-bg)] underline underline-offset-8'
+                : 'text-gray-700 hover:text-gray-900'
+            }`}
+          >
+            {step.title}
+          </button>
+        ))}
+      </div>
+      <div className="flex flex-col gap-8">
+        {steps.map((step, index) => (
+          <div
+            key={index}
+            className={`flex flex-col transition-opacity duration-500 md:flex-row items-center justify-between gap-4 md:gap-8 ${
+              activeStep === index ? 'block' : 'hidden'
+            }`}
+          >
+            <div className="md:w-[40%] w-full">
+              <Image
+                src={step.image}
+                alt={step.title}
+                width={1000}
+                height={1000}
+                className="object-cover w-full rounded-lg aspect-square"
+              />
+            </div>
+            <div className="md:w-1/2 w-full flex flex-col gap-4 md:gap-8">
+              <h3 className="text-3xl font-semibold">{step.title}</h3>
+              <p className="text-base md:text-xl">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 const AboutUs = () => {
   const el = React.useRef(null)
- 
+
   React.useEffect(() => {
     const typed = new Typed(el.current, {
       strings: ['Pleasurable', 'Stress-Free', 'Empowering', 'Discreet', 'Safe'],
@@ -12,12 +96,10 @@ const AboutUs = () => {
       loop: true,
       loopCount: Infinity,
     })
-   
 
     return () => {
       // Destroy Typed instance during cleanup to stop animation
       typed.destroy()
-     
     }
   }, [])
   return (
@@ -41,109 +123,11 @@ const AboutUs = () => {
         <div className="h-[1px] rounded mt-2 md:mt-4 bg-gray-200"></div>
       </div>
 
-      {/* Content Sections */}
-      <div className="text-[var(--dark-bg)] px-4 md:px-20">
-        {/* Section 1 */}
-        <div className="flex h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] gap-2 flex-row items-center">
-          <div className="w-full flex h-full flex-col justify-center gap-8 md:gap-24 max-w-[50%]">
-            <h2 className="text-xl md:text-5xl mb-4">Pleasurable </h2>
-            <p className="text-sm md:text-lg">
-              Sex should be an enjoyable and fulfilling experience. We make sure
-              you and your partner have the tools available to ensure
-              you&apos;re having the best inter course possible.
-            </p>
-          </div>
-          <div className="w-1/2 h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-hidden flex justify-center items-center">
-            <Image
-              src="/images/about/pleasurable.jpg"
-              alt="Stress-Free"
-              width={1000}
-              height={1000}
-              className="w-full object-contain"
-            />
-          </div>
-        </div>
-        {/* Section 2 */}
-        <div className="flex h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] gap-2 flex-row-reverse items-center text-right">
-          <div className="w-full flex h-full flex-col justify-center gap-8 md:gap-24 max-w-[50%]">
-            <h2 className="text-xl md:text-5xl mb-4">Stress-Free</h2>
-            <p className="text-sm md:text-lg">
-              Leave the worries behind and focus on the connection with your
-              partner. We make sure that you enjoy sex with safe and simple
-              sexual enhancers.
-            </p>
-          </div>
-          <div className="w-1/2 h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-hidden flex justify-center items-center">
-            <Image
-              src="/images/about/stress-free.jpg"
-              alt="Stress-Free"
-              width={1000}
-              height={1000}
-              className="w-full object-contain"
-            />
-          </div>
-        </div>
-        {/* Section 3 */}
-        <div className="flex h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] gap-2 flex-row items-center">
-          <div className="w-full flex h-full flex-col justify-center gap-8 md:gap-24 max-w-[50%]">
-            <h2 className="text-xl md:text-5xl mb-4">Empowering </h2>
-            <p className="text-sm md:text-lg">
-              Feel confident and in control of your sexual health. Make informed
-              choices that enhance your self-esteem and empower you to enjoy
-              every aspect of your sex life with yesnmore.
-            </p>
-          </div>
-          <div className="w-1/2 h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-hidden flex justify-center items-center">
-            <Image
-              src="/images/about/empowering.jpg"
-              alt="Empowering"
-              width={1000}
-              height={1000}
-              className="w-full object-contain"
-            />
-          </div>
-        </div>
-        {/* Section 4 */}
-        <div className="flex h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] gap-2 flex-row-reverse items-center text-right">
-          <div className="w-full flex h-full flex-col justify-center gap-8 md:gap-24 max-w-[50%]">
-            <h2 className="text-xl md:text-5xl mb-4"> Discreet </h2>
-            <p className="text-sm md:text-lg">
-              Your privacy matters. All packaging you receive is completely
-              non-branded ensuring your utmost privacy when the package arrives
-              at home, at work or anywhere life takes you.
-            </p>
-          </div>
-          <div className="w-1/2 h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-hidden flex justify-center items-center">
-            <Image
-              src="/images/about/discrete.jpg"
-              alt="Discreet"
-              width={1000}
-              height={1000}
-              className="w-full object-contain"
-            />
-          </div>
-        </div>
-        {/* Section 5 */}
-        <div className="flex h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] gap-2 flex-row items-center">
-          <div className="w-full flex h-full flex-col justify-center gap-8 md:gap-24 max-w-[50%]">
-            <h2 className="text-xl md:text-5xl mb-4">Safe </h2>
-            <p className="text-sm md:text-lg">
-              Safety is priority #1. Our facilities are independently reviewed
-              on a consistent basis to ensure cGMP standards and FDA approval
-            </p>
-          </div>
-          <div className="w-1/2 h-[300px] md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-hidden flex justify-center items-center">
-            <Image
-              src="/images/about/safe.jpg"
-              alt="Safe"
-              width={1000}
-              height={1000}
-              className="w-full object-contain"
-            />
-          </div>
-        </div>
+      <div>
+        <Stepper />
       </div>
-      <div className="mx-4 md:mx-20 bg-gray-500 h-[1px]" ></div>
+      <div className="mx-4 md:mx-20 bg-gray-500 h-[1px]"></div>
+
       {/* text content */}
       <div className="text-[var(--dark-bg)]  px-4 md:px-20 flex flex-col gap-8 py-8">
         <p className="text-base md:text-lg">

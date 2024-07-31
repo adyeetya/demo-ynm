@@ -67,21 +67,56 @@ const Consult = () => {
         </div>
         <div className="flex flex-row justify-around items-center  md:mx-4 gap-8">
           <div className="flex bg-[#F1F1F1] shadow-lg rounded-xl p-2 w-16 h-16 justify-center items-center">
-            <LuUsers className="w-8 h-8" />
+            <script
+              src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+              type="module"
+            ></script>
+
+            <dotlottie-player
+              src="https://lottie.host/542bcbea-da75-4f4f-aedf-d4252cf37298/X0IOYFkvyq.json"
+              background="transparent"
+              speed="1"
+              loop
+              autoplay
+            ></dotlottie-player>
           </div>
-          <div className="flex bg-[#F1F1F1] shadow-lg rounded-xl p-2 w-16 h-16 justify-center items-center">
-            <LuStethoscope className="w-8 h-8" />
+          <div className="rotate-90 flex bg-[#F1F1F1] shadow-lg rounded-xl p-2 w-16 h-16 justify-center items-center">
+            <script
+              src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+              type="module"
+            ></script>
+
+            <dotlottie-player
+              src="https://lottie.host/99e917b1-85d2-477f-b8af-a1cb8f45b821/HQMOsF5tQM.json"
+              background="transparent"
+              speed="0.5"
+              loop
+              autoplay
+            ></dotlottie-player>
           </div>
           <div className="flex flex-col shadow-lg bg-[#F1F1F1] rounded-xl p-2 w-16 h-16 justify-center items-center">
-            <HiMiniDevicePhoneMobile className="w-8 h-8" />
+            <div className="w-20 h-20">
+              <script
+                src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+                type="module"
+              ></script>
+
+              <dotlottie-player
+                src="https://lottie.host/ca3ade05-5e38-4496-83d4-aeb54576f1ad/CU0prhhACO.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+              ></dotlottie-player>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Other Cards Section */}
-      <div className="flex flex-col md:flex-row mb-8 justify-center gap-4 md:gap-8">
+      <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8 justify-center">
         {/* card1 */}
-        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden">
+        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] lg:w-[270px] overflow-hidden">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
@@ -89,7 +124,7 @@ const Consult = () => {
               alt="Card Image"
               width={1000}
               height={1000}
-              className="object-cover w-full h-full"
+              className="object-cover md:object-contain lg:object-cover w-full h-full"
             />
           </div>
 
@@ -99,14 +134,14 @@ const Consult = () => {
               href="/product/1"
               className="text-xl font-semibold mb-2 md:mb-0"
             >
-              Performance {'>'}
+              Last Long {'>'}
             </Link>
             <p className="text-sm">Sexual Health Vitality Stamina</p>
           </div>
         </div>
 
         {/* card2 */}
-        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden brightness-75">
+        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] lg:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
@@ -114,15 +149,15 @@ const Consult = () => {
               alt="Card Image"
               width={1000}
               height={1000}
-              className="object-cover w-full h-full"
+              className="object-cover md:object-contain lg:object-cover w-full h-full"
             />
           </div>
 
           {/* Text Section */}
           <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
-            <div className="p-4  h-[80%] flex flex-col gap-4 justify-center text-gray-100">
+            <div className="p-4 h-[80%] flex flex-col gap-4 justify-center text-gray-100">
               <h2 className="text-xl font-semibold mb-2 md:mb-0">
-                Nutrition {'>'}
+                Erection Support {'>'}
               </h2>
               <p className="text-sm">Nutrition Metabolism Immunity</p>
             </div>
@@ -131,8 +166,9 @@ const Consult = () => {
             </div>
           </div>
         </div>
+
         {/* card3 */}
-        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden brightness-75">
+        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] lg:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
@@ -140,15 +176,15 @@ const Consult = () => {
               alt="Card Image"
               width={1000}
               height={1000}
-              className="object-cover w-full h-full"
+              className="object-cover md:object-contain lg:object-cover w-full h-full"
             />
           </div>
 
           {/* Text Section */}
           <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
-            <div className="p-4  h-[80%] flex flex-col gap-4 justify-center text-gray-100">
+            <div className="p-4 h-[80%] flex flex-col gap-4 justify-center text-gray-100">
               <h2 className="text-xl font-semibold mb-2 md:mb-0">
-                Hygiene {'>'}
+                Protection & Hygiene {'>'}
               </h2>
               <p className="text-sm">Sexual Health Vitality Stamina</p>
             </div>
@@ -157,8 +193,9 @@ const Consult = () => {
             </div>
           </div>
         </div>
+
         {/* card4 */}
-        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] md:w-[270px] overflow-hidden brightness-75">
+        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] lg:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
@@ -166,13 +203,13 @@ const Consult = () => {
               alt="Card Image"
               width={1000}
               height={1000}
-              className="object-cover w-full h-full"
+              className="object-cover md:object-contain lg:object-cover w-full h-full"
             />
           </div>
 
           {/* Text Section */}
           <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
-            <div className="p-4  h-[80%] flex flex-col gap-4 justify-center text-gray-100">
+            <div className="p-4 h-[80%] flex flex-col gap-4 justify-center text-gray-100">
               <h2 className="text-xl font-semibold mb-2 md:mb-0">
                 Wellness {'>'}
               </h2>

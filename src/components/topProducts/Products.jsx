@@ -6,85 +6,84 @@ import { products } from '../../data/Products'
 import { useCart } from '../../context/cartContext'
 import { toast } from 'react-hot-toast'
 import Link from 'next/link'
-// const productsData = [
-//   {
-//     id: 1,
-//     name: 'Climax Delay Spray',
-//     category: 'For Premature Ejaculation',
-//     description:
-//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
-//     rating: 4.5,
-//     imageUrl: '/images/pro1.jpg',
-//   },
-//   {
-//     id: 2,
-//     name: 'Climax Delay Wipes',
-//     category: 'For Premature Ejaculation',
-//     description:
-//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
-//     rating: 4.5,
-//     imageUrl: '/images/pro2.jpg',
-//   },
-//   {
-//     id: 3,
-//     name: 'Testo Booster',
-//     category: 'For Super Strength',
-//     description:
-//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
-//     rating: 2.5,
-//     imageUrl: '/images/pro1.jpg',
-//   },
-//   {
-//     id: 4,
-//     name: 'Tadalafil',
-//     category: 'For Longer Erection',
-//     description:
-//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
-//     rating: 3.5,
-//     imageUrl: '/images/pro2.jpg',
-//   },
-//   // Add more products as needed
-// ]
+const productsData = [
+  {
+    id: 1,
+    name: 'Climax Delay Spray',
+    category: 'For Premature Ejaculation',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
+    rating: 4.5,
+    imageUrl: '/images/pro1.jpg',
+  },
+  {
+    id: 2,
+    name: 'Climax Delay Wipes',
+    category: 'For Premature Ejaculation',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
+    rating: 4.5,
+    imageUrl: '/images/pro2.jpg',
+  },
+  {
+    id: 3,
+    name: 'Testo Booster',
+    category: 'For Super Strength',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
+    rating: 2.5,
+    imageUrl: '/images/pro1.jpg',
+  },
+  {
+    id: 4,
+    name: 'Tadalafil',
+    category: 'For Longer Erection',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a turpis quis est dictum egestas.',
+    rating: 3.5,
+    imageUrl: '/images/pro2.jpg',
+  },
+  // Add more products as needed
+]
 
 const Products = () => {
   const { addToCart } = useCart()
   const handleAddToCart = (product) => {
-    addToCart(product)
+    // addToCart(product)
+    toast.success('Product added to cart!')
   }
   return (
     <div className="p-4 md:py-6 max-w-screen-xl mx-auto ">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold">Products</h2>
+        <h2 className="text-2xl font-bold">Best Sellers</h2>
         <Link href="/products" className="text-blue-500">
           View All Products
         </Link>
       </div>
-      <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+
+      <div className="flex flex-wrap justify-between gap-4 md:gap-8">
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-[#2d0f12] text-gray-100 rounded-2xl md:rounded-3xl shadow-md p-2 md:p-2  flex flex-col h-[20rem] w-[165px] sm:w-44 md:h-96 md:w-60"
+            className="border border-gray-300 rounded-2xl md:rounded-3xl shadow-xl p-2 md:p-2  flex flex-col h-[23rem] w-[calc(50%-0.5rem)] sm:w-44 md:h-[26rem] md:w-60"
           >
-            <Link
-              href={`/product/${product.id}`}
-              className="relative w-full h-[14rem] md:h-52 mb-4"
-            >
+            <Link href={`#`} className="relative w-full h-[14rem] md:h-52 mb-4">
               <Image
                 src={product.imageUrl}
                 alt={product.name}
                 width={1000}
                 height={1000}
-                className="rounded-l-2xl object-cover w-full h-full"
+                className="rounded-2xl object-cover w-full h-full"
               />
             </Link>
-            <Link href={`/product/${product.id}`}>
+            <Link href={`#`}>
               <h3 className="text-sm md:text-lg mb-1">{product.name}</h3>
             </Link>
 
-            <p className="text-[10px] md:text-sm text-gray-300 mb-2">
+            <p className="text-[10px] md:text-sm text-gray-700 mb-2">
               {product.category}
             </p>
-            <p className="text-[10px] md:text-sm text-gray-400 mb-4">
+            <p className="text-[10px] sm:text-xs text-gray-600 mb-4">
               {product.description}
             </p>
             <div className="flex items-center justify-between mt-auto mx-2 md:mx-3">
@@ -94,7 +93,7 @@ const Products = () => {
               </div>
               <button
                 onClick={() => handleAddToCart(product)}
-                className="bg-white text-black py-1 px-2 md:px-3 rounded-lg hover:bg-gray-300 transition-colors duration-300 text-[9px] md:text-sm"
+                className=" text-white py-1 px-2 md:px-3 border hover:border-black rounded-lg hover:bg-white hover:text-black bg-black transition-colors duration-300 text-[9px] md:text-sm"
               >
                 Add to cart
               </button>

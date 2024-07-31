@@ -21,19 +21,36 @@ const Aboutus = () => {
         {/* Silver Gradient Section */}
         <div className="bg-gradient-to-tr from-gray-200 via-gray-200 to-gray-200 flex items-center">
           <div className="flex flex-col items-start  max-w-screen-xl mx-auto px-4 py-16">
-            <Image
-              src="/images/about/YESnMore_blacklogo.png"
-              alt="Placeholder"
-              width={1000}
-              height={1000}
-              className="w-full mb-8 md:mb-16 md:max-w-sm "
-            />
+            <div className="flex flex-col md:flex-row items-center justify-between mb-8 md:mb-16">
+              <Image
+                src="/images/about/YESnMore_blacklogo.png"
+                alt="Placeholder"
+                width={1000}
+                height={1000}
+                className="w-full  md:max-w-sm "
+              />
+            </div>
 
             <div className="text-left">
               <Link
                 href="/about"
                 className="group w-fit text-2xl md:text-3xl font-semibold flex items-center gap-2 text-[var(--dark-bg)]"
               >
+                <div className="w-20 md:w-24 h-20 md:h-24">
+                  <script
+                    src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+                    type="module"
+                  ></script>
+
+                  <dotlottie-player
+                    src="https://lottie.host/e0e14799-7a40-466b-aa32-202df8c479d0/Hae5JPwY5c.json"
+                    background="transparent"
+                    speed="1"
+                    className="w-20 md:w-32 h-20 md:h-32"
+                    loop
+                    autoplay
+                  ></dotlottie-player>
+                </div>
                 OUR STORY
                 <AiOutlineArrowRight className="group-hover:scale-125 group-hover:translate-x-3" />
               </Link>

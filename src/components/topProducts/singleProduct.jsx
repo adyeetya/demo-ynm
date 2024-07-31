@@ -33,7 +33,7 @@ const Products = () => {
   }
   if (isLoading)
     return (
-      <div className="flex justify-center w-full text-xl">
+      <div className="flex justify-center w-full text-xl p-4 md:py-6 max-w-screen-xl mx-auto">
         <AiOutlineLoading3Quarters className="animate-spin w-8 h-8" />
       </div>
     )
@@ -41,7 +41,7 @@ const Products = () => {
   return (
     <div className="p-4 md:py-6 max-w-screen-xl mx-auto">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold">Product</h2>
+        <h2 className="text-2xl font-bold">Our Key Product</h2>
         <Link href="/products" className="text-blue-500">
           View All Products
         </Link>

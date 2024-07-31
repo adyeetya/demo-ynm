@@ -1,7 +1,6 @@
 'use client'
 import * as React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import AutoScroll from 'embla-carousel-auto-scroll'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 import { cn } from '../../lib/utils'
@@ -23,7 +22,6 @@ const BrandsCarousel = React.forwardRef(
   (
     {
       orientation = 'horizontal',
-
       opts,
       setApi,
       plugins,
@@ -33,18 +31,10 @@ const BrandsCarousel = React.forwardRef(
     },
     ref
   ) => {
-    const [carouselRef, api] = useEmblaCarousel(
-      {
-        ...opts,
-        axis: orientation === 'horizontal' ? 'x' : 'y',
-      },
-      [
-        AutoScroll({
-          playOnInit: true,
-          stopOnInteraction: false,
-        }),
-      ]
-    )
+    const [carouselRef, api] = useEmblaCarousel({
+      ...opts,
+      axis: orientation === 'horizontal' ? 'x' : 'y',
+    })
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
 
@@ -99,6 +89,20 @@ const BrandsCarousel = React.forwardRef(
         api?.off('select', onSelect)
       }
     }, [api, onSelect])
+
+    React.useEffect(() => {
+      if (!api) {
+        return
+      }
+
+      const interval = setInterval(() => {
+        scrollNext()
+      }, 3000) // Change the interval time to 3000ms (3 seconds)
+
+      return () => {
+        clearInterval(interval)
+      }
+    }, [api, scrollNext])
 
     return (
       <CarouselContext.Provider

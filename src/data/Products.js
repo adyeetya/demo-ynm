@@ -150,14 +150,14 @@ export const products = [
   },
   {
     id: 2,
-    name: 'Testo Booster',
-    category: 'For Premature Ejaculation',
+    name: 'Max-T',
+    category: 'For Maximum Performance',
     description:
       'The active ingredient - Lidocaine. (it is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.)',
     rating: 4.5,
     price: 299,
     mrp: 399,
-    imageUrl: 'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
+    imageUrl: '/images/products-mockup/Max_T boost .webp',
     productImages: [
       'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
       'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/2.png',
@@ -300,13 +300,13 @@ export const products = [
   {
     id: 3,
     name: 'Shilajit',
-    category: 'For Premature Ejaculation',
+    category: 'For Better Performance',
     description:
       'The active ingredient - Lidocaine. (it is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.)',
     rating: 4.5,
     price: 299,
     mrp: 399,
-    imageUrl: 'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
+    imageUrl: '/images/products-mockup/Shilajit Mockup .webp',
     productImages: [
       'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
       'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/2.png',
@@ -448,14 +448,14 @@ export const products = [
   },
   {
     id: 4,
-    name: 'Sigma',
-    category: 'For Premature Ejaculation',
+    name: 'Boostwave',
+    category: 'Immunity Booster',
     description:
       'The active ingredient - Lidocaine. (it is a local anaesthetic commonly used to reduce sensitivity in tissues in a specific area.)',
     rating: 4.5,
     price: 299,
     mrp: 399,
-    imageUrl: 'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
+    imageUrl: '/images/products-mockup/boostwave.webp',
     productImages: [
       'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
       'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/2.png',

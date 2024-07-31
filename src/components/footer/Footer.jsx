@@ -80,24 +80,33 @@ const Footer = () => {
           <div>
             <ul>
               <li className="my-2">
-                <Link href="/about" className="hover:underline flex items-center">
+                <Link
+                  href="/about"
+                  className="hover:underline flex items-center"
+                >
                   <FaChevronRight className="mr-2 w-2" /> Our Story
                 </Link>
               </li>
               <li className="my-2">
-                <a href="#" className="hover:underline flex items-center">
+                <Link href="/faqs" className="hover:underline flex items-center">
                   <FaChevronRight className="mr-2 w-2" /> FAQ&apos;s
-                </a>
+                </Link>
               </li>
               <li className="my-2">
-                <Link href="/contactus" className="hover:underline flex items-center">
+                <Link
+                  href="/contactus"
+                  className="hover:underline flex items-center"
+                >
                   <FaChevronRight className="mr-2 w-2" /> Contact Us
                 </Link>
               </li>
               <li className="my-2">
-                <a href="#" className="hover:underline flex items-center">
-                  <FaChevronRight className="mr-2 w-2" /> Support Services
-                </a>
+                <Link
+                  href="/our-science"
+                  className="hover:underline flex items-center"
+                >
+                  <FaChevronRight className="mr-2 w-2" /> Our Science
+                </Link>
               </li>
             </ul>
           </div>
