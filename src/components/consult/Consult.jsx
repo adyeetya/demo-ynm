@@ -185,7 +185,7 @@ const Consult = () => {
           <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
             <div className="p-4 h-[80%] flex flex-col gap-4 justify-center text-gray-100">
               <h2 className="text-xl font-semibold mb-2 md:mb-0">
-                Protection & Hygiene {'>'}
+                Hygiene {'>'}
               </h2>
               <p className="text-sm">Sexual Health Vitality Stamina</p>
             </div>

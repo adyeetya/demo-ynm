@@ -8,6 +8,8 @@ export const products = [
     rating: 4.5,
     price: 299,
     mrp: 399,
+    quantity:['1 Month', '3 Months', '6 Months'],
+    stock: 100,
     imageUrl: 'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',
     productImages: [
       'https://yesnmore.s3.ap-south-1.amazonaws.com/last-longer/1.png',

@@ -106,46 +106,46 @@ const CartPage = () => {
     }
   }
 
- const updateQuantity = async (productId, quantity, increase = true) => {
-   if (user && user._id) {
-     try {
-       const newQuantity = increase ? quantity + 1 : quantity - 1
-       if (newQuantity >= 1 && newQuantity <= 10) {
-         await axios.put(
-           `${serverUrl}/api/cart/update`,
-           {
-             userId: user._id,
-             productId,
-             quantity: newQuantity,
-           },
-           {
-             headers: { Authorization: `Bearer ${token}` },
-           }
-         )
-         setCart((prevCart) =>
-           prevCart.map((item) =>
-             item.productId._id === productId
-               ? { ...item, quantity: newQuantity }
-               : item
-           )
-         )
-       }
-     } catch (error) {
-       console.error('Failed to update product quantity', error)
-     }
-   } else {
-     const newQuantity = increase ? quantity + 1 : quantity - 1
-     if (newQuantity >= 1 && newQuantity <= 10) {
-       const newCart = cart.map((item) =>
-         item.productId._id === productId
-           ? { ...item, quantity: newQuantity }
-           : item
-       )
-       setCart(newCart)
-       localStorage.setItem('ynmc', JSON.stringify(newCart))
-     }
-   }
- }
+  const updateQuantity = async (productId, quantity, increase = true) => {
+    if (user && user._id) {
+      try {
+        const newQuantity = increase ? quantity + 1 : quantity - 1
+        if (newQuantity >= 1 && newQuantity <= 10) {
+          await axios.put(
+            `${serverUrl}/api/cart/update`,
+            {
+              userId: user._id,
+              productId,
+              quantity: newQuantity,
+            },
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          )
+          setCart((prevCart) =>
+            prevCart.map((item) =>
+              item.productId._id === productId
+                ? { ...item, quantity: newQuantity }
+                : item
+            )
+          )
+        }
+      } catch (error) {
+        console.error('Failed to update product quantity', error)
+      }
+    } else {
+      const newQuantity = increase ? quantity + 1 : quantity - 1
+      if (newQuantity >= 1 && newQuantity <= 10) {
+        const newCart = cart.map((item) =>
+          item.productId._id === productId
+            ? { ...item, quantity: newQuantity }
+            : item
+        )
+        setCart(newCart)
+        localStorage.setItem('ynmc', JSON.stringify(newCart))
+      }
+    }
+  }
 
   const increaseQuantity = (productId, quantity) =>
     updateQuantity(productId, quantity, true)
@@ -196,7 +196,10 @@ const CartPage = () => {
             </li>
           </ul>
         </nav>
-        <Link href="/products" className="text-sm text-blue-500 md:p-2 hidden md:block">
+        <Link
+          href="/products"
+          className="text-sm text-blue-500 md:p-2 hidden md:block"
+        >
           Continue Shopping
         </Link>
       </div>
@@ -220,7 +223,7 @@ const CartPage = () => {
                 >
                   <div className="relative w-28 h-28 md:w-40">
                     <Image
-                      src={item?.productId?.imageUrl}
+                      src={item?.productId?.productImages[0]}
                       alt={item?.productId?.name || 'Product Image'}
                       width={1000}
                       height={1000}

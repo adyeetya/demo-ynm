@@ -98,12 +98,12 @@ const DetailsHowToUse = ({ product }) => {
           <h2 className="text-lg font-bold mb-2">HOW TO USE</h2>
           <h3 className="font-semibold mb-4">{product.name}</h3>
           <ul className="list-decimal ">
-            {product.howToUse.map((step, index) => (
+            {product.howToUse.map((item, index) => (
               <li key={index} className="flex items-start mb-3">
                 <span className="mr-2">
                   <FaCheckCircle className="text-blue-500" />
                 </span>
-                <div className="text-sm">{step}</div>
+                <div className="text-sm">{item.steps}</div>
               </li>
             ))}
           </ul>
@@ -142,8 +142,8 @@ const DetailsHowToUse = ({ product }) => {
             <Image
               src="/images/product/test.png"
               alt="Lab Tested"
-               width={100}
-            height={100}
+              width={100}
+              height={100}
               className="w-8 h-8"
             />
           </div>
@@ -156,8 +156,8 @@ const DetailsHowToUse = ({ product }) => {
             <Image
               src="/images/product/atom.png"
               alt="Scientifically Proven"
-               width={100}
-            height={100}
+              width={100}
+              height={100}
               className="w-8 h-8"
             />
           </div>
@@ -219,22 +219,29 @@ const RatingsReviews = ({ product }) => {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">Rating Breakdown</h3>
-        {Object.keys(product.ratingPercentage).map((key, index) => (
-          <div key={index} className="flex items-center mb-2">
-            <span className="w-20">{key}</span>
-            <div className="flex items-center w-full">
-              <div className="w-full bg-gray-200 rounded-full h-4 mx-2 relative">
-                <div
-                  className="absolute bg-blue-500 h-4 rounded-full"
-                  style={{ width: `${product.ratingPercentage[key]}%` }}
-                ></div>
+        {Object.keys(product.ratingPercentage).map((key, index) => {
+          // Extract the numeric part from the key
+          const starNumber = key.replace('star', '')
+          // Create the display text
+          const displayText = `${starNumber} Star${starNumber > 1 ? 's' : ''}`
+
+          return (
+            <div key={index} className="flex items-center mb-2">
+              <span className="w-20">{displayText}</span>
+              <div className="flex items-center w-full">
+                <div className="w-full bg-gray-200 rounded-full h-4 mx-2 relative">
+                  <div
+                    className="absolute bg-blue-500 h-4 rounded-full"
+                    style={{ width: `${product.ratingPercentage[key]}%` }}
+                  ></div>
+                </div>
+                <span className="ml-2 w-[17%] md:w-[5%]">
+                  {product.ratingPercentage[key]}%
+                </span>
               </div>
-              <span className="ml-2 w-[17%] md:w-[5%]">
-                {product.ratingPercentage[key]}%
-              </span>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
 
       <div>
@@ -297,11 +304,11 @@ const ProductQualities = ({ product }) => {
         results.
       </p>
       <ul className="list-disc list-inside mb-4">
-        {productQualities.points.map((point, index) => (
+        {/* {productQualities.points.map((point, index) => (
           <li key={index} className="mb-1">
             {point}
           </li>
-        ))}
+        ))} */}
       </ul>
       <p className="mb-4">
         A 2022 study looked at how a lidocaine-based spray affected 150 men with
@@ -395,7 +402,7 @@ const OtherInformation = ({ product }) => {
             </p>
             <p className="flex justify-between">
               <span className="font-semibold">Net quantity:</span>{' '}
-              <span>{properties.quantityPerBottle}</span>
+              <span>{properties.quantityPerBottle}ml per bottle</span>
             </p>
             <p className="flex justify-between">
               <span className="font-semibold">Price:</span>{' '}
@@ -423,7 +430,7 @@ const OtherInformation = ({ product }) => {
           <ul className="list-disc list-inside mb-4 px-2">
             {otherInformation.willDo.map((item, index) => (
               <p key={index} className="mb-1 text-[10px] md:text-sm underline">
-                {item}
+                {item.points}
               </p>
             ))}
           </ul>
@@ -435,7 +442,7 @@ const OtherInformation = ({ product }) => {
           <ul className="list-disc list-inside mb-4 px-2">
             {otherInformation.wontDo.map((item, index) => (
               <p key={index} className="mb-1 text-[10px] md:text-sm underline">
-                {item}
+                {item.points}
               </p>
             ))}
           </ul>
@@ -472,7 +479,7 @@ const GeneralInfo = ({ product }) => {
   if (!product) {
     return <div>Product not found</div>
   }
-  const { categoryInfo, heroElementInfo } = product
+  const { categoryInfo, heroElement } = product
   return (
     <div className="mx-auto py-4 bg-white rounded-lg">
       {/* Information Section */}
@@ -483,10 +490,10 @@ const GeneralInfo = ({ product }) => {
         {/* Compound Highlight Section */}
         <div className="max-w-screen-xl mx-auto w-full  md:mx-auto  mb-4 md:mb-8  text-gray-100">
           <div className="bg-gradient-to-b rounded-md from-blue-300 to-white flex justify-between md:justify-center items-center gap-4 p-6">
-            {categoryInfo.images.map((imageUrl, index) => (
+            {categoryInfo.images.map((item, index) => (
               <Image
                 key={index}
-                src={imageUrl}
+                src={item.points}
                 width={1000}
                 height={1000}
                 className="w-36 h-32 md:w-48 md:h-44"
@@ -526,15 +533,15 @@ const GeneralInfo = ({ product }) => {
               The Hero
             </h1>
             <h1 className="text-lg md:text-2xl italic mb-2 underline">
-              {heroElementInfo.name}
+              {heroElement.name}
             </h1>
             <p className="text-[10px] md:text-sm max-w-[350px]">
-              {heroElementInfo.description}
+              {heroElement.description}
             </p>
           </div>
           <div className="w-1/2 flex items-center justify-center p-2">
             <Image
-              src={heroElementInfo.image}
+              src={heroElement.image}
               alt="Right Side Image"
               width={1000}
               height={1000}
@@ -567,7 +574,7 @@ const ProductPage = ({ params }) => {
           throw new Error('Network response was not ok')
         }
         const data = await response.json()
-        // console.log(data)
+        console.log('data from api', data)
         setProduct(data)
       } catch (error) {
         setIsError(true)
@@ -579,9 +586,9 @@ const ProductPage = ({ params }) => {
     fetchProduct()
   }, [id])
 
-  // useEffect(() => {
-  //   console.log('products on the product page', product)
-  // }, [])
+  useEffect(() => {
+    console.log('products on the product page', product)
+  }, [product])
 
   const handleThumbnailClick = (index) => {
     setMainImageIndex(index)
@@ -816,16 +823,6 @@ const ProductPage = ({ params }) => {
                 >
                   ASSESS YOURSELF
                 </Link>
-              </div>
-            </div>
-
-            {/* type of  */}
-            <div className="flex flex-col gap-2 mt-2">
-              <p className="font-semibold">Type</p>
-              <div className="flex flex-wrap gap-2">
-                <button className=" w-fit  rounded-xl border bg-[var(--lastlonger-dark)] text-gray-100 hover:border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-white hover:text-black">
-                  Performance Kit
-                </button>
               </div>
             </div>
 

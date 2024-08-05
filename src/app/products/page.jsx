@@ -213,7 +213,7 @@ const ProductsPage = () => {
                 )}
               </label>
             </div>
-            <p className='text-right'>
+            <p className="text-right">
               {filterCategory && (
                 <span className="font-semibold text-blue-600">
                   {filterCategory}
@@ -252,14 +252,14 @@ const ProductsPage = () => {
           return (
             <div
               key={product._id}
-              className="bg-[var(--dark-bg)] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
+              className="bg-white text-gray-900 rounded-2xl md:rounded-3xl block border border-gray-400 overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow p-2"
             >
               <Link href={`/product/${product._id}`}>
                 <Image
-                  src={product.imageUrl}
+                  src={product.productImages[0]}
                   alt={product.name}
-                  width={300}
-                  height={300}
+                  width={1000}
+                  height={1000}
                   className="w-full object-cover rounded-xl"
                 />
               </Link>
@@ -268,15 +268,15 @@ const ProductsPage = () => {
                   <div>
                     <div className="flex justify-between items-center">
                       <h1 className="text-lg font-bold mb-1">{product.name}</h1>
-                      <div className="text-gray-300 flex justify-center items-center gap-2">
+                      <div className="text-gray-600 flex justify-center items-center gap-2">
                         <p>{product.rating}</p>
                         <IoMdStar className="w-4 h-4 md:w-5 md:h-5 text-[#debb02]" />
                       </div>
                     </div>
-                    <p className="text-gray-300 text-sm">{product.category}</p>
+                    <p className="text-gray-600 text-sm">{product.category}</p>
                   </div>
                 </Link>
-                <p className="text-gray-400 mt-2">{product.description}</p>
+                <p className="text-gray-600 mt-2">{product.description}</p>
                 <div className="flex justify-between items-center mt-4">
                   <p className="text-sm font-semibold text-green-600 border border-green-500 rounded px-2 py-1">
                     {percentageOff.toFixed(0)}% off
@@ -292,9 +292,9 @@ const ProductsPage = () => {
                 </div>
                 <button
                   onClick={() => handleAddToCart(product)}
-                  className="w-full mt-4 bg-[#FFF5EA] text-black px-6 py-2 rounded-full hover:bg-gray-300 transition-colors"
+                  className="mt-4 bg-black w-full hover:bg-white text-gray-100 hover:text-black border border-black py-2 px-4 rounded-full hover:shadow-xl transition-colors duration-300 text-sm md:text-base"
                 >
-                  Add to Cart
+                  Add to cart
                 </button>
               </div>
             </div>
