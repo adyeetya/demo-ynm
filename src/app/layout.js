@@ -62,6 +62,7 @@ export default function RootLayout({ children }) {
         className={`'min-h-screen max-w-[100vw] overflow-x-hidden font-sans antialiased scroll-smooth ' ${inter.className}`}
       >
         <Script
+          id="jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         ></Script>
@@ -80,6 +81,7 @@ export default function RootLayout({ children }) {
         </GlobalStateProvider>
       </body>
       <Script
+        id="dotlottie-player"
         src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
         type="module"
       ></Script>

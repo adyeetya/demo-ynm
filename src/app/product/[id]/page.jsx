@@ -304,11 +304,11 @@ const ProductQualities = ({ product }) => {
         results.
       </p>
       <ul className="list-disc list-inside mb-4">
-        {/* {productQualities.points.map((point, index) => (
+        {productQualities.points.map((point, index) => (
           <li key={index} className="mb-1">
-            {point}
+            {point.points}
           </li>
-        ))} */}
+        ))}
       </ul>
       <p className="mb-4">
         A 2022 study looked at how a lidocaine-based spray affected 150 men with
@@ -424,7 +424,7 @@ const OtherInformation = ({ product }) => {
       </div>
       <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[var(--lastlonger-dark)] w-fit px-4 py-1">
+          <h3 className="text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[var(--lastlonger-dark)] w-fit px-4 py-1">
             What it will do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -436,7 +436,7 @@ const OtherInformation = ({ product }) => {
           </ul>
         </div>
         <div className="w-1/2">
-          <h3 className="text-sm md:text-lg text-gray-100 font-semibold mb-2 rounded-full bg-[var(--lastlonger-dark)] w-fit px-4 py-1">
+          <h3 className="text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[var(--lastlonger-dark)] w-fit px-4 py-1">
             What it won&apos;t do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -489,14 +489,14 @@ const GeneralInfo = ({ product }) => {
         </h2>
         {/* Compound Highlight Section */}
         <div className="max-w-screen-xl mx-auto w-full  md:mx-auto  mb-4 md:mb-8  text-gray-100">
-          <div className="bg-gradient-to-b rounded-md from-blue-300 to-white flex justify-between md:justify-center items-center gap-4 p-6">
+          <div className="bg-gradient-to-b rounded-md from-blue-300 to-white flex justify-between md:justify-center items-center gap-4 p-2 md:p-6">
             {categoryInfo.images.map((item, index) => (
               <Image
                 key={index}
                 src={item.points}
                 width={1000}
                 height={1000}
-                className="w-36 h-32 md:w-48 md:h-44"
+                className="w-[47%] md:w-48 md:h-44 rounded-md"
                 alt="information"
               />
             ))}
