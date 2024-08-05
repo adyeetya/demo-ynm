@@ -9,6 +9,7 @@ import { UserProvider } from '../context/userContext'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ProductProvider } from '../context/productContext'
 const inter = Inter({ subsets: ['latin'] })
+import Script from 'next/script'
 
 export const metadata = {
   title: "Yes'n'more - India's No. 1 Sexual Wellness Brand",
@@ -60,10 +61,10 @@ export default function RootLayout({ children }) {
       <body
         className={`'min-h-screen max-w-[100vw] overflow-x-hidden font-sans antialiased scroll-smooth ' ${inter.className}`}
       >
-        <script
+        <Script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        ></Script>
         <Toaster />
         <GlobalStateProvider>
           <ProductProvider>
@@ -78,6 +79,10 @@ export default function RootLayout({ children }) {
           </ProductProvider>
         </GlobalStateProvider>
       </body>
+      <Script
+        src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+        type="module"
+      ></Script>
     </html>
   )
 }

@@ -68,11 +68,6 @@ const Consult = () => {
         </div>
         <div className="flex flex-row justify-around items-center  md:mx-4 gap-8">
           <div className="flex bg-[#F1F1F1] shadow-lg rounded-xl p-2 w-16 h-16 justify-center items-center">
-            <Script
-              src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-              type="module"
-            ></Script>
-
             <dotlottie-player
               src="https://lottie.host/542bcbea-da75-4f4f-aedf-d4252cf37298/X0IOYFkvyq.json"
               background="transparent"
@@ -82,11 +77,6 @@ const Consult = () => {
             ></dotlottie-player>
           </div>
           <div className="rotate-90 flex bg-[#F1F1F1] shadow-lg rounded-xl p-2 w-16 h-16 justify-center items-center">
-            <Script
-              src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-              type="module"
-            ></Script>
-
             <dotlottie-player
               src="https://lottie.host/99e917b1-85d2-477f-b8af-a1cb8f45b821/HQMOsF5tQM.json"
               background="transparent"
@@ -97,11 +87,6 @@ const Consult = () => {
           </div>
           <div className="flex flex-col shadow-lg bg-[#F1F1F1] rounded-xl p-2 w-16 h-16 justify-center items-center">
             <div className="w-20 h-20">
-              <Script
-                src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-                type="module"
-              ></Script>
-
               <dotlottie-player
                 src="https://lottie.host/ca3ade05-5e38-4496-83d4-aeb54576f1ad/CU0prhhACO.json"
                 background="transparent"
