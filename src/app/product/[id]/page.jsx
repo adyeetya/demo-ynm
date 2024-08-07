@@ -298,11 +298,7 @@ const ProductQualities = ({ product }) => {
   return (
     <div className="py-4 text-xs md:text-base">
       <h2 className="text-2xl font-bold mb-6">PRODUCT QUALITIES</h2>
-      <p className="mb-2">
-        Powered by the active ingredient Lidocaine, this last longer spray has
-        been formulated to help enhance endurance and control for proven
-        results.
-      </p>
+      <p className="mb-2">{productQualities.text}</p>
       <ul className="list-disc list-inside mb-4">
         {productQualities.points.map((point, index) => (
           <li key={index} className="mb-1">
@@ -310,18 +306,7 @@ const ProductQualities = ({ product }) => {
           </li>
         ))}
       </ul>
-      <p className="mb-4">
-        A 2022 study looked at how a lidocaine-based spray affected 150 men with
-        self-reported PE.{' '}
-        <a href="#" className="text-blue-500 underline">
-          read more
-        </a>
-      </p>
-      <p className="mb-4">
-        Beyond that, 80 percent of men said they were sexually satisfied, and 70
-        percent said they were happy with their ejaculatory control when using
-        the product.
-      </p>
+
       <h3 className="font-bold mb-2">What does it do and how does it do it?</h3>
       <div className="md:flex gap-2">
         <div className="w-full md:hidden">
@@ -357,15 +342,11 @@ const ProductQualities = ({ product }) => {
           ))}
         </div>
       </div>
-      <p className="italic font-semibold w-full  mt-4">
-        “Proceed with sexual activity as usual. If necessary, better if choose
-        to wipe off any excess spray to avoid transferring it to the partner”
-      </p>
     </div>
   )
 }
 
-const OtherInformation = ({ product }) => {
+const OtherInformation = ({ product, theme }) => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false)
 
   if (!product) {
@@ -374,13 +355,21 @@ const OtherInformation = ({ product }) => {
 
   const { otherInformation, properties } = product
 
+  const getUnit = () => {
+    if (theme === 'lls') {
+      return 'ml'
+    } else if (theme === 'maxt') {
+      return 'tablets'
+    }
+  }
+
   const toggleDetails = () => {
     setIsDetailsOpen(!isDetailsOpen)
   }
 
   return (
     <div className="py-4">
-      <div className="mb-4 w-full md:w-[600px] mx-auto   text-[10px] md:text-sm p-4 rounded-lg shadow-md">
+      <div className="mb-4 w-full md:w-[600px] mx-auto text-[10px] md:text-sm p-4 rounded-lg shadow-md">
         <div
           className="flex items-center cursor-pointer"
           onClick={toggleDetails}
@@ -402,7 +391,10 @@ const OtherInformation = ({ product }) => {
             </p>
             <p className="flex justify-between">
               <span className="font-semibold">Net quantity:</span>{' '}
-              <span>{properties.quantityPerBottle}ml per bottle</span>
+              <span>
+                {properties.quantityPerBottle}
+                {getUnit()} per bottle
+              </span>
             </p>
             <p className="flex justify-between">
               <span className="font-semibold">Price:</span>{' '}
@@ -414,17 +406,14 @@ const OtherInformation = ({ product }) => {
             </p>
             <p className="flex justify-between">
               <span className="font-semibold">Properties:</span>{' '}
-              <span className="text-right">
-                Optimal Dosage | Quick Absorption <br /> Fast Action | Zero
-                Transference
-              </span>
+              <span className="text-right">{properties.details}</span>
             </p>
           </div>
         )}
       </div>
       <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
         <div className="w-1/2">
-          <h3 className="text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[var(--lastlonger-dark)] w-fit px-4 py-1">
+          <h3 className="text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[#0B2251] w-fit px-4 py-1">
             What it will do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -436,7 +425,7 @@ const OtherInformation = ({ product }) => {
           </ul>
         </div>
         <div className="w-1/2">
-          <h3 className="text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[var(--lastlonger-dark)] w-fit px-4 py-1">
+          <h3 className="text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[#0B2251] w-fit px-4 py-1">
             What it won&apos;t do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -464,7 +453,7 @@ const OtherInformation = ({ product }) => {
             </h2>
             <Link
               href="/experts"
-              className="text-sm md:text-base mt-2 px-8 py-1 bg-white text-black rounded-full hover:bg-[var(--lastlonger-dark)] hover:text-white"
+              className="text-sm md:text-base mt-2 px-8 py-1 bg-white text-black rounded-full hover:bg-[#0B2251] hover:text-white"
             >
               CLICK HERE NOW
             </Link>
@@ -475,28 +464,47 @@ const OtherInformation = ({ product }) => {
   )
 }
 
-const GeneralInfo = ({ product }) => {
+const GeneralInfo = ({ product, theme }) => {
   if (!product) {
     return <div>Product not found</div>
+  }
+  const getBackgroundImage = () => {
+    if (theme === 'lls') {
+      return "url('/images/product/blue-bg.png')"
+    } else if (theme === 'maxt') {
+      return "url('/images/product/MoleculeBg.webp')"
+    }
+    return ''
+  }
+
+  const getGradient = () => {
+    if (theme === 'lls') {
+      return 'from-blue-300 to-white'
+    } else if (theme === 'maxt') {
+      return 'from-red-300 to-white'
+    }
+    return ''
   }
   const { categoryInfo, heroElement } = product
   return (
     <div className="mx-auto py-4 bg-white rounded-lg">
       {/* Information Section */}
-      <div className="mb-6 max-w-screen-xl mx-auto p-4">
-        <h2 className={`text-3xl font-bold mb-6 ${lora.className}`}>
+      <div className="mb-6 max-w-screen-xl mx-auto px-4">
+        <h2 className={`text-3xl max-w-60 font-bold mb-6 ${lora.className}`}>
           {categoryInfo.title}
         </h2>
         {/* Compound Highlight Section */}
-        <div className="max-w-screen-xl mx-auto w-full  md:mx-auto  mb-4 md:mb-8  text-gray-100">
-          <div className="bg-gradient-to-b rounded-md from-blue-300 to-white flex justify-between md:justify-center items-center gap-4 p-2 md:p-6">
+        <div className="max-w-screen-xl mx-auto w-full md:mx-auto mb-4 md:mb-8 text-gray-100">
+          <div
+            className={`bg-gradient-to-b rounded-md flex justify-between md:justify-center items-center gap-4 p-2 md:p-6 ${getGradient()}`}
+          >
             {categoryInfo.images.map((item, index) => (
               <Image
                 key={index}
                 src={item.points}
                 width={1000}
                 height={1000}
-                className="w-[47%] md:w-48 md:h-44 rounded-md"
+                className="w-[47%] md:w-72 md:h-56 rounded-md"
                 alt="information"
               />
             ))}
@@ -506,12 +514,14 @@ const GeneralInfo = ({ product }) => {
           {categoryInfo.points.map((point, index) => (
             <li key={index} className="flex flex-col">
               <p>{point.text}</p>
-              <a
-                href={point.readMoreLink}
-                className="text-blue-500 hover:underline mt-2"
-              >
-                read more
-              </a>
+              {point.readMoreLink ? (
+                <a
+                  href={point.readMoreLink}
+                  className="text-blue-500 hover:underline mt-2"
+                >
+                  Read More
+                </a>
+              ) : null}
             </li>
           ))}
         </ul>
@@ -521,11 +531,11 @@ const GeneralInfo = ({ product }) => {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/images/product/blue-bg.png')",
+            backgroundImage: getBackgroundImage(),
           }}
         />
         <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
-          <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-center">
+          <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-right">
             <h1
               className="text-2xl md:text-6xl mb-1"
               style={{ fontWeight: 50 }}
@@ -564,6 +574,33 @@ const ProductPage = ({ params }) => {
   const [product, setProduct] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
+  const [theme, setTheme] = useState('default')
+
+  useEffect(() => {
+    if (product?.name === 'MAX T') {
+      setTheme('maxt')
+    } else if (product?.name === 'Long Lasting Spray') {
+      setTheme('lls')
+    }
+  }, [product])
+
+  const getConcernClasses = () => {
+    if (theme === 'lls') {
+      return 'border-[#0B2251] hover:bg-[#0B2251] hover:text-gray-100'
+    } else if (theme === 'maxt') {
+      return 'border-black hover:bg-black hover:text-gray-200'
+    }
+    return ''
+  }
+  const getButtonClasses = () => {
+    if (theme === 'lls') {
+      return 'border-[#0B2251] hover:bg-[#0B2251] hover:text-gray-100'
+    } else if (theme === 'maxt') {
+      return 'border-black hover:bg-black hover:text-gray-200'
+    }
+    return ''
+  }
+
   useEffect(() => {
     const fetchProduct = async () => {
       setIsLoading(true)
@@ -637,7 +674,7 @@ const ProductPage = ({ params }) => {
     )
   return (
     <div className={` md:py-8 mx-auto min-h-screen ${poppins.className}`}>
-      <div className="hidden md:flex max-w-screen-xl mx-auto">
+      <div className="hidden md:flex max-w-screen-xl mx-auto p-4">
         <nav className="mb-4 md:mb-8">
           <ul className="flex space-x-2 text-sm md:text-base">
             <li>
@@ -806,20 +843,25 @@ const ProductPage = ({ params }) => {
               <div className="flex flex-wrap gap-2">
                 <Link
                   href="#"
-                  className="flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 "
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border px-4 py-2 text-sm ${getConcernClasses()}`}
                 >
                   PREMATURE EJACULATION
                 </Link>
-
+                <Link
+                  href="#"
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border px-4 py-2 text-sm ${getConcernClasses()}`}
+                >
+                  LOW TESTOSTERONE 
+                </Link>
                 <Link
                   href="/experts"
-                  className="flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 "
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border px-4 py-2 text-sm ${getConcernClasses()}`}
                 >
                   TALK TO DOCTOR
                 </Link>
                 <Link
                   href="/self-assessment"
-                  className="flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 "
+                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border px-4 py-2 text-sm ${getConcernClasses()}`}
                 >
                   ASSESS YOURSELF
                 </Link>
@@ -831,41 +873,49 @@ const ProductPage = ({ params }) => {
               <p className="font-semibold">Quantity</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className={`rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
+                  className={`rounded-xl border px-4 py-2 text-sm ${
                     quantity === 1
-                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
+                      ? theme === 'lls'
+                        ? 'bg-[#0B2251] text-gray-100'
+                        : 'bg-black text-gray-200'
                       : ''
-                  }`}
+                  } ${getButtonClasses()}`}
                   onClick={() => handleQuantityChange(1)}
                 >
                   1 Month
                 </button>
                 <button
-                  className={`rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
+                  className={`rounded-xl border px-4 py-2 text-sm ${
                     quantity === 2
-                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
+                      ? theme === 'lls'
+                        ? 'bg-[#0B2251] text-gray-100'
+                        : 'bg-black text-gray-200'
                       : ''
-                  }`}
+                  } ${getButtonClasses()}`}
                   onClick={() => handleQuantityChange(2)}
                 >
                   2 Months
                 </button>
                 <button
-                  className={`rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
+                  className={`rounded-xl border px-4 py-2 text-sm ${
                     quantity === 3
-                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
+                      ? theme === 'lls'
+                        ? 'bg-[#0B2251] text-gray-100'
+                        : 'bg-black text-gray-200'
                       : ''
-                  }`}
+                  } ${getButtonClasses()}`}
                   onClick={() => handleQuantityChange(3)}
                 >
                   3 Months
                 </button>
                 <button
-                  className={`rounded-xl border border-[var(--lastlonger-dark)] px-4 py-2 text-sm hover:bg-[var(--lastlonger-dark)] hover:text-gray-100 ${
+                  className={`rounded-xl border px-4 py-2 text-sm ${
                     quantity === 6
-                      ? 'bg-[var(--lastlonger-dark)] text-gray-100'
+                      ? theme === 'lls'
+                        ? 'bg-[#0B2251] text-gray-100'
+                        : 'bg-black text-gray-200'
                       : ''
-                  }`}
+                  } ${getButtonClasses()}`}
                   onClick={() => handleQuantityChange(6)}
                 >
                   6 Months
@@ -877,13 +927,13 @@ const ProductPage = ({ params }) => {
           <div className=" md:mx-0 w-full">
             <button
               onClick={handleAddToCart}
-              className="w-1/2 md:w-1/3  text-2xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-bold px-6 py-3  hover:bg-[var(--lastlonger-dark)] hover:text-white transition-colors"
+              className="w-1/2 md:w-1/3  text-2xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-bold px-6 py-3  hover:bg-[#0B2251] hover:text-white transition-colors"
             >
               BUY
             </button>
             <button
               onClick={handleAddToCart}
-              className="w-1/2 md:w-1/3 text-2xl mt-1 md:mt-4 bg-[#E6F1FF] font-bold px-6 py-3 hover:bg-[var(--lastlonger-dark)] hover:text-white transition-colors"
+              className="w-1/2 md:w-1/3 text-2xl mt-1 md:mt-4 bg-[#E6F1FF] font-bold px-6 py-3 hover:bg-[#0B2251] hover:text-white transition-colors"
             >
               CART
             </button>
@@ -898,7 +948,7 @@ const ProductPage = ({ params }) => {
 
       {/* general info */}
       <div>
-        <GeneralInfo product={product} />
+        <GeneralInfo product={product} theme={theme} />
       </div>
 
       {/* qualities */}
@@ -907,7 +957,7 @@ const ProductPage = ({ params }) => {
       </div>
       {/* other details */}
       <div className="max-w-screen-xl mx-auto p-4">
-        <OtherInformation product={product} />
+        <OtherInformation product={product} theme={theme} />
       </div>
       {/* reviewsrating */}
       <div id="ratings-reviews" className="max-w-screen-xl mx-auto p-4">
@@ -922,7 +972,7 @@ const ProductPage = ({ params }) => {
             <Link
               href={`/product/${product.id}`}
               key={product.id}
-              className="bg-[var(--lastlonger-dark)] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
+              className="bg-[#0B2251] text-gray-100 rounded-2xl md:rounded-3xl block border overflow-hidden shadow-lg hover:shadow-xl transition-shadow p-2"
             >
               <Image
                 src={product.imageUrl}
