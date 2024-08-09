@@ -622,7 +622,7 @@ const ProductPage = ({ params }) => {
           throw new Error('Network response was not ok')
         }
         const data = await response.json()
-        console.log('data from api', data)
+        // console.log('data from api', data)
         setProduct(data)
       } catch (error) {
         setIsError(true)
@@ -634,9 +634,9 @@ const ProductPage = ({ params }) => {
     fetchProduct()
   }, [id])
 
-  useEffect(() => {
-    console.log('products on the product page', product)
-  }, [product])
+  // useEffect(() => {
+  //   console.log('products on the product page', product)
+  // }, [product])
 
   const handleThumbnailClick = (index) => {
     setMainImageIndex(index)

@@ -1,4 +1,3 @@
-// Hero.js
 'use client'
 import React, { useContext } from 'react'
 import Image from 'next/image'
@@ -11,7 +10,7 @@ const Hero = () => {
 
   const { products } = useProducts()
   const product = products[0]
-  console.log(product)
+  // console.log(product)
 
   return (
     <div className="relative z-0 w-full h-[100vh] lg:h-[70vh] xl:min-h-screen bg-gray-700 -mt-16 overflow-hidden">

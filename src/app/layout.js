@@ -79,12 +79,13 @@ export default function RootLayout({ children }) {
             </UserProvider>
           </ProductProvider>
         </GlobalStateProvider>
+        <Script
+          id="dotlottie-player"
+          src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+          type="module"
+          crossorigin="anonymous"
+        ></Script>
       </body>
-      <Script
-        id="dotlottie-player"
-        src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-        type="module"
-      ></Script>
     </html>
   )
 }

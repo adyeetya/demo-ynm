@@ -56,7 +56,7 @@ const PaymentSlider = () => {
               <div className="flex p-2 rounded lg:rounded-2xl justify-center items-center shadow-lg w-[100px] h-[60px] lg:w-[150px] lg:h-[90px] border-2 border-gray-400">
                 <Image
                   src={card.imageUrl}
-                  alt={card.heading}
+                  alt="payment method"
                   width={500}
                   height={500}
                   className="rounded lg:rounded-xl object-cover  "
