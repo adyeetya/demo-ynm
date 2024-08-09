@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
+import Cookies from 'js-cookie'
 import { Poppins } from 'next/font/google'
 import { toast } from 'react-hot-toast'
 import CustomDropdown from './StateDropdown' // Import the CustomDropdown component
@@ -12,7 +13,7 @@ import Image from 'next/image'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
-
+const isProduction = process.env.NODE_ENV !== 'development'
 const Page = () => {
   const [step, setStep] = useState(1)
   const [message, setMessage] = useState('')
@@ -180,7 +181,7 @@ const Page = () => {
   }
 
   const fetchUserData = async () => {
-    const token = localStorage.getItem('ynmtoken') // Get the token from local storage
+    const token = Cookies.get('ynmtoken') // Get the token from local storage
     if (!token) {
       console.error('No token found')
       return
@@ -219,7 +220,14 @@ const Page = () => {
         setMessage(data.message)
         if (data.userExists) {
           const token = data.token ?? null
-          localStorage.setItem('ynmtoken', token)
+          // localStorage.setItem('ynmtoken', token)
+          // Set token in cookies
+          Cookies.set('ynmtoken', token, {
+            expires: 7, // Token will expire in 7 days
+            secure: isProduction, // Use secure cookies in production
+            sameSite: isProduction ? 'None' : 'Lax', // Cross-site cookie settings
+            domain: isProduction ? '.yesnmore.com' : undefined, // Set domain for production
+          })
 
           await fetchUserData()
 
@@ -256,7 +264,16 @@ const Page = () => {
 
       if (res.status === 200) {
         const token = data.token ?? null
-        localStorage.setItem('ynmtoken', token)
+        // localStorage.setItem('ynmtoken', token)
+
+        // Set token in cookies
+        Cookies.set('ynmtoken', token, {
+          expires: 7, // Token will expire in 7 days
+          secure: isProduction, // Use secure cookies in production
+          sameSite: isProduction ? 'None' : 'Lax', // Cross-site cookie settings
+          domain: isProduction ? '.yesnmore.com' : undefined, // Set domain for production
+        })
+
         await fetchUserData()
 
         if (referrer === 'cart') {

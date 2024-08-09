@@ -1,6 +1,5 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-
 import { reviewsData } from '../../../data/Reviews'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -363,6 +362,14 @@ const OtherInformation = ({ product, theme }) => {
     }
   }
 
+  const getDarkBg = () => {
+    if (theme === 'lls') {
+      return 'bg-[#0B2251]'
+    } else if (theme === 'maxt') {
+      return 'bg-[#991b1b]'
+    }
+  }
+
   const toggleDetails = () => {
     setIsDetailsOpen(!isDetailsOpen)
   }
@@ -413,7 +420,9 @@ const OtherInformation = ({ product, theme }) => {
       </div>
       <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
         <div className="w-1/2">
-          <h3 className="text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[#0B2251] w-fit px-4 py-1">
+          <h3
+            className={`text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full ${getDarkBg()} w-fit px-4 py-1`}
+          >
             What it will do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -425,7 +434,9 @@ const OtherInformation = ({ product, theme }) => {
           </ul>
         </div>
         <div className="w-1/2">
-          <h3 className="text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[#0B2251] w-fit px-4 py-1">
+          <h3
+            className={`text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full ${getDarkBg()} w-fit px-4 py-1`}
+          >
             What it won&apos;t do
           </h3>
           <ul className="list-disc list-inside mb-4 px-2">
@@ -851,7 +862,7 @@ const ProductPage = ({ params }) => {
                   href="#"
                   className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border px-4 py-2 text-sm ${getConcernClasses()}`}
                 >
-                  LOW TESTOSTERONE 
+                  LOW TESTOSTERONE
                 </Link>
                 <Link
                   href="/experts"

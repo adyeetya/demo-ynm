@@ -12,6 +12,7 @@ import {
 import { Poppins } from 'next/font/google'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
+import Cookies from 'js-cookie'
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
@@ -22,7 +23,7 @@ const CheckoutPage = () => {
   const [isEditing, setIsEditing] = useState(false)
 
   const [token, setToken] = useState(
-    typeof window !== 'undefined' ? localStorage.getItem('ynmtoken') : null
+    typeof window !== 'undefined' ? Cookies.get('ynmtoken') : null
   )
   const { user, setUser } = useUser()
   // console.log(user)
@@ -244,7 +245,7 @@ const CheckoutPage = () => {
             >
               <div className="w-20 h-20 relative rounded-lg overflow-hidden mr-4">
                 <Image
-                  src={item?.productId?.imageUrl}
+                  src={item?.productId?.productImages[0]}
                   alt={item?.productId?.name}
                   width={1000}
                   height={1000}
@@ -292,7 +293,7 @@ const CheckoutPage = () => {
             )}
           </div>
         </div>
-        <div className="col-span-1 flex flex-col justify-between">
+        <div className="col-span-1 flex flex-col justify-between max-h-60">
           <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
           <div className="flex justify-between mb-4">
             <span>Subtotal:</span>

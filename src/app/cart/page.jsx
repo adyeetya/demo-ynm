@@ -4,6 +4,7 @@ import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
+import Cookies from 'js-cookie'
 import { useCart } from '../../context/cartContext'
 import { useUser } from '../../context/userContext'
 import { IoMdStar } from 'react-icons/io'
@@ -22,7 +23,7 @@ const CartPage = () => {
   const [totalPrice, setTotalPrice] = useState(0)
   const { user } = useUser()
   const [token, setToken] = useState(
-    typeof window !== 'undefined' ? localStorage.getItem('ynmtoken') : null
+    typeof window !== 'undefined' ? Cookies.get('ynmtoken') : null
   )
   const router = useRouter()
 

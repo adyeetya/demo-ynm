@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import { useUser } from './userContext'
 import { toast } from 'react-hot-toast'
-
+import Cookies from 'js-cookie'
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
 const CartContext = createContext()
 
@@ -11,8 +11,7 @@ export const CartProvider = ({ children }) => {
   const { user } = useUser()
   const [cart, setCart] = useState([])
   const [loading, setLoading] = useState(true)
-  const token =
-    typeof window !== 'undefined' ? localStorage.getItem('ynmtoken') : null
+  const token = typeof window !== 'undefined' ? Cookies.get('ynmtoken') : null
 
   useEffect(() => {
     const fetchCart = async () => {

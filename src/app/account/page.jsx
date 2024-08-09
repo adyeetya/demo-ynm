@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useUser } from '../../context/userContext'
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 import axios from 'axios'
 import Link from 'next/link'
 import { toast } from 'react-hot-toast'
@@ -47,7 +48,7 @@ const AccountPage = () => {
   const handleSave = async () => {
     try {
       // Retrieve the token from local storage
-      const token = localStorage.getItem('ynmtoken')
+      const token = Cookies.get('ynmtoken')
 
       // Make a PUT request to update user information
       const response = await axios.put(
