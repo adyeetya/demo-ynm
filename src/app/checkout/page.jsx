@@ -86,26 +86,25 @@ const CheckoutPage = () => {
         ...newAddress,
       }
 
-      const response = await fetch(
+      const response = await axios.put(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/update/${user._id}`,
+        updatedAddress,
         {
-          method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
           },
-          body: JSON.stringify(updatedAddress),
         }
       )
-
-      const data = await response.json()
-      if (response.ok) {
-        setIsEditing(false)
-        setUser(data.user)
-        toast.success('Address updated successfully')
-      } else {
+      if (response.status !== 200) {
         toast.error(data.message || 'Failed to update address')
+        throw new Error('Failed to update user information')
       }
+      const { data } = response
+
+      setIsEditing(false)
+      setUser(data.user)
+      toast.success('Address updated successfully')
     } catch (error) {
       console.error('Error updating address:', error)
       toast.error('Failed to update address')
