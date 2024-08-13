@@ -7,7 +7,7 @@ const WelcomeSection = () => {
   return (
     <div className="p-4 bg-gray-100 rounded-lg mb-8">
       <h1 className="text-3xl font-bold mb-2 text-center">
-        Welcome to Yesnmore Clinic
+        Welcome to YESnMORE Clinic
       </h1>
       <p className="text-gray-700 text-center mb-6">
         Find the best expert for your concern
@@ -15,13 +15,13 @@ const WelcomeSection = () => {
       <div className="flex justify-center space-x-4 w-full md:px-6 ">
         <div className="bg-white p-4 rounded-xl flex flex-col justify-center items-center shadow-lg text-center w-1/3">
           <Image
-            src="/images/maledoc.png"
+            src="/images/amit-bansal.webp"
             alt="Specialist Panel"
             className="rounded-full w-16 h-16 md:w-20 md:h-20"
             width={500}
             height={500}
           />
-          <h3 className="text-sm font-semibold">Sexologist Expert</h3>
+          <h3 className="text-sm font-semibold">Urologist Expert</h3>
         </div>
         <div className="bg-white p-4 rounded-xl flex flex-col justify-center items-center shadow-lg text-center w-1/3">
           <Image
@@ -61,10 +61,10 @@ const ExpertCard = ({ expert }) => {
         />
         <div className="flex-1 ml-4">
           <h3 className="text-xl font-bold">{expert.name}</h3>
-          <p className="text-gray-700">{expert.specialization}</p>
-          <p className="text-gray-600">{expert.degree}</p>
+
+          <p className="text-gray-600 text-sm">{expert.degree}</p>
         </div>
-        <span
+        {/* <span
           className={`px-1 py-0 rounded-full ${
             expert.status === 'Online'
               ? 'bg-green-100 text-green-700'
@@ -72,16 +72,12 @@ const ExpertCard = ({ expert }) => {
           }`}
         >
           {expert.status}
-        </span>
+        </span> */}
       </div>
 
       <div className="flex justify-between items-center mb-4">
         <div className="text-gray-600">
-          <span className="font-bold">{expert.experience}</span> experience
-        </div>
-        <div className="text-gray-600">
-          <span className="font-bold">{expert.consultations}</span>{' '}
-          consultations
+          <span className="font-bold">{expert.experience}</span> of experience
         </div>
       </div>
       <p className="text-gray-700 mb-4">
@@ -91,12 +87,9 @@ const ExpertCard = ({ expert }) => {
       <p className="text-gray-600 mb-4">
         Can speak <span className="font-semibold">{expert.languages}</span>
       </p>
-      <div className="flex justify-between">
+      <div className="flex justify-end">
         <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-          Talk now
-        </button>
-        <button className="border border-gray-400 text-gray-700 px-4 py-2 rounded-lg">
-          View Profile
+          Get in Touch
         </button>
       </div>
     </div>
@@ -107,8 +100,8 @@ const GlassShineEffect = () => {
   return (
     <div className="flex h-24 justify-between items-center bg-orange-100 p-4 rounded-lg mb-4 relative glass-shine-container overflow-hidden">
       <div>
-        <h2 className="text-xl font-bold">Talk to any Coach</h2>
-        <p>Get Expert Opinion Now</p>
+        <h2 className="md:text-xl font-bold">Talk to us</h2>
+        <p className="text-sm md:text-base">Get Expert Opinion Now</p>
       </div>
       <button className="bg-orange-400 text-gray-100 px-4 py-2 rounded-lg flex items-center justify-between gap-4">
         Talk Now
@@ -126,14 +119,14 @@ const ExpertSection = () => {
   return (
     <div className="p-4">
       <GlassShineEffect />
-      <h2 className="text-2xl font-bold mb-4">Online Experts</h2>
-      {onlineExperts.map((expert) => (
-        <ExpertCard key={expert.id} expert={expert} />
-      ))}
-      <h2 className="text-2xl font-bold mt-8 mb-4">All Available Experts</h2>
+      <h2 className="text-2xl font-bold mb-4">Our Experts</h2>
       {expertsData.map((expert) => (
         <ExpertCard key={expert.id} expert={expert} />
       ))}
+      {/* <h2 className="text-2xl font-bold mt-8 mb-4">All Available Experts</h2>
+      {expertsData.map((expert) => (
+        <ExpertCard key={expert.id} expert={expert} />
+      ))} */}
     </div>
   )
 }

@@ -13,7 +13,7 @@ import Image from 'next/image'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
-const isProduction = process.env.NODE_ENV !== 'development'
+const isProduction = process.env.NEXT_PUBLIC_NODE_ENV !== 'development'
 const Page = () => {
   const [step, setStep] = useState(1)
   const [message, setMessage] = useState('')
@@ -223,7 +223,7 @@ const Page = () => {
           // localStorage.setItem('ynmtoken', token)
           // Set token in cookies
           Cookies.set('ynmtoken', token, {
-            expires: 7, // Token will expire in 7 days
+            expires: 30, // Token will expire in 30 days
             secure: isProduction, // Use secure cookies in production
             sameSite: isProduction ? 'None' : 'Lax', // Cross-site cookie settings
             domain: isProduction ? '.yesnmore.com' : undefined, // Set domain for production
@@ -268,7 +268,7 @@ const Page = () => {
 
         // Set token in cookies
         Cookies.set('ynmtoken', token, {
-          expires: 7, // Token will expire in 7 days
+          expires: 30, // Token will expire in 30 days
           secure: isProduction, // Use secure cookies in production
           sameSite: isProduction ? 'None' : 'Lax', // Cross-site cookie settings
           domain: isProduction ? '.yesnmore.com' : undefined, // Set domain for production
