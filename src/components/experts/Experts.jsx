@@ -8,7 +8,7 @@ const Experts = () => {
   return (
     <div className="p-4 md:py-6 max-w-screen-xl mx-auto">
       <div className="mb-12">
-        <h2 className="font-bold text-2xl">Meet Our Experts</h2>
+        <h2 className="font-bold text-2xl">Meet Our Expert</h2>
       </div>
       <div className="grid grid-cols-1 ">
         {expertsData.map((expert) => (
