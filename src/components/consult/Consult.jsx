@@ -17,45 +17,41 @@ const Consult = () => {
       </div>
       {/* Wide Cards Section */}
       <div className="flex flex-col md:flex-row gap-14 md:gap-24 mb-12 justify-center">
-        <div className="relative w-full md:w-96">
-          <div className="bg-[#F1F1F1] rounded-3xl shadow-lg flex h-44 md:h-44 relative">
-            <div className="w-2/5 relative h-full">
-              <Image
-                src="/images/—Pngtree—the lab doctor smiles_14602877 1.png"
-                alt="Wide Card 1"
-                width={1000}
-                height={1000}
-                className="absolute object-cover w-full h-full bottom-3 left-0 right-0  ml-2 transform scale-[115%] z-10" // Adjust top position and scale the image
-              />
-            </div>
-            <div className="w-3/5 flex justify-center items-center mb-6">
-              <Link href="/experts" className="font-bold text-lg">
-                Consult for free {'>'}
-              </Link>
-            </div>
-            <div className="absolute bottom-0 left-0 w-full h-[15%] bg-black rounded-b-3xl"></div>
+        <div className="relative w-full h-40  md:w-80">
+          <div className="h-40">
+            <Image
+              src="/images/amit-bansal-nobg.webp"
+              alt="Wide Card 1"
+              width={1000}
+              height={1000}
+              className="absolute top-0 left-0 z-10 h-full w-auto"
+            />
           </div>
+          <div className="absolute inset-x-0 rounded-3xl bottom-0 bg-[#F1F1F1] h-36 w-full flex justify-end items-center">
+            <Link href="/experts" className="font-bold text-lg w-1/2 mr-4">
+              Consult for Free {'>'}
+            </Link>
+          </div>
+          <div className="absolute bottom-0 left-0 w-full h-[15%] bg-black rounded-b-3xl"></div>
         </div>
 
         {/* -------------- */}
-        <div className="relative w-full md:w-96">
-          <div className="bg-[#F1F1F1] rounded-3xl shadow-lg flex h-44 md:h-44 relative">
-            <div className="w-2/5 relative h-full">
-              <Image
-                src="/images/SeekPng.com_hombre-png_1943212 1.png"
-                alt="Wide Card 1"
-                width={1000}
-                height={1000}
-                className="absolute left-0 right-0 -bottom-3 ml-[13px] md:ml-[20px] transform scale-[90%] z-10" // Adjust top position and scale the image
-              />
-            </div>
-            <div className="w-3/5 flex justify-center items-center mb-6">
-              <Link href="/self-assessment" className="font-bold text-lg">
-                Assess myself {'>'}
-              </Link>
-            </div>
-            <div className="absolute bottom-0 left-0 w-full h-[15%] bg-black rounded-b-3xl"></div>
+        <div className="relative w-full h-40  md:w-80">
+          <div className="h-40">
+            <Image
+              src="/images/SeekPng.com_hombre-png_1943212 1.png"
+              alt="Wide Card 1"
+              width={1000}
+              height={1000}
+              className="absolute top-0 left-4 z-10 h-full w-auto"
+            />
           </div>
+          <div className="absolute inset-x-0 rounded-3xl bottom-0 bg-[#F1F1F1] h-36 w-full flex justify-end items-center">
+            <Link href="/self-assessment" className="font-bold text-lg w-1/2">
+              Assess myself {'>'}
+            </Link>
+          </div>
+          <div className="absolute bottom-0 left-0 w-full h-[15%] bg-black rounded-b-3xl"></div>
         </div>
       </div>
 
@@ -100,9 +96,9 @@ const Consult = () => {
       </div>
 
       {/* Other Cards Section */}
-      <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8 justify-center">
+      <div className="flex flex-col md:flex-row gap-4 lg:gap-8 mb-8 justify-between">
         {/* card1 */}
-        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] lg:w-[270px] overflow-hidden">
+        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[320px] lg:h-[380px] md:w-[180px] lg:w-[250px] xl:w-[270px] overflow-hidden">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
@@ -110,24 +106,21 @@ const Consult = () => {
               alt="Card Image"
               width={1000}
               height={1000}
-              className="object-cover md:object-contain lg:object-cover w-full h-full"
+              className="object-cover w-full h-full"
             />
           </div>
 
           {/* Text Section */}
-          <div className="p-4 md:p-6 w-[55%] md:w-full flex flex-col gap-4 justify-center text-gray-100 h-full md:h-[45%]">
-            <Link
-              href="/product/1"
-              className="text-xl font-semibold mb-2 md:mb-0"
-            >
+          <div className="p-2 lg:p-4 w-[55%] md:w-full flex flex-col gap-4 justify-center text-gray-100 h-full md:h-[45%]">
+            <Link href="/product/1" className="lg:text-lg mb-2 md:mb-0">
               Last Long {'>'}
             </Link>
-            <p className="text-sm">Sexual Health Vitality Stamina</p>
+            <p className="text-xs lg:text-sm">Sexual Health Vitality Stamina</p>
           </div>
         </div>
 
         {/* card2 */}
-        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] lg:w-[270px] overflow-hidden brightness-75">
+        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[320px] lg:h-[380px] md:w-[180px] lg:w-[250px] xl:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
@@ -135,26 +128,28 @@ const Consult = () => {
               alt="Card Image"
               width={1000}
               height={1000}
-              className="object-cover md:object-contain lg:object-cover w-full h-full"
+              className="object-cover w-full h-full"
             />
           </div>
 
           {/* Text Section */}
           <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
-            <div className="p-4 h-[80%] flex flex-col gap-4 justify-center text-gray-100">
-              <h2 className="text-xl font-semibold mb-2 md:mb-0">
+            <div className="p-2 lg:p-4 h-[80%] flex flex-col gap-4 justify-center text-gray-100">
+              <h2 className="text-sm lg:text-lg mb-2 md:mb-0">
                 Erection Support {'>'}
               </h2>
-              <p className="text-sm">Nutrition Metabolism Immunity</p>
+              <p className="text-xs lg:text-sm">
+                Nutrition Metabolism Immunity
+              </p>
             </div>
-            <div className="text-white flex justify-center items-center text-lg text-center bg-[var(--light-bg)] h-[20%]">
+            <div className="text-white flex justify-center items-center text-sm lg:text-lg text-center bg-[var(--light-bg)] h-[20%]">
               Coming Soon
             </div>
           </div>
         </div>
 
         {/* card3 */}
-        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] lg:w-[270px] overflow-hidden brightness-75">
+        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[320px] lg:h-[380px] md:w-[180px] lg:w-[250px] xl:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
@@ -162,46 +157,48 @@ const Consult = () => {
               alt="Card Image"
               width={1000}
               height={1000}
-              className="object-cover md:object-contain lg:object-cover w-full h-full"
+              className="object-cover  w-full h-full"
             />
           </div>
 
           {/* Text Section */}
           <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
             <div className="p-4 h-[80%] flex flex-col gap-4 justify-center text-gray-100">
-              <h2 className="text-xl font-semibold mb-2 md:mb-0">
-                Hygiene {'>'}
-              </h2>
-              <p className="text-sm">Sexual Health Vitality Stamina</p>
+              <h2 className="text-sm lg:text-lg mb-2 md:mb-0">Hygiene {'>'}</h2>
+              <p className="text-xs lg:text-sm">
+                Sexual Health Vitality Stamina
+              </p>
             </div>
-            <div className="text-white flex justify-center items-center text-lg text-center bg-[var(--light-bg)] h-[20%]">
+            <div className="text-white flex justify-center items-center text-sm lg:text-lg text-center bg-[var(--light-bg)] h-[20%]">
               Coming Soon
             </div>
           </div>
         </div>
 
         {/* card4 */}
-        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[450px] lg:w-[270px] overflow-hidden brightness-75">
+        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[320px] lg:h-[380px] md:w-[180px] lg:w-[250px] xl:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
-              src="/images/maledoc.png" // dummy image
+              src="/images/amit-bansal-nobg.webp"
               alt="Card Image"
               width={1000}
               height={1000}
-              className="object-cover md:object-contain lg:object-cover w-full h-full"
+              className="object-cover lg:object-contain h-full"
             />
           </div>
 
           {/* Text Section */}
           <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
             <div className="p-4 h-[80%] flex flex-col gap-4 justify-center text-gray-100">
-              <h2 className="text-xl font-semibold mb-2 md:mb-0">
+              <h2 className="text-sm lg:text-lg mb-2 md:mb-0">
                 Wellness {'>'}
               </h2>
-              <p className="text-sm">Nutrition Metabolism Immunity</p>
+              <p className="text-xs lg:text-sm">
+                Nutrition Metabolism Immunity
+              </p>
             </div>
-            <div className="text-white flex justify-center items-center text-lg text-center bg-[var(--light-bg)] h-[20%]">
+            <div className="text-white flex justify-center items-center text-sm lg:text-lg text-center bg-[var(--light-bg)] h-[20%]">
               Coming Soon
             </div>
           </div>

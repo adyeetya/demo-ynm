@@ -20,7 +20,7 @@ const Aboutus = () => {
         </div>
 
         {/* Silver Gradient Section */}
-        <div className="bg-gradient-to-tr from-gray-200 via-gray-200 to-gray-200 flex items-center">
+        <div className="bg-gradient-to-tr from-white via-white to-white flex items-center">
           <div className="flex flex-col items-start  max-w-screen-xl mx-auto px-4 py-16">
             <div className="flex flex-col md:flex-row items-center justify-between mb-8 md:mb-16">
               <Image
@@ -52,7 +52,7 @@ const Aboutus = () => {
                 OUR STORY
                 <AiOutlineArrowRight className="group-hover:scale-125 group-hover:translate-x-3" />
               </Link>
-              <p className="text-[var(--dark-bg)] my-4 text-xl">
+              <p className="text-[var(--dark-bg)] my-4 md:text-xl">
                 We empower Indian men to take control of their sexual health
                 with confidence. We understand the silent struggles and offer a
                 discreet, judgment-free space for personalized guidance and

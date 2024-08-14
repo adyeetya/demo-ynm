@@ -22,6 +22,7 @@ export const metadata = {
     'Sexual Health',
     'Health',
     'Products',
+    'yes n more',
   ],
   authors: [{ name: "Yes'n'more" }],
 }
@@ -73,8 +74,8 @@ export default function RootLayout({ children }) {
               <CartProvider>
                 <Navbar />
                 {children}
-                <SpeedInsights />
                 <Footer />
+                <SpeedInsights />
               </CartProvider>
             </UserProvider>
           </ProductProvider>
