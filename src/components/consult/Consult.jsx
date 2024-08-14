@@ -16,8 +16,8 @@ const Consult = () => {
         <h2 className="font-bold text-2xl">Expert Advice that Works</h2>
       </div>
       {/* Wide Cards Section */}
-      <div className="flex flex-col md:flex-row gap-14 md:gap-24 mb-12 justify-center">
-        <div className="relative w-full h-40  md:w-80">
+      <div className="flex flex-col items-center sm:flex-row gap-14 sm:gap-4 md:gap-24 mb-12 justify-center">
+        <div className="relative w-full h-40 max-w-80 md:w-80">
           <div className="h-40">
             <Image
               src="/images/amit-bansal-nobg.webp"
@@ -28,7 +28,10 @@ const Consult = () => {
             />
           </div>
           <div className="absolute inset-x-0 rounded-3xl bottom-0 bg-[#F1F1F1] h-36 w-full flex justify-end items-center">
-            <Link href="/experts" className="font-bold text-lg w-1/2 mr-4">
+            <Link
+              href="/experts"
+              className="font-semibold whitespace-nowrap md:text-lg w-1/2 mr-4"
+            >
               Consult for Free {'>'}
             </Link>
           </div>
@@ -36,7 +39,7 @@ const Consult = () => {
         </div>
 
         {/* -------------- */}
-        <div className="relative w-full h-40  md:w-80">
+        <div className="relative w-full h-40 max-w-80 md:w-80">
           <div className="h-40">
             <Image
               src="/images/SeekPng.com_hombre-png_1943212 1.png"
@@ -47,7 +50,10 @@ const Consult = () => {
             />
           </div>
           <div className="absolute inset-x-0 rounded-3xl bottom-0 bg-[#F1F1F1] h-36 w-full flex justify-end items-center">
-            <Link href="/self-assessment" className="font-bold text-lg w-1/2">
+            <Link
+              href="/self-assessment"
+              className="font-semibold whitespace-nowrap md:text-lg w-1/2"
+            >
               Assess myself {'>'}
             </Link>
           </div>
