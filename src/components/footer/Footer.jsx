@@ -81,18 +81,18 @@ const Footer = () => {
             <ul>
               <li className="my-2">
                 <Link
-                  href="/about"
+                  href="/our-science"
                   className="hover:underline flex items-center"
                 >
-                  <FaChevronRight className="mr-2 w-2" /> Our Story
+                  <FaChevronRight className="mr-2 w-2" /> Our Science
                 </Link>
               </li>
               <li className="my-2">
                 <Link
-                  href="/faqs"
+                  href="/about"
                   className="hover:underline flex items-center"
                 >
-                  <FaChevronRight className="mr-2 w-2" /> FAQ&apos;s
+                  <FaChevronRight className="mr-2 w-2" /> Our Story
                 </Link>
               </li>
               <li className="my-2">
@@ -105,10 +105,10 @@ const Footer = () => {
               </li>
               <li className="my-2">
                 <Link
-                  href="/our-science"
+                  href="/faqs"
                   className="hover:underline flex items-center"
                 >
-                  <FaChevronRight className="mr-2 w-2" /> Our Science
+                  <FaChevronRight className="mr-2 w-2" /> FAQ&apos;s
                 </Link>
               </li>
             </ul>
