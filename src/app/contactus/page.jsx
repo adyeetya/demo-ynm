@@ -26,7 +26,7 @@ const ContactUs = () => {
       </div>
       <div className="text-left p-4 md:p-12 max-w-screen-xl mx-auto my-12 md:my-0">
         <p className="text-lg mb-4">
-          Hey there, pleasure seeker!🌟 <br /> you've just taken the first step
+          Hey there, pleasure seeker!🌟 <br /> you’ve just taken the first step
           towards a more confident, pleasure-packed life. Got questions? Want to
           share your triumphs? Need a high-five or just want to say “Hello”?
           We’re all ears (and smiles)!
