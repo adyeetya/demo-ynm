@@ -107,44 +107,50 @@ const CartPage = () => {
     }
   }
 
-  const updateQuantity = async (productId, quantity, increase = true) => {
+  const updateQuantity = async (
+    productId,
+    currentQuantity,
+    increase = true
+  ) => {
+    const newQuantity = increase ? currentQuantity + 1 : currentQuantity - 1
+
+    if (newQuantity < 1 || newQuantity > 10) return // Prevent invalid quantities
+
+    // Step 1: Update the UI immediately
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.productId._id === productId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    )
+
+    // Step 2: Update the backend asynchronously
     if (user && user._id) {
       try {
-        const newQuantity = increase ? quantity + 1 : quantity - 1
-        if (newQuantity >= 1 && newQuantity <= 10) {
-          await axios.put(
-            `${serverUrl}/api/cart/update`,
-            {
-              userId: user._id,
-              productId,
-              quantity: newQuantity,
-            },
-            {
-              headers: { Authorization: `Bearer ${token}` },
-            }
-          )
-          setCart((prevCart) =>
-            prevCart.map((item) =>
-              item.productId._id === productId
-                ? { ...item, quantity: newQuantity }
-                : item
-            )
-          )
-        }
+        await axios.put(
+          `${serverUrl}/api/cart/update`,
+          {
+            userId: user._id,
+            productId,
+            quantity: newQuantity,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
       } catch (error) {
-        console.error('Failed to update product quantity', error)
+        console.error('Failed to update product quantity in the backend', error)
+        // Optionally, revert the UI update if the backend update fails
       }
     } else {
-      const newQuantity = increase ? quantity + 1 : quantity - 1
-      if (newQuantity >= 1 && newQuantity <= 10) {
-        const newCart = cart.map((item) =>
-          item.productId._id === productId
-            ? { ...item, quantity: newQuantity }
-            : item
-        )
-        setCart(newCart)
-        localStorage.setItem('ynmc', JSON.stringify(newCart))
-      }
+      // Update local storage for guest users
+      const newCart = cart.map((item) =>
+        item.productId._id === productId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+      localStorage.setItem('ynmc', JSON.stringify(newCart))
     }
   }
 

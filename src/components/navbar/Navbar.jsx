@@ -10,11 +10,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useCart } from '../../context/cartContext'
 import { useUser } from '../../context/userContext'
-import { products } from '../../data/Products'
 import { usePathname } from 'next/navigation'
 const Navbar = () => {
   const { isMenuOpen, setIsMenuOpen } = useContext(GlobalStateContext)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [products, setProducts] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [filteredProducts, setFilteredProducts] = useState([])
   const { cart } = useCart() // Destructure cart from useCart context
@@ -24,6 +26,28 @@ const Navbar = () => {
   const { user } = useUser()
   const pathname = usePathname()
   const isHomePage = pathname === '/'
+  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setIsLoading(true)
+      setIsError(false)
+      try {
+        const response = await fetch(`${serverUrl}/api/products`)
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        const data = await response.json()
+        // console.log('Fetched products:', data)
+        setProducts(data)
+      } catch (error) {
+        setIsError(true)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchProduct()
+  }, [])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -43,7 +67,7 @@ const Navbar = () => {
     if (searchQuery.trim() === '') {
       setFilteredProducts([])
     } else {
-      const filtered = products.filter((product) =>
+      const filtered = products?.filter((product) =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
       )
       setFilteredProducts(filtered)
@@ -83,6 +107,7 @@ const Navbar = () => {
   }, [handleClickOutside])
 
   useEffect(() => {
+    // console.log('Search query:', searchQuery)
     handleSearch()
   }, [searchQuery])
 
@@ -165,7 +190,10 @@ const Navbar = () => {
               <a href="#" className="hover:text-gray-300">
                 Education
               </a>
-              <Link href="/about" className="hover:text-gray-300 whitespace-nowrap">
+              <Link
+                href="/about"
+                className="hover:text-gray-300 whitespace-nowrap"
+              >
                 Our Story
               </Link>
             </div>
@@ -215,14 +243,14 @@ const Navbar = () => {
           </div>
         </div>
       )}
-      {filteredProducts.length > 0 && isSearchOpen && (
+      {filteredProducts?.length > 0 && isSearchOpen && (
         <div className="absolute  left-0 right-0 bg-white shadow-lg p-4 z-10">
           <ul>
             {filteredProducts.map((product) => (
               <Link
-                key={product.id}
+                key={product?._id}
                 onClick={handleLinkClick}
-                href={`/product/${product.id}`}
+                href={`/product/${product?._id}`}
               >
                 <li
                   className="p-2 text-black hover:bg-gray-200"

@@ -366,7 +366,7 @@ const OtherInformation = ({ product, theme }) => {
     if (theme === 'lls') {
       return 'bg-[#0B2251]'
     } else if (theme === 'maxt') {
-      return 'bg-[#991b1b]'
+      return 'bg-[#faa91c]'
     }
   }
 
@@ -483,7 +483,7 @@ const GeneralInfo = ({ product, theme }) => {
     if (theme === 'lls') {
       return "url('/images/product/blue-bg.png')"
     } else if (theme === 'maxt') {
-      return "url('/images/product/MoleculeBg.webp')"
+      return "url('/images/product/maxt_background.webp')"
     }
     return ''
   }
@@ -492,7 +492,7 @@ const GeneralInfo = ({ product, theme }) => {
     if (theme === 'lls') {
       return 'from-blue-300 to-white'
     } else if (theme === 'maxt') {
-      return 'from-red-300 to-white'
+      return 'from-black to-white'
     }
     return ''
   }

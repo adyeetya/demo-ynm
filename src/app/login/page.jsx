@@ -14,6 +14,7 @@ const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
 const isProduction = process.env.NEXT_PUBLIC_NODE_ENV !== 'development'
+// console.log('isProduction', isProduction)
 const Page = () => {
   const [step, setStep] = useState(1)
   const [message, setMessage] = useState('')
@@ -91,19 +92,19 @@ const Page = () => {
     state: Yup.string().required('State is required'),
   })
   const handleStep1Submit = async (values) => {
-    console.log('Form submitted step1:', values)
+    // console.log('Form submitted step1:', values)
 
     await handleSendOtp(values.phoneNumber)
     setPhoneNumber(values.phoneNumber)
   }
 
   const handleStep2Submit = async (values) => {
-    console.log('Form submitted step2:', values)
+    // console.log('Form submitted step2:', values)
     await handleVerifyOtp(values.otp)
   }
 
   const handleStep3Submit = async (values) => {
-    console.log('Form submitted step3:', values)
+    // console.log('Form submitted step3:', values)
     await handleRegister(values)
   }
 
@@ -293,12 +294,12 @@ const Page = () => {
 
   return (
     <div
-      className={`max-w-screen-lg md:mt-12 mx-auto min-h-screen ${poppins.className}`}
+      className={`max-w-screen-lg md:mt-12 mx-auto min-h-[calc(100vh-64px)] ${poppins.className}`}
     >
       <div className="flex flex-col md:flex-row justify-center items-center gap-4">
         <div className="w-full md:w-1/2 h-64 md:h-96 bg-gray-200 flex items-center justify-center rounded-lg">
           <Image
-            src="/images/login/phone-banner.png"
+            src="/images/login/phone-banner-2.png"
             alt="Banner"
             width={1000}
             height={1000}

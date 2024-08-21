@@ -167,7 +167,7 @@ const ProductsPage = () => {
             </label>
             <p>
               {sortOrder && (
-                <span className="font-semibold text-blue-600">
+                <span className="font-semibold capitalize text-blue-600">
                   {sortOrder.replace(/-/g, ' ')}
                 </span>
               )}
@@ -263,7 +263,7 @@ const ProductsPage = () => {
                   className="w-full object-cover rounded-xl"
                 />
               </Link>
-              <div className="p-4">
+              <div className="p-4 h-full flex flex-col justify-between">
                 <Link href={`/product/${product._id}`}>
                   <div>
                     <div className="flex justify-between items-center">
