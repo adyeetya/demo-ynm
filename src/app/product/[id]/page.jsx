@@ -357,7 +357,7 @@ const OtherInformation = ({ product, theme }) => {
   const getUnit = () => {
     if (theme === 'lls') {
       return 'ml'
-    } else if (theme === 'maxt') {
+    } else if (theme === 'maxt' || 'bstw') {
       return 'tablets'
     }
   }
@@ -367,6 +367,8 @@ const OtherInformation = ({ product, theme }) => {
       return 'bg-[#0B2251]'
     } else if (theme === 'maxt') {
       return 'bg-[#faa91c]'
+    } else if (theme === 'bstw') {
+      return 'bg-[#16251d]'
     }
   }
 
@@ -484,6 +486,8 @@ const GeneralInfo = ({ product, theme }) => {
       return "url('/images/product/blue-bg.png')"
     } else if (theme === 'maxt') {
       return "url('/images/product/maxt_background.webp')"
+    } else if (theme === 'bstw') {
+      return "url('/images/product/bstw_background.webp')"
     }
     return ''
   }
@@ -505,22 +509,25 @@ const GeneralInfo = ({ product, theme }) => {
           {categoryInfo.title}
         </h2>
         {/* Compound Highlight Section */}
-        <div className="max-w-screen-xl mx-auto w-full md:mx-auto mb-4 md:mb-8 text-gray-100">
-          <div
-            className={`bg-gradient-to-b rounded-md flex justify-between md:justify-center items-center gap-4 p-2 md:p-6 ${getGradient()}`}
-          >
-            {categoryInfo.images.map((item, index) => (
-              <Image
-                key={index}
-                src={item.points}
-                width={1000}
-                height={1000}
-                className="w-[47%] md:w-72 md:h-56 rounded-md"
-                alt="information"
-              />
-            ))}
+        {/*categoryInfo.images[0].points !== '' &&  */}
+        {categoryInfo.images[0].points !== '' && (
+          <div className="max-w-screen-xl mx-auto w-full md:mx-auto mb-4 md:mb-8 text-gray-100">
+            <div
+              className={`bg-gradient-to-b rounded-md flex justify-between md:justify-center items-center gap-4 p-2 md:p-6 ${getGradient()}`}
+            >
+              {categoryInfo.images.map((item, index) => (
+                <Image
+                  key={index}
+                  src={item.points}
+                  width={1000}
+                  height={1000}
+                  className="w-[47%] md:w-72 md:h-56 rounded-md"
+                  alt="information"
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
         <ul className="space-y-4 text-xs md:text-base">
           {categoryInfo.points.map((point, index) => (
             <li key={index} className="flex flex-col">
@@ -592,6 +599,8 @@ const ProductPage = ({ params }) => {
       setTheme('maxt')
     } else if (product?.name === 'Long Lasting Spray') {
       setTheme('lls')
+    } else if (product?.name === 'BOOSTWAVE') {
+      setTheme('bstw')
     }
   }, [product])
 
@@ -600,6 +609,8 @@ const ProductPage = ({ params }) => {
       return 'border-[#0B2251] hover:bg-[#0B2251] hover:text-gray-100'
     } else if (theme === 'maxt') {
       return 'border-black hover:bg-black hover:text-gray-200'
+    } else if (theme === 'bstw') {
+      return 'border-[#16251d] hover:bg-[#16251d] hover:text-gray-100'
     }
     return ''
   }
@@ -608,6 +619,8 @@ const ProductPage = ({ params }) => {
       return 'border-[#0B2251] hover:bg-[#0B2251] hover:text-gray-100'
     } else if (theme === 'maxt') {
       return 'border-black hover:bg-black hover:text-gray-200'
+    } else if (theme === 'bstw') {
+      return 'border-[#16251d] hover:bg-[#16251d] hover:text-gray-100'
     }
     return ''
   }
