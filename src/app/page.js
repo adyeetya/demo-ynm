@@ -15,8 +15,8 @@ export default function Home() {
       <Hero />
       <Consult />
       <Experts />
-      {/* <Products /> */}
-      <SingleProduct />
+      <Products />
+      {/* <SingleProduct /> */}
       <Aboutus />
       <Reviews />
       <Info />

@@ -311,13 +311,13 @@ const Navbar = () => {
               Education
             </a>
             <a
-              href="#"
+              href="/faqs"
               className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
             >
               FAQ
             </a>
             <a
-              href="#"
+              href="/contactus"
               className="block px-4 py-3 text-lg font-semibold border-b  border-gray-600 "
             >
               Contact

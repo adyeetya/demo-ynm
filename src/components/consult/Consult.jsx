@@ -118,7 +118,7 @@ const Consult = () => {
 
           {/* Text Section */}
           <div className="p-2 lg:p-4 w-[55%] md:w-full flex flex-col gap-4 justify-center text-gray-100 h-full md:h-[45%]">
-            <Link href="/product/1" className="lg:text-lg mb-2 md:mb-0">
+            <Link href="/products" className="lg:text-lg mb-2 md:mb-0">
               Last Long {'>'}
             </Link>
             <p className="text-xs lg:text-sm">Sexual Health Vitality Stamina</p>
@@ -126,7 +126,7 @@ const Consult = () => {
         </div>
 
         {/* card2 */}
-        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[320px] lg:h-[380px] md:w-[180px] lg:w-[250px] xl:w-[270px] overflow-hidden brightness-75">
+        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[320px] lg:h-[380px] md:w-[180px] lg:w-[250px] xl:w-[270px] overflow-hidden ">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
             <Image
@@ -140,21 +140,51 @@ const Consult = () => {
 
           {/* Text Section */}
           <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
-            <div className="p-2 lg:p-4 h-[80%] flex flex-col gap-4 justify-center text-gray-100">
-              <h2 className="text-sm lg:text-lg mb-2 md:mb-0">
+            <div className="p-2 lg:p-4 h-full flex flex-col gap-4 justify-center text-gray-100">
+              <Link
+                href="/products"
+                className="text-sm lg:text-lg mb-2 md:mb-0"
+              >
                 Erection Support {'>'}
-              </h2>
+              </Link>
               <p className="text-xs lg:text-sm">
                 Nutrition Metabolism Immunity
               </p>
             </div>
-            <div className="text-white flex justify-center items-center text-sm lg:text-lg text-center bg-[var(--light-bg)] h-[20%]">
-              Coming Soon
-            </div>
+            
           </div>
         </div>
 
         {/* card3 */}
+        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[320px] lg:h-[380px] md:w-[180px] lg:w-[250px] xl:w-[270px] overflow-hidden ">
+          {/* Image Section */}
+          <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
+            <Image
+              src="/images/amit-bansal-nobg.webp"
+              alt="Card Image"
+              width={1000}
+              height={1000}
+              className="object-cover lg:object-contain h-full"
+            />
+          </div>
+
+          {/* Text Section */}
+          <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
+            <div className="p-4 h-full flex flex-col gap-4 justify-center text-gray-100">
+              <Link
+                href="/products"
+                className="text-sm lg:text-lg mb-2 md:mb-0"
+              >
+                Wellness {'>'}
+              </Link>
+              <p className="text-xs lg:text-sm">
+                Nutrition Metabolism Immunity
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* card4 */}
         <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[320px] lg:h-[380px] md:w-[180px] lg:w-[250px] xl:w-[270px] overflow-hidden brightness-75">
           {/* Image Section */}
           <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
@@ -173,35 +203,6 @@ const Consult = () => {
               <h2 className="text-sm lg:text-lg mb-2 md:mb-0">Hygiene {'>'}</h2>
               <p className="text-xs lg:text-sm">
                 Sexual Health Vitality Stamina
-              </p>
-            </div>
-            <div className="text-white flex justify-center items-center text-sm lg:text-lg text-center bg-[var(--light-bg)] h-[20%]">
-              Coming Soon
-            </div>
-          </div>
-        </div>
-
-        {/* card4 */}
-        <div className="bg-[var(--dark-bg)] rounded-3xl shadow-lg flex flex-row md:flex-col h-44 md:h-[320px] lg:h-[380px] md:w-[180px] lg:w-[250px] xl:w-[270px] overflow-hidden brightness-75">
-          {/* Image Section */}
-          <div className="relative w-[45%] md:w-full h-full md:h-[55%] bg-[var(--light-bg)]">
-            <Image
-              src="/images/amit-bansal-nobg.webp"
-              alt="Card Image"
-              width={1000}
-              height={1000}
-              className="object-cover lg:object-contain h-full"
-            />
-          </div>
-
-          {/* Text Section */}
-          <div className="flex flex-col h-full md:h-[45%] w-[55%] md:w-full">
-            <div className="p-4 h-[80%] flex flex-col gap-4 justify-center text-gray-100">
-              <h2 className="text-sm lg:text-lg mb-2 md:mb-0">
-                Wellness {'>'}
-              </h2>
-              <p className="text-xs lg:text-sm">
-                Nutrition Metabolism Immunity
               </p>
             </div>
             <div className="text-white flex justify-center items-center text-sm lg:text-lg text-center bg-[var(--light-bg)] h-[20%]">

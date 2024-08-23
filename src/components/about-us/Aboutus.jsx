@@ -30,7 +30,7 @@ const Aboutus = () => {
                 height={1000}
                 className="w-full  md:max-w-sm "
               />
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 md:gap-8">
                 <div className="flex justify-center gap-4 md:gap-8">
                   <Image
                     src="/images/about/clinically_tested.webp"
@@ -54,7 +54,7 @@ const Aboutus = () => {
                     className="w-20 h-20"
                   ></Image>
                 </div>
-                {/* <div className="flex gap-4">
+                <div className="flex gap-4 md:gap-8">
                   <Image
                     src="/images/about/FDA.webp"
                     alt=""
@@ -69,7 +69,7 @@ const Aboutus = () => {
                     height={1000}
                     className="w-auto h-16"
                   ></Image>
-                </div> */}
+                </div>
               </div>
             </div>
 
