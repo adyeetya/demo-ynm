@@ -218,7 +218,7 @@ const RatingsReviews = ({ product }) => {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">Rating Breakdown</h3>
-        {Object.keys(product.ratingPercentage).map((key, index) => {
+        {Object.keys(product.ratingPercentage).reverse().map((key, index) => {
           // Extract the numeric part from the key
           const starNumber = key.replace('star', '')
           // Create the display text
@@ -573,7 +573,7 @@ const GeneralInfo = ({ product, theme }) => {
               alt="Right Side Image"
               width={1000}
               height={1000}
-              className="max-w-full h-auto rounded-lg"
+              className="w-auto h-auto rounded-lg max-h-[600px]"
             />
           </div>
         </div>
