@@ -24,15 +24,15 @@ const Products = () => {
         </Link>
       </div>
 
-      <div className="flex flex-wrap md:justify-around gap-4 md:gap-8">
+      <div className="flex flex-wrap sm:justify-around gap-4 md:gap-8">
         {products.map((product) => (
           <div
             key={product._id}
-            className="border border-gray-300 rounded-2xl md:rounded-3xl shadow-xl p-2 md:p-2 flex flex-col h-full w-[calc(50%-0.5rem)] sm:w-44 md:h-[25rem] md:w-72"
+            className="border border-gray-300 rounded-2xl md:rounded-3xl shadow-xl p-2 md:p-2 flex flex-col h-[20rem] sm:h-[23rem] w-[calc(50%-0.5rem)] sm:w-44 md:h-[24rem] md:w-72"
           >
             <Link
               href={`/product/${product._id}`}
-              className="relative w-full h-1/2 overflow-hidden md:h-52 mb-4"
+              className="relative w-full h-[60%] overflow-hidden mb-4"
             >
               <Image
                 src={product.productImages[0]}
@@ -42,15 +42,16 @@ const Products = () => {
                 className="rounded-xl md:rounded-2xl object-cover w-full h-full"
               />
             </Link>
-            <div className='h-1/2 flex flex-col justify-between'>
-              <Link href={`/product/${product._id}`}>
-                <h3 className="text-sm md:text-lg mb-1">{product.name}</h3>
-              </Link>
-
-              <p className="text-[10px] md:text-sm text-gray-700 mb-2">
-                {product.category}
-              </p>
-              <p className="text-[10px] sm:text-xs text-gray-600 mb-4">
+            <div className="h-[40%] flex flex-col justify-between">
+              <div>
+                <Link href={`/product/${product._id}`}>
+                  <h3 className="text-sm md:text-lg">{product.name}</h3>
+                </Link>
+                <p className="text-[10px] md:text-sm text-gray-700">
+                  {product.category}
+                </p>
+              </div>
+              <p className="text-[10px] sm:text-xs text-gray-600">
                 {product.description}
               </p>
               <div className="flex items-center justify-between mx-2 md:mx-3">

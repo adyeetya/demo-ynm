@@ -1,9 +1,10 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { reviewsData } from '../../../data/Reviews'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { useCart } from '../../../context/cartContext'
+import { useUser } from '../../../context/userContext'
 import { IoMdStar } from 'react-icons/io'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
@@ -14,8 +15,11 @@ import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 import { Lora } from 'next/font/google'
 const lora = Lora({ weight: '400', subsets: ['latin'] })
-
+import axios from 'axios'
+import Cookies from 'js-cookie'
+import toast from 'react-hot-toast'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import {
   Carousel,
   CarouselContent,
@@ -31,6 +35,7 @@ import {
   FaHourglass,
   FaShieldAlt,
   FaLeaf,
+  FaTimes,
 } from 'react-icons/fa'
 
 const DetailsHowToUse = ({ product }) => {
@@ -169,22 +174,116 @@ const DetailsHowToUse = ({ product }) => {
   )
 }
 
-const RatingsReviews = ({ product }) => {
-  const reviews = reviewsData.filter(
-    (review) => review.productId === product._id
+const RatingsReviews = ({
+  user,
+  product,
+  showReviewForm,
+  setShowReviewForm,
+  setProduct,
+
+  fetchUser,
+}) => {
+  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
+  const [rating, setRating] = useState(0)
+  const [reviewText, setReviewText] = useState('')
+  const [token, setToken] = useState(
+    typeof window !== 'undefined' ? Cookies.get('ynmtoken') : null
   )
+  const [showEditForm, setShowEditForm] = useState(false)
+  const [editingReviewId, setEditingReviewId] = useState(null)
+  const [showOptions, setShowOptions] = useState(null) // State to show/hide options
 
   if (!product) {
     return <div>Product not found</div>
   }
 
-  const calculateAverageRating = () => {
-    const totalReviews = reviews.length
-    const totalStars = reviews.reduce((sum, review) => sum + review.stars, 0)
-    return (totalStars / totalReviews).toFixed(1)
+  const toggleOptions = (reviewId) => {
+    setShowOptions(showOptions === reviewId ? null : reviewId)
   }
 
-  const averageRating = calculateAverageRating()
+  const handleDeleteReview = async (reviewId) => {
+    try {
+      const response = await axios.delete(
+        `${serverUrl}/api/reviews/delete/${reviewId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          data: { userId: user._id },
+        }
+      )
+
+      if (response.status === 200) {
+        toast.success('Review deleted successfully!')
+        const data = response.data
+        if (data.success) {
+          setProduct(data.updatedProduct) // Update the product state with the new data
+        }
+        fetchUser()
+        // Update the product state by removing the deleted review
+        // updateProduct(response.data.updatedProduct);
+      } else {
+        toast.error('Failed to delete review')
+      }
+    } catch (error) {
+      toast.error('An error occurred while deleting your review')
+      console.error('Delete review error:', error)
+    }
+  }
+
+  const handleEditReview = (review) => {
+    setEditingReviewId(review._id)
+    setRating(review.rating)
+    setReviewText(review.reviewText)
+    setShowEditForm(true)
+  }
+
+  const handleSubmitReview = async (e) => {
+    e.preventDefault()
+
+    try {
+      const url = editingReviewId
+        ? `${serverUrl}/api/reviews/edit/${editingReviewId}`
+        : `${serverUrl}/api/reviews/add`
+
+      const method = editingReviewId ? 'put' : 'post'
+
+      const response = await axios[method](
+        url,
+        {
+          userId: user._id,
+          productId: product._id,
+          rating,
+          reviewText,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+
+      if (response.status === 200 || response.status === 201) {
+        toast.success(
+          editingReviewId
+            ? 'Review updated successfully!'
+            : 'Thank you for your review!'
+        )
+        setShowReviewForm(false)
+        setEditingReviewId(null)
+        // console.log('Review submitted:', response.data)
+        const data = response.data
+
+        if (data.success) {
+          setProduct(data.updatedProduct) // Update the product state with the new data
+        }
+        fetchUser()
+        // Update the product state with the new review and updated rating
+        // updateProduct(response.data.updatedProduct);
+      } else {
+        toast.error(response.data)
+      }
+    } catch (error) {
+      toast.error('An error occurred while submitting your review')
+      console.error('Submit review error:', error)
+    }
+  }
 
   return (
     <div className="py-4">
@@ -212,75 +311,212 @@ const RatingsReviews = ({ product }) => {
             </div>
             <div className="ml-2 text-xl">{product.rating} out of 5</div>
           </div>
-          <div className="text-sm text-gray-600">{reviews.length} reviews</div>
+          <div className="text-sm text-gray-600">
+            {product.reviews.length} reviews
+          </div>
         </div>
       </div>
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">Rating Breakdown</h3>
-        {Object.keys(product.ratingPercentage).reverse().map((key, index) => {
-          // Extract the numeric part from the key
-          const starNumber = key.replace('star', '')
-          // Create the display text
-          const displayText = `${starNumber} Star${starNumber > 1 ? 's' : ''}`
+        {Object.keys(product.ratingPercentage)
+          .reverse()
+          .map((key, index) => {
+            const starNumber = key.replace('star', '')
+            const displayText = `${starNumber} Star${starNumber > 1 ? 's' : ''}`
 
-          return (
-            <div key={index} className="flex items-center mb-2">
-              <span className="w-20">{displayText}</span>
-              <div className="flex items-center w-full">
-                <div className="w-full bg-gray-200 rounded-full h-4 mx-2 relative">
-                  <div
-                    className="absolute bg-blue-500 h-4 rounded-full"
-                    style={{ width: `${product.ratingPercentage[key]}%` }}
-                  ></div>
+            return (
+              <div key={index} className="flex items-center mb-2">
+                <span className="w-20">{displayText}</span>
+                <div className="flex items-center w-full">
+                  <div className="w-full bg-gray-200 rounded-full h-4 mx-2 relative">
+                    <div
+                      className="absolute bg-blue-500 h-4 rounded-full"
+                      style={{ width: `${product.ratingPercentage[key]}%` }}
+                    ></div>
+                  </div>
+                  <span className="ml-2 w-[17%] md:w-[5%]">
+                    {product.ratingPercentage[key]}%
+                  </span>
                 </div>
-                <span className="ml-2 w-[17%] md:w-[5%]">
-                  {product.ratingPercentage[key]}%
-                </span>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
       </div>
 
       <div>
         <h3 className="text-lg font-semibold mb-2">Customer Reviews</h3>
-        {reviews.length > 0 ? (
-          reviews.map((review, index) => (
-            <div key={index} className="mb-4 p-4 border rounded">
-              <div className="flex items-center mb-2">
-                <div className="font-semibold">{review.customerName}</div>
-                <div className="ml-2 text-yellow-500">
-                  {Array.from({ length: review.stars }, (_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 inline-block"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.975a1 1 0 00.95.691h4.18c.969 0 1.371 1.24.588 1.81l-3.38 2.456a1 1 0 00-.364 1.118l1.287 3.975c.3.921-.755 1.688-1.54 1.118l-3.381-2.457a1 1 0 00-1.175 0l-3.381 2.457c-.784.57-1.84-.197-1.54-1.118l1.287-3.975a1 1 0 00-.364-1.118L2.245 9.403c-.784-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.691l1.286-3.975z" />
-                    </svg>
-                  ))}
-                  {Array.from({ length: 5 - review.stars }, (_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 inline-block text-gray-300"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.975a1 1 0 00.95.691h4.18c.969 0 1.371 1.24.588 1.81l-3.38 2.456a1 1 0 00-.364 1.118l1.287 3.975c.3.921-.755 1.688-1.54 1.118l-3.381-2.457a1 1 0 00-1.175 0l-3.381 2.457c-.784.57-1.84-.197-1.54-1.118l1.287-3.975a1 1 0 00-.364-1.118L2.245 9.403c-.784-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.691l1.286-3.975z" />
-                    </svg>
-                  ))}
+        {product.reviews.length > 0 ? (
+          product.reviews.map((review, index) => (
+            <div key={index} className="mb-4 p-4 border rounded relative">
+              <div className="flex items-center mb-2 justify-between">
+                <div className="flex items-center">
+                  <div className="font-semibold text-sm">
+                    {review.userId.name}
+                  </div>
+                  <div className="ml-2 mb-1 text-yellow-500">
+                    {Array.from({ length: review.rating }, (_, i) => (
+                      <svg
+                        key={i}
+                        className="w-5 h-5 inline-block"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.975a1 1 0 00.95.691h4.18c.969 0 1.371 1.24.588 1.81l-3.38 2.456a1 1 0 00-.364 1.118l1.287 3.975c.3.921-.755 1.688-1.54 1.118l-3.381-2.457a1 1 0 00-1.175 0l-3.381 2.457c-.784.57-1.84-.197-1.54-1.118l1.287-3.975a1 1 0 00-.364-1.118L2.245 9.403c-.784-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.691l1.286-3.975z" />
+                      </svg>
+                    ))}
+                    {Array.from({ length: 5 - review.rating }, (_, i) => (
+                      <svg
+                        key={i}
+                        className="w-5 h-5 inline-block text-gray-300"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.975a1 1 0 00.95.691h4.18c.969 0 1.371 1.24.588 1.81l-3.38 2.456a1 1 0 00-.364 1.118l1.287 3.975c.3.921-.755 1.688-1.54 1.118l-3.381-2.457a1 1 0 00-1.175 0l-3.381 2.457c-.784.57-1.84-.197-1.54-1.118l1.287-3.975a1 1 0 00-.364-1.118L2.245 9.403c-.784-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.691l1.286-3.975z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <div className="text-gray-500 text-xs ml-4">
+                    {new Date(review.createdAt).toLocaleDateString()}
+                  </div>
                 </div>
+                {review.userId._id === user?._id && (
+                  <div
+                    className="relative"
+                    onClick={() => toggleOptions(review._id)}
+                  >
+                    <BiDotsHorizontalRounded />
+                    {showOptions === review._id && (
+                      <div className="text-sm absolute right-0 mt-2 w-24 bg-white border border-gray-300 rounded shadow-lg">
+                        <button
+                          className="block w-full text-left px-4 py-1 text-gray-700 hover:bg-gray-200"
+                          onClick={() => handleEditReview(review)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="block w-full text-left px-4 py-1 text-red-600 hover:bg-gray-200"
+                          onClick={() => handleDeleteReview(review._id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
-              <div className="text-gray-600">{review.review}</div>
-              <div className="text-sm text-gray-400">
-                {new Date().toLocaleDateString()}
-              </div>
+
+              {editingReviewId === review._id ? (
+                <form onSubmit={handleSubmitReview}>
+                  <h4 className="font-bold mb-2">Edit your review</h4>
+                  <div className="mb-4">
+                    <label className="block mb-1 font-semibold">Rating</label>
+                    <div className="flex">
+                      {Array.from({ length: 5 }, (_, i) => (
+                        <svg
+                          key={i}
+                          className={`w-8 h-8 cursor-pointer ${
+                            i < rating ? 'text-yellow-500' : 'text-gray-300'
+                          }`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          onClick={() => setRating(i + 1)}
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.975a1 1 0 00.95.691h4.18c.969 0 1.371 1.24.588 1.81l-3.38 2.456a1 1 0 00-.364 1.118l1.287 3.975c.3.921-.755 1.688-1.54 1.118l-3.381-2.457a1 1 0 00-1.175 0l-3.381 2.457c-.784.57-1.84-.197-1.54-1.118l1.287-3.975a1 1 0 00-.364-1.118L2.245 9.403c-.784-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.691l1.286-3.975z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1 font-semibold">Review</label>
+                    <textarea
+                      className="w-full px-3 py-2 border rounded"
+                      value={reviewText}
+                      onChange={(e) => setReviewText(e.target.value)}
+                      rows="4"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                  >
+                    Submit
+                  </button>
+                  <button
+                    type="button"
+                    className="ml-4 text-gray-600"
+                    onClick={() => {
+                      setEditingReviewId(null)
+                      setShowReviewForm(false)
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </form>
+              ) : (
+                <>
+                  <div className="text-gray-800 text-sm">
+                    {review.reviewText}
+                  </div>
+                </>
+              )}
             </div>
           ))
         ) : (
-          <div>No reviews available</div>
+          <div className="text-gray-600">No reviews yet. Be the first!</div>
+        )}
+      </div>
+
+      {/* div for write review */}
+
+      <div className="mt-8" id="review-section">
+        {showReviewForm && (
+          <form onSubmit={handleSubmitReview}>
+            <h4 className="font-bold mb-2">Write your review</h4>
+            <div className="mb-4">
+              <label className="block mb-1 font-semibold">Rating</label>
+              <div className="flex">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <svg
+                    key={i}
+                    className={`w-8 h-8 cursor-pointer ${
+                      i < rating ? 'text-yellow-500' : 'text-gray-300'
+                    }`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    onClick={() => setRating(i + 1)}
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.975a1 1 0 00.95.691h4.18c.969 0 1.371 1.24.588 1.81l-3.38 2.456a1 1 0 00-.364 1.118l1.287 3.975c.3.921-.755 1.688-1.54 1.118l-3.381-2.457a1 1 0 00-1.175 0l-3.381 2.457c-.784.57-1.84-.197-1.54-1.118l1.287-3.975a1 1 0 00-.364-1.118L2.245 9.403c-.784-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.691l1.286-3.975z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="block mb-1 font-semibold">Review</label>
+              <textarea
+                className="w-full px-3 py-2 border rounded"
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
+                rows="4"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              className="ml-4 text-gray-600"
+              onClick={() => {
+                setEditingReviewId(null)
+                setShowReviewForm(false)
+              }}
+            >
+              Cancel
+            </button>
+          </form>
         )}
       </div>
     </div>
@@ -593,6 +829,10 @@ const ProductPage = ({ params }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
   const [theme, setTheme] = useState('default')
+  const [hasPurchased, setHasPurchased] = useState(false)
+  const [showReviewPrompt, setShowReviewPrompt] = useState(true)
+  const [showReviewForm, setShowReviewForm] = useState(false)
+  const { user, fetchUser } = useUser()
 
   useEffect(() => {
     if (product?.name === 'MAX T') {
@@ -635,7 +875,7 @@ const ProductPage = ({ params }) => {
           throw new Error('Network response was not ok')
         }
         const data = await response.json()
-        // console.log('data from api', data)
+        console.log('data from api', data)
         setProduct(data)
       } catch (error) {
         setIsError(true)
@@ -646,6 +886,31 @@ const ProductPage = ({ params }) => {
 
     fetchProduct()
   }, [id])
+
+  useEffect(() => {
+    if (user && user.orderHistory && product) {
+      // Check if the product is in the user's order history
+      const purchased = user.orderHistory.some(
+        (order) => order.productId.toString() === product._id.toString()
+      )
+      setHasPurchased(purchased)
+
+      // Check if the user has already reviewed the product
+      const hasReviewed = user.reviewHistory.some((review) =>
+        product.reviews.some(
+          (productReview) =>
+            productReview._id.toString() === review.reviewId.toString()
+        )
+      )
+      // console.log('hasReviewed: ', hasReviewed)
+      // If the user has already reviewed the product, hide the review prompt
+      if (hasReviewed) {
+        setShowReviewPrompt(false)
+      } else {
+        setShowReviewPrompt(true)
+      }
+    }
+  }, [user, product])
 
   // useEffect(() => {
   //   console.log('products on the product page', product)
@@ -672,6 +937,19 @@ const ProductPage = ({ params }) => {
   const percentageOff = product
     ? calculatePercentageOff(product.mrp, product.price)
     : 0
+
+  const handleWriteReviewClick = () => {
+    setShowReviewPrompt(false)
+    setShowReviewForm(true)
+  }
+  useEffect(() => {
+    if (showReviewForm) {
+      const reviewSection = document.getElementById('review-section')
+      if (reviewSection) {
+        reviewSection.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }, [showReviewForm])
 
   // const similarProductPercentageOff = (mrp, price) => {
   //   return ((mrp - price) / mrp) * 100
@@ -949,17 +1227,17 @@ const ProductPage = ({ params }) => {
           </div>
 
           <div className=" md:mx-0 w-full">
-            <button
+            {/* <button
               onClick={handleAddToCart}
               className="w-1/2 md:w-1/3  text-2xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-bold px-6 py-3  hover:bg-[#0B2251] hover:text-white transition-colors"
             >
               BUY
-            </button>
+            </button> */}
             <button
               onClick={handleAddToCart}
-              className="w-1/2 md:w-1/3 text-2xl mt-1 md:mt-4 bg-[#E6F1FF] font-bold px-6 py-3 hover:bg-[#0B2251] hover:text-white transition-colors"
+              className="w-full text-xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-semibold hover:font-medium hover:scale-105 hover:shadow-lg px-4 py-2 hover:bg-[#0B2251] hover:text-white transition-colors"
             >
-              CART
+              Add to cart
             </button>
           </div>
 
@@ -985,7 +1263,37 @@ const ProductPage = ({ params }) => {
       </div>
       {/* reviewsrating */}
       <div id="ratings-reviews" className="max-w-screen-xl mx-auto p-4">
-        <RatingsReviews product={product} />
+        <RatingsReviews
+          setShowReviewPrompt={setShowReviewPrompt}
+          product={product}
+          setProduct={setProduct}
+          user={user}
+          fetchUser={fetchUser}
+          showReviewForm={showReviewForm}
+          setShowReviewForm={setShowReviewForm}
+        />
+      </div>
+
+      <div>
+        {hasPurchased && showReviewPrompt && (
+          <div className="fixed bottom-4 z-50 right-4 p-4 bg-gray-100 border border-gray-300 rounded-2xl shadow-md">
+            <div className="flex justify-between items-center">
+              <p className="text-sm">Enjoyed this product? Leave a review!</p>
+              <button
+                className="ml-2 text-gray-600 hover:text-gray-800"
+                onClick={() => setShowReviewPrompt(false)}
+              >
+                <FaTimes />
+              </button>
+            </div>
+            <button
+              className="mt-2 text-sm px-4 py-2 bg-blue-600 text-white w-full rounded-xl"
+              onClick={handleWriteReviewClick}
+            >
+              Write a Review
+            </button>
+          </div>
+        )}
       </div>
 
       {/* similar products */}

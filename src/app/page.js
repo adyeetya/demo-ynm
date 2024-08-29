@@ -14,7 +14,7 @@ export default function Home() {
     <main className={poppins.className}>
       <Hero />
       <Consult />
-      <Experts />
+      {/* <Experts /> */}
       <Products />
       {/* <SingleProduct /> */}
       <Aboutus />

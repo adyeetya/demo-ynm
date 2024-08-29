@@ -13,6 +13,7 @@ import { Poppins } from 'next/font/google'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
 import Cookies from 'js-cookie'
+import { LuFileLock } from 'react-icons/lu'
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
@@ -116,6 +117,31 @@ const CheckoutPage = () => {
     day: 'numeric',
     month: 'long',
   })
+
+  const simulatePayment = async () => {
+    try {
+      const response = await axios.post(
+        `${serverUrl}/api/users/simulatePayment`,
+        { userId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+
+      if (response.status === 200) {
+        toast.success('Payment successful and order placed!')
+        setCart([]) // Clear the cart on the frontend
+      } else {
+        toast.error('Payment failed, please try again.')
+      }
+    } catch (error) {
+      console.error('Error during payment simulation:', error)
+      toast.error('Payment failed, please try again.')
+    }
+  }
+
   return (
     <div
       className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
@@ -312,10 +338,16 @@ const CheckoutPage = () => {
           >
             Proceed to Pay
           </button>
+          {/* <button
+            className="mt-2 w-fit rounded-full hover:bg-blue-600 transition-colors bg-black text-gray-100 px-8 py-2 text-center"
+            onClick={simulatePayment}
+          >
+            Buy now
+          </button> */}
         </div>
       </div>
     </div>
-  )
+)
 }
 
 export default CheckoutPage
