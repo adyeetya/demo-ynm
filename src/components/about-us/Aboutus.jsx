@@ -20,7 +20,7 @@ const Aboutus = () => {
         </div>
 
         {/* Silver Gradient Section */}
-        <div className="bg-gradient-to-tr from-white via-white to-white flex items-center">
+        <div className="bg-[#FEF5E4] flex items-center">
           <div className="flex flex-col items-start  max-w-screen-xl mx-auto px-4 py-16">
             <div className="flex w-full flex-col md:flex-row items-center justify-between mb-8 md:mb-16">
               <Image
@@ -30,28 +30,28 @@ const Aboutus = () => {
                 height={1000}
                 className="w-full  md:max-w-sm "
               />
-              <div className="flex flex-col gap-4 md:gap-8">
+              {/* <div className="flex flex-col gap-4 md:gap-8">
                 <div className="flex justify-center gap-4 md:gap-8">
                   <Image
                     src="/images/about/clinically_tested.webp"
                     alt=""
                     width={1000}
                     height={1000}
-                    className="w-20 h-20"
+                    className="w-14 h-14"
                   ></Image>
                   <Image
                     src="/images/about/Cruelty_free.webp"
                     alt=""
                     width={1000}
                     height={1000}
-                    className="w-20 h-20"
+                    className="w-14 h-14"
                   ></Image>
                   <Image
                     src="/images/about/GMP_certificate.webp"
                     alt=""
                     width={1000}
                     height={1000}
-                    className="w-20 h-20"
+                    className="w-14 h-14"
                   ></Image>
                 </div>
                 <div className="flex gap-4 md:gap-8">
@@ -60,17 +60,17 @@ const Aboutus = () => {
                     alt=""
                     width={1000}
                     height={1000}
-                    className="w-auto h-16"
+                    className="w-auto h-10"
                   ></Image>
                   <Image
                     src="/images/about/FSSAI.webp"
                     alt=""
                     width={1000}
                     height={1000}
-                    className="w-auto h-16"
+                    className="w-auto h-10"
                   ></Image>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="text-left">
@@ -78,7 +78,7 @@ const Aboutus = () => {
                 href="/about"
                 className="group w-fit text-2xl md:text-3xl font-semibold flex items-center gap-2 text-[var(--dark-bg)]"
               >
-                <div className="w-20 md:w-24 h-20 md:h-24">
+                {/* <div className="w-20 md:w-24 h-20 md:h-24">
                   <dotlottie-player
                     src="https://lottie.host/e0e14799-7a40-466b-aa32-202df8c479d0/Hae5JPwY5c.json"
                     background="transparent"
@@ -87,7 +87,7 @@ const Aboutus = () => {
                     loop
                     autoplay
                   ></dotlottie-player>
-                </div>
+                </div> */}
                 OUR STORY
                 <AiOutlineArrowRight className="group-hover:scale-125 group-hover:translate-x-3" />
               </Link>

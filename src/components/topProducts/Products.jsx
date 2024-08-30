@@ -24,44 +24,41 @@ const Products = () => {
         </Link>
       </div>
 
-      <div className="flex flex-wrap sm:justify-around gap-4 md:gap-8">
+      <div className="grid lg:grid-cols-2 md:justify-around gap-4 md:gap-8">
         {products.map((product) => (
-          <div
-            key={product._id}
-            className="border border-gray-300 rounded-2xl md:rounded-3xl shadow-xl p-2 md:p-2 flex flex-col h-[20rem] sm:h-[23rem] w-[calc(50%-0.5rem)] sm:w-44 md:h-[24rem] md:w-72"
-          >
+          <div key={product._id} className="w-full p-2 md:p-2 flex gap-4">
             <Link
               href={`/product/${product._id}`}
-              className="relative w-full h-[60%] overflow-hidden mb-4"
+              className="relative w-[50%] overflow-hidden mb-4"
             >
               <Image
-                src={product.productImages[0]}
+                src={product.productImages[product.productImages.length - 1]}
                 alt={product.name}
                 width={1000}
                 height={1000}
-                className="rounded-xl md:rounded-2xl object-cover w-full h-full"
+                className="rounded-xl hover:rotate-3 hover:scale-105 md:rounded-2xl object-contain h-[300px] md:h-[400px] w-full"
               />
             </Link>
-            <div className="h-[40%] flex flex-col justify-between">
+            <div className="flex w-[50%] flex-col justify-center gap-4">
               <div>
                 <Link href={`/product/${product._id}`}>
-                  <h3 className="text-sm md:text-lg">{product.name}</h3>
+                  <h3 className="text-sm md:text-2xl">{product.name}</h3>
                 </Link>
                 <p className="text-[10px] md:text-sm text-gray-700">
                   {product.category}
                 </p>
               </div>
-              <p className="text-[10px] sm:text-xs text-gray-600">
+              <p className="text-xs sm:text-sm text-gray-600">
                 {product.description}
               </p>
-              <div className="flex items-center justify-between mx-2 md:mx-3">
+              <div className="flex flex-col items-start justify-between gap-2">
                 <div className="text-[12px] md:text-sm flex items-center justify-center gap-1 md:gap-2">
                   {product.rating}{' '}
                   <IoMdStar className="w-4 h-4 md:w-5 md:h-5 text-yellow-500 mb-[2px]" />
                 </div>
                 <button
                   onClick={() => handleAddToCart(product)}
-                  className=" text-white py-1 px-2 md:px-3 border hover:border-black rounded-lg hover:bg-white hover:text-black bg-black transition-colors duration-300 text-[9px] md:text-sm"
+                  className=" text-white py-1 px-2 md:px-3 border hover:border-black rounded-lg hover:bg-white hover:text-black bg-black transition-colors duration-300"
                 >
                   Add to cart
                 </button>

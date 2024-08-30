@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useCart } from '../../../context/cartContext'
 import { useUser } from '../../../context/userContext'
 import { IoMdStar } from 'react-icons/io'
+import { IoCartOutline } from 'react-icons/io5'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -28,6 +29,8 @@ import {
   CarouselPrevious,
 } from '../../../components/ui/carousel'
 
+import { useRouter } from 'next/navigation'
+
 import {
   FaFlask,
   FaCheckCircle,
@@ -43,11 +46,11 @@ const DetailsHowToUse = ({ product }) => {
 
   const iconMap = {
     FaFlask: <FaFlask className="text-[#999999]" />,
-    FaCheckCircle: <FaCheckCircle className="text-[#ff0000]" />,
-    FaSprayCan: <FaSprayCan className="text-[#c6c630]" />,
-    FaHourglass: <FaHourglass className="text-[#ff9933]" />,
-    FaShieldAlt: <FaShieldAlt className="text-[#00cc00]" />,
-    FaLeaf: <FaLeaf className="text-[#339900]" />,
+    FaCheckCircle: <FaCheckCircle className="text-[#999999]" />,
+    FaSprayCan: <FaSprayCan className="text-[#999999]" />,
+    FaHourglass: <FaHourglass className="text-[#999999]" />,
+    FaShieldAlt: <FaShieldAlt className="text-[#999999]" />,
+    FaLeaf: <FaLeaf className="text-[#999999]" />,
   }
   if (!product) {
     return <div>Product not found</div>
@@ -833,7 +836,7 @@ const ProductPage = ({ params }) => {
   const [showReviewPrompt, setShowReviewPrompt] = useState(true)
   const [showReviewForm, setShowReviewForm] = useState(false)
   const { user, fetchUser } = useUser()
-
+  const router = useRouter()
   useEffect(() => {
     if (product?.name === 'MAX T') {
       setTheme('maxt')
@@ -950,6 +953,11 @@ const ProductPage = ({ params }) => {
       }
     }
   }, [showReviewForm])
+
+  const handleBuyNow = () => {
+    addToCart(product)
+    router.push('/cart')
+  }
 
   // const similarProductPercentageOff = (mrp, price) => {
   //   return ((mrp - price) / mrp) * 100
@@ -1081,7 +1089,7 @@ const ProductPage = ({ params }) => {
                 alt={`Product image ${mainImageIndex + 1}`}
                 width={1000}
                 height={1000}
-                className="rounded-lg object-cover"
+                className="rounded-lg object-contain max-h-[500px]"
               />
             </Zoom>
           </div>
@@ -1226,18 +1234,18 @@ const ProductPage = ({ params }) => {
             </div>
           </div>
 
-          <div className=" md:mx-0 w-full">
-            {/* <button
-              onClick={handleAddToCart}
-              className="w-1/2 md:w-1/3  text-2xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-bold px-6 py-3  hover:bg-[#0B2251] hover:text-white transition-colors"
-            >
-              BUY
-            </button> */}
+          <div className=" md:mx-0 w-full flex gap-4 ">
             <button
               onClick={handleAddToCart}
-              className="w-full text-xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-semibold hover:font-medium hover:scale-105 hover:shadow-lg px-4 py-2 hover:bg-[#0B2251] hover:text-white transition-colors"
+              className="rounded w-fit text-xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-semibold hover:font-medium hover:scale-105 hover:shadow-lg px-4 py-2 hover:bg-[#0B2251] hover:text-white transition-colors"
             >
-              Add to cart
+              <IoCartOutline />
+            </button>
+            <button
+              onClick={handleBuyNow}
+              className="rounded w-full text-xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-bold px-4 py-2  hover:bg-[#0B2251] hover:text-white transition-colors"
+            >
+              Buy Now
             </button>
           </div>
 

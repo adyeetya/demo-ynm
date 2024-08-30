@@ -11,7 +11,7 @@ import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'] })
 export default function Home() {
   return (
-    <main className={poppins.className}>
+    <main className={`${poppins.className} bg-[#FEF5E4]`}>
       <Hero />
       <Consult />
       {/* <Experts /> */}
