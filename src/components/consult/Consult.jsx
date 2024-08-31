@@ -36,7 +36,7 @@ const Consult = () => {
             className="w-full rounded"
           />
         </div>
-        <div className="w-full md:w-1/2 flex flex-col justify-between px-4 md:px-0 md:py-4">
+        <div className="w-full md:w-1/2 flex flex-col justify-between px-4 py-2 md:px-0 md:py-4">
           <h2 className="text-xl font-bold mb-4">Last Long</h2>
           <p className="text-xs">
             Long-lasting problems in sexual wellness can significantly impact
@@ -64,7 +64,7 @@ const Consult = () => {
             className="w-full rounded"
           />
         </div>
-        <div className="w-full md:w-1/2 flex flex-col justify-between px-4 md:px-0 md:py-4">
+        <div className="w-full md:w-1/2 flex flex-col justify-between px-4 md:px-0 py-2 md:py-4">
           <h2 className="text-xl font-bold mb-4">Erection Support</h2>
           <p className="text-xs">
             Erection support involves various strategies and treatments to help
@@ -74,7 +74,7 @@ const Consult = () => {
           </p>
           <Link
             href="/product/66c9a2fe0686cead3079c72a"
-            className="rounded-full text-center px-4 py-2 bg-[var(--dark-bg)] text-white w-full my-4"
+            className="rounded-full text-center px-4 py-2 bg-[var(--dark-bg)] text-white w-full mt-4"
           >
             Solution for it
           </Link>
@@ -335,7 +335,7 @@ const Consult = () => {
             <div className="w-16 h-16 md:w-28 md:h-28 rounded-full bg-[#A2A685] flex items-center justify-center overflow-hidden z-10">
               <Image
                 src="/images/DOCTOR.webp"
-                alt="Step 1"
+                alt="Step 2"
                 width={1000}
                 height={1000}
                 className="w-12 h-16 md:w-20 md:h-28"
@@ -348,11 +348,11 @@ const Consult = () => {
           <div className="relative flex flex-col items-center w-1/3">
             <div className="w-16 h-16 md:w-28 md:h-28 rounded-full bg-[#A2A685] flex items-center justify-center overflow-hidden z-10">
               <Image
-                src="/images/product-bg.png"
-                alt="Step 1"
+                src="/images/Long_lasting_box.webp"
+                alt="Step 3"
                 width={1000}
                 height={1000}
-                className="w-6 h-12 md:w-12 md:h-24"
+                className="object-contain h-12 md:h-24"
               />
             </div>
           </div>

@@ -166,7 +166,7 @@ const Navbar = () => {
                 alt="logo"
                 width={1000}
                 height={1000}
-                className="w-20 md:w-24 h-14 md:h-16 "
+                className="w-20 md:w-24 h-14 md:h-16 p-3"
                 priority
               />
             </a>

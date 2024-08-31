@@ -35,7 +35,7 @@ const types = [
 ]
 const PaymentSlider = () => {
   return (
-    <div className="max-w-screen-lg mx-auto p-0 md:p-4 mt-12">
+    <div className="max-w-screen-md mx-auto py-12">
       <h2 className="text-xl mb-8 text-center">
         {' '}
         Complete your Payment with any of these Payment Methods
@@ -53,13 +53,13 @@ const PaymentSlider = () => {
               key={card.id}
               className="basis-1/3 lg:basis-1/4 "
             >
-              <div className="flex p-2 rounded lg:rounded-2xl justify-center items-center shadow-lg w-[100px] h-[60px] lg:w-[150px] lg:h-[90px] border-2 border-gray-400">
+              <div className="flex p-2 rounded lg:rounded-md justify-center items-center">
                 <Image
                   src={card.imageUrl}
                   alt="payment method"
                   width={500}
                   height={500}
-                  className="rounded lg:rounded-xl object-cover  "
+                  className="rounded lg:rounded-md object-contain w-[100px] h-[60px] lg:w-[100px] lg:h-[50px]"
                 />
               </div>
             </BrandsCarouselItem>
@@ -71,3 +71,5 @@ const PaymentSlider = () => {
 }
 
 export default PaymentSlider
+
+

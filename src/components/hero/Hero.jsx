@@ -17,7 +17,7 @@ const Hero = () => {
       {/* Desktop Image */}
       <div className="hidden md:block absolute inset-0 overflow-hidden">
         <Image
-          src="/images/hero/webview_banner_blue.webp"
+          src="/images/hero/Long_lasting_web_banner.webp"
           alt="Desktop Background Image"
           height={1000}
           width={1000}
@@ -29,7 +29,7 @@ const Hero = () => {
       {/* Mobile Image */}
       <div className="block md:hidden absolute inset-0">
         <Image
-          src="/images/hero/phoneview_banner_blue.webp"
+          src="/images/hero/Long_lasting_phone_banner.webp"
           alt="Mobile Background Image"
           width={1000}
           height={1000}
@@ -46,7 +46,7 @@ const Hero = () => {
       <div className="absolute mt-16 inset-0 z-10 flex flex-col justify-between md:justify-center items-start md:items-center p-4 md:p-0">
         <Link
           href="/self-assessment"
-          className={`z-10 absolute top-0 left-0 right-0 w-fit text-black py-1 px-6 rounded-xl mx-auto mt-8 font-semibold text-lg bg-gray-300 hover:bg-black hover:text-gray-100 ${
+          className={`z-10 absolute top-0 left-0 right-0 w-fit text-black py-1 px-6 rounded-full mx-auto mt-8 font-semibold text-lg bg-white hover:bg-black hover:text-gray-100 ${
             isMenuOpen ? 'hidden' : 'block'
           }`}
         >
@@ -65,14 +65,14 @@ const Hero = () => {
             <p className="text-lg mb-12">like never before!</p>
             {product ? (
               <Link
-                href={`/product/${product._id}`}
+                href={`/products`}
                 className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full"
               >
-                BUY NOW
+                explore
               </Link>
             ) : (
               <div className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full">
-                BUY NOW
+                explore
               </div>
             )}
           </div>
@@ -90,14 +90,14 @@ const Hero = () => {
             <p className="text-lg">like never before!</p>
             {product ? (
               <Link
-                href={`/product/${product._id}`}
+                href={`/products`}
                 className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full"
               >
-                BUY NOW
+                explore
               </Link>
             ) : (
               <div className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full">
-                BUY NOW
+                explore
               </div>
             )}
           </div>

@@ -15,22 +15,22 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row text-center max-w-screen-xl mx-auto">
         <div className="w-full md:w-1/2 flex flex-col items-center justify-center gap-8">
           {/* Images and Text Section */}
-          <div className="flex justify-center items-center max-w-md mx-auto">
+          <div className="flex justify-center items-center max-w-md mx-auto gap-8 p-4">
             <Image
               src="/images/logo.png"
               width={1000}
               height={1000}
               alt="Image 1"
-              className="w-32 md:w-44 h-24 md:h-32 mr-4"
+              className="h-14 w-24 md:h-20 md:w-32"
             />
-            <p className="text-xl font-semibold -ml-6">by</p>
-            <a href="https://www.apcomedicare.com/">
+            <p className="text-xl font-semibold">by</p>
+            <a href="https://www.apcomedicare.com/" target="_blank">
               <Image
                 src="/images/apco-logo.png"
                 width={1000}
                 height={1000}
                 alt="Image 1"
-                className="w-20 h-10 ml-4"
+                className="w-20 h-10"
               />
             </a>
           </div>
@@ -120,6 +120,7 @@ const Footer = () => {
             <a
               href="https://www.instagram.com/yesnmoreofficial/"
               className="hover:underline"
+              target="_blank"
             >
               <FaInstagram className="text-gray-100 w-6 h-6" />
             </a>

@@ -1089,7 +1089,7 @@ const ProductPage = ({ params }) => {
                 alt={`Product image ${mainImageIndex + 1}`}
                 width={1000}
                 height={1000}
-                className="rounded-lg object-contain max-h-[500px]"
+                className="rounded-lg object-contain"
               />
             </Zoom>
           </div>

@@ -1,0 +1,39 @@
+.product-image {
+  animation: float 3s ease-out infinite;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+#shadow {
+  position: absolute;
+  height: 20px;
+  width: 300px;
+  bottom: -25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  filter: blur(5px);
+  animation: shrink 3s ease-out infinite;
+}
+@media (max-width: 640px) {
+  #shadow {
+    bottom: -30%;
+  }
+}
+
+@keyframes shrink {
+  0% {
+    width: 50%;
+  }
+  50% {
+    width: 40%;
+  }
+  100% {
+    width: 50%;
+  }
+}
