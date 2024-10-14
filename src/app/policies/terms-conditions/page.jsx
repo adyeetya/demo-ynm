@@ -19,14 +19,14 @@ const Page = () => {
           &quot;we&quot; or &quot;us&quot;) is the owner, operator, and manager
           of the website known as Yes N More.com. You understand and agree that
           you are bound by the terms listed below, or as may be revised from
-          time to time (the "User Agreement"), for as long as you use or access
-          the website. By doing so, you are deemed to have accepted these terms
-          and conditions, which are in effect for an indefinite period of time.
-          Please send us an email at Support@yesnmore.com, if you have any
-          questions concerning the terms and conditions of this User Agreement
-          or if you have any suggestions or grievances regarding the Website.
-          The terms and conditions of this User Agreement may be modified by us
-          at any time without prior notice.
+          time to time (the &quot;User Agreement&quot;), for as long as you use
+          or access the website. By doing so, you are deemed to have accepted
+          these terms and conditions, which are in effect for an indefinite
+          period of time. Please send us an email at Support@yesnmore.com, if
+          you have any questions concerning the terms and conditions of this
+          User Agreement or if you have any suggestions or grievances regarding
+          the Website. The terms and conditions of this User Agreement may be
+          modified by us at any time without prior notice.
         </p>
       </div>
       <div className="my-4">
@@ -277,8 +277,8 @@ const Page = () => {
         <h2 className="font-semibold">Warranties and Liability Disclaimer</h2>
         <p>
           {" "}
-          - The services on this website are offered "as is" and "as available"
-          without any hidden or express warranties.
+          - The services on this website are offered &quot;as is&quot; and
+          &quot;as available&quot; without any hidden or express warranties.
         </p>
         <p>
           {" "}

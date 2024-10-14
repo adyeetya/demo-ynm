@@ -244,12 +244,12 @@ const Page = () => {
           Marketing Communications with WhatsApp Messenger
         </h2>
         <p>
-          You (the "User") grant Yes & More permission to communicate with you
-          on WhatsApp for all of its transactional and promotional messaging and
-          communication needs by opting in or accepting the terms and
-          conditions. We promise to handle your information with care, utilize
-          it to improve your interactions with us, and provide you access to the
-          best offers and discounts.
+          You (the &quot;User&quot;) grant Yes & More permission to communicate
+          with you on WhatsApp for all of its transactional and promotional
+          messaging and communication needs by opting in or accepting the terms
+          and conditions. We promise to handle your information with care,
+          utilize it to improve your interactions with us, and provide you
+          access to the best offers and discounts.
         </p>
       </div>
 

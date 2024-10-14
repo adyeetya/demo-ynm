@@ -72,9 +72,9 @@ const Page = () => {
       <div className="my-4">
         <h2 className="font-semibold">Order Refunds</h2>
         <p>
-          Before it is shipped, you can quickly cancel your order from the "My
-          Orders" tab. In the event that the order is cancellable, a "Cancel"
-          button will appear beside it.
+          Before it is shipped, you can quickly cancel your order from the
+          &quot;My Orders&quot; tab. In the event that the order is cancellable,
+          a &quot;Cancel&quot; button will appear beside it.
         </p>
       </div>
 
@@ -82,7 +82,7 @@ const Page = () => {
         <h2 className="font-semibold">Prepaid Orders</h2>
         <p>
           - Refunds will be applied to the original payment method within 5-7
-          days if the order is in the "Complete" step.
+          days if the order is in the &quot;Complete&quot; step.
         </p>
         <p>
           - Refunds for orders that haven&quot;t been fulfilled yet will start
