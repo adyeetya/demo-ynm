@@ -162,43 +162,88 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <a href="/" className="flex justify-center items-center">
               <Image
+                src="/images/ynm-logo-wide.webp"
+                alt="logo"
+                width={1000}
+                height={1000}
+                className="h-6 w-auto hidden lg:block"
+                priority
+              />
+
+              <Image
                 src="/images/logo.png"
                 alt="logo"
                 width={1000}
                 height={1000}
-                className="w-20 md:w-24 h-14 md:h-16 p-3"
+                className="h-8 w-auto block lg:hidden"
                 priority
               />
             </a>
           </div>
-          <div className="flex justify-end items-center flex-1 space-x-6 md:space-x-12">
-            <div className="hidden md:flex space-x-12">
+
+          <div className="hidden md:flex space-x-4 lg:space-x-8">
+            <Link
+              href="/products"
+              className="glass-effect-button hover:hover-button active:scale-95"
+            >
+              Products
+            </Link>
+            <Link
+              href="#"
+              className="glass-effect-button hover:hover-button active:scale-95"
+            >
+              Education
+            </Link>
+            <Link
+              href="/about"
+              className="glass-effect-button hover:hover-button active:scale-95"
+            >
+              Our Story
+            </Link>
+          </div>
+
+          <div className="hidden md:flex space-x-4 lg:space-x-8">
+            <button
+              onClick={toggleSearch}
+              className="glass-effect-button hover:hover-button active:scale-95"
+            >
+              <IoIosSearch className="h-6 w-6 text-gray-100" />
+            </button>
+            <Link href="/cart">
+              <div className="relative glass-effect-button hover:hover-button active:scale-95">
+                <IoCartOutline className="h-6 w-6 text-gray-100" />
+                <span className="absolute -top-2 -right-2 bg-blue-600 text-gray-100 rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              </div>
+            </Link>
+            <div className="flex justify-center items-center">
               {!user ? (
-                <Link href="/login" className="hover:text-gray-300">
+                <Link
+                  href="/login"
+                  className="glass-effect-button hover:hover-button active:scale-95"
+                >
                   Login
                 </Link>
               ) : (
-                <>
-                  <Link href="/account" className="hover:text-gray-300">
-                    Account
-                  </Link>
-                </>
+                <Link
+                  href="/account"
+                  className="glass-effect-button hover:hover-button active:scale-95"
+                >
+                  Account
+                </Link>
               )}
-              <a href="/products" className="hover:text-gray-300">
-                Products
-              </a>
-              <a href="#" className="hover:text-gray-300">
-                Education
-              </a>
-              <Link
-                href="/about"
-                className="hover:text-gray-300 whitespace-nowrap"
-              >
-                Our Story
-              </Link>
             </div>
+          </div>
+          <div className="flex space-x-4 md:hidden">
+            <button
+              onClick={toggleSearch}
+              className="glass-effect-button hover:hover-button active:scale-95"
+            >
+              <IoIosSearch className="h-6 w-6 text-gray-100" />
+            </button>
             <Link href="/cart">
-              <div className="relative">
+              <div className="relative glass-effect-button hover:hover-button active:scale-95">
                 <IoCartOutline className="h-6 w-6 text-gray-100" />
                 <span className="absolute -top-2 -right-2 bg-blue-600 text-gray-100 rounded-full text-xs w-5 h-5 flex items-center justify-center">
                   {cartCount}
@@ -206,14 +251,8 @@ const Navbar = () => {
               </div>
             </Link>
             <button
-              onClick={toggleSearch}
-              className="focus:outline-none md:mr-4 search-button"
-            >
-              <IoIosSearch className="h-6 w-6 text-gray-100" />
-            </button>
-            <button
               onClick={toggleMenu}
-              className="md:hidden focus:outline-none menu-button"
+              className=" focus:outline-none menu-button"
             >
               {isMenuOpen ? (
                 <IoClose className="h-6 w-6 text-gray-100" />

@@ -1,46 +1,46 @@
-'use client'
-import React, { useState, useEffect } from 'react'
-import { useUser } from '../../context/userContext'
-import axios from 'axios'
-import Image from 'next/image'
+"use client";
+import React, { useState, useEffect } from "react";
+import { useUser } from "../../context/userContext";
+import axios from "axios";
+import Image from "next/image";
 import {
   FaRegEdit,
   FaShippingFast,
   FaChevronUp,
   FaChevronDown,
-} from 'react-icons/fa'
-import { Poppins } from 'next/font/google'
-import Link from 'next/link'
-import toast from 'react-hot-toast'
-import Cookies from 'js-cookie'
-import { LuFileLock } from 'react-icons/lu'
+} from "react-icons/fa";
+import { Poppins } from "next/font/google";
+import Link from "next/link";
+import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import { LuFileLock } from "react-icons/lu";
 
-const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
-const poppins = Poppins({ weight: '400', subsets: ['latin'] })
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 const CheckoutPage = () => {
-  const [cart, setCart] = useState([])
-  const [showOffers, setShowOffers] = useState(false)
-  const [isEditing, setIsEditing] = useState(false)
+  const [cart, setCart] = useState([]);
+  const [showOffers, setShowOffers] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const [token, setToken] = useState(
-    typeof window !== 'undefined' ? Cookies.get('ynmtoken') : null
-  )
-  const { user, setUser } = useUser()
+    typeof window !== "undefined" ? Cookies.get("ynmtoken") : null
+  );
+  const { user, setUser } = useUser();
   // console.log(user)
-  const userId = user?._id
-  const [newAddress, setNewAddress] = useState({})
+  const userId = user?._id;
+  const [newAddress, setNewAddress] = useState({});
   useEffect(() => {
     if (user) {
       setNewAddress({
-        address: user.address || '',
-        landmark: user.landmark || '',
-        city: user.city || '',
-        state: user.state || '',
-        pincode: user.pincode || '',
-      })
+        address: user.address || "",
+        landmark: user.landmark || "",
+        city: user.city || "",
+        state: user.state || "",
+        pincode: user.pincode || "",
+      });
     }
-  }, [user])
+  }, [user]);
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -50,73 +50,73 @@ const CheckoutPage = () => {
           {
             headers: { Authorization: `Bearer ${token}` },
           }
-        )
+        );
         if (response.status === 200) {
           // console.log('res cart', response.data.cart)
-          setCart(response.data.cart)
+          setCart(response.data.cart);
         }
       } catch (error) {
-        console.error('Error fetching cart:', error)
+        console.error("Error fetching cart:", error);
       }
-    }
+    };
 
-    fetchCart()
-  }, [user, token])
+    fetchCart();
+  }, [user, token, userId]);
 
   // Calculate total price based on quantity
   const totalPrice = cart.reduce(
     (acc, item) => acc + item?.productId?.price * item.quantity,
     0
-  )
+  );
 
   const offers = [
-    '10% off on orders above ₹500',
-    'Free shipping on your first order',
-    'Buy 1 get 1 free on select items',
-  ]
+    "10% off on orders above ₹500",
+    "Free shipping on your first order",
+    "Buy 1 get 1 free on select items",
+  ];
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setNewAddress((prevAddress) => ({ ...prevAddress, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setNewAddress((prevAddress) => ({ ...prevAddress, [name]: value }));
+  };
 
   const handleSave = async () => {
     try {
       const updatedAddress = {
         ...user,
         ...newAddress,
-      }
+      };
 
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/update/${user._id}`,
         updatedAddress,
         {
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`, // Include the token in the Authorization header
           },
         }
-      )
+      );
       if (response.status !== 200) {
-        toast.error(data.message || 'Failed to update address')
-        throw new Error('Failed to update user information')
+        toast.error(data.message || "Failed to update address");
+        throw new Error("Failed to update user information");
       }
-      const { data } = response
+      const { data } = response;
 
-      setIsEditing(false)
-      setUser(data.user)
-      toast.success('Address updated successfully')
+      setIsEditing(false);
+      setUser(data.user);
+      toast.success("Address updated successfully");
     } catch (error) {
-      console.error('Error updating address:', error)
-      toast.error('Failed to update address')
+      console.error("Error updating address:", error);
+      toast.error("Failed to update address");
     }
-  }
-  const twoDaysFromNow = new Date()
-  twoDaysFromNow.setDate(twoDaysFromNow.getDate() + 2)
-  const deliveryDate = twoDaysFromNow.toLocaleDateString('en-IN', {
-    day: 'numeric',
-    month: 'long',
-  })
+  };
+  const twoDaysFromNow = new Date();
+  twoDaysFromNow.setDate(twoDaysFromNow.getDate() + 2);
+  const deliveryDate = twoDaysFromNow.toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+  });
 
   const simulatePayment = async () => {
     try {
@@ -128,19 +128,19 @@ const CheckoutPage = () => {
             Authorization: `Bearer ${token}`,
           },
         }
-      )
+      );
 
       if (response.status === 200) {
-        toast.success('Payment successful and order placed!')
-        setCart([]) // Clear the cart on the frontend
+        toast.success("Payment successful and order placed!");
+        setCart([]); // Clear the cart on the frontend
       } else {
-        toast.error('Payment failed, please try again.')
+        toast.error("Payment failed, please try again.");
       }
     } catch (error) {
-      console.error('Error during payment simulation:', error)
-      toast.error('Payment failed, please try again.')
+      console.error("Error during payment simulation:", error);
+      toast.error("Payment failed, please try again.");
     }
-  }
+  };
 
   return (
     <div
@@ -298,7 +298,7 @@ const CheckoutPage = () => {
               onClick={() => setShowOffers((prev) => !prev)}
               className="mt-2 flex items-center text-blue-600 hover:underline"
             >
-              {showOffers ? 'Hide Offers' : 'View Offers'}
+              {showOffers ? "Hide Offers" : "View Offers"}
               {showOffers ? (
                 <FaChevronUp className="ml-1" />
               ) : (
@@ -334,7 +334,7 @@ const CheckoutPage = () => {
           </div>
           <button
             className="rounded-full hover:bg-blue-600 transition-colors bg-black text-gray-100 px-8 py-2 text-center"
-            onClick={() => alert('Payment functionality to be implemented')}
+            onClick={() => alert("Payment functionality to be implemented")}
           >
             Proceed to Pay
           </button>
@@ -347,7 +347,7 @@ const CheckoutPage = () => {
         </div>
       </div>
     </div>
-)
-}
+  );
+};
 
-export default CheckoutPage
+export default CheckoutPage;

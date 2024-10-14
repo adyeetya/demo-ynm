@@ -1,12 +1,18 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react'
-
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from '../ui/carousel'
 const reviewsData = [
   {
     id: 1,
     title: 'Great Product!',
     description: 'This product really helped me a lot. Highly recommend!',
-    videoUrl: '/videos/videoplayback.mp4',
+    videoUrl: '/videos/review-vid1.mp4',
   },
   {
     id: 2,
@@ -25,6 +31,12 @@ const reviewsData = [
     title: 'Amazing Experience!',
     description: 'I had an amazing experience with this product. Five stars!',
     videoUrl: '/videos/videoplayback.mp4',
+  },
+  {
+    id: 5,
+    title: 'Great Product!',
+    description: 'This product really helped me a lot. Highly recommend!',
+    videoUrl: '/videos/review-vid1.mp4',
   },
 
   // Add more review objects as needed
@@ -52,69 +64,88 @@ const Reviews = () => {
   }, [playingVideoId])
 
   return (
-    <div className="p-4 md:py-6 max-w-screen-xl mx-auto">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold">Customer Reviews</h2>
+    <div className=" my-12">
+      <div className="p-4 md:py-6 max-w-screen-xl mx-auto mb-8 text-center">
+        <h2 className="text-3xl font-bold">
+          Feel-Good{' '}
+          <span className="text-[#fbd354] font-bold tracking-wide text-4xl">
+            Feedback
+          </span>
+        </h2>
         <p className="text-sm text-gray-600">
           See what our customers have to say about our products.
         </p>
       </div>
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-8">
-        {reviewsData.map((review) => (
-          <div
-            key={review.id}
-            className="bg-white shadow-md rounded-lg flex flex-col"
-          >
-            <div className="relative pb-[100%]">
-              <video
-                ref={(element) => (videoRefs.current[review.id] = element)}
-                src={review.videoUrl}
-                controls={false}
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-                loop
-                playsInline
-              />
-              <button
-                onClick={() => handlePlayPause(review.id)}
-                className="absolute inset-0 flex items-center justify-center bg-transparent"
+    
+      <div className="bg-[#fbd354] py-24 w-full h-full">
+        <Carousel
+          opts={{
+            loop: true,
+            align: 'start',
+          }}
+          className="w-full p-4 px-12 md:py-6 max-w-screen-xl mx-auto"
+        >
+          <CarouselContent className="-ml-1">
+            {reviewsData.map((review) => (
+              <CarouselItem
+                key={review.id}
+                className=" rounded-lg md:basis-1/2 lg:basis-1/4 px-4"
               >
-                <div className="bg-white rounded-full p-2">
-                  {playingVideoId === review.id ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M10 9v6m4-6v6"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M14.752 11.168l-5.197-3.132A1 1 0 008 8.868v6.264a1 1 0 001.555.832l5.197-3.132a1 1 0 000-1.664z"
-                      />
-                    </svg>
-                  )}
+                <div className="relative pb-[160%]">
+                  <video
+                    ref={(element) => (videoRefs.current[review.id] = element)}
+                    src={review.videoUrl}
+                    controls={false}
+                    className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
+                    loop
+                    playsInline
+                  />
+                  <button
+                    onClick={() => handlePlayPause(review.id)}
+                    className="absolute inset-0 flex items-center justify-center bg-transparent"
+                  >
+                    <div className="glass-effect-button rounded-full p-2">
+                      {playingVideoId === review.id ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="white"
+                          className="w-12 h-12"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="1"
+                            d="M10 9v6m4-6v6"
+                          />
+                        </svg>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="white"
+                          className="w-12 h-12"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="1"
+                            d="M14.752 11.168l-5.197-3.132A1 1 0 008 8.868v6.264a1 1 0 001.555.832l5.197-3.132a1 1 0 000-1.664z"
+                          />
+                        </svg>
+                      )}
+                    </div>
+                  </button>
                 </div>
-              </button>
-            </div>
-          </div>
-        ))}
+                <h2 className="text-center mt-2">{review.title}</h2>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </div>
   )

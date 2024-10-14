@@ -1,26 +1,26 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from "react";
 
 const CustomDropdown = ({ options, selected, onSelectedChange }) => {
-  const [open, setOpen] = useState(false)
-  const dropdownRef = useRef(null)
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOpen(false)
+        setOpen(false);
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleOptionClick = (option) => {
-    onSelectedChange(option) // Update the selected state value
-    setOpen(false)
-  }
+    onSelectedChange(option); // Update the selected state value
+    setOpen(false);
+  };
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -28,10 +28,10 @@ const CustomDropdown = ({ options, selected, onSelectedChange }) => {
         className="border border-gray-300 rounded-lg p-2 w-full cursor-pointer"
         onClick={() => setOpen(!open)}
       >
-        {selected ? selected : 'Select State'}
+        {selected ? selected : "Select State"}
       </div>
       {open && (
-        <ul className="absolute left-0 right-0 mt-2 bg-white border border-gray-300 rounded-lg max-h-60 overflow-y-auto z-10">
+        <ul className="absolute left-0 right-0 mt-2 bg-white border border-gray-300 rounded-lg max-h-60 overflow-y-auto z-50">
           {options.map((option, index) => (
             <li
               key={index}
@@ -44,7 +44,7 @@ const CustomDropdown = ({ options, selected, onSelectedChange }) => {
         </ul>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default CustomDropdown
+export default CustomDropdown;

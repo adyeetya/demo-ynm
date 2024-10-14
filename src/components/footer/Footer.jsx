@@ -11,129 +11,166 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-[var(--dark-bg)] text-gray-100 py-8">
+    <footer className="bg-[#3a472e] pt-8 pb-4 relative">
+      {/* Background image with noise */}
+      <div className="absolute inset-0 bg-[url('/images/noiseEffect-bg.webp')] opacity-40 bg-cover bg-center z-0"></div>
       <div className="flex flex-col md:flex-row text-center max-w-screen-xl mx-auto">
-        <div className="w-full md:w-1/2 flex flex-col items-center justify-center gap-8">
+        <div className="w-full md:w-1/2 flex flex-col items-start justify-center gap-8 px-4">
           {/* Images and Text Section */}
-          <div className="flex justify-center items-center max-w-md mx-auto gap-8 p-4">
+          <div className="flex flex-col justify-center items-start gap-2 z-10">
             <Image
-              src="/images/logo.png"
+              src="/images/ynm-logo-wide.webp"
               width={1000}
               height={1000}
               alt="Image 1"
-              className="h-14 w-24 md:h-20 md:w-32"
+              className="h-4 w-auto md:h-8 md:w-auto"
             />
-            <p className="text-xl font-semibold">by</p>
-            <a href="https://www.apcomedicare.com/" target="_blank">
-              <Image
-                src="/images/apco-logo.png"
-                width={1000}
-                height={1000}
-                alt="Image 1"
-                className="w-20 h-10"
-              />
-            </a>
+            <div className="flex justify-center items-center gap-2">
+              <p className="text-sm font-semibold text-white">by</p>
+              <a href="https://www.apcomedicare.com/" target="_blank">
+                <Image
+                  src="/images/apco-logo.png"
+                  width={1000}
+                  height={1000}
+                  alt="Image 1"
+                  className="w-16 h-auto"
+                />
+              </a>
+            </div>
+          </div>
+          {/* social links */}
+          <div className="z-10">
+            <ul className="flex justify-center space-x-4 md:space-x-8">
+              <li className="bg-white rounded-full w-8 h-8 flex justify-center items-center">
+                <a href="#" className=" ">
+                  <FaFacebookF className="text-gray-900 w-6 h-6" />
+                </a>
+              </li>
+              <li className="bg-white rounded-full w-8 h-8 flex justify-center items-center">
+                <a href="#" className="hover:underline">
+                  <FaTwitter className="text-gray-900 w-6 h-6" />
+                </a>
+              </li>
+              <li className="bg-white rounded-full w-8 h-8 flex justify-center items-center">
+                <a
+                  href="https://www.instagram.com/yesnmoreofficial/"
+                  className="hover:underline"
+                  target="_blank"
+                >
+                  <FaInstagram className="text-gray-900 w-6 h-6" />
+                </a>
+              </li>
+              <li className="bg-white rounded-full w-8 h-8 flex justify-center items-center">
+                <a href="#" className="hover:underline">
+                  <FaLinkedinIn className="text-gray-900 w-6 h-6" />
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/* address */}
+          <div className="text-white text-left text-sm">
+            <h2>
+              Lorem Ipsum 20/90 <br /> lorem ipsum 20, <br /> 2222002, Delhi
+            </h2>
           </div>
         </div>
 
         {/* Links Section */}
-        <div className="w-full md:w-1/2 flex flex-row justify-center gap-8 mx-auto">
-          <div>
-            <ul>
-              <li className="my-2">
-                <Link
-                  href="/our-science"
-                  className="hover:underline flex items-center"
-                >
-                  <FaChevronRight className="mr-2 w-2" /> Our Science
-                </Link>
-              </li>
-              <li className="my-2">
-                <Link
-                  href="/about"
-                  className="hover:underline flex items-center"
-                >
-                  <FaChevronRight className="mr-2 w-2" /> Our Story
-                </Link>
-              </li>
-              <li className="my-2">
-                <Link
-                  href="/contactus"
-                  className="hover:underline flex items-center"
-                >
-                  <FaChevronRight className="mr-2 w-2" /> Contact Us
-                </Link>
-              </li>
-              <li className="my-2">
-                <Link
-                  href="/faqs"
-                  className="hover:underline flex items-center"
-                >
-                  <FaChevronRight className="mr-2 w-2" /> FAQ&apos;s
-                </Link>
-              </li>
-            </ul>
+        <div className="flex flex-col w-full md:w-1/2 px-4 text-white items-center justify-center gap-8 z-10">
+          <div className=" flex flex-row justify-center gap-8 text-right">
+            <div>
+              <ul>
+                <li className="my-2">
+                  <Link
+                    href="/our-science"
+                    className="hover:underline flex items-center"
+                  >
+                    <FaChevronRight className="mr-2 w-2" /> Our Science
+                  </Link>
+                </li>
+                <li className="my-2">
+                  <Link
+                    href="/about"
+                    className="hover:underline flex items-center"
+                  >
+                    <FaChevronRight className="mr-2 w-2" /> Our Story
+                  </Link>
+                </li>
+                <li className="my-2">
+                  <Link
+                    href="/contactus"
+                    className="hover:underline flex items-center"
+                  >
+                    <FaChevronRight className="mr-2 w-2" /> Contact Us
+                  </Link>
+                </li>
+                <li className="my-2">
+                  <Link
+                    href="/faqs"
+                    className="hover:underline flex items-center"
+                  >
+                    <FaChevronRight className="mr-2 w-2" /> FAQ&apos;s
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul>
+                <li className="my-2">
+                  <a
+                    href="/policies/terms-conditions"
+                    className="hover:underline flex items-center"
+                  >
+                    <FaChevronRight className="mr-2 w-2" /> Terms & Conditions
+                  </a>
+                </li>
+                <li className="my-2">
+                  <a
+                    href="/policies/shipping"
+                    className="hover:underline flex items-center"
+                  >
+                    <FaChevronRight className="mr-2 w-2" /> Shipping Policy
+                  </a>
+                </li>
+                <li className="my-2">
+                  <a
+                    href="/policies/privacy"
+                    className="hover:underline flex items-center"
+                  >
+                    <FaChevronRight className="mr-2 w-2" /> Privacy Policy
+                  </a>
+                </li>
+                <li className="my-2">
+                  <a
+                    href="/policies/cancellation-refund"
+                    className="hover:underline flex items-center"
+                  >
+                    <FaChevronRight className="mr-2 w-2" /> Cancellation &
+                    Refund Policy
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <ul>
-              <li className="my-2">
-                <a href="#" className="hover:underline flex items-center">
-                  <FaChevronRight className="mr-2 w-2" /> Terms and Conditions
-                </a>
-              </li>
-              <li className="my-2">
-                <a href="#" className="hover:underline flex items-center">
-                  <FaChevronRight className="mr-2 w-2" /> Shipping Policy
-                </a>
-              </li>
-              <li className="my-2">
-                <a href="#" className="hover:underline flex items-center">
-                  <FaChevronRight className="mr-2 w-2" /> Privacy Policy
-                </a>
-              </li>
-              <li className="my-2">
-                <a href="#" className="hover:underline flex items-center">
-                  <FaChevronRight className="mr-2 w-2" /> Cancellation Policy
-                </a>
-              </li>
-            </ul>
+          <div className='ml-auto'>
+            <p className="text-sm mb-2 text-right">Accepted Payments</p>
+            <div className="flex flex-row gap-4">
+              <div className="h-4 w-8 bg-white"></div>
+              <div className="h-4 w-8 bg-white"></div>
+              <div className="h-4 w-8 bg-white"></div>
+              <div className="h-4 w-8 bg-white"></div>
+              <div className="h-4 w-8 bg-white"></div>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Divider */}
-      </div>
-      <hr className="border-gray-600 my-8" />
+      {/* Divider */}
+      <hr className="border-gray-100 my-4" />
       {/* Social Media Links Section */}
-      <div className="max-w-md mx-auto">
-        <ul className="flex justify-center space-x-4 md:space-x-12">
-          <li>
-            <a href="#" className="hover:underline">
-              <FaFacebookF className="text-gray-100 w-6 h-6" />
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              <FaTwitter className="text-gray-100 w-6 h-6" />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.instagram.com/yesnmoreofficial/"
-              className="hover:underline"
-              target="_blank"
-            >
-              <FaInstagram className="text-gray-100 w-6 h-6" />
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              <FaLinkedinIn className="text-gray-100 w-6 h-6" />
-            </a>
-          </li>
-        </ul>
-      </div>
+
       {/* Copyright Section */}
-      <div className="text-center mt-8">
+      <div className="text-center mt-4 text-white">
         <p>&copy; 2024 yesnmore.com | All rights reserved.</p>
       </div>
     </footer>

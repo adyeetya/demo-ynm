@@ -1,296 +1,298 @@
-'use client'
-import React, { useState, useEffect } from 'react'
-import Cookies from 'js-cookie'
-import { Poppins } from 'next/font/google'
-import { toast } from 'react-hot-toast'
-import CustomDropdown from './StateDropdown' // Import the CustomDropdown component
-import { useRouter } from 'next/navigation'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import { useUser } from '../../context/userContext'
-import axios from 'axios'
-import Image from 'next/image'
-const poppins = Poppins({ weight: '400', subsets: ['latin'] })
+"use client";
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import { Poppins } from "next/font/google";
+import { toast } from "react-hot-toast";
+import CustomDropdown from "./StateDropdown"; // Import the CustomDropdown component
+import { useRouter } from "next/navigation";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useUser } from "../../context/userContext";
+import axios from "axios";
+import Image from "next/image";
 
-const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
-const isProduction = process.env.NEXT_PUBLIC_NODE_ENV !== 'development'
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
+
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+const isProduction = process.env.NEXT_PUBLIC_NODE_ENV !== "development";
 // console.log('isProduction', isProduction)
 const Page = () => {
-  const [step, setStep] = useState(1)
-  const [message, setMessage] = useState('')
-  const [referrer, setReferrer] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const router = useRouter()
+  const [step, setStep] = useState(1);
+  const [otp, setOtp] = useState("");
+  const [message, setMessage] = useState("");
+  const [referrer, setReferrer] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const router = useRouter();
 
-  const { login } = useUser()
+  const { login } = useUser();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    setReferrer(params.get('referrer'))
-  }, [])
+    const params = new URLSearchParams(window.location.search);
+    setReferrer(params.get("referrer"));
+  }, []);
 
   const states = [
-    'Andhra Pradesh',
-    'Arunachal Pradesh',
-    'Assam',
-    'Bihar',
-    'Chhattisgarh',
-    'Goa',
-    'Gujarat',
-    'Haryana',
-    'Himachal Pradesh',
-    'Jharkhand',
-    'Karnataka',
-    'Kerala',
-    'Madhya Pradesh',
-    'Maharashtra',
-    'Manipur',
-    'Meghalaya',
-    'Mizoram',
-    'Nagaland',
-    'Odisha',
-    'Punjab',
-    'Rajasthan',
-    'Sikkim',
-    'Tamil Nadu',
-    'Telangana',
-    'Tripura',
-    'Uttar Pradesh',
-    'Uttarakhand',
-    'West Bengal',
-    'Andaman and Nicobar Islands',
-    'Chandigarh',
-    'Dadra and Nagar Haveli and Daman and Diu',
-    'Delhi',
-    'Lakshadweep',
-    'Puducherry',
-  ]
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+    "Andaman and Nicobar Islands",
+    "Chandigarh",
+    "Dadra and Nagar Haveli and Daman and Diu",
+    "Delhi",
+    "Lakshadweep",
+    "Puducherry",
+  ];
 
   const step1ValidationSchema = Yup.object({
     phoneNumber: Yup.string()
-      .matches(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits')
-      .required('Phone number is required'),
-  })
+      .matches(/^[0-9]{10}$/, "Phone number must be exactly 10 digits")
+      .required("Phone number is required"),
+  });
 
   const step2ValidationSchema = Yup.object({
     otp: Yup.string()
-      .matches(/^[0-9]{6}$/, 'OTP must be exactly 6 digits')
-      .required('OTP is required'),
-  })
+      .matches(/^[0-9]{6}$/, "OTP must be exactly 6 digits")
+      .required("OTP is required"),
+  });
 
   const step3ValidationSchema = Yup.object({
-    name: Yup.string().required('Name is required'),
+    name: Yup.string().required("Name is required"),
     email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
-    address: Yup.string().required('Address is required'),
-    landmark: Yup.string().required('Landmark is required'),
+      .email("Invalid email address")
+      .required("Email is required"),
+    address: Yup.string().required("Address is required"),
+    landmark: Yup.string().required("Landmark is required"),
     pincode: Yup.string()
-      .matches(/^[0-9]{6}$/, 'Pincode must be exactly 6 digits')
-      .required('Pincode is required'),
-    city: Yup.string().required('City is required'),
-    state: Yup.string().required('State is required'),
-  })
+      .matches(/^[0-9]{6}$/, "Pincode must be exactly 6 digits")
+      .required("Pincode is required"),
+    city: Yup.string().required("City is required"),
+    state: Yup.string().required("State is required"),
+  });
   const handleStep1Submit = async (values) => {
     // console.log('Form submitted step1:', values)
 
-    await handleSendOtp(values.phoneNumber)
-    setPhoneNumber(values.phoneNumber)
-  }
+    await handleSendOtp(values.phoneNumber);
+    setPhoneNumber(values.phoneNumber);
+  };
 
-  const handleStep2Submit = async (values) => {
-    // console.log('Form submitted step2:', values)
-    await handleVerifyOtp(values.otp)
-  }
+  // const handleStep2Submit = async (values) => {
+  //   // console.log('Form submitted step2:', values)
+  //   await handleVerifyOtp(values.otp);
+  // };
 
   const handleStep3Submit = async (values) => {
     // console.log('Form submitted step3:', values)
-    await handleRegister(values)
-  }
+    await handleRegister(values);
+  };
 
   const formikStep1 = useFormik({
     initialValues: {
-      phoneNumber: '',
+      phoneNumber: "",
     },
     validationSchema: step1ValidationSchema,
     onSubmit: handleStep1Submit,
-  })
+  });
 
-  const formikStep2 = useFormik({
-    initialValues: {
-      otp: '',
-    },
-    validationSchema: step2ValidationSchema,
-    onSubmit: handleStep2Submit,
-  })
+  // const formikStep2 = useFormik({
+  //   initialValues: {
+  //     otp: "",
+  //   },
+  //   validationSchema: step2ValidationSchema,
+  //   onSubmit: handleStep2Submit,
+  // });
 
   const formikStep3 = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      address: '',
-      landmark: '',
-      pincode: '',
-      city: '',
-      state: '',
+      name: "",
+      email: "",
+      address: "",
+      landmark: "",
+      pincode: "",
+      city: "",
+      state: "",
     },
     validationSchema: step3ValidationSchema,
     onSubmit: handleStep3Submit,
-  })
+  });
 
   const handleSendOtp = async (phoneNumber) => {
-    console.log('Sending OTP to:', phoneNumber)
+    console.log("Sending OTP to:", phoneNumber);
     const res = await fetch(`${serverUrl}/api/users/sendOTP`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ phoneNumber }),
-    })
+    });
 
-    const data = await res.json()
+    const data = await res.json();
 
     if (res.status === 200) {
-      setMessage(`OTP sent successfully on ${phoneNumber}`)
-      toast.success('OTP sent successfully')
-      setStep(2)
+      setMessage(`OTP sent successfully on ${phoneNumber}`);
+      toast.success("OTP sent successfully");
+      setStep(2);
     } else {
-      setMessage(data.message)
-      toast.error(data.message)
+      setMessage(data.message);
+      toast.error(data.message);
     }
-  }
+  };
 
   const handleResendOtp = async (phoneNumber) => {
-    setMessage('') // Clear the previous message
+    setMessage(""); // Clear the previous message
     const res = await fetch(`${serverUrl}/api/users/sendOTP`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ phoneNumber }),
-    })
+    });
 
-    const data = await res.json()
+    const data = await res.json();
 
     if (res.status === 200) {
-      setMessage(`OTP resent successfully on ${phoneNumber}`)
-      toast.success('OTP resent successfully')
+      setMessage(`OTP resent successfully on ${phoneNumber}`);
+      toast.success("OTP resent successfully");
     } else {
-      setMessage(data.message)
-      toast.error(data.message)
+      setMessage(data.message);
+      toast.error(data.message);
     }
-  }
+  };
 
   const fetchUserData = async () => {
-    const token = Cookies.get('ynmtoken') // Get the token from local storage
+    const token = Cookies.get("ynmtoken"); // Get the token from local storage
     if (!token) {
-      console.error('No token found')
-      return
+      console.error("No token found");
+      return;
     }
 
     try {
       const response = await axios.get(`${serverUrl}/api/users/getUser`, {
         headers: { Authorization: `Bearer ${token}` }, // Send token in Authorization header
-      })
+      });
       if (response.status !== 200) {
-        throw new Error('Failed to fetch user data')
+        throw new Error("Failed to fetch user data");
       }
 
-      login(response.data.user, token)
-      toast.success(`Welcome, ${response.data.user.name}`)
-      setMessage(`Welcome, ${response.data.user.name}`)
+      login(response.data.user, token);
+      toast.success(`Welcome, ${response.data.user.name}`);
+      setMessage(`Welcome, ${response.data.user.name}`);
     } catch (error) {
-      console.error('Failed to fetch user data', error)
+      console.error("Failed to fetch user data", error);
     }
-  }
+  };
 
   const handleVerifyOtp = async (otp) => {
     try {
       const res = await fetch(`${serverUrl}/api/users/verifyOTP`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ phoneNumber, otp }),
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
 
       if (res.status === 200) {
-        toast.success('OTP verified successfully')
-        setMessage(data.message)
+        toast.success("OTP verified successfully");
+        setMessage(data.message);
         if (data.userExists) {
-          const token = data.token ?? null
+          const token = data.token ?? null;
           // localStorage.setItem('ynmtoken', token)
           // Set token in cookies
-          Cookies.set('ynmtoken', token, {
+          Cookies.set("ynmtoken", token, {
             expires: 30, // Token will expire in 30 days
             secure: isProduction, // Use secure cookies in production
-            sameSite: isProduction ? 'None' : 'Lax', // Cross-site cookie settings
-            domain: isProduction ? '.yesnmore.com' : undefined, // Set domain for production
-          })
+            sameSite: isProduction ? "None" : "Lax", // Cross-site cookie settings
+            domain: isProduction ? ".yesnmore.com" : undefined, // Set domain for production
+          });
 
-          await fetchUserData()
+          await fetchUserData();
 
-          if (referrer === 'cart') {
-            router.push('/checkout')
-          } else if (referrer === 'self-assessment') {
-            router.push('/self-assessment/result')
+          if (referrer === "cart") {
+            router.push("/checkout");
+          } else if (referrer === "self-assessment") {
+            router.push("/self-assessment/result");
           } else {
-            router.push('/')
+            router.push("/");
           }
         } else {
-          setStep(3)
+          setStep(3);
         }
       } else {
-        toast.error(data.message)
-        setMessage(data.message)
+        toast.error(data.message);
+        setMessage(data.message);
       }
     } catch (error) {
-      console.error('Error verifying OTP', error)
+      console.error("Error verifying OTP", error);
     }
-  }
+  };
 
   const handleRegister = async (userData) => {
     try {
       const res = await fetch(`${serverUrl}/api/users/registerUser`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ phoneNumber, ...userData }),
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
 
       if (res.status === 200) {
-        const token = data.token ?? null
+        const token = data.token ?? null;
         // localStorage.setItem('ynmtoken', token)
 
         // Set token in cookies
-        Cookies.set('ynmtoken', token, {
+        Cookies.set("ynmtoken", token, {
           expires: 30, // Token will expire in 30 days
           secure: isProduction, // Use secure cookies in production
-          sameSite: isProduction ? 'None' : 'Lax', // Cross-site cookie settings
-          domain: isProduction ? '.yesnmore.com' : undefined, // Set domain for production
-        })
+          sameSite: isProduction ? "None" : "Lax", // Cross-site cookie settings
+          domain: isProduction ? ".yesnmore.com" : undefined, // Set domain for production
+        });
 
-        await fetchUserData()
+        await fetchUserData();
 
-        if (referrer === 'cart') {
-          router.push('/checkout')
-        } else if (referrer === 'self-assessment') {
-          router.push('/self-assessment/result')
+        if (referrer === "cart") {
+          router.push("/checkout");
+        } else if (referrer === "self-assessment") {
+          router.push("/self-assessment/result");
         } else {
-          router.push('/')
+          router.push("/");
         }
       } else {
-        setMessage(data.message)
+        setMessage(data.message);
       }
     } catch (error) {
-      console.error('Error registering user', error)
+      console.error("Error registering user", error);
     }
-  }
+  };
 
   return (
     <div
@@ -312,10 +314,11 @@ const Page = () => {
 
           {step === 2 && (
             <Step2Form
-              formik={formikStep2}
-              message={message}
               setStep={setStep}
               onResendOtp={() => handleResendOtp(phoneNumber)}
+              otp={otp}
+              setOtp={setOtp}
+              handleVerifyOtp={handleVerifyOtp}
             />
           )}
 
@@ -323,8 +326,8 @@ const Page = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const Step1Form = ({ formik }) => (
   <form onSubmit={formik.handleSubmit}>
@@ -355,53 +358,104 @@ const Step1Form = ({ formik }) => (
       Send OTP
     </button>
   </form>
-)
+);
 
-const Step2Form = ({ formik, onResendOtp, message, setStep }) => (
-  <form onSubmit={formik.handleSubmit}>
-    <h2 className="text-xl font-semibold">Verify OTP</h2>
-    <div className="flex items-center mt-2">
-      <p className="text-gray-600">{message}</p>
-      <p
-        onClick={() => setStep(1)}
-        className="ml-2 text-blue-500 hover:underline cursor-pointer"
+const Step2Form = ({
+  onResendOtp,
+  message,
+  setStep,
+  otp,
+  setOtp,
+  handleVerifyOtp,
+}) => {
+  const [error, setError] = useState("");
+
+  const handleChange = (e, index) => {
+    const value = e.target.value;
+    const newOtp = [...otp];
+    newOtp[index] = value.slice(-1); // Only take the last character typed
+    setOtp(newOtp);
+    setError(""); // Clear the error when typing
+
+    // Move to the next input if value is entered
+    if (value && index < 5) {
+      document.getElementById(`otp-${index + 1}`).focus();
+    }
+  };
+
+  const handleKeyDown = (e, index) => {
+    if (e.key === "Backspace" && !otp[index] && index > 0) {
+      // Move to the previous input if the current one is empty
+      document.getElementById(`otp-${index - 1}`).focus();
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("verify");
+    if (otp.join("").length < 6) {
+      setError("Please enter the full 6-digit OTP.");
+    } else {
+      // Handle OTP submission here
+      console.log("OTP Submitted:", typeof otp.join(""), otp.join(""));
+      handleVerifyOtp(otp.join(""));
+      setError("");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2 className="text-xl font-semibold">Verify OTP</h2>
+      <div className="flex items-center mt-2">
+        <p className="text-gray-600">{message}</p>
+        <p
+          onClick={() => setStep(1)}
+          className="ml-2 text-blue-500 hover:underline cursor-pointer"
+        >
+          Edit
+        </p>
+      </div>
+      <div className="my-4">
+        <label htmlFor="otp" className="block text-left text-gray-700">
+          OTP
+        </label>
+        <div className="flex space-x-2">
+          {Array(6)
+            .fill("")
+            .map((_, index) => (
+              <input
+                key={index}
+                id={`otp-${index}`}
+                type="text"
+                name={`otp-${index}`}
+                value={otp[index] || ""}
+                onChange={(e) => handleChange(e, index)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                maxLength={1}
+                className="border border-gray-300 rounded-lg p-2 w-10 text-center"
+              />
+            ))}
+        </div>
+        {error && <div className="text-red-500">{error}</div>}
+      </div>
+
+      <button
+        type="submit"
+        className="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600"
       >
-        Edit
-      </p>
-    </div>
-    <div className="my-4">
-      <label htmlFor="otp" className="block text-left text-gray-700">
-        OTP
-      </label>
-      <input
-        type="text"
-        name="otp"
-        value={formik.values.otp}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        className="border border-gray-300 rounded-lg p-2 w-full"
-      />
-      {formik.touched.otp && formik.errors.otp && (
-        <div className="text-red-500">{formik.errors.otp}</div>
-      )}
-    </div>
+        Verify OTP
+      </button>
 
-    <button
-      type="submit"
-      className="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600"
-    >
-      Verify OTP
-    </button>
-
-    <button
-      type="button"
-      onClick={onResendOtp}
-      className="text-blue-500 mt-2 block"
-    >
-      Resend OTP
-    </button>
-  </form>
-)
+      <button
+        type="button"
+        onClick={onResendOtp}
+        className="text-blue-500 mt-2 block"
+      >
+        Resend OTP
+      </button>
+    </form>
+  );
+};
 
 const Step3Form = ({ formik, states }) => (
   <form onSubmit={formik.handleSubmit}>
@@ -443,7 +497,7 @@ const Step3Form = ({ formik, states }) => (
 
     <div className="my-2">
       <label htmlFor="address" className="block text-left text-gray-700">
-        Address
+        Address Line 1
       </label>
       <textarea
         name="address"
@@ -516,7 +570,7 @@ const Step3Form = ({ formik, states }) => (
         options={states}
         selected={formik.values.state}
         onSelectedChange={(selectedState) =>
-          formik.setFieldValue('state', selectedState)
+          formik.setFieldValue("state", selectedState)
         }
         className="border border-gray-300 rounded-lg p-2 w-full"
       />
@@ -532,6 +586,6 @@ const Step3Form = ({ formik, states }) => (
       Login
     </button>
   </form>
-)
+);
 
-export default Page
+export default Page;

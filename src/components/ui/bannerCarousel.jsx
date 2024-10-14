@@ -97,7 +97,7 @@ const BrandsCarousel = React.forwardRef(
 
       const interval = setInterval(() => {
         scrollNext()
-      }, 3000) // Change the interval time to 3000ms (3 seconds)
+      }, 5000) // Change the interval time to 3000ms (3 seconds)
 
       return () => {
         clearInterval(interval)

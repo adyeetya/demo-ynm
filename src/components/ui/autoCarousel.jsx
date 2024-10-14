@@ -1,7 +1,7 @@
 'use client'
 import * as React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import AutoScroll from 'embla-carousel-auto-scroll'
+// import AutoScroll from 'embla-carousel-auto-scroll'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 import { cn } from '../../lib/utils'

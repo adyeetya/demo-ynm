@@ -1,63 +1,70 @@
-'use client'
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import Image from 'next/image'
-import Link from 'next/link'
-import toast from 'react-hot-toast'
-import Cookies from 'js-cookie'
-import { useCart } from '../../context/cartContext'
-import { useUser } from '../../context/userContext'
-import { IoMdStar } from 'react-icons/io'
-import { IoTrashBinOutline } from 'react-icons/io5'
-import { useRouter } from 'next/navigation'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
-import { Poppins } from 'next/font/google'
+"use client";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
+import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import { useCart } from "../../context/cartContext";
+import { useUser } from "../../context/userContext";
+import { IoMdStar } from "react-icons/io";
+import { IoTrashBinOutline } from "react-icons/io5";
+import { useRouter } from "next/navigation";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { Poppins } from "next/font/google";
 
-const poppins = Poppins({ weight: '400', subsets: ['latin'] })
-const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const CartPage = () => {
-  const [cart, setCart] = useState([])
-  const { removeFromCart } = useCart()
-  const [loading, setLoading] = useState(true)
-  const [totalPrice, setTotalPrice] = useState(0)
-  const { user } = useUser()
+  const [cart, setCart] = useState([]);
+  const { removeFromCart } = useCart();
+  const [loading, setLoading] = useState(true);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const { user } = useUser();
   const [token, setToken] = useState(
-    typeof window !== 'undefined' ? Cookies.get('ynmtoken') : null
-  )
-  const router = useRouter()
+    typeof window !== "undefined" ? Cookies.get("ynmtoken") : null
+  );
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCart = async () => {
       if (user && user._id) {
         try {
-          const response = await axios.get(
+          const response = await fetch(
             `${serverUrl}/api/cart/getCart/${user._id}`,
             {
-              headers: { Authorization: `Bearer ${token}` },
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
             }
-          )
-          if (response.status === 200) {
-            setCart(response.data.cart)
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            setCart(data.cart);
+          } else {
+            console.error("Failed to fetch cart. Status:", response.status);
           }
         } catch (error) {
-          console.error('Failed to fetch cart', error)
+          console.error("Failed to fetch cart", error);
         } finally {
-          setLoading(false)
+          setLoading(false);
         }
       } else {
-        // Without login
-        const localCart = localStorage.getItem('ynmc')
-        setCart(localCart ? JSON.parse(localCart) : [])
-        setLoading(false)
+        const localCart = localStorage.getItem("ynmc");
+        setCart(localCart ? JSON.parse(localCart) : []);
+        setLoading(false);
       }
-    }
+    };
 
-    fetchCart()
-  }, [user, token])
+    fetchCart();
+  }, [user, token]);
 
   // useEffect(() => {
-  //   // console.log('cart from context: ', cart)
+  //   console.log('cart from context: ', cart)
   // }, [cart])
 
   useEffect(() => {
@@ -67,14 +74,14 @@ const CartPage = () => {
           (total, item) =>
             total + (item?.productId?.price || 0) * (item?.quantity || 0),
           0
-        )
-        setTotalPrice(newTotalPrice)
-      }
-      calculateTotalPrice()
+        );
+        setTotalPrice(newTotalPrice);
+      };
+      calculateTotalPrice();
     } else {
-      setTotalPrice(0)
+      setTotalPrice(0);
     }
-  }, [cart])
+  }, [cart]);
 
   const handleRemoveFromCart = async (productId) => {
     if (user && user._id) {
@@ -82,39 +89,39 @@ const CartPage = () => {
         await axios.delete(`${serverUrl}/api/cart/remove`, {
           data: { userId: user._id, productId },
           headers: { Authorization: `Bearer ${token}` },
-        })
+        });
         setCart((prevCart) =>
           prevCart.filter((item) => item.productId._id !== productId)
-        )
+        );
         const updatedCart = cart.filter(
           (item) => item.productId._id !== productId
-        )
-        removeFromCart(updatedCart)
+        );
+        removeFromCart(updatedCart);
 
-        toast.success('Product removed from cart!')
+        toast.success("Product removed from cart!");
       } catch (error) {
-        console.error('Failed to remove product from cart', error)
+        console.error("Failed to remove product from cart", error);
       }
     } else {
-      const localCart = cart.filter((item) => item.productId._id !== productId)
-      localStorage.setItem('ynmc', JSON.stringify(localCart))
-      setCart(localCart)
+      const localCart = cart.filter((item) => item.productId._id !== productId);
+      localStorage.setItem("ynmc", JSON.stringify(localCart));
+      setCart(localCart);
       const updatedCart = cart.filter(
         (item) => item.productId._id !== productId
-      )
-      removeFromCart(updatedCart)
-      toast.success('Product removed from cart!')
+      );
+      removeFromCart(updatedCart);
+      toast.success("Product removed from cart!");
     }
-  }
+  };
 
   const updateQuantity = async (
     productId,
     currentQuantity,
     increase = true
   ) => {
-    const newQuantity = increase ? currentQuantity + 1 : currentQuantity - 1
+    const newQuantity = increase ? currentQuantity + 1 : currentQuantity - 1;
 
-    if (newQuantity < 1 || newQuantity > 10) return // Prevent invalid quantities
+    if (newQuantity < 1 || newQuantity > 10) return; // Prevent invalid quantities
 
     // Step 1: Update the UI immediately
     setCart((prevCart) =>
@@ -123,7 +130,7 @@ const CartPage = () => {
           ? { ...item, quantity: newQuantity }
           : item
       )
-    )
+    );
 
     // Step 2: Update the backend asynchronously
     if (user && user._id) {
@@ -138,9 +145,12 @@ const CartPage = () => {
           {
             headers: { Authorization: `Bearer ${token}` },
           }
-        )
+        );
       } catch (error) {
-        console.error('Failed to update product quantity in the backend', error)
+        console.error(
+          "Failed to update product quantity in the backend",
+          error
+        );
         // Optionally, revert the UI update if the backend update fails
       }
     } else {
@@ -149,30 +159,30 @@ const CartPage = () => {
         item.productId._id === productId
           ? { ...item, quantity: newQuantity }
           : item
-      )
-      localStorage.setItem('ynmc', JSON.stringify(newCart))
+      );
+      localStorage.setItem("ynmc", JSON.stringify(newCart));
     }
-  }
+  };
 
   const increaseQuantity = (productId, quantity) =>
-    updateQuantity(productId, quantity, true)
+    updateQuantity(productId, quantity, true);
   const decreaseQuantity = (productId, quantity) =>
-    updateQuantity(productId, quantity, false)
+    updateQuantity(productId, quantity, false);
 
   const handleNavigation = () => {
     if (user && user._id) {
-      router.push('/checkout')
+      router.push("/checkout");
     } else {
-      router.push('/login')
+      router.push("/login");
     }
-  }
+  };
 
   if (loading || !cart) {
     return (
       <div className="flex justify-center items-center w-full text-xl min-h-screen">
         <AiOutlineLoading3Quarters className="animate-spin w-8 h-8" />
       </div>
-    )
+    );
   }
 
   return (
@@ -219,7 +229,7 @@ const CartPage = () => {
 
           {cart.length === 0 ? (
             <p className="mb-6 text-left text-lg text-gray-600">
-              Your cart is empty {':('}
+              Your cart is empty {":("}
             </p>
           ) : (
             <div className="grid grid-cols-1 gap-8">
@@ -231,7 +241,7 @@ const CartPage = () => {
                   <div className="relative w-28 h-28 md:w-40">
                     <Image
                       src={item?.productId?.productImages[0]}
-                      alt={item?.productId?.name || 'Product Image'}
+                      alt={item?.productId?.name || "Product Image"}
                       width={1000}
                       height={1000}
                       className="rounded-lg w-full border border-gray-300"
@@ -252,10 +262,10 @@ const CartPage = () => {
                     </p>
                     <div className="flex items-center gap-2">
                       <p className="text-xs md:text-sm line-through">
-                        ₹{item?.productId?.mrp?.toFixed(2) || '0.00'}
+                        ₹{item?.productId?.mrp?.toFixed(2) || "0.00"}
                       </p>
                       <p className="md:text-lg font-bold">
-                        ₹{item?.productId?.price?.toFixed(2) || '0.00'}
+                        ₹{item?.productId?.price?.toFixed(2) || "0.00"}
                       </p>
                     </div>
                     <div className="flex items-center justify-between md:mt-4">
@@ -335,7 +345,7 @@ const CartPage = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartPage
+export default CartPage;

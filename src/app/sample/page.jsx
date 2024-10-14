@@ -1,17 +1,19 @@
-'use client'
-import React, { useState, useEffect } from 'react'
-import { useCart } from '../../context/cartContext'
-const Page = () => {
-  const { cart } = useCart()
-  const [items, setItems] = useState([])
-
-  useEffect(() => {
-    setItems(cart)
-  }, [cart])
-
-  console.log('items from sample: ', items[0])
-  console.log('cart from sample: ', cart)
-  return <div>{items[0]?.productId?.name}</div>
+import React from 'react'
+import ScrollAnimation from './scrollAnimation'
+import {
+  TextAnimation1,
+  TextAnimation2,
+  TextAnimation3,
+  TextAnimation4,
+  TextAnimation5,
+} from './textAnimation'
+import Carousel from './blogSlider'
+const page = () => {
+  return (
+    <div>
+      <Carousel />
+    </div>
+  )
 }
 
-export default Page
+export default page
