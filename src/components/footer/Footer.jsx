@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 import {
   FaChevronRight,
   FaFacebookF,
   FaTwitter,
   FaInstagram,
   FaLinkedinIn,
-} from 'react-icons/fa'
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -118,7 +118,7 @@ const Footer = () => {
               <ul>
                 <li className="my-2">
                   <a
-                    href="/policies/terms-conditions"
+                    href="/terms-and-conditions"
                     className="hover:underline flex items-center"
                   >
                     <FaChevronRight className="mr-2 w-2" /> Terms & Conditions
@@ -126,7 +126,7 @@ const Footer = () => {
                 </li>
                 <li className="my-2">
                   <a
-                    href="/policies/shipping"
+                    href="/shipping-policy"
                     className="hover:underline flex items-center"
                   >
                     <FaChevronRight className="mr-2 w-2" /> Shipping Policy
@@ -134,7 +134,7 @@ const Footer = () => {
                 </li>
                 <li className="my-2">
                   <a
-                    href="/policies/privacy"
+                    href="/privacy-policy"
                     className="hover:underline flex items-center"
                   >
                     <FaChevronRight className="mr-2 w-2" /> Privacy Policy
@@ -142,7 +142,7 @@ const Footer = () => {
                 </li>
                 <li className="my-2">
                   <a
-                    href="/policies/cancellation-refund"
+                    href="/refunds-policy"
                     className="hover:underline flex items-center"
                   >
                     <FaChevronRight className="mr-2 w-2" /> Cancellation &
@@ -152,7 +152,7 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className='ml-auto'>
+          <div className="ml-auto">
             <p className="text-sm mb-2 text-right">Accepted Payments</p>
             <div className="flex flex-row gap-4">
               <div className="h-4 w-8 bg-white"></div>
@@ -174,7 +174,7 @@ const Footer = () => {
         <p>&copy; 2024 yesnmore.com | All rights reserved.</p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
