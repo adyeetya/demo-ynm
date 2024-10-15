@@ -68,7 +68,7 @@ export default function RootLayout({ children }) {
       <body
         className={`'min-h-screen max-w-[100vw] overflow-x-hidden font-sans antialiased scroll-smooth ' ${inter.className}`}
       >
-        <Script
+        {/* <Script
           id="jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -85,7 +85,10 @@ export default function RootLayout({ children }) {
               </CartProvider>
             </UserProvider>
           </ProductProvider>
-        </GlobalStateProvider>
+        </GlobalStateProvider> */}
+        <div className="text-3xl min-h-screen bg-black text-white text-center flex justify-center items-center">
+          We are sorry for the inconvenience, This site is under construction.
+        </div>
       </body>
     </html>
   );

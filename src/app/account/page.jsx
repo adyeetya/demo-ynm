@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useUser } from "../../context/userContext";
 import { useRouter } from "next/navigation";
 import { AccountInfo, EditModal } from "./AccountInfo";
-import { OrdersInfo } from "./OrdersInfo"; // Add OrderInfo component
+import { OrdersInfo } from "./OrdersInfo"; // Add OrdersInfo component
 import Cookies from "js-cookie";
 import axios from "axios";
 import Link from "next/link";
@@ -13,6 +13,7 @@ import { FaRegUser } from "react-icons/fa";
 import { GoPackage } from "react-icons/go";
 import { FiMessageSquare } from "react-icons/fi";
 import { MdLogout } from "react-icons/md";
+import { HiChevronDown } from "react-icons/hi";
 import { Poppins } from "next/font/google";
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
@@ -20,7 +21,8 @@ const AccountPage = () => {
   const { user, loading, updateUser, logout } = useUser();
   const [isEditing, setIsEditing] = useState(null);
   const [message, setMessage] = useState("");
-  const [activeSection, setActiveSection] = useState("account"); // Add state to manage active section
+  const [activeSection, setActiveSection] = useState("account"); // Show account info by default
+  const [dropdownOpen, setDropdownOpen] = useState(false); // Toggle dropdown state
   const router = useRouter();
   const [formData, setFormData] = useState({
     _id: "",
@@ -35,7 +37,7 @@ const AccountPage = () => {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/login"); // Only redirect if the user is not present AND not loading
+      router.push("/login");
     }
   }, [user, loading, router]);
 
@@ -66,15 +68,16 @@ const AccountPage = () => {
   const handleFieldSave = () => {
     updateUser({ ...user, ...formData });
     setIsEditing(null);
-    setMessage("Click on Save All Changes to save your changes");
+    toast("Click on Save All Changes to save your changes.", {
+      icon: "🖱️",
+    });
   };
 
   const handleSave = async () => {
     try {
-      // Retrieve the token from local storage
       const token = Cookies.get("ynmtoken");
       console.log("formData: ", formData);
-      // Make a PUT request to update user information
+
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/update/${user._id}`,
         formData,
@@ -104,13 +107,18 @@ const AccountPage = () => {
     try {
       logout();
       toast.success("Goodbye :(");
-
-      // Redirect to the homepage
       router.push("/");
     } catch (error) {
       console.error("Error logging out", error);
       toast.error("Logout failed");
     }
+  };
+
+  const handleStateChange = (selectedState) => {
+    setFormData({
+      ...formData,
+      state: selectedState,
+    });
   };
 
   const renderContent = () => {
@@ -131,6 +139,7 @@ const AccountPage = () => {
                 handleChange={handleChange}
                 handleFieldSave={handleFieldSave}
                 setIsEditing={setIsEditing}
+                handleStateChange={handleStateChange}
               />
             )}
           </>
@@ -147,12 +156,12 @@ const AccountPage = () => {
       <div className="max-w-2xl mx-auto p-4 min-h-screen flex justify-center items-center text-2xl">
         Loading...
       </div>
-    ); // Add a loading screen while fetching user data
+    );
   }
 
   return (
     <div
-      className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen bg-gray-100 ${poppins.className}`}
+      className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen bg-[#e6eddf] ${poppins.className}`}
     >
       <nav className="mb-4 md:mb-8">
         <ul className="flex space-x-2 text-sm md:text-base">
@@ -164,19 +173,77 @@ const AccountPage = () => {
           <li>
             <span className="text-gray-400">/</span>
           </li>
-
           <li>
             <span className="text-gray-600">Account</span>
           </li>
         </ul>
       </nav>
-      <div className="flex flex-row gap-4">
-        {/* Sidebar with buttons */}
-        <div className="bg-gray-100 w-80 min-h-screen p-4">
+
+      {/* Display Account Information by default */}
+      <div className="md:hidden mb-4">
+        {renderContent()} {/* Render default account information */}
+      </div>
+
+      <div className="md:hidden mb-4">
+        {/* Mobile dropdown menu */}
+        <button
+          onClick={() => setDropdownOpen(!dropdownOpen)}
+          className="flex items-center justify-between w-full p-4 bg-white rounded"
+        >
+          <span>More Options</span>
+          <HiChevronDown
+            className={`transform transition-transform ${
+              dropdownOpen ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+        {dropdownOpen && (
+          <div className=" flex flex-col bg-white rounded shadow-md">
+            <button
+              className={`flex flex-row justify-start gap-4 items-center rounded w-full text-left py-2 px-4 mb-2 ${
+                activeSection === "account" ? " text-[#1c1c0c] bg-white" : ""
+              }`}
+              onClick={() => setActiveSection("account")}
+            >
+              <FaRegUser />
+              Account Information
+            </button>
+            <button
+              className={`flex items-center py-2 px-4 w-full text-left ${
+                activeSection === "orders" ? "text-[#1c1c0c]" : ""
+              }`}
+              onClick={() => {
+                setActiveSection("orders");
+                setDropdownOpen(false);
+              }}
+            >
+              <GoPackage className="mr-2" />
+              Order Information
+            </button>
+            <Link href="/contactus" passHref>
+              <button className="flex items-center py-2 px-4 w-full text-left">
+                <FiMessageSquare className="mr-2" />
+                Contact Us
+              </button>
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="flex items-center py-2 px-4 w-full text-left text-red-500"
+            >
+              <MdLogout className="mr-2" />
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
+
+      <div className="hidden md:flex md:flex-row gap-4">
+        {/* Desktop sidebar */}
+        <div className="bg-[#e6eddf] md:w-80 w-full md:min-h-screen p-4">
           <button
             className={`flex flex-row justify-start gap-4 items-center rounded w-full text-left py-2 px-4 mb-2 ${
               activeSection === "account"
-                ? "border border-blue-500 text-blue-500 bg-white"
+                ? "border border-[#1c1c0c] text-[#1c1c0c] bg-white"
                 : ""
             }`}
             onClick={() => setActiveSection("account")}
@@ -187,7 +254,7 @@ const AccountPage = () => {
           <button
             className={`flex flex-row justify-start gap-4 items-center rounded w-full text-left py-2 px-4 mb-2 ${
               activeSection === "orders"
-                ? "border border-blue-500 text-blue-500 bg-white"
+                ? "border border-[#1c1c0c] text-[#1c1c0c] bg-white"
                 : ""
             }`}
             onClick={() => setActiveSection("orders")}
@@ -202,7 +269,7 @@ const AccountPage = () => {
           </Link>
           <button
             onClick={handleLogout}
-            className="flex flex-row justify-start gap-4 items-center rounded w-full border border-gray-100 text-left py-2 px-4 hover:text-red-500 hover:border hover:border-red-500  focus:outline-none"
+            className="flex flex-row justify-start gap-4 items-center rounded w-full border border-[#e6eddf] text-left py-2 px-4 hover:text-red-500 hover:border hover:border-red-500  focus:outline-none"
           >
             <MdLogout />
             Logout
