@@ -73,7 +73,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className={` ${poppins.className} my-12`}>
+    <div className={` ${poppins.className} pb-12 bg-[#f7faf0]`}>
       <h2 className="text-3xl font-semibold my-8 p-4 text-center">
         Helpful Blogs
       </h2>

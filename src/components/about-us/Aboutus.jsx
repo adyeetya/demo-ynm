@@ -1,10 +1,10 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
-import Marquee from 'react-fast-marquee'
-import { AiOutlineArrowRight } from 'react-icons/ai'
-import Strips from './Strips'
-import './Aboutus.css'
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import Marquee from "react-fast-marquee";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import Strips from "./Strips";
+import "./Aboutus.css";
 const Aboutus = () => {
   return (
     <div
@@ -29,7 +29,7 @@ const Aboutus = () => {
 
             <div className="text-left">
               <h3 className="text-6xl md:text-7xl font-semibold text-white my-12">
-                FROM <br /> INCEPTION <br /> TO{' '}
+                FROM <br /> INCEPTION <br /> TO{" "}
                 <span className="italic text-[var(--dark-bg)]">REALITY</span>
               </h3>
 
@@ -111,7 +111,7 @@ const Aboutus = () => {
         </div> */}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Aboutus
+export default Aboutus;
