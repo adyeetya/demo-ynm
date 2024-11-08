@@ -21,6 +21,34 @@ import {
   FaChevronUp,
 } from "react-icons/fa";
 
+const details = [
+  {
+    title: "Powerful Performance Formula",
+    description:
+      "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+  },
+  {
+    title: "Powerful Performance Formula",
+    description:
+      "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+  },
+  {
+    title: "Powerful Performance Formula",
+    description:
+      "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+  },
+  {
+    title: "Powerful Performance Formula",
+    description:
+      "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+  },
+  {
+    title: "Powerful Performance Formula",
+    description:
+      "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+  },
+];
+
 export const DetailsHowToUseArkyn = () => {
   const [activeTab, setActiveTab] = useState("details");
 
@@ -30,8 +58,8 @@ export const DetailsHowToUseArkyn = () => {
         <button
           className={`px-4 py-2 focus:outline-none ${
             activeTab === "details"
-              ? "border-b-2 border-blue-500 font-bold text-blue-500"
-              : ""
+              ? "border-b-2 border-black font-bold text-black"
+              : "text-gray-500"
           }`}
           onClick={() => setActiveTab("details")}
         >
@@ -40,8 +68,8 @@ export const DetailsHowToUseArkyn = () => {
         <button
           className={`px-4 py-2 focus:outline-none ${
             activeTab === "howToUse"
-              ? "border-b-2 border-blue-500 font-bold text-blue-500"
-              : ""
+              ? "border-b-2 border-black font-bold text-black"
+              : "text-gray-500"
           }`}
           onClick={() => setActiveTab("howToUse")}
         >
@@ -50,74 +78,24 @@ export const DetailsHowToUseArkyn = () => {
       </div>
 
       {activeTab === "details" && (
-        <div>
-          <h2 className="text-lg font-bold mb-2">Arkyn by YES N MORE :</h2>
-          <p className="font-semibold mb-4">SAY YES TO MORE PLEASURE</p>
-          <ul className="list-disc ">
-            {/* 1 */}
-            <li className="flex items-start mb-3">
-              <span className="mr-2 mt-1">
-                <FaFlask className="text-[#999999]" />
+        <ul className="list-disc">
+          {details.map((item, index) => (
+            <li className="flex items-start mb-3" key={index}>
+              <span className="mr-2">
+                {/* <FaFlask className="text-[#999999]" /> */}•
               </span>
               <div className="text-sm">
-                <strong>Powerful Performance Formula</strong> Crafted with
-                potent ingredients for optimal testosterone enhancement. No
-                unwanted side effects, ensuring a smooth, effective experience.
+                <strong>{item.title}</strong> {item.description}
               </div>
             </li>
-
-            {/* 2 */}
-            <li className="flex items-start mb-3">
-              <span className="mr-2 mt-1">
-                <FaFlask className="text-[#999999]" />
-              </span>
-              <div className="text-sm">
-                <strong>Powerful Performance Formula</strong> Crafted with
-                potent ingredients for optimal testosterone enhancement. No
-                unwanted side effects, ensuring a smooth, effective experience.
-              </div>
-            </li>
-            {/* 3 */}
-            <li className="flex items-start mb-3">
-              <span className="mr-2 mt-1">
-                <FaFlask className="text-[#999999]" />
-              </span>
-              <div className="text-sm">
-                <strong>Powerful Performance Formula</strong> Crafted with
-                potent ingredients for optimal testosterone enhancement. No
-                unwanted side effects, ensuring a smooth, effective experience.
-              </div>
-            </li>
-            {/* 4 */}
-            <li className="flex items-start mb-3">
-              <span className="mr-2 mt-1">
-                <FaFlask className="text-[#999999]" />
-              </span>
-              <div className="text-sm">
-                <strong>Powerful Performance Formula</strong> Crafted with
-                potent ingredients for optimal testosterone enhancement. No
-                unwanted side effects, ensuring a smooth, effective experience.
-              </div>
-            </li>
-            {/* 5 */}
-            <li className="flex items-start mb-3">
-              <span className="mr-2 mt-1">
-                <FaFlask className="text-[#999999]" />
-              </span>
-              <div className="text-sm">
-                <strong>Powerful Performance Formula</strong> Crafted with
-                potent ingredients for optimal testosterone enhancement. No
-                unwanted side effects, ensuring a smooth, effective experience.
-              </div>
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
       )}
 
       {activeTab === "howToUse" && (
         <div>
-          <h2 className="text-lg font-bold mb-2">HOW TO USE</h2>
-          <h3 className="font-semibold mb-4">Arkyn</h3>
+          {/* <h2 className="text-lg font-bold mb-2">HOW TO USE</h2>
+          <h3 className="font-semibold mb-4">Arkyn</h3> */}
           <ul className="list-decimal ">
             {/* 1 */}
             <li className="flex items-start mb-3">

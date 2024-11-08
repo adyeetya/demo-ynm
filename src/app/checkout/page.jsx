@@ -9,13 +9,14 @@ import {
   FaChevronUp,
   FaChevronDown,
 } from "react-icons/fa";
-import { Poppins } from "next/font/google";
+
 import Link from "next/link";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 import { LuFileLock } from "react-icons/lu";
-
+import CustomDropdown from "./StateDropdown";
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+import { Poppins } from "next/font/google";
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 const CheckoutPage = () => {
@@ -216,13 +217,19 @@ const CheckoutPage = () => {
               className="block w-full mb-2 p-2 border border-gray-300 rounded"
               placeholder="City"
             />
-            <input
+            {/* <input
               type="text"
               name="state"
               value={newAddress.state}
               onChange={handleChange}
               className="block w-full mb-2 p-2 border border-gray-300 rounded"
               placeholder="State"
+            /> */}
+            <CustomDropdown
+              selected={newAddress.state}
+              onSelectedChange={(value) =>
+                setNewAddress((prev) => ({ ...prev, state: value }))
+              }
             />
             <input
               type="text"

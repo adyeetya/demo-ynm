@@ -22,10 +22,10 @@ const AboutUs = () => {
           <h1 className="text-4xl md:text-7xl mb-2">OUR STORY</h1>
         </div>
       </div>
-      <div className="bg-[var(--light-bg)] p-4 md:p-20">
+      <div className="bg-[var(--light-bg)] p-4 md:p-12">
         <h1 className="text-base sm:text-lg md:text-5xl text-gray-200 font-thin ">
           We believe that sex should be
-          <Typography />
+          {/* <Typography /> */}
         </h1>
         <div className="h-[1px] rounded mt-2 md:mt-4 bg-gray-200"></div>
       </div>

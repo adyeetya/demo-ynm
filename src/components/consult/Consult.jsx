@@ -98,9 +98,9 @@ const Consult = () => {
     <div className="p-4 md:py-8 mt-4 max-w-screen-xl overflow-x-hidden mx-auto z-0">
       {/* Wide Cards Section */}
       <div className="relative mb-24 flex w-full flex-col items-end md:flex-row gap-8 justify-between">
-        <div className="w-48 h-48 md:w-80 md:h-80 absolute -z-10 rounded-full md:top-1/2 md:-translate-y-[42%] -left-12 md:-left-28 border-4 border-green-100 "></div>
-        <div className="w-full md:w-1/2 p-4">
-          <h2 className="font-bold text-3xl mb-4">
+        <div className="w-48 h-48 md:w-80 md:h-80 absolute z-0 rounded-full md:top-1/2 md:-translate-y-[42%] -left-12 md:-left-28 border-[3px] border-[#fbd354] "></div>
+        <div className="w-full md:w-1/2 p-4 z-10">
+          <h2 className="font-bold text-4xl text-[#3a472e] mb-4">
             Expert Advice <br /> that Works
           </h2>
           <p className="text-sm">
@@ -111,27 +111,34 @@ const Consult = () => {
         {/* doctors card with bg too */}
         <div className="group relative w-full md:w-1/2 h-52">
           {/* White circles grid behind the card and doctor image */}
-          <div className="absolute w-56 -right-8 top-0 z-0 grid grid-cols-9 grid-rows-6 gap-2">
+          <div className="absolute -right-8 top-0 z-0 ">
             {/* Each circle */}
-            {Array.from({ length: 54 }).map((_, i) => (
+            {/* {Array.from({ length: 54 }).map((_, i) => (
               <div
                 key={i}
-                className="w-4 h-4 rounded-full bg-white border border-[#273314] opacity-50 "
+                className="w-4 h-4 rounded-full border bg-[#ffd037] border-[#f9ce40] opacity-50 "
               />
-            ))}
+            ))} */}
+            <Image
+              src="/images/hero/Dots.svg"
+              width={1000}
+              height={1000}
+              alt="."
+              className="w-56 "
+            />
           </div>
 
           {/* Card with green glass effect */}
-          <div className="absolute bottom-0 p-4 rounded-3xl shadow-xl h-44 w-full flex justify-start items-center bg-gradient-to-r from-green-100/50 via-green-100/20 to-transparent backdrop-blur-[4px] border border-green-200 z-10">
-            <div className="text-sm h-full w-[70%] flex flex-col justify-between py-4">
+          <div className="absolute bottom-0 p-4 rounded-3xl shadow-xl h-44 w-full flex justify-start items-center bg-gradient-to-r from-[#a5b398]/50 via-from-[#a5b398]/20 to-transparent backdrop-blur-[4px]  z-10">
+            <div className="text-xs h-full w-[70%] flex flex-col justify-between py-4">
               <div>
                 <h2 className="font-semibold mb-2">Dr. Ankit Tyagi</h2>
-                <p>M.B.B.S, MS General Surgery, MCH</p>
-                <p>Urology</p>
+                <p className="">M.B.B.S, MS General Surgery, MCH</p>
+                <p className="">Urology</p>
               </div>
               <Link
                 href="/experts"
-                className="whitespace-nowrap md:text- w-fit border px-4 py-1 rounded-full bg-white border-green-200"
+                className="whitespace-nowrap text-base w-fit border px-4 py-1 rounded-full bg-white border-[#3a472e] "
               >
                 Consult for Free
               </Link>
@@ -155,7 +162,7 @@ const Consult = () => {
       <ConcernCards setOpenModal={setOpenModal} />
 
       {/* Steps Section */}
-      <StepsImage />
+      {/* <StepsImage /> */}
 
       {/* Modal */}
       <Modal
@@ -169,70 +176,35 @@ const Consult = () => {
 
 export default Consult;
 
-const Steps = () => {
+const Card = ({ title, imageSrc, setOpenModal, modalId }) => {
   return (
-    <div className="mt-24 mb-12">
-      <div className="mb-12">
-        <h2 className="font-bold text-2xl">How it Works</h2>
+    <div className="group hover:shadow-xl rounded-3xl flex flex-col w-full max-w-[350px] h-[350px] overflow-hidden border border-gray-300">
+      {/* Image Section */}
+      <div className="relative w-full h-[80%] aspect-square bg-[#d6decd] overflow-hidden">
+        <Image
+          src={imageSrc}
+          alt="Card Image"
+          width={1000}
+          height={1000}
+          className="absolute top-0 left-0 w-full h-full object-cover p-1 rounded-3xl"
+        />
       </div>
-      <div className="flex justify-start mb-2 relative mx-auto max-w-4xl">
-        {/* Step 1 */}
-        <div className="relative flex flex-col items-center w-1/3">
-          <div className="w-16 h-16 md:w-[114px] md:h-[114px] rounded-full bg- flex items-center justify-center overflow-hidden z-10 border-2 border-black border-dashed">
-            <Image
-              src="/images/hygiene.webp"
-              alt="Step 1"
-              width={1000}
-              height={1000}
-              className="w-16 h-16 md:w-28 md:h-28 cover"
-            />
-          </div>
-          <div className="block absolute top-1/2 left-1/2 w-full h-0.5 bg-black -translate-y-1/2 z-0"></div>
-        </div>
 
-        {/* Step 2 */}
-        <div className="relative flex flex-col items-center w-1/3">
-          <div className="w-16 h-16 md:w-28 md:h-28 rounded-full bg-[#A2A685] flex items-center justify-center overflow-hidden z-10">
-            <Image
-              src="/images/DOCTOR.webp"
-              alt="Step 2"
-              width={1000}
-              height={1000}
-              className="w-12 h-16 md:w-20 md:h-28"
-            />
-          </div>
-          <div className="block absolute top-1/2 left-1/2 w-full h-0.5 bg-black -translate-y-1/2 z-0"></div>
-        </div>
-
-        {/* Step 3 */}
-        <div className="relative flex flex-col items-center w-1/3">
-          <div className="w-16 h-16 md:w-28 md:h-28 rounded-full bg-[#A2A685] flex items-center justify-center overflow-hidden z-10">
-            <Image
-              src="/images/Long_lasting_box.webp"
-              alt="Step 3"
-              width={1000}
-              height={1000}
-              className="object-contain h-12 md:h-24"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-center relative mx-auto max-w-4xl ">
-        <div className="relative flex flex-col items-center w-1/3 justify-center text-center">
-          <p className="text-sm font-semibold">
-            Assess <br /> Yourself
-          </p>
-        </div>
-        <div className="relative flex flex-col items-center w-1/3 justify-center text-center">
-          <p className="text-sm font-semibold">
-            Consult For <br /> Free
-          </p>
-        </div>
-        <div className="relative flex flex-col items-center w-1/3 justify-center text-center">
-          <p className="text-sm font-semibold">
-            {" "}
-            Be <br /> Consistent
-          </p>
+      {/* Text Section */}
+      <div className="h-[20%] p-2 md:p-3 lg:p-4 w-full flex flex-col gap-2 justify-center bg-[#d6decd]">
+        <div className="flex flex-row gap-4 justify-between items-center">
+          <button
+            onClick={() => setOpenModal(modalId)}
+            className="group-hover:scale-110 w-fit text-xl text-[#3a472e]"
+          >
+            {title}
+          </button>
+          <button
+            onClick={() => setOpenModal(modalId)}
+            className="w-8 h-8 shrink-0 rounded-full border border-[#3a472e] bg-[#3a472e] flex justify-center items-center"
+          >
+            <FaArrowRight className="group-hover:translate-x-1 w-4 h-4 font-thin text-[#fff]" />
+          </button>
         </div>
       </div>
     </div>
@@ -240,6 +212,29 @@ const Steps = () => {
 };
 
 const ConcernCards = ({ setOpenModal }) => {
+  const cardData = [
+    {
+      title: "Long Lasting",
+      imageSrc: "/images/hero/longlast.webp",
+      modalId: "modal1",
+    },
+    {
+      title: "Erection Support",
+      imageSrc: "/images/hero/erection.webp",
+      modalId: "modal2",
+    },
+    {
+      title: "Wellness",
+      imageSrc: "/images/hero/fitness.webp",
+      modalId: "modal3",
+    },
+    {
+      title: "Hygiene",
+      imageSrc: "/images/hero/wellness.webp",
+      modalId: "modal4",
+    },
+  ];
+
   return (
     <div className="flex flex-row gap-4 lg:gap-8 my-12 justify-between py-4">
       <Swiper
@@ -275,167 +270,18 @@ const ConcernCards = ({ setOpenModal }) => {
         modules={[Pagination]}
       >
         {/* Swiper slides */}
-        <SwiperSlide>
-          {/* card1 */}
-          <div className="group hover:shadow-xl rounded-3xl flex flex-col w-full max-w-[350px] h-[380px]  overflow-hidden border border-gray-300">
-            {/* Image Section */}
-            <div className="relative w-full h-[70%] bg-[var(--light-bg)]">
-              <Image
-                src="/images/happy couple in love lying in bed .png"
-                alt="Card Image"
-                width={1000}
-                height={1000}
-                className="object-cover w-full h-full"
-              />
-            </div>
 
-            {/* Text Section */}
-            <div className="p-2 lg:p-4 w-full flex flex-col gap-2 justify-center h-[30%]">
-              <button
-                onClick={() => setOpenModal("modal1")}
-                className="group-hover:scale-110 w-fit lg:text-md"
-              >
-                Long Lasting
-              </button>
-              <div className="flex flex-row gap-4 justify-between md:items-center">
-                <p className="text-sm">Sexual Health Vitality Stamina</p>
-                <button
-                  onClick={() => setOpenModal("modal1")}
-                  className="w-8 h-8 shrink-0 rounded-full border border-black flex justify-center items-center"
-                >
-                  <FaArrowRight className="group-hover:translate-x-1 w-4 h-4 font-thin" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          {/* card1 */}
-          <div className="group hover:shadow-xl rounded-3xl  flex flex-col w-full h-[380px] max-w-[350px] overflow-hidden border border-gray-300">
-            {/* Image Section */}
-            <div className="relative w-full h-[70%] bg-[var(--light-bg)]">
-              <Image
-                src="/images/happy couple in love lying in bed .png"
-                alt="Card Image"
-                width={1000}
-                height={1000}
-                className="object-cover w-full h-full"
-              />
-            </div>
-
-            {/* Text Section */}
-            <div className="p-2 lg:p-4 w-full flex flex-col gap-2 justify-center h-[30%]">
-              <button
-                onClick={() => setOpenModal("modal1")}
-                className="group-hover:scale-110 w-fit lg:text-md"
-              >
-                Erection Support
-              </button>
-              <div className="flex flex-row gap-4 justify-between md:items-center">
-                <p className="text-sm">Sexual Health Vitality Stamina</p>
-                <button
-                  onClick={() => setOpenModal("modal1")}
-                  className="w-8 h-8 shrink-0 rounded-full border border-black flex justify-center items-center"
-                >
-                  <FaArrowRight className="group-hover:translate-x-1 w-4 h-4 font-thin" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          {/* card1 */}
-          <div className="group hover:shadow-xl rounded-3xl  flex flex-col w-full h-[380px] max-w-[350px] overflow-hidden border border-gray-300">
-            {/* Image Section */}
-            <div className="relative w-full h-[70%] bg-[var(--light-bg)]">
-              <Image
-                src="/images/happy couple in love lying in bed .png"
-                alt="Card Image"
-                width={1000}
-                height={1000}
-                className="object-cover w-full h-full"
-              />
-            </div>
-
-            {/* Text Section */}
-            <div className="p-2 lg:p-4 w-full flex flex-col gap-2 justify-center h-[30%]">
-              <button
-                onClick={() => setOpenModal("modal1")}
-                className="group-hover:scale-110 w-fit lg:text-md"
-              >
-                Wellness
-              </button>
-              <div className="flex flex-row gap-4 justify-between md:items-center">
-                <p className="text-sm">Sexual Health Vitality Stamina</p>
-                <button
-                  onClick={() => setOpenModal("modal1")}
-                  className="w-8 h-8 shrink-0 rounded-full border border-black flex justify-center items-center"
-                >
-                  <FaArrowRight className="group-hover:translate-x-1 w-4 h-4 font-thin" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>{" "}
-        <SwiperSlide>
-          {/* card1 */}
-          <div className="group hover:shadow-xl rounded-3xl  flex flex-col w-full h-[380px] max-w-[350px] overflow-hidden border border-gray-300">
-            {/* Image Section */}
-            <div className="relative w-full h-[70%] bg-[var(--light-bg)]">
-              <Image
-                src="/images/happy couple in love lying in bed .png"
-                alt="Card Image"
-                width={1000}
-                height={1000}
-                className="object-cover w-full h-full"
-              />
-            </div>
-
-            {/* Text Section */}
-            <div className="p-2 lg:p-4 w-full flex flex-col gap-2 justify-center h-[30%]">
-              <button
-                onClick={() => setOpenModal("modal1")}
-                className="group-hover:scale-110 w-fit lg:text-md"
-              >
-                Hygiene
-              </button>
-              <div className="flex flex-row gap-4 justify-between md:items-center">
-                <p className="text-sm">Sexual Health Vitality Stamina</p>
-                <button
-                  onClick={() => setOpenModal("modal1")}
-                  className="w-8 h-8 shrink-0 rounded-full border border-black flex justify-center items-center"
-                >
-                  <FaArrowRight className="group-hover:translate-x-1 w-4 h-4 font-thin" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
+        {cardData.map((card, index) => (
+          <SwiperSlide key={index}>
+            <Card
+              title={card.title}
+              imageSrc={card.imageSrc}
+              setOpenModal={setOpenModal}
+              modalId={card.modalId}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
-    </div>
-  );
-};
-
-const StepsImage = () => {
-  return (
-    <div className="my-12">
-      <div className="mb-12">
-        <h2 className="font-bold text-2xl">How it Works</h2>
-      </div>
-      <Image
-        src="/images/how_it_work.png"
-        alt="steps"
-        width={1000}
-        height={1000}
-        className="w-[80%] mx-auto hidden md:block"
-      />
-      <Image
-        src="/images/how_it_work_phone.png"
-        alt="steps"
-        width={1000}
-        height={1000}
-        className="w-[80%] mx-auto block md:hidden"
-      />
     </div>
   );
 };

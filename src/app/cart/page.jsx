@@ -21,51 +21,85 @@ const CartPage = () => {
   const { removeFromCart } = useCart();
   const [loading, setLoading] = useState(true);
   const [totalPrice, setTotalPrice] = useState(0);
+
   const { user } = useUser();
   const [token, setToken] = useState(
     typeof window !== "undefined" ? Cookies.get("ynmtoken") : null
   );
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      if (user && user._id) {
-        try {
-          const response = await fetch(
-            `${serverUrl}/api/cart/getCart/${user._id}`,
-            {
-              method: "GET",
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-              },
-            }
-          );
+  // useEffect(() => {
+  //   const fetchCart = async () => {
+  //     if (user && user._id) {
+  //       try {
+  //         const response = await fetch(
+  //           `${serverUrl}/api/cart/getCart/${user._id}`,
+  //           {
+  //             method: "GET",
+  //             headers: {
+  //               Authorization: `Bearer ${token}`,
+  //               "Content-Type": "application/json",
+  //             },
+  //           }
+  //         );
 
-          if (response.ok) {
-            const data = await response.json();
-            setCart(data.cart);
-          } else {
-            console.error("Failed to fetch cart. Status:", response.status);
+  //         if (response.ok) {
+  //           const data = await response.json();
+  //           setCart(data.cart);
+  //         } else {
+  //           console.error("Failed to fetch cart. Status:", response.status);
+  //         }
+  //       } catch (error) {
+  //         console.error("Failed to fetch cart", error);
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     } else {
+  //       const localCart = localStorage.getItem("ynmc");
+  //       setCart(localCart ? JSON.parse(localCart) : []);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchCart();
+  // }, [user, token]);
+
+  // useEffect(() => {
+  //   console.log('cart from context: ', cart)
+  // }, [cart])
+
+  useEffect(() => {
+    if (!user) {
+      const localCart = localStorage.getItem("ynmc");
+      setCart(localCart ? JSON.parse(localCart) : []);
+      setLoading(false);
+      return;
+    }
+
+    const fetchCart = async () => {
+      try {
+        const response = await fetch(
+          `${serverUrl}/api/cart/getCart/${user._id}`,
+          {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` },
           }
-        } catch (error) {
-          console.error("Failed to fetch cart", error);
-        } finally {
-          setLoading(false);
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setCart(data.cart);
+        } else {
+          console.error("Failed to fetch cart. Status:", response.status);
         }
-      } else {
-        const localCart = localStorage.getItem("ynmc");
-        setCart(localCart ? JSON.parse(localCart) : []);
+      } catch (error) {
+        console.error("Failed to fetch cart", error);
+      } finally {
         setLoading(false);
       }
     };
 
     fetchCart();
   }, [user, token]);
-
-  // useEffect(() => {
-  //   console.log('cart from context: ', cart)
-  // }, [cart])
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -101,6 +135,7 @@ const CartPage = () => {
         toast.success("Product removed from cart!");
       } catch (error) {
         console.error("Failed to remove product from cart", error);
+        toast.error("Failed to remove product!");
       }
     } else {
       const localCart = cart.filter((item) => item.productId._id !== productId);
@@ -114,13 +149,7 @@ const CartPage = () => {
     }
   };
 
-  const updateQuantity = async (
-    productId,
-    currentQuantity,
-    increase = true
-  ) => {
-    const newQuantity = increase ? currentQuantity + 1 : currentQuantity - 1;
-
+  const updateQuantity = async (productId, newQuantity, currentQuantity) => {
     if (newQuantity < 1 || newQuantity > 10) return; // Prevent invalid quantities
 
     // Step 1: Update the UI immediately
@@ -151,7 +180,14 @@ const CartPage = () => {
           "Failed to update product quantity in the backend",
           error
         );
-        // Optionally, revert the UI update if the backend update fails
+        setCart((prevCart) =>
+          prevCart.map((item) =>
+            item.productId._id === productId
+              ? { ...item, quantity: currentQuantity }
+              : item
+          )
+        );
+        toast.error("Something went wrong.");
       }
     } else {
       // Update local storage for guest users
@@ -164,10 +200,15 @@ const CartPage = () => {
     }
   };
 
-  const increaseQuantity = (productId, quantity) =>
-    updateQuantity(productId, quantity, true);
-  const decreaseQuantity = (productId, quantity) =>
-    updateQuantity(productId, quantity, false);
+  const increaseQuantity = (productId, currentQuantity) => {
+    const newQuantity = currentQuantity + 1;
+    updateQuantity(productId, newQuantity, currentQuantity);
+  };
+
+  const decreaseQuantity = (productId, currentQuantity) => {
+    const newQuantity = currentQuantity - 1;
+    updateQuantity(productId, newQuantity, currentQuantity);
+  };
 
   const handleNavigation = () => {
     if (user && user._id) {
@@ -278,6 +319,7 @@ const CartPage = () => {
                             )
                           }
                           className="text-sm bg-gray-200 px-[12px] py-1 rounded-md shadow-md focus:outline-none"
+                          disabled={item?.quantity === 1}
                         >
                           -
                         </button>
@@ -290,6 +332,7 @@ const CartPage = () => {
                             )
                           }
                           className="text-sm bg-gray-200 px-[10px] py-1 rounded-md shadow-md focus:outline-none"
+                          disabled={item?.quantity === 10}
                         >
                           +
                         </button>

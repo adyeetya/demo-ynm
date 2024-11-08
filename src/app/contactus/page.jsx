@@ -1,23 +1,9 @@
 import React from "react";
 
-import {
-  BrandsCarousel,
-  BrandsCarouselContent,
-  BrandsCarouselItem,
-} from "../../components/ui/bannerCarousel";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
-const banners = [
-  {
-    id: 1,
-    imageUrl: "/images/contact/banner2.webp",
-  },
-  {
-    id: 2,
-    imageUrl: "/images/contact/banner2.webp",
-  },
-];
+
 const ContactUs = () => {
   return (
     <div
@@ -115,61 +101,6 @@ const ContactUs = () => {
           />
         </div>
       </div>
-    </div>
-  );
-};
-
-const Banner = () => {
-  return (
-    <div className="max-w-screen-xl mx-auto">
-      <BrandsCarousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
-        className="w-full overflow-hidden"
-      >
-        <BrandsCarouselContent>
-          {banners.map((card) => (
-            <BrandsCarouselItem key={card.id} className="basis-full ">
-              <div className="flex p-2  justify-center items-center shadow-lg w-full">
-                <Image
-                  src={card.imageUrl}
-                  alt={card.heading}
-                  width={1000}
-                  height={1000}
-                  className=" object-cover w-full"
-                />
-              </div>
-            </BrandsCarouselItem>
-          ))}
-        </BrandsCarouselContent>
-      </BrandsCarousel>
-      <p className="text-lg mb-2 font-semibold">Office Hours </p>
-      <p className="mb-2 text-lg">
-        Monday - Friday (24x7) <br /> Saturday and Sunday (because pleasure
-        knows no weekend!)
-      </p>
-      {/* <p>
-          Or just use the form below to send us a message. We promise to get
-          back to you faster than you can say "Pleasure Paradise!"
-        </p> */}
-      <p className="mb-2 text-lg">
-        <span className="font-semibold">Note:</span> No question is too cheeky,
-        and no concern is too quirky. We’re here to make sure you have a good
-        time, in every way possible.
-      </p>
-      <p className="mb-2 text-lg">
-        We’re here to support, guide, and make you chuckle. Drop us a text, give
-        us a ring, or send a carrier pigeon (just kidding, we’re not that
-        old-school).
-      </p>
-      <p className="mb-6 text-lg">
-        Let’s make your day a little more exciting—reach out to us now!
-      </p>
-
-      <p className="mb-2 text-lg">Best chuckles with endless enthusiasm,</p>
-      <h2 className="mb-2 text-lg font-semibold">TEAM YESNMORE</h2>
     </div>
   );
 };

@@ -79,7 +79,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  const addToCart = async (product) => {
+  const addToCart = async (product, quantity) => {
     if (user && user._id) {
       try {
         const response = await axios.post(
@@ -87,7 +87,7 @@ export const CartProvider = ({ children }) => {
           {
             userId: user._id,
             productId: product._id,
-            quantity: 1,
+            quantity: quantity || 1,
           },
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -136,7 +136,10 @@ export const CartProvider = ({ children }) => {
           itemAlreadyInCart = true;
           return prevCart;
         } else {
-          const newCart = [...prevCart, { productId: product, quantity: 1 }];
+          const newCart = [
+            ...prevCart,
+            { productId: product, quantity: quantity || 1 },
+          ];
           localStorage.setItem("ynmc", JSON.stringify(newCart));
           return newCart;
         }
@@ -144,10 +147,8 @@ export const CartProvider = ({ children }) => {
 
       if (itemAlreadyInCart) {
         return false;
-        toast.error("Item Already In Cart");
       } else {
         return true;
-        toast.success("Product added to cart!");
       }
     }
   };

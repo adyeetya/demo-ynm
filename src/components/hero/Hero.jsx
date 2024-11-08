@@ -1,29 +1,102 @@
-'use client'
-import React, { useContext } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+"use client";
+import React, { useContext, useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
-import { GlobalStateContext } from '../../context/navbarContext'
-import { useProducts } from '../../context/productContext'
+import {
+  BrandsCarousel,
+  BrandsCarouselContent,
+  BrandsCarouselItem,
+} from "../../components/ui/bannerCarousel";
+import { GlobalStateContext } from "../../context/navbarContext";
+import { useProducts } from "../../context/productContext";
+const banners = [
+  {
+    id: 1,
+    imageUrl: "/images/hero/daabannerweb.webp",
+  },
+  {
+    id: 2,
+    imageUrl: "/images/hero/sleepbannerweb.webp",
+  },
+  {
+    id: 3,
+    imageUrl: "/images/hero/daabannerweb.webp",
+  },
+];
+
+const Banner = () => {
+  const [isInView, setIsInView] = useState(true);
+  const bannerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (bannerRef.current) {
+        const { top, bottom } = bannerRef.current.getBoundingClientRect();
+        const inView = top < window.innerHeight && bottom >= 0;
+        setIsInView(inView);
+      }
+    };
+
+    // Set up the scroll listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up listener on unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <div ref={bannerRef} className="absolute inset-0 w-[100vw] h-[100vh]">
+      <BrandsCarousel
+        autoplay={isInView}
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="w-full h-full overflow-hidden"
+      >
+        <BrandsCarouselContent className="">
+          {banners.map((card) => (
+            <BrandsCarouselItem key={card.id} className="basis-full">
+              <div className="h-[100vh] w-[100vw]">
+                <Image
+                  src={card.imageUrl}
+                  alt="banner"
+                  width={1000}
+                  height={1000}
+                  className="w-[100vw] h-[100vh] object-cover"
+                />
+              </div>
+            </BrandsCarouselItem>
+          ))}
+        </BrandsCarouselContent>
+      </BrandsCarousel>
+    </div>
+  );
+};
+
 const Hero = () => {
-  const { isMenuOpen } = useContext(GlobalStateContext)
+  const { isMenuOpen } = useContext(GlobalStateContext);
 
-  const { products } = useProducts()
-  const product = products[0]
+  const { products } = useProducts();
+  const product = products[0];
   // console.log(product)
 
   return (
     <div className="relative z-0 w-full h-[100vh]  rounded-br-[2rem] -mt-16 overflow-hidden customCurve">
       {/* Desktop Image */}
       <div className="hidden md:block absolute inset-0 overflow-hidden">
-        <Image
+        {/* <Image
           src="/images/hero/boostewave_banner_web.png"
           alt="Desktop Background Image"
           height={1000}
           width={1000}
           priority
           className="absolute w-full h-full object-cover"
-        />
+        /> */}
+        <Banner />
       </div>
 
       {/* Mobile Image */}
@@ -98,7 +171,7 @@ const Hero = () => {
         {/* explore products */}
 
         <div className="absolute bottom-0 left-0 md:ml-auto flex items-center w-full h-16 mx-auto border-none shadow-none">
-          <div className="z-50 flex flex-1 w-full md:w-[calc(100vw-4rem)] shadow-none justify-end items-center h-16 bg-white rounded-bl-none rounded-[2rem] p-2">
+          <div className="z-50 flex flex-1 w-full md:w-[calc(100vw-4rem)] shadow-none justify-end items-center h-16 bg-[#f7faf0] rounded-bl-none rounded-[2rem] p-2">
             <div className="flex flex-col w-[18rem] gap-1">
               {/* Circles with Background Images */}
               <div className="z-50 flex flex-row justify-between gap-3 items-center w-full">
@@ -149,7 +222,7 @@ const Hero = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

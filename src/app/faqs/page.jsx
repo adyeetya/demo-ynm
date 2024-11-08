@@ -1,63 +1,63 @@
-import React from 'react'
+import React from "react";
 import {
   BrandsCarousel,
   BrandsCarouselContent,
   BrandsCarouselItem,
-} from '../../components/ui/bannerCarousel'
-
+} from "../../components/ui/bannerCarousel";
+import "./faq.css";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '../../components/ui/accordion'
+} from "../../components/ui/accordion";
 
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
 
 const questions = [
   {
     id: 1,
-    question: 'Why YESNMORE?',
+    question: "Why YESNMORE?",
     answer:
-      'YESNMORE is dedicated to enhancing your sexual wellness with high-quality, effective, and safe products. Our mission is to empower you with confidence and satisfaction, ensuring a stress-free, discreet, and fulfilling experience.',
+      "YESNMORE is dedicated to enhancing your sexual wellness with high-quality, effective, and safe products. Our mission is to empower you with confidence and satisfaction, ensuring a stress-free, discreet, and fulfilling experience.",
   },
   {
     id: 2,
-    question: 'Where are YESNMORE products available?',
+    question: "Where are YESNMORE products available?",
     answer:
-      'YESNMORE products are available at www.yesnmore.com and on Amazon and Flipkart. They will soon be available on Zepto and Blinkit as well.',
+      "YESNMORE products are available at www.yesnmore.com and on Amazon and Flipkart. They will soon be available on Zepto and Blinkit as well.",
   },
   {
     id: 3,
-    question: 'Are YESNMORE products 100% safe and effective to use?',
+    question: "Are YESNMORE products 100% safe and effective to use?",
     answer:
-      'Yes, YESNMORE products are formulated with the highest standards of safety and effectiveness in mind. We rigorously test each product to ensure it meets our stringent quality standards.',
+      "Yes, YESNMORE products are formulated with the highest standards of safety and effectiveness in mind. We rigorously test each product to ensure it meets our stringent quality standards.",
   },
   {
     id: 4,
-    question: 'Is doctor consultation free?',
+    question: "Is doctor consultation free?",
     answer:
-      'Yes, doctor consultations at YESNMORE are free. We believe in providing accessible and personalized guidance to support your sexual wellness journey.',
+      "Yes, doctor consultations at YESNMORE are free. We believe in providing accessible and personalized guidance to support your sexual wellness journey.",
   },
   {
     id: 5,
-    question: 'Is my information safe and private during consultation?',
+    question: "Is my information safe and private during consultation?",
     answer:
-      'Absolutely. Your information is safe and private during consultations. We prioritize your privacy and ensure that all your personal data is handled with the utmost confidentiality.',
+      "Absolutely. Your information is safe and private during consultations. We prioritize your privacy and ensure that all your personal data is handled with the utmost confidentiality.",
   },
-]
+];
 
 const banners = [
   {
     id: 1,
-    imageUrl: '/images/contact/max-t-banner.webp',
+    imageUrl: "/images/contact/max-t-banner.webp",
   },
   {
     id: 2,
-    imageUrl: '/images/contact/max-t-banner.webp',
+    imageUrl: "/images/contact/max-t-banner.webp",
   },
-]
+];
 
 function AccordionDemo() {
   return (
@@ -75,7 +75,7 @@ function AccordionDemo() {
         </div>
       ))}
     </Accordion>
-  )
+  );
 }
 
 const Faq = () => {
@@ -88,7 +88,7 @@ const Faq = () => {
           </h1>
           <p className="mt-4 text-lg">
             If you have questions, we have answers for you here. <br /> In case
-            we don&apos;t please feel free to reach out to us at{' '}
+            we don&apos;t please feel free to reach out to us at{" "}
             <span>
               <Link
                 href="/contactus"
@@ -103,7 +103,7 @@ const Faq = () => {
 
       <div className="max-w-screen-2xl mx-auto flex flex-col-reverse lg:flex-row lg:gap-8 w-full lg:p-8">
         {/* for banner */}
-        <div className="w-full lg:w-1/2">
+        {/* <div className="w-full lg:w-1/2">
           <BrandsCarousel
             opts={{
               align: 'start',
@@ -127,6 +127,10 @@ const Faq = () => {
               ))}
             </BrandsCarouselContent>
           </BrandsCarousel>
+        </div> */}
+        <div className="w-full lg:w-1/2 relative">
+          <div className="bg-yellow-400 w-[400px] h-[350px] opacity-50 rounded-full animated_blob1 absolute blur-xl"></div>
+          <div className="bg-purple-300 w-[300px] h-[250px] opacity-60 rounded-full animated_blob2 absolute blur-xl"></div>
         </div>
         {/* faq accordion */}
         <div className="w-full lg:w-1/2 flex lg:justify-center lg:items-center p-4 lg:p-8">
@@ -134,7 +138,7 @@ const Faq = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Faq
+export default Faq;

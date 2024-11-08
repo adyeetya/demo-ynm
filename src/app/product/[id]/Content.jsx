@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "../../../context/cartContext";
@@ -16,7 +16,7 @@ const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import {
   Carousel,
@@ -391,6 +391,62 @@ const RatingsReviews = ({
   );
 };
 
+function StylishQuantitySelector({ quantity, setQuantity }) {
+  // Function to handle manual increment and decrement
+  const handleWheelRotation = (event, info) => {
+    const deltaRotation = info.delta.y / 5; // Control sensitivity
+    let newQuantity = quantity + Math.round(deltaRotation);
+
+    // Ensure quantity stays within bounds (1-99)
+    if (newQuantity > 99) newQuantity = 99;
+    if (newQuantity < 1) newQuantity = 1;
+    setQuantity(newQuantity);
+  };
+
+  // Increment and decrement handlers
+  const increment = () => setQuantity((prev) => Math.min(prev + 1, 99));
+  const decrement = () => setQuantity((prev) => Math.max(prev - 1, 1));
+
+  return (
+    <div className="flex flex-col items-center">
+      {/* Horizontal Dial */}
+      <div className="flex items-center space-x-3 bg-gray-200 rounded-full h-8">
+        {/* Decrement Button */}
+        <button
+          onClick={decrement}
+          className="bg-black text-white w-8 h-8 text-2xl flex justify-center items-center rounded-full shadow-lg active:scale-90 transition-transform"
+        >
+          <p className="m-auto -mt-0.5">-</p>
+        </button>
+
+        {/* Quantity Display with Animation */}
+        <div className="w-12 h-12 flex items-center justify-center">
+          <AnimatePresence initial={false} mode="wait">
+            <motion.span
+              key={quantity} // Key ensures animation when quantity changes
+              className="text-xl font-semibold "
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.2 }}
+            >
+              {quantity}
+            </motion.span>
+          </AnimatePresence>
+        </div>
+
+        {/* Increment Button */}
+        <button
+          onClick={increment}
+          className="bg-black text-white w-8 h-8 text-2xl flex justify-center items-center rounded-full shadow-lg active:scale-90 transition-transform"
+        >
+          <p className="m-auto -mt-0.5">+</p>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 const ProductPage = ({ product }) => {
   const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   // console.log('serverUrl', serverUrl)
@@ -481,7 +537,7 @@ const ProductPage = ({ product }) => {
   };
 
   const handleAddToCart = () => {
-    addToCart(product);
+    addToCart(product, quantity);
   };
 
   const handleQuantityChange = (months) => {
@@ -512,7 +568,7 @@ const ProductPage = ({ product }) => {
   }, [showReviewForm]);
 
   const handleBuyNow = () => {
-    addToCart(product);
+    addToCart(product, quantity);
     router.push("/cart");
   };
 
@@ -540,7 +596,7 @@ const ProductPage = ({ product }) => {
       </div>
     );
   return (
-    <div className={` md:py-8 mx-auto min-h-screen ${poppins.className}`}>
+    <div className={` md:py-8 mx-auto min-h-screen `}>
       <div className="hidden md:flex max-w-screen-xl mx-auto p-4">
         <nav className="mb-4 md:mb-8">
           <ul className="flex space-x-2 text-sm md:text-base">
@@ -655,34 +711,16 @@ const ProductPage = ({ product }) => {
         {/* this is the right side with the text and details */}
         <div className="mt-4 md:-mt-0 flex flex-col justify- gap-4  w-full md:w-1/2">
           <div>
-            <div className="flex justify-between">
-              <h1 className="text-md md:text-3xl font-bold  md:mt-0">
+            <div className="flex flex-col justify-between">
+              <h1 className="text-xl md:text-5xl font-bold  md:mt-0">
                 {product.name}
               </h1>
-              <div className="flex flex-col justify-between items-end mt-1">
-                <div className="flex items-center gap-1">
-                  <p className="text-sm md:text-base font-bold">
-                    ₹{(product.price * quantity).toFixed(2)}
-                  </p>
-                  <p className="text-xs md:text-sm line-through">
-                    ₹{(product.mrp * quantity).toFixed(2)}
-                  </p>
-
-                  <p className="text-[10px] md:text-xs text-green-900 border bg-green-400 rounded px-1">
-                    {percentageOff.toFixed(0)}% OFF
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex justify-between items-center">
-              <p className="text-gray-900 text-sm md:text-base md:mt-0 md:text-md">
+              <p className="text-gray-900 text-md md:text-lg md:mt-2">
                 {product.category}
               </p>
-              <p className="text-[10px] md:text-xs text-gray-700 text-right">
-                MRP Inclusive of all taxes
-              </p>
             </div>
+
+            <div className="flex justify-between items-center"></div>
             <div className="text-gray-600 flex justify-start items-center mt-2">
               <p className="text-sm md:text-base mr-1">1.2k</p>
               {Array.from(
@@ -710,25 +748,25 @@ const ProductPage = ({ product }) => {
               <div className="flex flex-wrap gap-2">
                 <Link
                   href="#"
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border px-4 py-2 text-sm ${getConcernClasses()}`}
+                  className={`flex-grow sm:flex-grow-0  rounded-xl border px-2 py-1 text-xs ${getConcernClasses()}`}
                 >
                   PREMATURE EJACULATION
                 </Link>
                 <Link
                   href="#"
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border px-4 py-2 text-sm ${getConcernClasses()}`}
+                  className={`flex-grow sm:flex-grow-0   rounded-xl border px-2 py-1 text-xs ${getConcernClasses()}`}
                 >
                   LOW TESTOSTERONE
                 </Link>
                 <Link
                   href="/experts"
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border px-4 py-2 text-sm ${getConcernClasses()}`}
+                  className={`flex-grow sm:flex-grow-0  rounded-xl border px-2 py-1 text-xs ${getConcernClasses()}`}
                 >
                   TALK TO DOCTOR
                 </Link>
                 <Link
                   href="/self-assessment"
-                  className={`flex-grow sm:flex-grow-0 min-w-[100px] md:min-w-[150px] rounded-xl border px-4 py-2 text-sm ${getConcernClasses()}`}
+                  className={`flex-grow sm:flex-grow-0   rounded-xl border px-2 py-1 text-xs ${getConcernClasses()}`}
                 >
                   ASSESS YOURSELF
                 </Link>
@@ -791,16 +829,53 @@ const ProductPage = ({ product }) => {
             </div> */}
           </div>
 
+          <div className="flex justify-between">
+            <div className="flex flex-col gap-2 mt-2">
+              <div className="flex items-center gap-6">
+                <p>Price</p>
+                <p className="text-[10px] md:text-xs text-green-900 border bg-green-400 rounded px-1">
+                  {percentageOff.toFixed(0)}% OFF
+                </p>
+              </div>
+              <div className="flex items-end gap-2">
+                <p className="text-base md:text-lg line-through">
+                  ₹{product.mrp.toFixed(2)}
+                </p>
+                <p className="text-base md:text-xl font-bold">
+                  ₹{product.price.toFixed(2)}
+                </p>
+              </div>
+
+              <p className="text-[10px] md:text-xs text-gray-700 ">
+                MRP Inclusive of all taxes
+              </p>
+            </div>
+            <div className="flex justify-evenly items-end flex-col">
+              <p>Number of Units</p>
+              <StylishQuantitySelector
+                quantity={quantity}
+                setQuantity={setQuantity}
+              />
+            </div>
+          </div>
+
+          <div className="mt-4 flex items-end gap-2">
+            <p>Total Price</p>
+            <h2 className="text-3xl font-bold">
+              ₹{product.price.toFixed(2) * quantity}
+            </h2>
+          </div>
+
           <div className=" md:mx-0 w-full flex gap-4 ">
             <button
               onClick={handleAddToCart}
-              className="rounded w-fit text-xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-semibold hover:font-medium hover:scale-105 hover:shadow-lg px-4 py-2 hover:bg-[#0B2251] hover:text-white transition-colors"
+              className="rounded-full w-fit text-xl mt-1 md:mt-4 border border-black hover:bg-black hover:text-gray-100 px-8 py-1 transition-colors"
             >
               <IoCartOutline />
             </button>
             <button
               onClick={handleBuyNow}
-              className="rounded w-full text-xl mt-1 md:mt-4 bg-[var(--lastlonger-light)] font-bold px-4 py-2  hover:bg-[#0B2251] hover:text-white transition-colors"
+              className="rounded-full w-full text-xl mt-1 md:mt-4 border border-black font-semibold px-4 py-1 hover:bg-black hover:text-gray-100  transition-colors"
             >
               Buy Now
             </button>

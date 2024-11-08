@@ -107,6 +107,7 @@ const Page = () => {
 
   const handleStep3Submit = async (values) => {
     // console.log('Form submitted step3:', values)
+
     await handleRegister(values);
   };
 
@@ -287,6 +288,7 @@ const Page = () => {
           router.push("/");
         }
       } else {
+        toast.error(data.message);
         setMessage(data.message);
       }
     } catch (error) {
@@ -296,7 +298,7 @@ const Page = () => {
 
   return (
     <div
-      className={`max-w-screen-lg md:mt-12 mx-auto min-h-[calc(100vh-64px)] ${poppins.className}`}
+      className={`max-w-screen-lg mx-auto min-h-[calc(100vh-64px)] flex items-center justify-center ${poppins.className}`}
     >
       <div className="flex flex-col md:flex-row justify-center items-center gap-4">
         <div className="w-full md:w-1/2 h-64 md:h-96 bg-gray-200 flex items-center justify-center rounded-lg">
@@ -319,6 +321,7 @@ const Page = () => {
               otp={otp}
               setOtp={setOtp}
               handleVerifyOtp={handleVerifyOtp}
+              phoneNumber={phoneNumber}
             />
           )}
 
@@ -338,14 +341,18 @@ const Step1Form = ({ formik }) => (
       <label htmlFor="phone-number" className="block text-left text-gray-700">
         Phone number
       </label>
-      <input
-        type="tel"
-        name="phoneNumber"
-        value={formik.values.phoneNumber}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        className="border border-gray-300 rounded-lg p-2 w-full"
-      />
+      <div className="border border-gray-300 rounded-lg p-2 w-full flex flex-row gap-2">
+        <p className="whitespace-nowrap">+91</p>
+        <input
+          type="tel"
+          name="phoneNumber"
+          value={formik.values.phoneNumber}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          className="border-none focus:outline-none w-full text-base"
+        />
+      </div>
+
       {formik.touched.phoneNumber && formik.errors.phoneNumber && (
         <div className="text-red-500">{formik.errors.phoneNumber}</div>
       )}
@@ -353,7 +360,7 @@ const Step1Form = ({ formik }) => (
 
     <button
       type="submit"
-      className="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600"
+      className="rounded-full px-3 py-2 border border-[#3a472e] text-[#3a472e] hover:text-white hover:bg-[#3a472e] hover:border-[#3a472e]"
     >
       Send OTP
     </button>
@@ -362,7 +369,7 @@ const Step1Form = ({ formik }) => (
 
 const Step2Form = ({
   onResendOtp,
-  message,
+  phoneNumber,
   setStep,
   otp,
   setOtp,
@@ -407,7 +414,7 @@ const Step2Form = ({
     <form onSubmit={handleSubmit}>
       <h2 className="text-xl font-semibold">Verify OTP</h2>
       <div className="flex items-center mt-2">
-        <p className="text-gray-600">{message}</p>
+        <p className="text-gray-600">{phoneNumber}</p>
         <p
           onClick={() => setStep(1)}
           className="ml-2 text-blue-500 hover:underline cursor-pointer"
