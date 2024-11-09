@@ -125,7 +125,7 @@ export const Usp = () => {
         </div>
         <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
           <Image
-            src="/images/hero/cruelty_free.webp"
+            src="/images/hero/who_badge.webp"
             height={200}
             width={200}
             alt="FDA"
