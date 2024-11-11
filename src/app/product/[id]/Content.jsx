@@ -410,13 +410,13 @@ function StylishQuantitySelector({ quantity, setQuantity }) {
   return (
     <div className="flex flex-col items-center">
       {/* Horizontal Dial */}
-      <div className="flex items-center space-x-3 bg-gray-200 rounded-full h-8">
+      <div className="flex items-center space-x-3  rounded-full h-8">
         {/* Decrement Button */}
         <button
           onClick={decrement}
-          className="bg-black text-white w-8 h-8 text-2xl flex justify-center items-center rounded-full shadow-lg active:scale-90 transition-transform"
+          className="border border-black w-8 h-8 text-2xl flex justify-center items-center rounded-full shadow-lg active:scale-90 transition-transform"
         >
-          <p className="m-auto -mt-0.5">-</p>
+          <p className="m-auto -mt-1">-</p>
         </button>
 
         {/* Quantity Display with Animation */}
@@ -438,9 +438,9 @@ function StylishQuantitySelector({ quantity, setQuantity }) {
         {/* Increment Button */}
         <button
           onClick={increment}
-          className="bg-black text-white w-8 h-8 text-2xl flex justify-center items-center rounded-full shadow-lg active:scale-90 transition-transform"
+          className="border border-black w-8 h-8 text-2xl flex justify-center items-center rounded-full shadow-lg active:scale-90 transition-transform"
         >
-          <p className="m-auto -mt-0.5">+</p>
+          <p className="m-auto -mt-1">+</p>
         </button>
       </div>
     </div>
@@ -710,7 +710,7 @@ const ProductPage = ({ product }) => {
 
         {/* this is the right side with the text and details */}
         <div className="mt-4 md:-mt-0 flex flex-col justify- gap-4  w-full md:w-1/2">
-          <div>
+          <div className="flex justify-between items-start">
             <div className="flex flex-col justify-between">
               <h1 className="text-xl md:text-5xl font-bold  md:mt-0">
                 {product.name}
@@ -722,20 +722,20 @@ const ProductPage = ({ product }) => {
 
             <div className="flex justify-between items-center"></div>
             <div className="text-gray-600 flex justify-start items-center mt-2">
-              <p className="text-sm md:text-base mr-1">1.2k</p>
+              <p className="text-base md:text-lg mr-1">1.2k</p>
               {Array.from(
                 { length: Math.floor(product.rating) },
                 (_, index) => (
                   <IoMdStar
                     key={index}
-                    className="w-4 h-4 md:w-6 md:h-6 text-yellow-400 mb-[2px]"
+                    className="w-4 h-4 md:w-[25px] md:h-[25px] text-yellow-400 "
                   />
                 )
               )}
 
               <Link
                 href="#ratings-reviews"
-                className="text-sm md:text-base ml-2 underline"
+                className="text-sm md:text-lg ml-2 underline"
               >
                 Ratings
               </Link>
@@ -743,7 +743,7 @@ const ProductPage = ({ product }) => {
           </div>
 
           <div>
-            <div className="flex flex-col gap-2 mt-2">
+            {/* <div className="flex flex-col gap-2 mt-2">
               <p className="font-semibold">Concern</p>
               <div className="flex flex-wrap gap-2">
                 <Link
@@ -771,7 +771,7 @@ const ProductPage = ({ product }) => {
                   ASSESS YOURSELF
                 </Link>
               </div>
-            </div>
+            </div> */}
 
             {/* quantity */}
             {/* <div className="flex flex-col gap-2 mt-2">
@@ -849,13 +849,14 @@ const ProductPage = ({ product }) => {
               <p className="text-[10px] md:text-xs text-gray-700 ">
                 MRP Inclusive of all taxes
               </p>
-            </div>
-            <div className="flex justify-evenly items-end flex-col">
-              <p>Number of Units</p>
-              <StylishQuantitySelector
-                quantity={quantity}
-                setQuantity={setQuantity}
-              />
+
+              <div className="flex justify-center items-start flex-col my-2 gap-3">
+                <p>Number of Units</p>
+                <StylishQuantitySelector
+                  quantity={quantity}
+                  setQuantity={setQuantity}
+                />
+              </div>
             </div>
           </div>
 
@@ -875,7 +876,7 @@ const ProductPage = ({ product }) => {
             </button>
             <button
               onClick={handleBuyNow}
-              className="rounded-full w-full text-xl mt-1 md:mt-4 border border-black font-semibold px-4 py-1 hover:bg-black hover:text-gray-100  transition-colors"
+              className="rounded-full bg-[#3a472e] text-white w-full text-xl mt-1 md:mt-4 border border-black font-semibold px-4 py-1 hover:bg-black hover:text-gray-100  transition-colors"
             >
               Buy Now
             </button>

@@ -149,14 +149,14 @@ export const About = () => {
       {/* Background element with gradient */}
       <div className="p-4 my-12 md:py-6 max-w-screen-xl mx-auto relative z-10">
         {/* Animated Heading */}
-        <motion.div
-          className={`text-center flex flex-col gap-4 w-full justify-center ${montserrat.className}`}
+        <div
+          className={` text-[10vw] md:text-[5vw] text-center flex flex-col gap-4 w-full justify-center ${montserrat.className}`}
         >
           <motion.h1
             initial={{ x: -100 }}
             animate={{ x: isInView ? 0 : -100 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="text-[10vw] md:text-[8vw] text-[#f1c232] leading-none text-right font-montserrat"
+            className=" text-[#3a472e] leading-none "
           >
             FROM <span className="font-semibold">INCEPTION</span>
           </motion.h1>
@@ -164,29 +164,29 @@ export const About = () => {
             initial={{ x: 100 }}
             animate={{ x: isInView ? 0 : 100 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="text-[10vw] md:text-[8vw] text-[#f1c232] leading-none text-right font-montserrat"
+            className=" text-[#3a472e] leading-none"
           >
-            TO <span className="font-semibold">REALITY</span>
+            TO <span className="font-semibold text-[#f1c232]">REALITY</span>
           </motion.h1>
-        </motion.div>
+        </div>
 
         {/* Video Container with Scale and Rotate Animation */}
-        <motion.div className="absolute inset-0 top-20 -left-8 md:left-4 md:top-28 -z-10">
-          <div className="rounded-full w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] md:w-96 md:h-96 flex items-center justify-center overflow-hidden shadow-lg">
-            <video
-              src="/images/reality.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="object-cover w-full h-full rounded-full"
-            ></video>
-          </div>
-        </motion.div>
 
         {/* Image and Text Container */}
-        <div className="mt-40 md:mt-28 lg:mt-10 flex flex-col md:flex-row items-center md:items-end justify-end relative">
+        <div className=" flex flex-col md:flex-row items-center md:items-center justify-center relative gap-8">
           {/* Text Content with Animated Fade-in */}
+          <motion.div className=" -z-10">
+            <div className="rounded-full w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] md:w-96 md:h-96 flex items-center justify-center overflow-hidden shadow-lg">
+              <video
+                src="/images/reality.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="object-cover w-full h-full rounded-full"
+              ></video>
+            </div>
+          </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 50 }}

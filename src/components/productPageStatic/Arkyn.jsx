@@ -21,6 +21,19 @@ import {
   FaChevronUp,
 } from "react-icons/fa";
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../../components/ui/accordion";
 const details = [
   {
     title: "Powerful Performance Formula",
@@ -46,6 +59,39 @@ const details = [
     title: "Powerful Performance Formula",
     description:
       "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+  },
+];
+
+const questions = [
+  {
+    id: 1,
+    question: "Why YESNMORE?",
+    answer:
+      "YESNMORE is dedicated to enhancing your sexual wellness with high-quality, effective, and safe products. Our mission is to empower you with confidence and satisfaction, ensuring a stress-free, discreet, and fulfilling experience.",
+  },
+  {
+    id: 2,
+    question: "Where are YESNMORE products available?",
+    answer:
+      "YESNMORE products are available at www.yesnmore.com and on Amazon and Flipkart. They will soon be available on Zepto and Blinkit as well.",
+  },
+  {
+    id: 3,
+    question: "Are YESNMORE products 100% safe and effective to use?",
+    answer:
+      "Yes, YESNMORE products are formulated with the highest standards of safety and effectiveness in mind. We rigorously test each product to ensure it meets our stringent quality standards.",
+  },
+  {
+    id: 4,
+    question: "Is doctor consultation free?",
+    answer:
+      "Yes, doctor consultations at YESNMORE are free. We believe in providing accessible and personalized guidance to support your sexual wellness journey.",
+  },
+  {
+    id: 5,
+    question: "Is my information safe and private during consultation?",
+    answer:
+      "Absolutely. Your information is safe and private during consultations. We prioritize your privacy and ensure that all your personal data is handled with the utmost confidentiality.",
   },
 ];
 
@@ -201,11 +247,11 @@ export const DetailsHowToUseArkyn = () => {
   );
 };
 
-const GeneralInfo = () => {
+const HeroElements = () => {
   return (
     <div className="mx-auto py-4 bg-white rounded-lg">
       {/* Information Section */}
-      <div className="mb-6 max-w-screen-xl mx-auto px-4">
+      {/* <div className="mb-6 max-w-screen-xl mx-auto px-4">
         <h2 className={`text-3xl max-w-60 font-bold mb-6 ${lora.className}`}>
           The Truth About Testosterone
         </h2>
@@ -254,43 +300,165 @@ const GeneralInfo = () => {
           href="https://academic.oup.com/jcem/article/92/1/196/2598434?searchresult=1&login=false"
           target="_blank"
         ></a>
-      </div>
+      </div> */}
 
-      <div className="mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/images/product/maxt_background.webp')",
-          }}
-        />
-        <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
-          <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-right">
-            <h1
-              className="text-2xl md:text-6xl mb-1"
-              style={{ fontWeight: 50 }}
-            >
-              The Hero
-            </h1>
-            <h1 className="text-lg md:text-2xl italic mb-2 underline">
-              D-Aspartic Acid
-            </h1>
-            <p className="text-[10px] md:text-sm max-w-[350px]">
-              D-aspartic acid is an amino acid synthesized in the body and
-              obtained through protein-containing foods or a dietary supplement
-            </p>
-          </div>
-          <div className="w-1/2 flex items-center justify-center p-2">
-            <Image
-              src="/images/products/Arkyn/daa-molecule.webp"
-              alt="Right Side Image"
-              width={1000}
-              height={1000}
-              className="w-auto h-auto rounded-lg max-h-[600px]"
-            />
+      <section className="my-12 ">
+        <div className="mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: "url('/images/product/maxt_background.webp')",
+            }}
+          />
+          <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
+            <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-right">
+              <h1
+                className="text-2xl md:text-6xl mb-1"
+                style={{ fontWeight: 50 }}
+              >
+                The Hero
+              </h1>
+              <h1 className="text-lg md:text-2xl italic mb-2 underline">
+                D-Aspartic Acid
+              </h1>
+              <p className="text-[10px] md:text-sm max-w-[350px]">
+                D-aspartic acid is an amino acid synthesized in the body and
+                obtained through protein-containing foods or a dietary
+                supplement
+              </p>
+            </div>
+            <div className="w-1/2 flex items-center justify-center p-2">
+              <Image
+                src="/images/products/Arkyn/daa-molecule.webp"
+                alt="Right Side Image"
+                width={1000}
+                height={1000}
+                className="w-auto h-auto rounded-lg max-h-[600px]"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
+  );
+};
+
+const OtherIngredients = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+
+  const handleCardClick = (content) => {
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
+
+  const dummyData = [
+    {
+      id: 1,
+      title: "Card 1",
+      description: "This is the first card",
+      imageUrl: "/path/to/image1.jpg",
+      modalTitle: "Card 1 Details",
+      modalDescription: "Detailed content for Card 1.",
+    },
+    {
+      id: 2,
+      title: "Card 2",
+      description: "This is the second card",
+      imageUrl: "/path/to/image2.jpg",
+      modalTitle: "Card 2 Details",
+      modalDescription: "Detailed content for Card 2.",
+    },
+    {
+      id: 3,
+      title: "Card 3",
+      description: "This is the third card",
+      imageUrl: "/path/to/image3.jpg",
+      modalTitle: "Card 3 Details",
+      modalDescription: "Detailed content for Card 3.",
+    },
+    {
+      id: 4,
+      title: "Card 4",
+      description: "This is the fourth card",
+      imageUrl: "/path/to/image4.jpg",
+      modalTitle: "Card 4 Details",
+      modalDescription: "Detailed content for Card 4.",
+    },
+    {
+      id: 5,
+      title: "Card 5",
+      description: "This is the fifth card",
+      imageUrl: "/path/to/image5.jpg",
+      modalTitle: "Card 5 Details",
+      modalDescription: "Detailed content for Card 5.",
+    },
+  ];
+
+  return (
+    <section className="my-12">
+      <div>
+        <h2 className="text-2xl font-bold mb-6">Other Ingredients</h2>
+      </div>
+      <Carousel opts={{ align: "start" }} className="w-full">
+        <CarouselContent>
+          {dummyData.map(
+            ({
+              id,
+              title,
+              description,
+              imageUrl,
+              modalTitle,
+              modalDescription,
+            }) => (
+              <CarouselItem key={id} className="md:basis-1/2 lg:basis-1/3">
+                <div className="relative p-4 border rounded-3xl bg-[#3a472e] text-white shadow-md flex">
+                  <div className="flex-1 p-4">
+                    <h3 className="text-xl font-semibold">{title}</h3>
+                    <p className="text-gray-300">{description}</p>
+                  </div>
+                  <div className="w-1/3 p-4 flex items-center justify-center">
+                    <img
+                      src={imageUrl}
+                      alt={title}
+                      className="object-cover w-full h-24 rounded-lg"
+                    />
+                  </div>
+                  <button
+                    className="absolute bottom-4 rounded-full left-4 bg-blue-500 text-white px-2 py-1"
+                    onClick={() =>
+                      handleCardClick({ modalTitle, modalDescription })
+                    }
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </CarouselItem>
+            )
+          )}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
+      {/* Modal */}
+      {isModalOpen && modalContent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
+            <h2 className="text-2xl font-semibold mb-4">
+              {modalContent.modalTitle}
+            </h2>
+            <p>{modalContent.modalDescription}</p>
+            <button
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
   );
 };
 
@@ -325,7 +493,7 @@ const ProductQualities = () => {
         </li>
       </ul>
 
-      <h3 className="font-bold mb-2">What does it do and how does it do it?</h3>
+      <h3 className="font-bold mb-2">What does it do?</h3>
       <div className="md:flex gap-2">
         <div className="w-full md:hidden">
           <Swiper spaceBetween={10} slidesPerView={1.2}>
@@ -434,6 +602,60 @@ const ProductQualities = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const Badges = () => {
+  return (
+    <section className="my-12">
+      <div className="grid grid-cols-3 lg:grid-cols-6 justify-center gap-4 md:gap-8 mt-24 w-full">
+        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
+          <Image
+            src="/images/hero/FDA.webp"
+            height={200}
+            width={200}
+            alt="FDA"
+            className="w-20 h-20 md:w-32 md:h-32"
+          />
+        </div>
+        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
+          <Image
+            src="/images/hero/fssai.webp"
+            height={200}
+            width={200}
+            alt="FDA"
+            className="w-20 h-20 md:w-32 md:h-32"
+          />
+        </div>
+        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
+          <Image
+            src="/images/hero/GMP.webp"
+            height={200}
+            width={200}
+            alt="FDA"
+            className="w-20 h-20 md:w-32 md:h-32"
+          />
+        </div>
+        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
+          <Image
+            src="/images/hero/clinically_tested.webp"
+            height={200}
+            width={200}
+            alt="FDA"
+            className="w-20 h-20 md:w-32 md:h-32"
+          />
+        </div>
+        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
+          <Image
+            src="/images/hero/who_badge.webp"
+            height={200}
+            width={200}
+            alt="FDA"
+            className="w-20 h-20 md:w-32 md:h-32"
+          />
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -560,20 +782,47 @@ const OtherInformation = () => {
   );
 };
 
+function Faq() {
+  return (
+    <Accordion type="single" collapsible className="w-full">
+      {questions.map((item) => (
+        <div key={item.id} className="my-4 lg:my-8">
+          <AccordionItem value={`item-${item.id}`}>
+            <AccordionTrigger>
+              <h2 className="text-xl text-left">{item.question}</h2>
+            </AccordionTrigger>
+            <AccordionContent>
+              <h3 className="text-lg">{item.answer}</h3>
+            </AccordionContent>
+          </AccordionItem>
+        </div>
+      ))}
+    </Accordion>
+  );
+}
+
 export const Arkyn = () => {
   return (
     <div>
       <div>
-        <GeneralInfo />
+        <HeroElements />
       </div>
-
+      <div className="max-w-screen-xl mx-auto p-4">
+        <OtherIngredients />
+      </div>
       {/* qualities */}
       <div className="max-w-screen-xl mx-auto p-4">
         <ProductQualities />
       </div>
+      <div className="max-w-screen-xl mx-auto p-4">
+        <Badges />
+      </div>
       {/* other details */}
       <div className="max-w-screen-xl mx-auto p-4">
         <OtherInformation />
+      </div>
+      <div className="max-w-screen-xl mx-auto p-4">
+        <Faq />
       </div>
     </div>
   );

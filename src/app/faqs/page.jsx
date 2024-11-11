@@ -5,15 +5,14 @@ import {
   BrandsCarouselItem,
 } from "../../components/ui/bannerCarousel";
 import "./faq.css";
+import Image from "next/image";
+import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../../components/ui/accordion";
-
-import Image from "next/image";
-import Link from "next/link";
 
 const questions = [
   {
@@ -45,17 +44,6 @@ const questions = [
     question: "Is my information safe and private during consultation?",
     answer:
       "Absolutely. Your information is safe and private during consultations. We prioritize your privacy and ensure that all your personal data is handled with the utmost confidentiality.",
-  },
-];
-
-const banners = [
-  {
-    id: 1,
-    imageUrl: "/images/contact/max-t-banner.webp",
-  },
-  {
-    id: 2,
-    imageUrl: "/images/contact/max-t-banner.webp",
   },
 ];
 
