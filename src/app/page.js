@@ -9,6 +9,7 @@ import Products from "@/components/topProducts/Products";
 import DiscreetPackage from "@/components/discreetPackage/DiscreetPackage";
 import { Usp, About } from "@/components/usp-about/UspAbout";
 import SingleProduct from "@/components/topProducts/singleProduct";
+import CoaSection from "@/components/COAsection/coaSection";
 import { Poppins } from "next/font/google";
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
@@ -24,7 +25,7 @@ export default function Home() {
       {/* <Aboutus /> */}
       <Usp />
       <About />
-
+      {/* <CoaSection /> */}
       <Reviews />
       <Info />
       {/* <PaymentSlider /> */}

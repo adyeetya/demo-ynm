@@ -137,10 +137,10 @@ const Consult = () => {
                 <p className="">Urology</p>
               </div>
               <Link
-                href="/experts"
+                href="/self-assessment"
                 className="whitespace-nowrap text-base w-fit border px-4 py-1 rounded-full bg-white border-[#3a472e] "
               >
-                Consult for Free
+                Take Online Assessment
               </Link>
             </div>
           </div>

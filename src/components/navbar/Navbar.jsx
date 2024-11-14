@@ -1,160 +1,160 @@
-'use client'
-import { useState, useRef, useEffect, useContext, useCallback } from 'react'
-import { IoIosSearch } from 'react-icons/io'
-import { RxHamburgerMenu } from 'react-icons/rx'
-import { IoCartOutline } from 'react-icons/io5'
-import { IoClose } from 'react-icons/io5'
-import { RxCross1 } from 'react-icons/rx'
-import { GlobalStateContext } from '../../context/navbarContext'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useCart } from '../../context/cartContext'
-import { useUser } from '../../context/userContext'
-import { usePathname } from 'next/navigation'
+"use client";
+import { useState, useRef, useEffect, useContext, useCallback } from "react";
+import { IoIosSearch } from "react-icons/io";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { IoCartOutline } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
+import { RxCross1 } from "react-icons/rx";
+import { GlobalStateContext } from "../../context/navbarContext";
+import Image from "next/image";
+import Link from "next/link";
+import { useCart } from "../../context/cartContext";
+import { useUser } from "../../context/userContext";
+import { usePathname } from "next/navigation";
 const Navbar = () => {
-  const { isMenuOpen, setIsMenuOpen } = useContext(GlobalStateContext)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [products, setProducts] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [isError, setIsError] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [filteredProducts, setFilteredProducts] = useState([])
-  const { cart } = useCart() // Destructure cart from useCart context
-  const [cartCount, setCartCount] = useState(0)
-  const menuRef = useRef(null)
-  const scrollTimeoutRef = useRef(null)
-  const { user } = useUser()
-  const pathname = usePathname()
-  const isHomePage = pathname === '/'
-  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
+  const { isMenuOpen, setIsMenuOpen } = useContext(GlobalStateContext);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [products, setProducts] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const { cart } = useCart(); // Destructure cart from useCart context
+  const [cartCount, setCartCount] = useState(0);
+  const menuRef = useRef(null);
+  const scrollTimeoutRef = useRef(null);
+  const { user } = useUser();
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   useEffect(() => {
     const fetchProduct = async () => {
-      setIsLoading(true)
-      setIsError(false)
+      setIsLoading(true);
+      setIsError(false);
       try {
-        const response = await fetch(`${serverUrl}/api/products`)
+        const response = await fetch(`${serverUrl}/api/products`);
         if (!response.ok) {
-          throw new Error('Network response was not ok')
+          throw new Error("Network response was not ok");
         }
-        const data = await response.json()
+        const data = await response.json();
         // console.log('Fetched products:', data)
-        setProducts(data)
+        setProducts(data);
       } catch (error) {
-        setIsError(true)
+        setIsError(true);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
+    };
 
-    fetchProduct()
-  }, [])
+    fetchProduct();
+  }, []);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
+    setIsMenuOpen(!isMenuOpen);
     if (!isMenuOpen) {
-      setIsSearchOpen(false)
+      setIsSearchOpen(false);
     }
-  }
+  };
 
   const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen)
+    setIsSearchOpen(!isSearchOpen);
     if (!isSearchOpen) {
-      setIsMenuOpen(false)
+      setIsMenuOpen(false);
     }
-  }
+  };
 
   const handleSearch = () => {
-    if (searchQuery.trim() === '') {
-      setFilteredProducts([])
+    if (searchQuery.trim() === "") {
+      setFilteredProducts([]);
     } else {
       const filtered = products?.filter((product) =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      setFilteredProducts(filtered)
+      );
+      setFilteredProducts(filtered);
     }
-  }
+  };
 
   const handleClickOutside = useCallback((event) => {
     if (
       menuRef.current &&
       !menuRef.current.contains(event.target) &&
-      !event.target.closest('.menu-button')
+      !event.target.closest(".menu-button")
     ) {
-      setIsMenuOpen(false)
+      setIsMenuOpen(false);
     }
-  }, [])
+  }, []);
 
   const handleLinkClick = () => {
-    setFilteredProducts([])
-    setIsSearchOpen(false)
-  }
+    setFilteredProducts([]);
+    setIsSearchOpen(false);
+  };
 
   const handleScroll = () => {
     if (isMenuOpen) {
-      setIsMenuOpen(false)
+      setIsMenuOpen(false);
     }
-    clearTimeout(scrollTimeoutRef.current)
+    clearTimeout(scrollTimeoutRef.current);
     scrollTimeoutRef.current = setTimeout(() => {
-      document.removeEventListener('scroll', handleScroll)
-    }, 100)
-  }
+      document.removeEventListener("scroll", handleScroll);
+    }, 100);
+  };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [handleClickOutside])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [handleClickOutside]);
 
   useEffect(() => {
     // console.log('Search query:', searchQuery)
-    handleSearch()
-  }, [searchQuery])
+    handleSearch();
+  }, [searchQuery]);
 
   useEffect(() => {
     const updateCartCount = () => {
-      const cartItems = cart || [] // Handle null or undefined case
-      setCartCount(cartItems.length)
-    }
+      const cartItems = cart || []; // Handle null or undefined case
+      setCartCount(cartItems.length);
+    };
 
     // Update cart count initially
-    updateCartCount()
+    updateCartCount();
 
     return () => {
       // Cleanup function
-    }
-  }, [cart])
+    };
+  }, [cart]);
 
   useEffect(() => {
     // Attach scroll event listener to the document body
-    document.addEventListener('scroll', handleScroll, { passive: true })
+    document.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       // Cleanup function to remove event listener
-      document.removeEventListener('scroll', handleScroll)
-    }
-  }, [isMenuOpen])
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, [isMenuOpen]);
 
   // Dynamic navbar background based on scroll position
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScrollChange = () => {
-      const scrollTop = window.scrollY
-      const scrolled = scrollTop > 0
-      setIsScrolled(scrolled)
-    }
+      const scrollTop = window.scrollY;
+      const scrolled = scrollTop > 0;
+      setIsScrolled(scrolled);
+    };
 
-    document.addEventListener('scroll', handleScrollChange)
+    document.addEventListener("scroll", handleScrollChange);
 
     return () => {
-      document.removeEventListener('scroll', handleScrollChange)
-    }
-  }, [])
+      document.removeEventListener("scroll", handleScrollChange);
+    };
+  }, []);
 
   return (
     <nav
       className={`${
-        !isScrolled > 0 && isHomePage ? 'bg-transparent' : 'bg-[var(--dark-bg)]'
+        !isScrolled > 0 && isHomePage ? "bg-[#3a472e]" : "bg-[#3a472e]"
       } text-gray-100 sticky inset-x-0 top-0 z-30 transition-all duration-300 ease-in-out`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -365,7 +365,7 @@ const Navbar = () => {
         </div>
       )}
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

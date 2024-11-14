@@ -13,15 +13,34 @@ import { useProducts } from "../../context/productContext";
 const banners = [
   {
     id: 1,
-    imageUrl: "/images/hero/daabannerweb.webp",
+    imageUrl: "/images/hero/Nutra_bottle_banner_web.webp",
   },
   {
     id: 2,
-    imageUrl: "/images/hero/sleepbannerweb.webp",
+    imageUrl: "/images/hero/daa_banner_web.webp",
   },
   {
     id: 3,
-    imageUrl: "/images/hero/daabannerweb.webp",
+    imageUrl: "/images/hero/Nutra_bottle_banner_web2.webp",
+  },
+];
+
+const mobilebBanners = [
+  {
+    id: 1,
+    imageUrl: "/images/hero/Nutra_product_phone1.webp",
+  },
+  {
+    id: 2,
+    imageUrl: "/images/hero/daa_banner_phone_2.png",
+  },
+  {
+    id: 3,
+    imageUrl: "/images/hero/Nutra_product_phone1.webp",
+  },
+  {
+    id: 4,
+    imageUrl: "/images/hero/all_productbanner_phone2.webp",
   },
 ];
 
@@ -48,25 +67,79 @@ const Banner = () => {
   }, []);
 
   return (
-    <div ref={bannerRef} className="absolute inset-0 w-[100vw] h-[100vh]">
+    <div ref={bannerRef} className="relative w-full">
       <BrandsCarousel
         autoplay={isInView}
         opts={{
           align: "start",
           loop: true,
         }}
-        className="w-full h-full overflow-hidden"
+        className="w-full"
       >
         <BrandsCarouselContent className="">
           {banners.map((card) => (
             <BrandsCarouselItem key={card.id} className="basis-full">
-              <div className="h-[100vh] w-[100vw]">
+              <div className="relative w-full">
                 <Image
                   src={card.imageUrl}
                   alt="banner"
-                  width={1000}
-                  height={1000}
-                  className="w-[100vw] h-[100vh] object-cover"
+                  width={2000}
+                  height={0}
+                  priority
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </BrandsCarouselItem>
+          ))}
+        </BrandsCarouselContent>
+      </BrandsCarousel>
+    </div>
+  );
+};
+
+const PhoneBanner = () => {
+  const [isInView, setIsInView] = useState(true);
+  const bannerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (bannerRef.current) {
+        const { top, bottom } = bannerRef.current.getBoundingClientRect();
+        const inView = top < window.innerHeight && bottom >= 0;
+        setIsInView(inView);
+      }
+    };
+
+    // Set up the scroll listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up listener on unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <div ref={bannerRef} className="relative w-full">
+      <BrandsCarousel
+        autoplay={isInView}
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="w-full"
+      >
+        <BrandsCarouselContent className="">
+          {mobilebBanners.map((card) => (
+            <BrandsCarouselItem key={card.id} className="basis-full">
+              <div className="relative w-full">
+                <Image
+                  src={card.imageUrl}
+                  alt="banner"
+                  width={2000}
+                  height={0}
+                  priority
+                  className="w-full h-auto object-contain"
                 />
               </div>
             </BrandsCarouselItem>
@@ -85,139 +158,88 @@ const Hero = () => {
   // console.log(product)
 
   return (
-    <div className="relative z-0 w-full h-[100vh]  rounded-br-[2rem] -mt-16 overflow-hidden customCurve">
+    <div className="relative z-0 w-full   rounded-br-[2rem] -mt-16 overflow-hidden customCurve">
       {/* Desktop Image */}
-      <div className="hidden md:block absolute inset-0 overflow-hidden">
-        {/* <Image
-          src="/images/hero/boostewave_banner_web.png"
-          alt="Desktop Background Image"
-          height={1000}
-          width={1000}
-          priority
-          className="absolute w-full h-full object-cover"
-        /> */}
+      <div className="w-full hidden md:block overflow-hidden">
         <Banner />
       </div>
 
+      <div className="w-full md:hidden overflow-hidden">
+        <PhoneBanner />
+      </div>
+
       {/* Mobile Image */}
-      <div className="block md:hidden absolute inset-0 rounded-b-3xl">
+      {/* <div className="block md:hidden absolute inset-0 rounded-b-3xl">
         <Image
           src="/images/hero/boostewave_banner_phone.png"
           alt="Mobile Background Image"
           width={1000}
           height={1000}
           priority
-          className="absolute w-full h-full object-cover rounded-b-3xl"
+          className="absolute w-full h-full object-contain rounded-b-3xl"
         />
-      </div>
+      </div> */}
+      {/* <div className="absolute bottom-4 left-4">
+        {" "}
+        <Link
+          href="/self-assessment"
+          className="bg-white  bg-opacity-20 backdrop-filter backdrop-blur-lg border border-white/30 z-50 w-fit text-white py-1 px-6 rounded-full text-lg  hover:bg-black hover:text-gray-100"
+        >
+          Access Yourself
+        </Link>
+      </div> */}
 
-      <div className="absolute mt-16 inset-0 z-10 flex flex-col justify-between items-start px-4">
-        {/* texts */}
-        <div className="flex w-full md:mt-12 mb-20 py-4 h-full justify-start items-end md:items-center overflow-hidden max-w-screen-xl mx-auto">
-          <div className="text-gray-100 text-left z-10">
-            <h1 className="text-5xl mb-1 2xl:text-7xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
-              experience
-            </h1>
-            <h1 className="text-5xl 2xl:text-7xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
-              intimacy
-            </h1>
-            <p className="text-lg mb-12">like never before!</p>
-            <Link
-              href="/self-assessment"
-              className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg border border-white/30 z-50 w-fit text-white py-1 px-6 rounded-full text-lg  hover:bg-black hover:text-gray-100"
-            >
-              Access Yourself
-            </Link>
-            {/* {product ? (
-              <Link
-                href={`/products`}
-                className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full"
-              >
-                explore
-              </Link>
-            ) : (
-              <div className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full">
-                explore
+      {/* explore products */}
+
+      <div className="absolute bottom-0 left-0 md:ml-auto flex items-center w-full h-16 mx-auto border-none shadow-none">
+        <div className="z-50 flex flex-1 w-full md:w-[calc(100vw-4rem)] shadow-none justify-end items-center h-16 bg-[#f7faf0] rounded-bl-none rounded-[2rem] p-2">
+          <div className="flex flex-col w-[18rem] md:w-[20rem] gap-1">
+            {/* Circles with Background Images */}
+            <div className="z-50 flex flex-row justify-between gap-3 items-center w-full">
+              <div className="flex -space-x-4">
+                <div
+                  className="w-12 h-12 bg-cover bg-center border bg-white border-gray-400 rounded-full"
+                  style={{
+                    backgroundImage: 'url("/images/Long_lasting_box.webp")',
+                  }}
+                ></div>
+                <div
+                  className="w-12 h-12 bg-cover bg-center border bg-white border-gray-400 rounded-full"
+                  style={{
+                    backgroundImage: 'url("/images/Long_lasting_box.webp")',
+                  }}
+                ></div>
+                <div
+                  className="w-12 h-12 bg-cover bg-center bg-white border border-gray-400 rounded-full flex items-center justify-center"
+                  style={{
+                    backgroundImage: 'url("/images/Long_lasting_box.webp")',
+                  }}
+                ></div>
+                {/* <span>+2</span> */}
               </div>
-            )} */}
+
+              {/* Text */}
+              <div className="text-left ">
+                <Link
+                  href="/products"
+                  className="flex items-center space-x-2 font-semibold md:text-lg"
+                >
+                  <span>Explore products</span>
+                </Link>
+
+                <p className="z-50 text-xs">
+                  We got the solution for your problem
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Desktop Text */}
-        {/* <div className="hidden w-full max-w-screen-lg md:flex px-4 items-center md:items-center text-gray-100 font-thin text-center ">
-          <div className="flex flex-col gap-4 justify-start items-start z-10">
-            <h1 className="md:text-3xl xl:text-7xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
-              experience
-            </h1>
-            <h1 className="md:text-3xl xl:text-7xl font-bold text-left text-gray-100 tracking-wide 2xl:tracking-widest">
-              intimacy
-            </h1>
-            <p className="text-lg">like never before!</p>
-            {product ? (
-              <Link
-                href={`/products`}
-                className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full"
-              >
-                explore
-              </Link>
-            ) : (
-              <div className="mt-2 bg-white text-black hover:text-gray-100 hover:bg-black py-2 px-6 w-fit font-semibold text-xl rounded-full">
-                explore
-              </div>
-            )}
-          </div>
-        </div> */}
-
-        {/* explore products */}
-
-        <div className="absolute bottom-0 left-0 md:ml-auto flex items-center w-full h-16 mx-auto border-none shadow-none">
-          <div className="z-50 flex flex-1 w-full md:w-[calc(100vw-4rem)] shadow-none justify-end items-center h-16 bg-[#f7faf0] rounded-bl-none rounded-[2rem] p-2">
-            <div className="flex flex-col w-[18rem] gap-1">
-              {/* Circles with Background Images */}
-              <div className="z-50 flex flex-row justify-between gap-3 items-center w-full">
-                <div className="flex -space-x-4">
-                  <div
-                    className="w-10 h-10 bg-cover bg-center border bg-white border-gray-400 rounded-full"
-                    style={{
-                      backgroundImage: 'url("/images/Long_lasting_box.webp")',
-                    }}
-                  ></div>
-                  <div
-                    className="w-10 h-10 bg-cover bg-center border bg-white border-gray-400 rounded-full"
-                    style={{
-                      backgroundImage: 'url("/images/Long_lasting_box.webp")',
-                    }}
-                  ></div>
-                  <div
-                    className="w-10 h-10 bg-cover bg-center bg-white border border-gray-400 rounded-full flex items-center justify-center"
-                    style={{
-                      backgroundImage: 'url("/images/Long_lasting_box.webp")',
-                    }}
-                  ></div>
-                  {/* <span>+2</span> */}
-                </div>
-
-                {/* Text */}
-                <div className="text-left ">
-                  <a
-                    href="#"
-                    className="flex items-center space-x-2 font-semibold text-sm"
-                  >
-                    <span>Explore products</span>
-                  </a>
-
-                  <p className="z-50 text-xs">
-                    We got the solution for your problem
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* button side */}
-          <div className="flex w-16 h-16 justify-center items-center">
-            <div className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg border border-white/30 h-12 w-12 rounded-full flex justify-center items-center shadow-lg">
-              <span className="text-3xl text-white">→</span>
-            </div>
+        {/* button side */}
+        <div className="z-50 flex w-16 h-16 justify-center items-center">
+          <div className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg border border-white/30 h-12 w-12 rounded-full flex justify-center items-center shadow-lg">
+            <Link href="/products" className="text-3xl text-white">
+              →
+            </Link>
           </div>
         </div>
       </div>

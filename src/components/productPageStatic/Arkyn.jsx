@@ -412,7 +412,7 @@ const OtherIngredients = () => {
               modalDescription,
             }) => (
               <CarouselItem key={id} className="md:basis-1/2 lg:basis-1/3">
-                <div className="relative p-4 border rounded-3xl bg-[#3a472e] text-white shadow-md flex">
+                <div className="relative p-4 border rounded-3xl bg-[#a5b398] text-white shadow-md flex">
                   <div className="flex-1 p-4">
                     <h3 className="text-xl font-semibold">{title}</h3>
                     <p className="text-gray-300">{description}</p>
@@ -425,7 +425,7 @@ const OtherIngredients = () => {
                     />
                   </div>
                   <button
-                    className="absolute bottom-4 rounded-full left-4 bg-blue-500 text-white px-2 py-1"
+                    className="absolute bottom-4 rounded-full left-8 bg-[#3a472e] text-white px-2 py-1"
                     onClick={() =>
                       handleCardClick({ modalTitle, modalDescription })
                     }

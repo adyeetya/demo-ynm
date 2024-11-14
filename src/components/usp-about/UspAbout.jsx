@@ -86,53 +86,6 @@ export const Usp = () => {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-3 lg:grid-cols-6 justify-center gap-4 md:gap-8 mt-24 w-full">
-        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
-          <Image
-            src="/images/hero/FDA.webp"
-            height={200}
-            width={200}
-            alt="FDA"
-            className="w-20 h-20 md:w-32 md:h-32"
-          />
-        </div>
-        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
-          <Image
-            src="/images/hero/fssai.webp"
-            height={200}
-            width={200}
-            alt="FDA"
-            className="w-20 h-20 md:w-32 md:h-32"
-          />
-        </div>
-        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
-          <Image
-            src="/images/hero/GMP.webp"
-            height={200}
-            width={200}
-            alt="FDA"
-            className="w-20 h-20 md:w-32 md:h-32"
-          />
-        </div>
-        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
-          <Image
-            src="/images/hero/clinically_tested.webp"
-            height={200}
-            width={200}
-            alt="FDA"
-            className="w-20 h-20 md:w-32 md:h-32"
-          />
-        </div>
-        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
-          <Image
-            src="/images/hero/who_badge.webp"
-            height={200}
-            width={200}
-            alt="FDA"
-            className="w-20 h-20 md:w-32 md:h-32"
-          />
-        </div>
-      </div>
     </div>
   );
 };
@@ -173,7 +126,7 @@ export const About = () => {
         {/* Video Container with Scale and Rotate Animation */}
 
         {/* Image and Text Container */}
-        <div className=" flex flex-col md:flex-row items-center md:items-center justify-center relative gap-8">
+        <div className="mt-12 flex flex-col md:flex-row items-center md:items-center justify-center relative gap-8">
           {/* Text Content with Animated Fade-in */}
           <motion.div className=" -z-10">
             <div className="rounded-full w-[60vw] h-[60vw] sm:w-[50vw] sm:h-[50vw] md:w-96 md:h-96 flex items-center justify-center overflow-hidden shadow-lg">

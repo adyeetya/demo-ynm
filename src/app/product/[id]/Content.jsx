@@ -467,7 +467,7 @@ const ProductPage = ({ product }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (product?.name === "Arkyn") {
+    if (product?.name === "Testosterone Booster") {
       setTheme("maxt");
       setDetailsHowToUse(() => DetailsHowToUseArkyn);
       setProductContent(() => Arkyn);
@@ -849,14 +849,13 @@ const ProductPage = ({ product }) => {
               <p className="text-[10px] md:text-xs text-gray-700 ">
                 MRP Inclusive of all taxes
               </p>
-
-              <div className="flex justify-center items-start flex-col my-2 gap-3">
-                <p>Number of Units</p>
-                <StylishQuantitySelector
-                  quantity={quantity}
-                  setQuantity={setQuantity}
-                />
-              </div>
+            </div>
+            <div className="flex justify-center items-start flex-col my-2 gap-3">
+              <p>Number of Units</p>
+              <StylishQuantitySelector
+                quantity={quantity}
+                setQuantity={setQuantity}
+              />
             </div>
           </div>
 
