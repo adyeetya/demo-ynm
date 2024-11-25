@@ -16,7 +16,7 @@ const Footer = () => {
       <div className="absolute inset-0 bg-[url('/images/noiseEffect-bg.webp')] opacity-40 bg-cover bg-center z-0"></div>
       <div className="flex flex-col md:flex-row text-center max-w-screen-xl mx-auto">
         <div className="w-full md:w-1/2 flex flex-row md:flex-col items-start justify-between px-4 mb-4">
-          <div className="flex flex-col gap-4 w-3/4">
+          <div className="flex flex-col gap-4 md:w-3/4">
             {/* Images and Text Section */}
             <div className="flex flex-col justify-center items-start gap-2 z-10">
               <Image
@@ -70,48 +70,54 @@ const Footer = () => {
             </div>
           </div>
           {/* address */}
-          <div className="text-white text-left text-sm w-1/4">
+          <div className="text-white text-left text-sm md:w-1/3">
             <h2>
-              Lorem Ipsum 20/90 <br /> lorem ipsum 20, <br /> 2222002, Delhi
+              Innov8 Ras Vilas, Lower Ground Floor, <br /> Salcon Rasvilas, D-1,{" "}
+              <br />
+              Saket District Center, <br /> Saket, New Delhi 110017
             </h2>
           </div>
         </div>
 
         {/* Links Section */}
-        <div className="flex flex-col w-full md:w-1/2 px-4 text-white items-center justify-center gap-8 z-10">
-          <div className=" flex flex-row justify-center gap-8 text-right">
+        <div className="flex flex-col w-full md:w-1/2 md:px-4 text-white items-center justify-center gap-8 z-10">
+          <div className="w-full px-4 flex flex-row justify-between md:justify-center my-8  gap-2 md:gap-8 text-right">
             <div>
               <ul>
                 <li className="my-2">
                   <Link
                     href="/our-science"
-                    className="hover:underline flex items-center"
+                    className="hover:underline flex items-center text-sm md:text-lg"
                   >
-                    <FaChevronRight className="mr-2 w-2" /> Our Science
+                    <FaChevronRight className="mr-2 w-2 text-sm md:text-lg" />{" "}
+                    Our Science
                   </Link>
                 </li>
                 <li className="my-2">
                   <Link
                     href="/about"
-                    className="hover:underline flex items-center"
+                    className="hover:underline flex items-center text-sm md:text-lg"
                   >
-                    <FaChevronRight className="mr-2 w-2" /> Our Story
+                    <FaChevronRight className="mr-2 w-2 text-sm md:text-lg" />{" "}
+                    Our Story
                   </Link>
                 </li>
                 <li className="my-2">
                   <Link
                     href="/contactus"
-                    className="hover:underline flex items-center"
+                    className="hover:underline flex items-center text-sm md:text-lg"
                   >
-                    <FaChevronRight className="mr-2 w-2" /> Contact Us
+                    <FaChevronRight className="mr-2 w-2 text-sm md:text-lg" />{" "}
+                    Contact Us
                   </Link>
                 </li>
                 <li className="my-2">
                   <Link
                     href="/faqs"
-                    className="hover:underline flex items-center"
+                    className="hover:underline flex items-center text-sm md:text-lg"
                   >
-                    <FaChevronRight className="mr-2 w-2" /> FAQ&apos;s
+                    <FaChevronRight className="mr-2 w-2 text-sm md:text-lg" />{" "}
+                    FAQ&apos;s
                   </Link>
                 </li>
               </ul>
@@ -119,37 +125,40 @@ const Footer = () => {
             <div>
               <ul>
                 <li className="my-2">
-                  <a
+                  <Link
                     href="/terms-and-conditions"
-                    className="hover:underline flex items-center"
+                    className="hover:underline flex items-center text-sm md:text-lg"
                   >
-                    <FaChevronRight className="mr-2 w-2" /> Terms & Conditions
-                  </a>
+                    <FaChevronRight className="mr-2 w-2 text-sm md:text-lg" />{" "}
+                    Terms & Conditions
+                  </Link>
                 </li>
                 <li className="my-2">
-                  <a
+                  <Link
                     href="/shipping-policy"
-                    className="hover:underline flex items-center"
+                    className="hover:underline flex items-center text-sm md:text-lg"
                   >
-                    <FaChevronRight className="mr-2 w-2" /> Shipping Policy
-                  </a>
+                    <FaChevronRight className="mr-2 w-2 text-sm md:text-lg" />{" "}
+                    Shipping Policy
+                  </Link>
                 </li>
                 <li className="my-2">
-                  <a
+                  <Link
                     href="/privacy-policy"
-                    className="hover:underline flex items-center"
+                    className="hover:underline flex items-center text-sm md:text-lg"
                   >
-                    <FaChevronRight className="mr-2 w-2" /> Privacy Policy
-                  </a>
+                    <FaChevronRight className="mr-2 w-2 text-sm md:text-lg" />{" "}
+                    Privacy Policy
+                  </Link>
                 </li>
                 <li className="my-2">
-                  <a
+                  <Link
                     href="/refunds-policy"
-                    className="hover:underline flex items-center"
+                    className="hover:underline flex items-center text-sm md:text-lg"
                   >
-                    <FaChevronRight className="mr-2 w-2" /> Cancellation &
-                    Refund Policy
-                  </a>
+                    <FaChevronRight className="mr-2 w-2 text-sm md:text-lg" />{" "}
+                    Cancellation & Refund Policy
+                  </Link>
                 </li>
               </ul>
             </div>

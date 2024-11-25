@@ -34,66 +34,131 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../../components/ui/accordion";
+
+import DiscreetSection from "../discreetPackage/DiscreetPackage";
+
 const details = [
   {
-    title: "Powerful Performance Formula",
-    description:
-      "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+    description: "Promotes healthy testosterone levels naturally.",
   },
   {
-    title: "Powerful Performance Formula",
-    description:
-      "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+    description: "Boosts libido and enhances sexual performance.",
   },
   {
-    title: "Powerful Performance Formula",
-    description:
-      "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+    description: "Supports lean muscle mass and improved strength.",
   },
   {
-    title: "Powerful Performance Formula",
-    description:
-      "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+    description: "Reduces fatigue and boosts energy for active living.",
   },
   {
-    title: "Powerful Performance Formula",
-    description:
-      "Crafted with potent ingredients for optimal testosterone enhancement. No unwanted side effects, ensuring a smooth, effective experience.",
+    description: "Improves sperm quality and reproductive health.",
+  },
+  {
+    description: "Reduces stress and promotes hormonal balance.",
   },
 ];
 
 const questions = [
   {
     id: 1,
-    question: "Why YESNMORE?",
+    question: "How long does it take to see results?",
     answer:
-      "YESNMORE is dedicated to enhancing your sexual wellness with high-quality, effective, and safe products. Our mission is to empower you with confidence and satisfaction, ensuring a stress-free, discreet, and fulfilling experience.",
+      "Results vary by individual, but noticeable improvements in energy and vitality are usually observed within 2–4 weeks of consistent use.",
   },
   {
     id: 2,
-    question: "Where are YESNMORE products available?",
+    question: "Can this be taken with other supplements?",
     answer:
-      "YESNMORE products are available at www.yesnmore.com and on Amazon and Flipkart. They will soon be available on Zepto and Blinkit as well.",
+      " Yes, this product can generally be taken alongside other supplements. However, consult your physician for personalized advice.",
   },
   {
     id: 3,
-    question: "Are YESNMORE products 100% safe and effective to use?",
+    question: "Is it safe for long-term use?",
     answer:
-      "Yes, YESNMORE products are formulated with the highest standards of safety and effectiveness in mind. We rigorously test each product to ensure it meets our stringent quality standards.",
+      " Yes, the Testosterone Booster is non-habit forming and safe for long-term use when taken as recommended.",
   },
   {
     id: 4,
-    question: "Is doctor consultation free?",
+    question: "Are there any side effects?",
     answer:
-      "Yes, doctor consultations at YESNMORE are free. We believe in providing accessible and personalized guidance to support your sexual wellness journey.",
+      "The product is made from natural ingredients and is generally well-tolerated. Minor side effects like mild digestive discomfort may occur initially but typically subside.",
   },
   {
     id: 5,
-    question: "Is my information safe and private during consultation?",
+    question: "Can this product help with fertility issues?",
     answer:
-      "Absolutely. Your information is safe and private during consultations. We prioritize your privacy and ensure that all your personal data is handled with the utmost confidentiality.",
+      "Yes, ingredients like Ashwagandha, Zinc, and Safed Musli are known to support sperm quality and overall reproductive health.",
+  },
+  {
+    id: 6,
+    question: "Is this suitable for vegetarians or vegans?",
+    answer: " Yes, this product is 100% vegan and cruelty-free.",
+  },
+  {
+    id: 7,
+    question: " Can this product be taken by men of all ages?",
+    answer:
+      "The Testosterone Booster is designed for adult men. It is generally recommended for men aged 18 and above. Consult a healthcare professional if you have specific concerns.",
+  },
+  {
+    id: 8,
+    question: "Does this product help with weight management?",
+    answer:
+      "Yes, balanced testosterone levels can support healthy fat distribution and help reduce obesity risk. Combined with regular exercise and a healthy diet, this product may aid in weight management.",
+  },
+  {
+    id: 9,
+    question: "Can this product be used to enhance athletic performance?",
+    answer:
+      "Absolutely! Ingredients like Tribulus Terrestris, Ashwagandha, and Ginseng may improve stamina, strength, and recovery, making it beneficial for athletes and fitness enthusiasts.",
+  },
+  {
+    id: 10,
+    question:
+      "Can I take this if I have a medical condition or am on medication?",
+    answer:
+      "If you have a medical condition or are taking medication, consult your physician before starting this supplement to ensure it is safe for you.",
   },
 ];
+
+const CertificationSection = () => {
+  return (
+    <div className="my-12 max-w-screen-xl mx-auto px-4 flex items-center justify-between">
+      <div className="w-1/2">
+        <h2 className={`text-3xl font-bold mb-6 ${lora.className}`}>
+          Certified for effectiveness: <br />{" "}
+          <span className="text-[#3a472e] text-xl">
+            Each product undergoes rigorous testing to ensure it delivers as
+            promised.
+          </span>
+        </h2>
+      </div>
+      <div className="w-1/2 flex justify-center ">
+        <a
+          href="/certificate.jpg" // Adjust the path to your certificate image
+          download="Certificate_of_Effectiveness.jpg"
+          className="inline-flex items-center px-4 py-2 bg-[#3a472e] text-white rounded-full hover:bg-white hover:text-[#3a472e] border hover:border-[#3a472e] focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          What is COA
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+            className="w-5 h-5 ml-2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.5 12.75l7.5 7.5m0 0l7.5-7.5m-7.5 7.5V3"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+  );
+};
 
 export const DetailsHowToUseArkyn = () => {
   const [activeTab, setActiveTab] = useState("details");
@@ -130,9 +195,7 @@ export const DetailsHowToUseArkyn = () => {
               <span className="mr-2">
                 {/* <FaFlask className="text-[#999999]" /> */}•
               </span>
-              <div className="text-sm">
-                <strong>{item.title}</strong> {item.description}
-              </div>
+              <div className="text-sm">{item.description}</div>
             </li>
           ))}
         </ul>
@@ -149,45 +212,300 @@ export const DetailsHowToUseArkyn = () => {
                 <FaCheckCircle className="text-blue-500" />
               </span>
               <div className="text-sm">
-                Follow the dosage instructions on the packaging or from your
-                healthcare provider.
-              </div>
-            </li>
-            {/* 2 */}
-            <li className="flex items-start mb-3">
-              <span className="mr-2">
-                <FaCheckCircle className="text-blue-500" />
-              </span>
-              <div className="text-sm">
-                Follow the dosage instructions on the packaging or from your
-                healthcare provider.
-              </div>
-            </li>
-            {/* 3 */}
-            <li className="flex items-start mb-3">
-              <span className="mr-2">
-                <FaCheckCircle className="text-blue-500" />
-              </span>
-              <div className="text-sm">
-                Follow the dosage instructions on the packaging or from your
-                healthcare provider.
-              </div>
-            </li>
-            {/* 4 */}
-            <li className="flex items-start mb-3">
-              <span className="mr-2">
-                <FaCheckCircle className="text-blue-500" />
-              </span>
-              <div className="text-sm">
-                Follow the dosage instructions on the packaging or from your
-                healthcare provider.
+                Take 2 tablets daily with a glass of water or milk, preferably
+                after a meal, or as directed by a physician.
               </div>
             </li>
           </ul>
         </div>
       )}
+    </div>
+  );
+};
 
-      <div className="flex justify-around mt-6 items-center overflow-hidden">
+const HeroElements = () => {
+  return (
+    <div className="mx-auto py-4 bg- rounded-lg">
+      <section className="bg-[#f7faf0] py-16 px-4">
+        <div className="max-w-screen-xl mx-auto text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            The Importance of Testosterone for Men&apos;s Health
+          </h2>
+          <p className="text-gray-600">
+            Understanding how testosterone affects vitality and overall
+            wellness.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-screen-lg mx-auto">
+          {/* Physical Strength */}
+          <div className="flex flex-col items-center md:flex-row">
+            {/* <img
+              src="/images/physical-strength.jpg"
+              alt="Physical Strength"
+              className="w-full md:w-40 h-40 object-cover rounded-lg shadow-lg"
+            /> */}
+            <div className="mt-4 md:mt-0 md:ml-6">
+              <h3 className="text-2xl font-semibold text-gray-700">
+                Physical Strength & Energy
+              </h3>
+              <p className="text-gray-600 mt-2">
+                Testosterone plays a vital role in maintaining muscle mass,
+                energy levels, and physical performance. Low levels can lead to
+                muscle loss, fatigue, and reduced stamina.
+              </p>
+            </div>
+          </div>
+
+          {/* Emotional Stability */}
+          <div className="flex flex-col items-center md:flex-row">
+            {/* <img
+              src="/images/emotional-stability.jpg"
+              alt="Emotional Stability"
+              className="w-full md:w-40 h-40 object-cover rounded-lg shadow-lg"
+            /> */}
+            <div className="mt-4 md:mt-0 md:ml-6">
+              <h3 className="text-2xl font-semibold text-gray-700">
+                Emotional Stability
+              </h3>
+              <p className="text-gray-600 mt-2">
+                Hormonal imbalances can trigger mood swings, anxiety, and even
+                depression. Balanced testosterone levels support emotional
+                well-being and resilience.
+              </p>
+            </div>
+          </div>
+
+          {/* Reproductive Health */}
+          <div className="flex flex-col items-center md:flex-row">
+            {/* <img
+              src="/images/reproductive-health.jpg"
+              alt="Reproductive Health"
+              className="w-full md:w-40 h-40 object-cover rounded-lg shadow-lg"
+            /> */}
+            <div className="mt-4 md:mt-0 md:ml-6">
+              <h3 className="text-2xl font-semibold text-gray-700">
+                Reproductive Health
+              </h3>
+              <p className="text-gray-600 mt-2">
+                Testosterone is crucial for fertility, libido, and overall
+                sexual health. Low levels may lead to reduced libido and
+                reproductive challenges.
+              </p>
+            </div>
+          </div>
+
+          {/* Overall Wellness */}
+          <div className="flex flex-col items-center md:flex-row">
+            {/* <img
+              src="/images/overall-wellness.jpg"
+              alt="Overall Wellness"
+              className="w-full md:w-40 h-40 object-cover rounded-lg shadow-lg"
+            /> */}
+            <div className="mt-4 md:mt-0 md:ml-6">
+              <h3 className="text-2xl font-semibold text-gray-700">
+                Overall Wellness
+              </h3>
+              <p className="text-gray-600 mt-2">
+                Low testosterone impacts vitality, relationships, and quality of
+                life. Maintaining balanced levels ensures mental, physical, and
+                intimate well-being.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="mb-12 ">
+        <div className="mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: "url('/images/product/maxt_background.webp')",
+            }}
+          />
+          <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
+            <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-right max-w-4xl">
+              <h1 className="text-2xl md:text-6xl mb-1">The Hero</h1>
+              <div>
+                <h1 className="text-lg md:text-3xl italic mb-2">
+                  <span className="underline font-semibold">
+                    {" "}
+                    D-Aspartic Acid (DAA)
+                  </span>
+                </h1>
+                <p className="text-[10px] md:text-sm ">
+                  It stimulates testosterone production by enhancing the release
+                  of luteinizing hormone (LH).
+                  <br /> - Improves testosterone levels
+                  <br /> - Increases muscle mass
+                  <br /> - Enhances libido
+                </p>
+              </div>
+              <div>
+                <h1 className="text-lg md:text-3xl italic mb-2">
+                  <span className="underline font-semibold">
+                    {" "}
+                    Tribulus Terrestris
+                  </span>
+                </h1>
+                <p className="text-[10px] md:text-sm ">
+                  A natural herb traditionally used for male vitality
+                  <br /> - Boosts testosterone
+                  <br /> - Supports sexual performance
+                  <br /> - Improves stamina
+                </p>
+              </div>
+            </div>
+            <div className="w-1/2 flex items-center justify-center p-2">
+              <Image
+                src="/images/products/Arkyn/daa-molecule.webp"
+                alt="Right Side Image"
+                width={1000}
+                height={1000}
+                className="w-auto h-auto rounded-lg max-h-[600px]"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+const OtherIngredients = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(null);
+
+  const handleCardClick = (content) => {
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
+
+  const dummyData = [
+    {
+      id: 1,
+      title: "Ashwagandha Root",
+
+      imageUrl: "/path/to/image1.jpg",
+      modalTitle: "Ashwagandha Root",
+      modalDescription:
+        "Reduces stress, balances hormones, and enhances sperm quality and reproductive health.",
+    },
+    {
+      id: 2,
+      title: "Shilajit",
+
+      imageUrl: "/path/to/image2.jpg",
+      modalTitle: "Card 2 Details",
+      modalDescription:
+        "A powerful adaptogen that improves energy levels, cognitive function, and sexual endurance.",
+    },
+    {
+      id: 3,
+      title: "Safed Musli",
+
+      imageUrl: "/path/to/image3.jpg",
+      modalTitle: "Card 3 Details",
+      modalDescription:
+        "A natural aphrodisiac that supports libido, sexual performance, and stamina.",
+    },
+    {
+      id: 4,
+      title: "Ginseng",
+
+      imageUrl: "/path/to/image4.jpg",
+      modalTitle: "Card 4 Details",
+      modalDescription:
+        "Enhances energy and vitality, supporting overall stamina.",
+    },
+    {
+      id: 5,
+      title: "Zinc",
+
+      imageUrl: "/path/to/image5.jpg",
+      modalTitle: "Card 5 Details",
+      modalDescription:
+        "Critical for testosterone production, immune function, and improved energy levels.",
+    },
+    {
+      id: 6,
+      title: "Vitamin D2, B6, and B12",
+
+      imageUrl: "/path/to/image5.jpg",
+      modalTitle: "Card 5 Details",
+      modalDescription:
+        " Vital for energy metabolism, mood regulation, and overall health.",
+    },
+  ];
+
+  return (
+    <section className="mb-12">
+      <div>
+        <h2 className="text-2xl font-bold mb-6">Other Ingredients</h2>
+      </div>
+      <Carousel opts={{ align: "start" }} className="w-full">
+        <CarouselContent>
+          {dummyData.map(
+            ({
+              id,
+              title,
+              description,
+              imageUrl,
+              modalTitle,
+              modalDescription,
+            }) => (
+              <CarouselItem key={id} className="md:basis-1/2 lg:basis-1/3">
+                <div className="relative p-4 border rounded-3xl bg-[#a5b398] text-white shadow-md flex">
+                  <div className="flex-1 p-4">
+                    <h3 className="text-xl font-semibold">{title}</h3>
+                  </div>
+                  <div className="w-1/3 p-4 flex items-center justify-center">
+                    {/* <img
+                      src={imageUrl}
+                      alt={title}
+                      className="object-cover w-full h-24 rounded-lg"
+                    /> */}
+                  </div>
+                  <button
+                    className="absolute bottom-4 rounded-full left-8 bg-[#3a472e] text-white px-2 py-1"
+                    onClick={() => handleCardClick({ title, modalDescription })}
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </CarouselItem>
+            )
+          )}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
+      {/* Modal */}
+      {isModalOpen && modalContent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
+            <h2 className="text-2xl font-semibold mb-4">
+              {modalContent.title}
+            </h2>
+            <p>{modalContent.modalDescription}</p>
+            <button
+              className="mt-4 text-red-400"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
+
+const ProductQualities = () => {
+  return (
+    <div className="py-4 text-xs md:text-base">
+      <div className="flex justify-around my-12 items-center overflow-hidden">
         <div className="flex flex-col justify-between items-center w-24">
           <Image
             src="/images/product/medical-globe.png"
@@ -243,257 +561,11 @@ export const DetailsHowToUseArkyn = () => {
           </p>
         </div>
       </div>
-    </div>
-  );
-};
 
-const HeroElements = () => {
-  return (
-    <div className="mx-auto py-4 bg-white rounded-lg">
-      {/* Information Section */}
-      {/* <div className="mb-6 max-w-screen-xl mx-auto px-4">
-        <h2 className={`text-3xl max-w-60 font-bold mb-6 ${lora.className}`}>
-          The Truth About Testosterone
-        </h2>
-
-        <div className="max-w-screen-xl mx-auto w-full md:mx-auto mb-4 md:mb-8 text-gray-100">
-          <div
-            className={`bg-gradient-to-b rounded-md flex justify-between md:justify-center items-center gap-4 p-2 md:p-6 from-black to-white`}
-          >
-            <Image
-              src="/images/products/Arkyn/testo-graph1.webp"
-              width={1000}
-              height={1000}
-              className="w-[47%] md:w-72 md:h-56 rounded-md"
-              alt="information"
-            />
-          </div>
-        </div>
-
-        <p>
-          Testosterone, the primary male sex hormone, peaks during puberty and
-          declines as men age. This decrease can be exacerbated by factors like
-          stress, obesity, poor diet, and other lifestyle choices. Research
-          indicates that average testosterone levels in men today are
-          significantly lower than they were 30 years ago.
-        </p>
-        <p>
-          Many outdated testosterone boosters suffer from poor formulations, low
-          efficacy, and lack of clinical support. They often contain substandard
-          ingredients and fail to improve sexual function effectively.
-        </p>
-        <p>
-          Low levels of testosterone can lead to reduced sex drive, weight gain,
-          and an increased risk of health issues such as testosterone deficiency
-          and prostate cancer. The pituitary gland and adrenal gland play
-          crucial roles in regulating the amount of testosterone in the body.
-          Blood tests are essential to diagnose low testosterone levels and
-          determine the need for testosterone replacement therapy.
-        </p>
-        <p>
-          Our testosterone booster can help increase testosterone levels,
-          improve sexual function, and enhance overall well-being.. Addressing
-          testosterone deficiency can significantly improve quality of life,
-          especially for older men.
-        </p>
-        <a
-          href="https://academic.oup.com/jcem/article/92/1/196/2598434?searchresult=1&login=false"
-          target="_blank"
-        ></a>
-      </div> */}
-
-      <section className="my-12 ">
-        <div className="mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: "url('/images/product/maxt_background.webp')",
-            }}
-          />
-          <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
-            <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-right">
-              <h1
-                className="text-2xl md:text-6xl mb-1"
-                style={{ fontWeight: 50 }}
-              >
-                The Hero
-              </h1>
-              <h1 className="text-lg md:text-2xl italic mb-2 underline">
-                D-Aspartic Acid
-              </h1>
-              <p className="text-[10px] md:text-sm max-w-[350px]">
-                D-aspartic acid is an amino acid synthesized in the body and
-                obtained through protein-containing foods or a dietary
-                supplement
-              </p>
-            </div>
-            <div className="w-1/2 flex items-center justify-center p-2">
-              <Image
-                src="/images/products/Arkyn/daa-molecule.webp"
-                alt="Right Side Image"
-                width={1000}
-                height={1000}
-                className="w-auto h-auto rounded-lg max-h-[600px]"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-const OtherIngredients = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
-
-  const handleCardClick = (content) => {
-    setModalContent(content);
-    setIsModalOpen(true);
-  };
-
-  const dummyData = [
-    {
-      id: 1,
-      title: "Card 1",
-      description: "This is the first card",
-      imageUrl: "/path/to/image1.jpg",
-      modalTitle: "Card 1 Details",
-      modalDescription: "Detailed content for Card 1.",
-    },
-    {
-      id: 2,
-      title: "Card 2",
-      description: "This is the second card",
-      imageUrl: "/path/to/image2.jpg",
-      modalTitle: "Card 2 Details",
-      modalDescription: "Detailed content for Card 2.",
-    },
-    {
-      id: 3,
-      title: "Card 3",
-      description: "This is the third card",
-      imageUrl: "/path/to/image3.jpg",
-      modalTitle: "Card 3 Details",
-      modalDescription: "Detailed content for Card 3.",
-    },
-    {
-      id: 4,
-      title: "Card 4",
-      description: "This is the fourth card",
-      imageUrl: "/path/to/image4.jpg",
-      modalTitle: "Card 4 Details",
-      modalDescription: "Detailed content for Card 4.",
-    },
-    {
-      id: 5,
-      title: "Card 5",
-      description: "This is the fifth card",
-      imageUrl: "/path/to/image5.jpg",
-      modalTitle: "Card 5 Details",
-      modalDescription: "Detailed content for Card 5.",
-    },
-  ];
-
-  return (
-    <section className="my-12">
-      <div>
-        <h2 className="text-2xl font-bold mb-6">Other Ingredients</h2>
-      </div>
-      <Carousel opts={{ align: "start" }} className="w-full">
-        <CarouselContent>
-          {dummyData.map(
-            ({
-              id,
-              title,
-              description,
-              imageUrl,
-              modalTitle,
-              modalDescription,
-            }) => (
-              <CarouselItem key={id} className="md:basis-1/2 lg:basis-1/3">
-                <div className="relative p-4 border rounded-3xl bg-[#a5b398] text-white shadow-md flex">
-                  <div className="flex-1 p-4">
-                    <h3 className="text-xl font-semibold">{title}</h3>
-                    <p className="text-gray-300">{description}</p>
-                  </div>
-                  <div className="w-1/3 p-4 flex items-center justify-center">
-                    <img
-                      src={imageUrl}
-                      alt={title}
-                      className="object-cover w-full h-24 rounded-lg"
-                    />
-                  </div>
-                  <button
-                    className="absolute bottom-4 rounded-full left-8 bg-[#3a472e] text-white px-2 py-1"
-                    onClick={() =>
-                      handleCardClick({ modalTitle, modalDescription })
-                    }
-                  >
-                    Learn More
-                  </button>
-                </div>
-              </CarouselItem>
-            )
-          )}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-
-      {/* Modal */}
-      {isModalOpen && modalContent && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
-            <h2 className="text-2xl font-semibold mb-4">
-              {modalContent.modalTitle}
-            </h2>
-            <p>{modalContent.modalDescription}</p>
-            <button
-              className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
-              onClick={() => setIsModalOpen(false)}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-    </section>
-  );
-};
-
-const ProductQualities = () => {
-  return (
-    <div className="py-4 text-xs md:text-base">
-      <h2 className="text-2xl font-bold mb-6">PRODUCT QUALITIES</h2>
-      <p className="mb-2">
-        Powered by potent, unique ingredients, this testosterone booster is
-        designed to -
-      </p>
-      <ul className="list-disc list-inside mb-4">
-        <li className="mb-1">
-          Enhance Sexual Performance: Improve libido and sexual function for a
-          more satisfying intimate experience, also supports erection.
-        </li>
-        <li className="mb-1">
-          Increase Muscle Mass: Support muscle growth and strength, helping you
-          achieve your fitness goals.
-        </li>
-        <li className="mb-1">
-          Boosts Energy Levels: Experience higher energy and stamina throughout
-          the day for improved performance
-        </li>
-        <li className="mb-1">
-          Improve Mood and Vitality: Elevate mood and mental clarity,
-          contributing to overall well-being and confidence.
-        </li>
-        <li className="mb-1">
-          Supports Reproductive Health: Enhance fertility and reproductive
-          function, supporting overall sexual health.
-        </li>
-      </ul>
-
-      <h3 className="font-bold mb-2">What does it do?</h3>
+      <h3 className="font-bold mb-2 mt-12">
+        {" "}
+        What Does It Do and How Does It Do It?
+      </h3>
       <div className="md:flex gap-2">
         <div className="w-full md:hidden">
           <Swiper spaceBetween={10} slidesPerView={1.2}>
@@ -507,10 +579,11 @@ const ProductQualities = () => {
                   className="mb-2 mx-auto"
                 />
                 <p>
-                  Action in Target Organs: Increased testosterone levels
-                  circulate and exert their effects on muscles (promoting growth
-                  and repair), bones (enhancing density), and sexual organs
-                  (improving libido and sexual function).
+                  Testosterone Booster combines clinically backed ingredients
+                  like D-Aspartic Acid and Tribulus Terrestris to stimulate
+                  natural testosterone production. These ingredients enhance
+                  hormonal activity in the pituitary gland and testes, leading
+                  to improved testosterone levels and overall vitality.
                 </p>
               </div>
             </SwiperSlide>
@@ -524,10 +597,11 @@ const ProductQualities = () => {
                   className="mb-2 mx-auto"
                 />
                 <p>
-                  Action in Target Organs: Increased testosterone levels
-                  circulate and exert their effects on muscles (promoting growth
-                  and repair), bones (enhancing density), and sexual organs
-                  (improving libido and sexual function).
+                  The blend of Ashwagandha, Safed Musli, and Zinc supports
+                  reproductive health by improving sperm quality, boosting
+                  libido, and promoting better blood circulation. These benefits
+                  enhance sexual performance and overall physical stamina,
+                  enabling a healthier and more active lifestyle.
                 </p>
               </div>
             </SwiperSlide>
@@ -541,10 +615,10 @@ const ProductQualities = () => {
                   className="mb-2 mx-auto"
                 />
                 <p>
-                  Action in Target Organs: Increased testosterone levels
-                  circulate and exert their effects on muscles (promoting growth
-                  and repair), bones (enhancing density), and sexual organs
-                  (improving libido and sexual function).
+                  Ingredients like Shilajit and Ginseng act as adaptogens,
+                  reducing stress and fatigue while improving energy levels.
+                  Vitamins B6 and B12 support energy metabolism, helping you
+                  stay focused, motivated, and energized throughout the day.
                 </p>
               </div>
             </SwiperSlide>
@@ -561,10 +635,11 @@ const ProductQualities = () => {
               className="mb-2 mx-auto "
             />
             <p>
-              Action in Target Organs: Increased testosterone levels circulate
-              and exert their effects on muscles (promoting growth and repair),
-              bones (enhancing density), and sexual organs (improving libido and
-              sexual function).
+              Testosterone Booster combines clinically backed ingredients like
+              D-Aspartic Acid and Tribulus Terrestris to stimulate natural
+              testosterone production. These ingredients enhance hormonal
+              activity in the pituitary gland and testes, leading to improved
+              testosterone levels and overall vitality.
             </p>
           </div>
           {/* 2 */}
@@ -577,10 +652,11 @@ const ProductQualities = () => {
               className="mb-2 mx-auto "
             />
             <p>
-              Action in Target Organs: Increased testosterone levels circulate
-              and exert their effects on muscles (promoting growth and repair),
-              bones (enhancing density), and sexual organs (improving libido and
-              sexual function).
+              The blend of Ashwagandha, Safed Musli, and Zinc supports
+              reproductive health by improving sperm quality, boosting libido,
+              and promoting better blood circulation. These benefits enhance
+              sexual performance and overall physical stamina, enabling a
+              healthier and more active lifestyle.
             </p>
           </div>
           {/* 3 */}
@@ -593,69 +669,15 @@ const ProductQualities = () => {
               className="mb-2 mx-auto "
             />
             <p>
-              Action in Target Organs: Increased testosterone levels circulate
-              and exert their effects on muscles (promoting growth and repair),
-              bones (enhancing density), and sexual organs (improving libido and
-              sexual function).
+              Ingredients like Shilajit and Ginseng act as adaptogens, reducing
+              stress and fatigue while improving energy levels. Vitamins B6 and
+              B12 support energy metabolism, helping you stay focused,
+              motivated, and energized throughout the day.
             </p>
           </div>
         </div>
       </div>
     </div>
-  );
-};
-
-const Badges = () => {
-  return (
-    <section className="my-12">
-      <div className="grid grid-cols-3 lg:grid-cols-6 justify-center gap-4 md:gap-8 mt-24 w-full">
-        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
-          <Image
-            src="/images/hero/FDA.webp"
-            height={200}
-            width={200}
-            alt="FDA"
-            className="w-20 h-20 md:w-32 md:h-32"
-          />
-        </div>
-        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
-          <Image
-            src="/images/hero/fssai.webp"
-            height={200}
-            width={200}
-            alt="FDA"
-            className="w-20 h-20 md:w-32 md:h-32"
-          />
-        </div>
-        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
-          <Image
-            src="/images/hero/GMP.webp"
-            height={200}
-            width={200}
-            alt="FDA"
-            className="w-20 h-20 md:w-32 md:h-32"
-          />
-        </div>
-        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
-          <Image
-            src="/images/hero/clinically_tested.webp"
-            height={200}
-            width={200}
-            alt="FDA"
-            className="w-20 h-20 md:w-32 md:h-32"
-          />
-        </div>
-        <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
-          <Image
-            src="/images/hero/who_badge.webp"
-            height={200}
-            width={200}
-            alt="FDA"
-            className="w-20 h-20 md:w-32 md:h-32"
-          />
-        </div>
-      </div>
-    </section>
   );
 };
 
@@ -708,76 +730,6 @@ const OtherInformation = () => {
           </div>
         )}
       </div>
-      <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
-        <div className="w-1/2">
-          <h3
-            className={`text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[#faa91c] w-fit px-4 py-1`}
-          >
-            What it will do
-          </h3>
-          <ul className="list-disc list-inside mb-4 px-2">
-            <p className="mb-1 text-[10px] md:text-sm underline">
-              Boosts muscular strength
-            </p>
-            <p className="mb-1 text-[10px] md:text-sm underline">
-              May improve cognitive function
-            </p>
-            <p className="mb-1 text-[10px] md:text-sm underline">
-              Can help increase blood flow
-            </p>
-            <p className="mb-1 text-[10px] md:text-sm underline">
-              May help improve bone strength and density
-            </p>
-            <p className="mb-1 text-[10px] md:text-sm underline">
-              Can help improve sexual desire and satisfaction.
-            </p>
-          </ul>
-        </div>
-        <div className="w-1/2">
-          <h3
-            className={`text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[#faa91c] w-fit px-4 py-1`}
-          >
-            What it won&apos;t do
-          </h3>
-          <ul className="list-disc list-inside mb-4 px-2">
-            <p className="mb-1 text-[10px] md:text-sm underline">
-              Doesn&apos;t treat ED
-            </p>
-            <p className="mb-1 text-[10px] md:text-sm underline">
-              Doesn&apos;t replace your doctor
-            </p>
-            <p className="mb-1 text-[10px] md:text-sm underline">
-              Doesn&apos;t act as alternate to food
-            </p>
-            <p className="mb-1 text-[10px] md:text-sm underline">
-              Doesn&apos;t decrease strength
-            </p>
-          </ul>
-        </div>
-      </div>
-      {/* Expert Section */}
-      <div className="bg-[#f5faff] w-full mt-16">
-        <div className="max-w-screen-xl flex w-full md:w-[600px] mx-auto justify-center items-center bg-[var(--lastlonger-light)] text-gray-100">
-          <Image
-            src="/images/femdoc.png"
-            alt="Expert"
-            width={500}
-            height={500}
-            className="w-1/3"
-          />
-          <div className="w-2/3">
-            <h2 className="text-sm md:text-base text-black mb-2">
-              Get in touch with our Experts
-            </h2>
-            <Link
-              href="/experts"
-              className="text-sm md:text-base mt-2 px-8 py-1 bg-white text-black rounded-full hover:bg-[#0B2251] hover:text-white"
-            >
-              CLICK HERE NOW
-            </Link>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
@@ -805,6 +757,9 @@ export const Arkyn = () => {
   return (
     <div>
       <div>
+        <CertificationSection />
+      </div>
+      <div>
         <HeroElements />
       </div>
       <div className="max-w-screen-xl mx-auto p-4">
@@ -815,7 +770,7 @@ export const Arkyn = () => {
         <ProductQualities />
       </div>
       <div className="max-w-screen-xl mx-auto p-4">
-        <Badges />
+        <DiscreetSection />
       </div>
       {/* other details */}
       <div className="max-w-screen-xl mx-auto p-4">

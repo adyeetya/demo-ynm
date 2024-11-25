@@ -152,7 +152,9 @@ const RatingsReviews = ({
 
   return (
     <div className="py-4">
-      <h2 className="text-2xl font-bold mb-6">Ratings & Reviews</h2>
+      <h2 className="text-2xl font-bold mb-6">
+        Trusted by Men Who Say Yes to More Pleasure
+      </h2>
 
       <div className="flex items-center mb-6">
         <div className="text-6xl font-bold mr-4">{product.rating}</div>
@@ -478,27 +480,6 @@ const ProductPage = ({ product }) => {
     }
   }, [product]);
 
-  const getConcernClasses = () => {
-    if (theme === "lls") {
-      return "border-[#0B2251] hover:bg-[#0B2251] hover:text-gray-100";
-    } else if (theme === "maxt") {
-      return "border-black hover:bg-black hover:text-gray-200";
-    } else if (theme === "bstw") {
-      return "border-[#16251d] hover:bg-[#16251d] hover:text-gray-100";
-    }
-    return "";
-  };
-  const getButtonClasses = () => {
-    if (theme === "lls") {
-      return "border-[#0B2251] hover:bg-[#0B2251] hover:text-gray-100";
-    } else if (theme === "maxt") {
-      return "border-black hover:bg-black hover:text-gray-200";
-    } else if (theme === "bstw") {
-      return "border-[#16251d] hover:bg-[#16251d] hover:text-gray-100";
-    }
-    return "";
-  };
-
   useEffect(() => {
     setProduct(product);
   }, [product]);
@@ -506,9 +487,14 @@ const ProductPage = ({ product }) => {
   useEffect(() => {
     if (user && user.orderHistory && product) {
       // Check if the product is in the user's order history
-      const purchased = user.orderHistory.some(
-        (order) => order.productId.toString() === product._id.toString()
+      const purchasedProductIds = user.orderHistory.flatMap((order) =>
+        order.orderId?.orderDetails?.cart?.map((item) =>
+          item.productId?._id?.toString()
+        )
       );
+
+      // Check if the product is in the user's order history
+      const purchased = purchasedProductIds.includes(product._id.toString());
       setHasPurchased(purchased);
 
       // Check if the user has already reviewed the product

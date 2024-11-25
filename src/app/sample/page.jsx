@@ -9,10 +9,14 @@ import {
 } from "./textAnimation";
 import Carousel from "./blogSlider";
 import DialNumberAnimation from "./dialAnimation";
+import RealTimeBarChart from "./charts";
+import DragAndDrop from "./DragDrop";
 const page = () => {
   return (
-    <div>
-      <DialNumberAnimation from="xxxxxx" to="aditya" duration={2} />
+    <div className="min-h-screen flex flex-col justify-center items-center">
+      {/* <DialNumberAnimation from="xxxxxx" to="aditya" duration={2} /> */}
+      {/* <RealTimeBarChart /> */}
+      {/* <DragAndDrop /> */}
     </div>
   );
 };

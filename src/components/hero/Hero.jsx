@@ -13,7 +13,8 @@ import { useProducts } from "../../context/productContext";
 const banners = [
   {
     id: 1,
-    imageUrl: "/images/hero/Nutra_bottle_banner_web.webp",
+    imageUrl: "/images/hero/nutra_bottle_banner_web.webp",
+    link: "/products",
   },
   {
     id: 2,
@@ -22,6 +23,34 @@ const banners = [
   {
     id: 3,
     imageUrl: "/images/hero/Nutra_bottle_banner_web2.webp",
+  },
+  // {
+  //   id: 4,
+  //   imageUrl: "/images/hero/saucha banner_web.webp",
+  // },
+  {
+    id: 5,
+    imageUrl: "/images/hero/DAA_banner_web_2.webp",
+  },
+  {
+    id: 6,
+    imageUrl: "/images/hero/sleep_banner_web.webp",
+  },
+  {
+    id: 7,
+    imageUrl: "/images/hero/sleep_banner_web1.webp",
+  },
+  {
+    id: 8,
+    imageUrl: "/images/hero/boostwave_banner_web.webp",
+  },
+  {
+    id: 9,
+    imageUrl: "/images/hero/Daa_banner_web3.webp",
+  },
+  {
+    id: 10,
+    imageUrl: "/images/hero/long_lasting_spray_web_banner.webp",
   },
 ];
 
@@ -32,11 +61,11 @@ const mobilebBanners = [
   },
   {
     id: 2,
-    imageUrl: "/images/hero/daa_banner_phone_2.png",
+    imageUrl: "/images/hero/long_lasting_phone_banner.webp",
   },
   {
     id: 3,
-    imageUrl: "/images/hero/Nutra_product_phone1.webp",
+    imageUrl: "/images/hero/saucha_banner_phone.webp",
   },
   {
     id: 4,
@@ -236,8 +265,8 @@ const Hero = () => {
         </div>
         {/* button side */}
         <div className="z-50 flex w-16 h-16 justify-center items-center">
-          <div className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg border border-white/30 h-12 w-12 rounded-full flex justify-center items-center shadow-lg">
-            <Link href="/products" className="text-3xl text-white">
+          <div className="bg-black bg-opacity-30 backdrop-filter backdrop-blur-lg border border-white/30 h-12 w-12 rounded-full flex justify-center items-center shadow-lg">
+            <Link href="/products" className="text-xl md:text-3xl text-white">
               →
             </Link>
           </div>

@@ -189,10 +189,10 @@ const Navbar = () => {
               Products
             </Link>
             <Link
-              href="#"
+              href="/our-science"
               className="glass-effect-button hover:hover-button active:scale-95"
             >
-              Education
+              Our Science
             </Link>
             <Link
               href="/about"

@@ -5,16 +5,17 @@ import React from "react";
 const WaveSection = () => {
   return (
     <section
-      className="relative w-full min-h-[706px] bg-cover bg-center bg-no-repeat overflow-hidden -mt-32"
+      className="relative w-full min-h-[706px] bg-cover bg-center bg-no-repeat overflow-hidden -mt-20"
       style={{
-        backgroundImage: 'url("/images/hero/discreetbg.png")',
-        backgroundSize: "100vw 100%",
+        backgroundImage: 'url("/images/hero/Web_descreet_bg.png")',
+        backgroundSize: "150vw 100%",
+        backgroundPosition: "center",
       }}
     >
       <div className="w-full">
-        <div className="relative z-10 text-center pb-20 pt-64 ">
+        <div className="relative z-10 text-center pb-20 pt-48 ">
           <h1 className="text-4xl font-semibold text-[#3a472e] my-8">
-            Our Promise to You
+            Privacy Guaranteed, Quality Assured
           </h1>
           <div className="flex flex-col md:flex-row justify-center items-center gap-12 mx-6">
             {/* Image */}
@@ -38,9 +39,10 @@ const WaveSection = () => {
                     Discreet Packaging
                   </h2>
                   <p className="text-justify text-sm lg:text-md">
-                    Privacy is guaranteed. Yesnmore products ship in discreet
-                    plain packaging with Customer Service as the name on the
-                    return address.
+                    Your comfort and privacy are our priority. With Yes N More,
+                    every interaction is confidential, and all products are
+                    shipped discreetly, ensuring a private experience from start
+                    to finish.
                   </p>
                 </div>
               </div>
@@ -67,7 +69,10 @@ const WaveSection = () => {
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-3 lg:grid-cols-6 p-4 justify-center gap-4 md:gap-8 mt-24 w-full">
+          <h2 className="mt-24 mb-8 text-left mx-4 text-lg font-semibold text-[#3a472e]">
+            Certified by Renowned Authorities
+          </h2>
+          <div className="grid grid-cols-3 lg:grid-cols-5 p-4 justify-center gap-4 md:gap-8 w-full">
             <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
               <Image
                 src="/images/hero/FDA.webp"

@@ -18,8 +18,10 @@ export const Usp = () => {
             <span className="ml-2 mr-4">Our</span>
             <span className="relative inline-block italic z-10">
               {/* "Unique" word with SVG outline */} Belief
-              <img
+              <Image
                 src="/images/hero/stroke_vector.svg"
+                width={1000}
+                height={1000}
                 alt="Outline"
                 className="absolute bottom-0 left-0 pointer-events-none -z-10 w-[200%] h-auto scale-[115%]"
               />
@@ -49,10 +51,11 @@ export const Usp = () => {
             height={150}
             className="mx-auto rounded-full"
           /> */}
-          <h2 className="text- font-bold mt-4">DIAGNOSE</h2>
-          <p className="mt-2 text-xs text-gray-600">
-            This is some descriptive text about the first column. Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit. Sed, excepturi.
+          <h2 className="text- font-bold mt-4">Right Diagnose</h2>
+          <p className="mt-2 text-xs text-gray-600 text-justify">
+            Understanding your unique health concerns is where it all begins. We
+            focus on identifying the root cause of your issues to create a
+            treatment plan tailored to your needs.
           </p>
         </div>
         {/* Column 2 */}
@@ -64,10 +67,11 @@ export const Usp = () => {
             height={150}
             className="mx-auto rounded-full"
           /> */}
-          <h2 className="text- font-bold mt-4">PRESCRIPTION</h2>
-          <p className="mt-2 text-xs text-gray-600">
-            This is some descriptive text about the first column. Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit. Sed, excepturi.
+          <h2 className="text- font-bold mt-4">Precise Prescription</h2>
+          <p className="mt-2 text-xs text-gray-600 text-justify">
+            Clear and detailed instructions are key. We provide a prescription
+            that aligns perfectly with your diagnosis to ensure effective
+            results.
           </p>
         </div>
         {/* Column 3 */}
@@ -79,10 +83,11 @@ export const Usp = () => {
             height={150}
             className="mx-auto rounded-full"
           /> */}
-          <h2 className="text- font-bold mt-4">MEDICATION</h2>
-          <p className="mt-2 text-xs text-gray-600">
-            This is some descriptive text about the first column. Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit. Sed, excepturi.
+          <h2 className="text- font-bold mt-4">Tailored Medication</h2>
+          <p className="mt-2 text-xs text-gray-600 text-justify">
+            No one-size-fits-all solutions here. Our carefully curated
+            medications are designed to address your specific concerns and
+            promote recovery efficiently.
           </p>
         </div>
       </div>
@@ -147,11 +152,16 @@ export const About = () => {
             className="mt-8 text-black w-full max-w-2xl flex flex-col items-end"
           >
             <p className="md:text-lg leading-relaxed text-justify mt-8 md:mt-0">
-              We empower Indian men to take control of their sexual health with
-              confidence. We understand the silent struggles and offer a
-              discreet, judgment-free space for personalized guidance and
-              solutions. Explore your pleasure, optimize your performance, and
-              embrace inner well-being with us.
+              Our journey began with the simple belief that every man deserves
+              to feel confident and healthy. What started as a vision to offer
+              discreet, reliable solutions to become a trusted name for
+              thousands of men across India. We provide scientifically backed
+              products and consultations led by compassionate experts who are
+              here to guide you every step of the way.
+              <br />
+              <br />
+              Because at the end of the day, we all deserve to live our lives
+              feeling our best—inside and out.
             </p>
 
             {/* Button with Hover Effect */}

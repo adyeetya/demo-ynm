@@ -1,8 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { useUser } from "../../context/userContext";
+import { useCart } from "../../context/cartContext";
 import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   FaRegEdit,
   FaShippingFast,
@@ -13,22 +15,52 @@ import {
 import Link from "next/link";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
-import { LuFileLock } from "react-icons/lu";
+
 import CustomDropdown from "./StateDropdown";
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 import { Poppins } from "next/font/google";
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
+const OrderModal = ({ onClose, orderInfo }) => {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-1  md:p-2 w-11/12 max-w-md md:max-w-lg lg:max-w-xl relative">
+        <button
+          onClick={onClose}
+          className="absolute text-xl top-2 right-4 md:right-2 text-gray-200 md:text-gray-600 hover:text-gray-900"
+        >
+          &times;
+        </button>
+        <div>Congrats your order has been confirmed.</div>
+        <h2>{orderInfo._id}</h2>
+      </div>
+    </div>
+  );
+};
+
 const CheckoutPage = () => {
   const [cart, setCart] = useState([]);
   const [showOffers, setShowOffers] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [paymentMethod, setPaymentMethod] = useState(null); // Track selected payment method
+  const [modalVisibile, setModalVisible] = useState(false);
+  const [orderInfo, setOrderInfo] = useState(null);
+  const router = useRouter();
+
+  const handlePaymentMethodChange = (method) => {
+    console.log("Selected payment method:", method);
+    setPaymentMethod(method);
+  };
 
   const [token, setToken] = useState(
     typeof window !== "undefined" ? Cookies.get("ynmtoken") : null
   );
+
+  // context data
   const { user, setUser } = useUser();
-  // console.log(user)
+  const { clearCart } = useCart();
+
   const userId = user?._id;
   const [newAddress, setNewAddress] = useState({});
   useEffect(() => {
@@ -45,24 +77,49 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     const fetchCart = async () => {
+      // console.log("fetching cart"); running this fetchcart 3 times
       try {
-        const response = await axios.get(
-          `${serverUrl}/api/cart/getCart/${userId}`,
+        const response = await fetch(
+          `${serverUrl}/api/cart/getCart/${user._id}`,
           {
+            method: "GET",
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        if (response.status === 200) {
-          // console.log('res cart', response.data.cart)
-          setCart(response.data.cart);
+        if (response.ok) {
+          const data = await response.json();
+          setCart(data.cart);
+        } else {
+          console.error("Failed to fetch cart. Status:", response.status);
         }
       } catch (error) {
-        console.error("Error fetching cart:", error);
+        console.error("Failed to fetch cart", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchCart();
-  }, [user, token, userId]);
+  }, [user, token]);
+
+  // const clearCart = async () => {
+  //   try {
+  //     await axios.post(
+  //       `${serverUrl}/api/cart/sync`,
+  //       {
+  //         userId: user._id,
+  //         cart: [],
+  //       },
+  //       {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       }
+  //     );
+
+  //     setCart([]);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // Calculate total price based on quantity
   const totalPrice = cart.reduce(
@@ -120,29 +177,216 @@ const CheckoutPage = () => {
   });
 
   const simulatePayment = async () => {
+    console.log("payment method: ", paymentMethod);
     try {
-      const response = await axios.post(
-        `${serverUrl}/api/users/simulatePayment`,
-        { userId },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const orderDetails = {
+        cart, // Items in the cart
+        totalPrice, // Total price of the cart
+      };
 
-      if (response.status === 200) {
-        toast.success("Payment successful and order placed!");
-        setCart([]); // Clear the cart on the frontend
-      } else {
-        toast.error("Payment failed, please try again.");
+      if (paymentMethod === "cod") {
+        // Handle Cash on Delivery (COD) order
+        const response = await axios.post(
+          `${serverUrl}/api/orders/create`,
+          {
+            paymentType: "cod", // Specify payment type as COD
+            orderDetails, // Include cart and total price
+            userId, // Associate the order with the user
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Add token for user authentication
+            },
+          }
+        );
+
+        if (response.data.success) {
+          setOrderInfo(response.data.order); // Set the order info in state
+
+          handleSuccess(response.data.order._id);
+        } else {
+          toast.error("Failed to place COD order. Please try again.");
+        }
+      } else if (paymentMethod === "online") {
+        // Handle Online Payment
+        const response = await axios.post(
+          `${serverUrl}/api/orders/payments/initiate`,
+          {
+            orderDetails, // Include cart and total price
+            userId, // Associate the order with the user
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Add token for user authentication
+            },
+          }
+        );
+
+        if (response.data.success) {
+          const { orderId, amount, currency, razorpayKey } = response.data;
+
+          // Simulate Razorpay Payment Gateway interaction
+          const razorpayOptions = {
+            key: razorpayKey, // Mock Razorpay key
+            amount: amount, // Mock amount
+            currency: currency, // Mock currency
+            name: "Your Store Name", // Store name
+            order_id: orderId, // Mock order ID
+            handler: async () => {
+              // Simulate successful payment verification
+              const verifyResponse = await axios.post(
+                `${serverUrl}/api/orders/payments/verify`,
+                {
+                  razorpay_payment_id: "mock_payment_id", // Mock payment ID
+                  razorpay_order_id: orderId, // Mock order ID
+                  razorpay_signature: "mock_signature", // Mock signature
+                  userId,
+                  orderDetails, // Include cart and total price
+                },
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`, // Add token for user authentication
+                  },
+                }
+              );
+
+              if (verifyResponse.data.success) {
+                setOrderInfo(verifyResponse.data.order);
+                handleSuccess(verifyResponse.data.order._id);
+              } else {
+                toast.error("Payment verification failed. Contact support.");
+              }
+            },
+            // prefill: {
+            //   name: userName, // Mock user name
+            //   email: userEmail, // Mock user email
+            //   contact: userPhone, // Mock user phone number
+            // },
+          };
+
+          // Simulate opening Razorpay (mock interaction)
+          console.log(
+            "Opening Razorpay simulation with options:",
+            razorpayOptions
+          );
+          razorpayOptions.handler(); // Directly call handler for simulation
+        } else {
+          toast.error("Failed to initiate payment. Please try again.");
+        }
       }
     } catch (error) {
-      console.error("Error during payment simulation:", error);
-      toast.error("Payment failed, please try again.");
+      console.error("Error simulating payment:", error);
+      toast.error("An error occurred. Please try again.");
     }
   };
 
+  // const handleOrder = async (paymentMethod) => {
+  //   try {
+  //     if (paymentMethod === "COD") {
+  //       // Send order info directly to the backend
+  //       const response = await axios.post(
+  //         `${serverUrl}/api/orders/create`,
+  //         {
+  //           paymentMethod, // "COD"
+  //           orderDetails, // Object containing the user's order info
+  //           userId, // Optional: Send user info for association
+  //         },
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
+
+  //       if (response.data.success) {
+  //         toast.success("Order placed successfully!");
+  //         setCart([]); // Clear the cart
+  //       } else {
+  //         toast.error("Failed to place order. Please try again.");
+  //       }
+  //     } else if (paymentMethod === "PayNow") {
+  //       // Redirect to Razorpay payment gateway
+  //       const response = await axios.post(
+  //         `${serverUrl}/api/payments/initiate`,
+  //         {
+  //           orderDetails, // Object containing the user's order info
+  //           userId,
+  //         },
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
+
+  //       if (response.data.success) {
+  //         const { orderId, amount, currency, razorpayKey } = response.data;
+
+  //         // Open Razorpay Payment Gateway
+  //         const razorpayOptions = {
+  //           key: razorpayKey,
+  //           amount: amount,
+  //           currency: currency,
+  //           name: "Your Store Name",
+  //           order_id: orderId,
+  //           handler: async (razorpayResponse) => {
+  //             // Handle successful payment response
+  //             const {
+  //               razorpay_payment_id,
+  //               razorpay_order_id,
+  //               razorpay_signature,
+  //             } = razorpayResponse;
+
+  //             const verifyResponse = await axios.post(
+  //               `${serverUrl}/api/payments/verify`,
+  //               {
+  //                 razorpay_payment_id,
+  //                 razorpay_order_id,
+  //                 razorpay_signature,
+  //                 userId,
+  //                 orderDetails, // Include the order details
+  //               },
+  //               {
+  //                 headers: {
+  //                   Authorization: `Bearer ${token}`,
+  //                 },
+  //               }
+  //             );
+
+  //             if (verifyResponse.data.success) {
+  //               toast.success("Payment successful and order placed!");
+  //               setCart([]);
+  //             } else {
+  //               toast.error("Payment verification failed. Contact support.");
+  //             }
+  //           },
+  //           prefill: {
+  //             name: userName,
+  //             email: userEmail,
+  //             contact: userPhone,
+  //           },
+  //         };
+
+  //         const razorpay = new Razorpay(razorpayOptions);
+  //         razorpay.open();
+  //       } else {
+  //         toast.error("Failed to initiate payment. Please try again.");
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error handling order:", error);
+  //     toast.error("Something went wrong. Please try again.");
+  //   }
+  // };
+
+  // handle success
+  const handleSuccess = (orderId) => {
+    const order_id = orderId;
+    toast.success("Payment successful and order placed!");
+    clearCart();
+    setCart([]);
+    router.push(`/order-confirmation/${order_id}`);
+  };
   return (
     <div
       className={`p-4 md:py-8 max-w-screen-xl mx-auto min-h-screen ${poppins.className}`}
@@ -339,12 +583,52 @@ const CheckoutPage = () => {
             <span className="font-semibold">Total:</span>
             <span className="font-semibold">₹{totalPrice.toFixed(2)}</span>
           </div>
-          <button
-            className="rounded-full hover:bg-blue-600 transition-colors bg-black text-gray-100 px-8 py-2 text-center"
-            onClick={() => alert("Payment functionality to be implemented")}
-          >
-            Proceed to Pay
-          </button>
+          <div className="payment-options">
+            <h2 className="text-lg font-semibold mb-4">
+              Select Payment Method
+            </h2>
+
+            <div className="flex gap-4 mb-6">
+              <button
+                className={`rounded-full px-6 py-2 text-center ${
+                  paymentMethod === "cod"
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-800"
+                }`}
+                onClick={() => handlePaymentMethodChange("cod")}
+              >
+                Cash on Delivery
+              </button>
+              <button
+                className={`rounded-full px-6 py-2 text-center ${
+                  paymentMethod === "online"
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-800"
+                }`}
+                onClick={() => handlePaymentMethodChange("online")}
+              >
+                Online Payment
+              </button>
+            </div>
+
+            {paymentMethod === "cod" && (
+              <button
+                className="rounded-full bg-black text-gray-100 px-8 py-2 text-center hover:bg-blue-600 transition-colors"
+                onClick={simulatePayment}
+              >
+                Place Order with COD
+              </button>
+            )}
+
+            {paymentMethod === "online" && (
+              <button
+                className="rounded-full bg-black text-gray-100 px-8 py-2 text-center hover:bg-blue-600 transition-colors"
+                onClick={simulatePayment}
+              >
+                Proceed to Pay Online
+              </button>
+            )}
+          </div>
           {/* <button
             className="mt-2 w-fit rounded-full hover:bg-blue-600 transition-colors bg-black text-gray-100 px-8 py-2 text-center"
             onClick={simulatePayment}
@@ -353,6 +637,12 @@ const CheckoutPage = () => {
           </button> */}
         </div>
       </div>
+      {modalVisibile && (
+        <OrderModal
+          orderInfo={orderInfo}
+          onClose={() => setModalVisible(false)}
+        />
+      )}
     </div>
   );
 };

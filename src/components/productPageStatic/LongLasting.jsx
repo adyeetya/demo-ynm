@@ -20,6 +20,77 @@ import {
   FaChevronDown,
   FaChevronUp,
 } from "react-icons/fa";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../../components/ui/accordion";
+
+import DiscreetSection from "../discreetPackage/DiscreetPackage";
+
+const questions = [
+  {
+    id: 1,
+    question: "What is the Long Lasting Spray, and how does it work?",
+    answer:
+      "The Long Lasting Spray is a specially formulated product designed to help men prolong their intimate experiences. It contains 10% Lidocaine, a mild anesthetic that temporarily desensitizes the skin, reducing sensitivity in targeted areas. This allows for better control and longer-lasting performance during intimacy.",
+  },
+  {
+    id: 2,
+    question: " Is the spray safe to use?",
+    answer:
+      "Yes, the Long Lasting Spray is safe for use when applied as directed. It is dermatologist-tested and formulated with Lidocaine, a medically approved ingredient. However, it’s always advisable to consult a healthcare professional if you have sensitive skin, allergies, or pre-existing medical conditions.",
+  },
+  {
+    id: 3,
+    question: "How do I use the spray for the best results?",
+    answer:
+      "To use, spray a small amount (1-2 sprays) directly onto the sensitive area, and allow it to absorb for about 10-15 minutes before engaging in intimacy. Avoid excessive use, and always follow the instructions provided on the packaging.",
+  },
+  {
+    id: 4,
+    question: " Will the spray affect my partner?",
+    answer:
+      "No, the spray is designed to absorb quickly and work effectively without transferring to your partner. However, it’s recommended to wait a few minutes after application or gently wipe away any excess to ensure optimal results.",
+  },
+  {
+    id: 5,
+    question: "Can I use this spray with condoms?",
+    answer:
+      "Yes, the spray is compatible with most latex condoms. Ensure the spray has fully absorbed into the skin before putting on a condom to maintain its effectiveness and safety.",
+  },
+  {
+    id: 6,
+    question: " How long does the effect of the spray last?",
+    answer:
+      "The effects typically last for about 20-60 minutes, depending on individual sensitivity and the amount applied. Start with the recommended dosage and adjust based on your needs.",
+  },
+  {
+    id: 7,
+    question: " Is the spray portable and discreet?",
+    answer:
+      "Absolutely! The spray comes in a compact, pocket-friendly 20g bottle, making it easy to carry and use discreetly whenever needed.",
+  },
+  {
+    id: 8,
+    question: "Are there any side effects?",
+    answer:
+      "Side effects are rare when used as directed. Some individuals may experience mild irritation or numbness. If any discomfort persists, discontinue use and consult a doctor.",
+  },
+  {
+    id: 9,
+    question: " Who should not use this spray?",
+    answer:
+      "The spray is not recommended for individuals with a known allergy to Lidocaine or related anesthetics. It should also be avoided if you have open wounds or irritated skin in the application area.",
+  },
+  {
+    id: 5,
+    question: "Can the spray treat premature ejaculation permanently?",
+    answer:
+      "The spray is designed for temporary relief and control during intimate moments. For a long-term solution, we recommend consulting our healthcare professional first for a personalized treatment plan.",
+  },
+];
 
 export const DetailsHowToUseLongLasting = () => {
   const [activeTab, setActiveTab] = useState("details");
@@ -52,9 +123,9 @@ export const DetailsHowToUseLongLasting = () => {
       {activeTab === "details" && (
         <div>
           <h2 className="text-lg font-bold mb-2">
-            Long Lasting Spray by YES N MORE :
+            Why Choose Long Lasting Spray?
           </h2>
-          <p className="font-semibold mb-4">SAY YES TO MORE PLEASURE</p>
+
           <ul className="list-disc ">
             {/* 1 */}
             <li className="flex items-start mb-3">
@@ -62,9 +133,8 @@ export const DetailsHowToUseLongLasting = () => {
                 <FaFlask className="text-[#999999]" />
               </span>
               <div className="text-sm">
-                <strong>Powerful Performance Formula</strong> Crafted with
-                potent ingredients for optimal testosterone enhancement. No
-                unwanted side effects, ensuring a smooth, effective experience.
+                <strong>Prolong Duration</strong> Formulated to gently extend
+                intimate moments, giving you more time to connect.
               </div>
             </li>
 
@@ -74,9 +144,8 @@ export const DetailsHowToUseLongLasting = () => {
                 <FaFlask className="text-[#999999]" />
               </span>
               <div className="text-sm">
-                <strong>Powerful Performance Formula</strong> Crafted with
-                potent ingredients for optimal testosterone enhancement. No
-                unwanted side effects, ensuring a smooth, effective experience.
+                <strong>Enhance Control</strong> Supports increased control for
+                a more satisfying experience.
               </div>
             </li>
             {/* 3 */}
@@ -85,9 +154,8 @@ export const DetailsHowToUseLongLasting = () => {
                 <FaFlask className="text-[#999999]" />
               </span>
               <div className="text-sm">
-                <strong>Powerful Performance Formula</strong> Crafted with
-                potent ingredients for optimal testosterone enhancement. No
-                unwanted side effects, ensuring a smooth, effective experience.
+                <strong>Boost Confidence</strong> Feel confident in your
+                performance with a scientifically backed solution.
               </div>
             </li>
             {/* 4 */}
@@ -96,9 +164,8 @@ export const DetailsHowToUseLongLasting = () => {
                 <FaFlask className="text-[#999999]" />
               </span>
               <div className="text-sm">
-                <strong>Powerful Performance Formula</strong> Crafted with
-                potent ingredients for optimal testosterone enhancement. No
-                unwanted side effects, ensuring a smooth, effective experience.
+                <strong>Enhance Intimacy</strong> Crafted to help you focus on
+                what matters most – enjoying every moment.
               </div>
             </li>
             {/* 5 */}
@@ -107,9 +174,29 @@ export const DetailsHowToUseLongLasting = () => {
                 <FaFlask className="text-[#999999]" />
               </span>
               <div className="text-sm">
-                <strong>Powerful Performance Formula</strong> Crafted with
-                potent ingredients for optimal testosterone enhancement. No
-                unwanted side effects, ensuring a smooth, effective experience.
+                <strong>Absorbs More Thoroughly</strong> Tested formulation
+                ensures quicker and more effective absorption than competitors.
+              </div>
+            </li>
+            {/* 6 */}
+            <li className="flex items-start mb-3">
+              <span className="mr-2 mt-1">
+                <FaFlask className="text-[#999999]" />
+              </span>
+              <div className="text-sm">
+                <strong>Better Surface Coverage</strong> Precise nozzle spray
+                ensures even application, covering the surface area effectively.
+              </div>
+            </li>
+            {/* 7 */}
+            <li className="flex items-start mb-3">
+              <span className="mr-2 mt-1">
+                <FaFlask className="text-[#999999]" />
+              </span>
+              <div className="text-sm">
+                <strong>Compact and Portable</strong>At just 20g, the product is
+                pocket-friendly and easy to carry, perfect for use anytime,
+                anywhere
               </div>
             </li>
           </ul>
@@ -118,8 +205,9 @@ export const DetailsHowToUseLongLasting = () => {
 
       {activeTab === "howToUse" && (
         <div>
-          <h2 className="text-lg font-bold mb-2">HOW TO USE</h2>
-          <h3 className="font-semibold mb-4">Long Lasting Spray</h3>
+          <h3 className="font-semibold mb-4">
+            How to Use Long Lasting Spray for Best Results
+          </h3>
           <ul className="list-decimal ">
             {/* 1 */}
             <li className="flex items-start mb-3">
@@ -127,8 +215,7 @@ export const DetailsHowToUseLongLasting = () => {
                 <FaCheckCircle className="text-blue-500" />
               </span>
               <div className="text-sm">
-                Follow the dosage instructions on the packaging or from your
-                healthcare provider.
+                Prepare - Shake the bottle well before use for even application.
               </div>
             </li>
             {/* 2 */}
@@ -137,8 +224,9 @@ export const DetailsHowToUseLongLasting = () => {
                 <FaCheckCircle className="text-blue-500" />
               </span>
               <div className="text-sm">
-                Follow the dosage instructions on the packaging or from your
-                healthcare provider.
+                Apply – Hold the spray 10-12 cm away and apply 1-3 sprays to the
+                desired area. Start with the lowest amount and gradually
+                increase as needed.
               </div>
             </li>
             {/* 3 */}
@@ -147,8 +235,9 @@ export const DetailsHowToUseLongLasting = () => {
                 <FaCheckCircle className="text-blue-500" />
               </span>
               <div className="text-sm">
-                Follow the dosage instructions on the packaging or from your
-                healthcare provider.
+                Wait – Allow the spray to absorb for 10-15 minutes for maximum
+                effectiveness. ions on the packaging or from your healthcare
+                provider.
               </div>
             </li>
             {/* 4 */}
@@ -157,15 +246,197 @@ export const DetailsHowToUseLongLasting = () => {
                 <FaCheckCircle className="text-blue-500" />
               </span>
               <div className="text-sm">
-                Follow the dosage instructions on the packaging or from your
-                healthcare provider.
+                Enjoy – Proceed with confidence and savor the experience.
+              </div>
+            </li>
+            {/* 5 */}
+            <li className="flex items-start mb-3">
+              <div className="text-xs text-gray-700">
+                Safety Note: For external use only. Do not apply on broken skin.
+                Please consult with a healthcare professional if you have any
+                allergies or sensitivities.
               </div>
             </li>
           </ul>
         </div>
       )}
+    </div>
+  );
+};
 
-      <div className="flex justify-around mt-6 items-center overflow-hidden">
+const CertificationSection = () => {
+  return (
+    <div className="my-12 max-w-screen-xl mx-auto px-4 flex items-center justify-between">
+      <div className="w-1/2">
+        <h2 className={`text-3xl font-bold mb-6 ${lora.className}`}>
+          Certified for effectiveness: <br />{" "}
+          <span className="text-[#3a472e] text-xl">
+            Each product undergoes rigorous testing to ensure it delivers as
+            promised.
+          </span>
+        </h2>
+      </div>
+      <div className="w-1/2 flex justify-center ">
+        <a
+          href="/certificate.jpg" // Adjust the path to your certificate image
+          download="Certificate_of_Effectiveness.jpg"
+          className="inline-flex items-center px-4 py-2 bg-[#3a472e] text-white rounded-full hover:bg-white hover:text-[#3a472e] border hover:border-[#3a472e] focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          What is COA
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke="currentColor"
+            className="w-5 h-5 ml-2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.5 12.75l7.5 7.5m0 0l7.5-7.5m-7.5 7.5V3"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+  );
+};
+
+const GeneralInfo = () => {
+  return (
+    <div className="mx-auto py-4  rounded-lg">
+      {/* Information Section */}
+      <section className="bg-[#f7faf0] py-16 px-4">
+        <div className="max-w-screen-xl mx-auto text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            Why Does Premature Ejaculation (PE) Occur?
+          </h2>
+          <p className="text-gray-600">
+            Understanding the causes can help find the right approach to
+            treatment and management.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-screen-lg mx-auto">
+          {/* Psychological Factors */}
+          <div className="flex flex-col items-center md:flex-row">
+            {/* <img
+              src="/images/psychological-factors.jpg"
+              alt="Psychological Factors"
+              className="w-full md:w-40 h-40 object-cover rounded-lg shadow-lg"
+            /> */}
+            <div className="mt-4 md:mt-0 md:ml-6">
+              <h3 className="text-2xl font-semibold text-gray-700">
+                Psychological Factors
+              </h3>
+              <p className="text-gray-600 mt-2">
+                Anxiety, stress, or performance pressure can heighten
+                sensitivity and reduce control during intimacy. Unresolved
+                emotional challenges or strained relationships may worsen the
+                issue.
+              </p>
+            </div>
+          </div>
+
+          {/* Biological Triggers */}
+          <div className="flex flex-col items-center md:flex-row">
+            {/* <img
+              src="/images/biological-triggers.jpg"
+              alt="Biological Triggers"
+              className="w-full md:w-40 h-40 object-cover rounded-lg shadow-lg"
+            /> */}
+            <div className="mt-4 md:mt-0 md:ml-6">
+              <h3 className="text-2xl font-semibold text-gray-700">
+                Biological Triggers
+              </h3>
+              <p className="text-gray-600 mt-2">
+                Imbalances in neurotransmitters, hormonal irregularities, or
+                medical conditions like prostatitis can affect ejaculation
+                timing.
+              </p>
+            </div>
+          </div>
+
+          {/* Genetics */}
+          <div className="flex flex-col items-center md:flex-row">
+            {/* <img
+              src="/images/genetics.jpg"
+              alt="Genetics"
+              className="w-full md:w-40 h-40 object-cover rounded-lg shadow-lg"
+            /> */}
+            <div className="mt-4 md:mt-0 md:ml-6">
+              <h3 className="text-2xl font-semibold text-gray-700">Genetics</h3>
+              <p className="text-gray-600 mt-2">
+                Genetics may predispose some men to heightened sensitivity or
+                specific neural responses affecting ejaculation.
+              </p>
+            </div>
+          </div>
+
+          {/* Lifestyle Factors */}
+          <div className="flex flex-col items-center md:flex-row">
+            {/* <img
+              src="/images/lifestyle-factors.jpg"
+              alt="Lifestyle Factors"
+              className="w-full md:w-40 h-40 object-cover rounded-lg shadow-lg"
+            /> */}
+            <div className="mt-4 md:mt-0 md:ml-6">
+              <h3 className="text-2xl font-semibold text-gray-700">
+                Lifestyle Factors
+              </h3>
+              <p className="text-gray-600 mt-2">
+                Poor sleep, unhealthy diet, or lack of physical activity can
+                influence sexual performance and contribute to PE.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/images/product/maxt_background.webp')",
+          }}
+        />
+        <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
+          <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-right max-w-4xl">
+            <h1 className="text-2xl md:text-6xl mb-1">The Hero</h1>
+            <h1 className="text-lg md:text-3xl italic mb-2">
+              <span className="underline font-semibold"> Lidocaine 10%</span>
+              <span className="text-sm md:text-xl">
+                {" "}
+                Our Primary Ingredient
+              </span>
+            </h1>
+            <p className="text-[10px] md:text-sm ">
+              Lidocaine is a clinically studied desensitizing agent used in
+              wellness products to help reduce over-sensitivity and allow for
+              more prolonged enjoyment. Each spray is formulated with precision
+              to provide a safe, effective experience that you can trust.
+            </p>
+          </div>
+          <div className="w-1/2 flex items-center justify-center p-2">
+            <Image
+              src="/images/products/Arkyn/daa-molecule.webp"
+              alt="Right Side Image"
+              width={1000}
+              height={1000}
+              className="w-auto h-auto rounded-lg max-h-[600px]"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProductQualities = () => {
+  return (
+    <div className="my-12 text-xs md:text-base">
+      {/* badges */}
+      <div className=" my-12 flex justify-around mt-6 items-center overflow-hidden">
         <div className="flex flex-col justify-between items-center w-24">
           <Image
             src="/images/product/medical-globe.png"
@@ -221,135 +492,10 @@ export const DetailsHowToUseLongLasting = () => {
           </p>
         </div>
       </div>
-    </div>
-  );
-};
 
-const GeneralInfo = () => {
-  return (
-    <div className="mx-auto py-4 bg-white rounded-lg">
-      {/* Information Section */}
-      <div className="mb-6 max-w-screen-xl mx-auto px-4">
-        <h2 className={`text-3xl max-w-60 font-bold mb-6 ${lora.className}`}>
-          The Truth About Testosterone
-        </h2>
-
-        <div className="max-w-screen-xl mx-auto w-full md:mx-auto mb-4 md:mb-8 text-gray-100">
-          <div
-            className={`bg-gradient-to-b rounded-md flex justify-between md:justify-center items-center gap-4 p-2 md:p-6 from-black to-white`}
-          >
-            <Image
-              src="/images/products/Arkyn/testo-graph1.webp"
-              width={1000}
-              height={1000}
-              className="w-[47%] md:w-72 md:h-56 rounded-md"
-              alt="information"
-            />
-          </div>
-        </div>
-
-        <p>
-          Testosterone, the primary male sex hormone, peaks during puberty and
-          declines as men age. This decrease can be exacerbated by factors like
-          stress, obesity, poor diet, and other lifestyle choices. Research
-          indicates that average testosterone levels in men today are
-          significantly lower than they were 30 years ago.
-        </p>
-        <p>
-          Many outdated testosterone boosters suffer from poor formulations, low
-          efficacy, and lack of clinical support. They often contain substandard
-          ingredients and fail to improve sexual function effectively.
-        </p>
-        <p>
-          Low levels of testosterone can lead to reduced sex drive, weight gain,
-          and an increased risk of health issues such as testosterone deficiency
-          and prostate cancer. The pituitary gland and adrenal gland play
-          crucial roles in regulating the amount of testosterone in the body.
-          Blood tests are essential to diagnose low testosterone levels and
-          determine the need for testosterone replacement therapy.
-        </p>
-        <p>
-          Our testosterone booster can help increase testosterone levels,
-          improve sexual function, and enhance overall well-being.. Addressing
-          testosterone deficiency can significantly improve quality of life,
-          especially for older men.
-        </p>
-        <a
-          href="https://academic.oup.com/jcem/article/92/1/196/2598434?searchresult=1&login=false"
-          target="_blank"
-        ></a>
-      </div>
-
-      <div className="mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/images/product/maxt_background.webp')",
-          }}
-        />
-        <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
-          <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-right">
-            <h1
-              className="text-2xl md:text-6xl mb-1"
-              style={{ fontWeight: 50 }}
-            >
-              The Hero
-            </h1>
-            <h1 className="text-lg md:text-2xl italic mb-2 underline">
-              D-Aspartic Acid
-            </h1>
-            <p className="text-[10px] md:text-sm max-w-[350px]">
-              D-aspartic acid is an amino acid synthesized in the body and
-              obtained through protein-containing foods or a dietary supplement
-            </p>
-          </div>
-          <div className="w-1/2 flex items-center justify-center p-2">
-            <Image
-              src="/images/products/Arkyn/daa-molecule.webp"
-              alt="Right Side Image"
-              width={1000}
-              height={1000}
-              className="w-auto h-auto rounded-lg max-h-[600px]"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ProductQualities = () => {
-  return (
-    <div className="py-4 text-xs md:text-base">
-      <h2 className="text-2xl font-bold mb-6">PRODUCT QUALITIES</h2>
-      <p className="mb-2">
-        Powered by potent, unique ingredients, this testosterone booster is
-        designed to -
-      </p>
-      <ul className="list-disc list-inside mb-4">
-        <li className="mb-1">
-          Enhance Sexual Performance: Improve libido and sexual function for a
-          more satisfying intimate experience, also supports erection.
-        </li>
-        <li className="mb-1">
-          Increase Muscle Mass: Support muscle growth and strength, helping you
-          achieve your fitness goals.
-        </li>
-        <li className="mb-1">
-          Boosts Energy Levels: Experience higher energy and stamina throughout
-          the day for improved performance
-        </li>
-        <li className="mb-1">
-          Improve Mood and Vitality: Elevate mood and mental clarity,
-          contributing to overall well-being and confidence.
-        </li>
-        <li className="mb-1">
-          Supports Reproductive Health: Enhance fertility and reproductive
-          function, supporting overall sexual health.
-        </li>
-      </ul>
-
-      <h3 className="font-bold mb-2">What does it do and how does it do it?</h3>
+      <h3 className="font-bold mb-2 mt-12">
+        What does it do and how does it do it?
+      </h3>
       <div className="md:flex gap-2">
         <div className="w-full md:hidden">
           <Swiper spaceBetween={10} slidesPerView={1.2}>
@@ -363,10 +509,11 @@ const ProductQualities = () => {
                   className="mb-2 mx-auto"
                 />
                 <p>
-                  Action in Target Organs: Increased testosterone levels
-                  circulate and exert their effects on muscles (promoting growth
-                  and repair), bones (enhancing density), and sexual organs
-                  (improving libido and sexual function).
+                  Lidocaine temporarily numbs the skin it’s applied to, which
+                  can help decrease sensitivity in the penis. By dulling
+                  sensation, it can make it easier for men to control
+                  ejaculation and prolong the duration of sexual activity before
+                  reaching climax.
                 </p>
               </div>
             </SwiperSlide>
@@ -380,10 +527,10 @@ const ProductQualities = () => {
                   className="mb-2 mx-auto"
                 />
                 <p>
-                  Action in Target Organs: Increased testosterone levels
-                  circulate and exert their effects on muscles (promoting growth
-                  and repair), bones (enhancing density), and sexual organs
-                  (improving libido and sexual function).
+                  Lidocaine reduces the responsiveness of nerve endings in the
+                  penis, which can delay the signals that trigger ejaculation.
+                  This effect allows men to have more control over the timing of
+                  ejaculation.
                 </p>
               </div>
             </SwiperSlide>
@@ -397,10 +544,11 @@ const ProductQualities = () => {
                   className="mb-2 mx-auto"
                 />
                 <p>
-                  Action in Target Organs: Increased testosterone levels
-                  circulate and exert their effects on muscles (promoting growth
-                  and repair), bones (enhancing density), and sexual organs
-                  (improving libido and sexual function).
+                  The numbing effect of lidocaine is temporary, lasting for
+                  around 20–60 minutes depending on the product and amount used.
+                  Men need to follow recommended guidelines to avoid overuse, as
+                  excessive application can lead to excessive numbness or even
+                  irritation.
                 </p>
               </div>
             </SwiperSlide>
@@ -417,10 +565,10 @@ const ProductQualities = () => {
               className="mb-2 mx-auto "
             />
             <p>
-              Action in Target Organs: Increased testosterone levels circulate
-              and exert their effects on muscles (promoting growth and repair),
-              bones (enhancing density), and sexual organs (improving libido and
-              sexual function).
+              Lidocaine temporarily numbs the skin it’s applied to, which can
+              help decrease sensitivity in the penis. By dulling sensation, it
+              can make it easier for men to control ejaculation and prolong the
+              duration of sexual activity before reaching climax.
             </p>
           </div>
           {/* 2 */}
@@ -433,10 +581,10 @@ const ProductQualities = () => {
               className="mb-2 mx-auto "
             />
             <p>
-              Action in Target Organs: Increased testosterone levels circulate
-              and exert their effects on muscles (promoting growth and repair),
-              bones (enhancing density), and sexual organs (improving libido and
-              sexual function).
+              Lidocaine reduces the responsiveness of nerve endings in the
+              penis, which can delay the signals that trigger ejaculation. This
+              effect allows men to have more control over the timing of
+              ejaculation.
             </p>
           </div>
           {/* 3 */}
@@ -449,10 +597,10 @@ const ProductQualities = () => {
               className="mb-2 mx-auto "
             />
             <p>
-              Action in Target Organs: Increased testosterone levels circulate
-              and exert their effects on muscles (promoting growth and repair),
-              bones (enhancing density), and sexual organs (improving libido and
-              sexual function).
+              The numbing effect of lidocaine is temporary, lasting for around
+              20–60 minutes depending on the product and amount used. Men need
+              to follow recommended guidelines to avoid overuse, as excessive
+              application can lead to excessive numbness or even irritation
             </p>
           </div>
         </div>
@@ -510,7 +658,7 @@ const OtherInformation = () => {
           </div>
         )}
       </div>
-      <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
+      {/* <div className="flex gap-1 md:gap-4 my-2 md:my-4 md:w-[600px] mx-auto">
         <div className="w-1/2">
           <h3
             className={`text-xs md:text-lg text-gray-100 font-thin mb-2 rounded-full bg-[#faa91c] w-fit px-4 py-1`}
@@ -556,9 +704,9 @@ const OtherInformation = () => {
             </p>
           </ul>
         </div>
-      </div>
+      </div> */}
       {/* Expert Section */}
-      <div className="bg-[#f5faff] w-full mt-16">
+      {/* <div className="bg-[#f5faff] w-full mt-16">
         <div className="max-w-screen-xl flex w-full md:w-[600px] mx-auto justify-center items-center bg-[var(--lastlonger-light)] text-gray-100">
           <Image
             src="/images/femdoc.png"
@@ -579,14 +727,36 @@ const OtherInformation = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
 
+function Faq() {
+  return (
+    <Accordion type="single" collapsible className="w-full">
+      {questions.map((item) => (
+        <div key={item.id} className="my-4 lg:my-8">
+          <AccordionItem value={`item-${item.id}`}>
+            <AccordionTrigger>
+              <h2 className="text-xl text-left">{item.question}</h2>
+            </AccordionTrigger>
+            <AccordionContent>
+              <h3 className="text-lg">{item.answer}</h3>
+            </AccordionContent>
+          </AccordionItem>
+        </div>
+      ))}
+    </Accordion>
+  );
+}
+
 export const LongLasting = () => {
   return (
     <div>
+      <div>
+        <CertificationSection />
+      </div>
       <div>
         <GeneralInfo />
       </div>
@@ -595,9 +765,15 @@ export const LongLasting = () => {
       <div className="max-w-screen-xl mx-auto p-4">
         <ProductQualities />
       </div>
+      <div className="max-w-screen-xl mx-auto p-4">
+        <DiscreetSection />
+      </div>
       {/* other details */}
       <div className="max-w-screen-xl mx-auto p-4">
         <OtherInformation />
+      </div>
+      <div className="max-w-screen-xl mx-auto p-4">
+        <Faq />
       </div>
     </div>
   );

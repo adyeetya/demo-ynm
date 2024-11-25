@@ -26,13 +26,7 @@ const Products = () => {
   if (!products) {
     return <div>No Products Found</div>;
   }
-  const rings = [
-    { top: "20%", left: "10%", size: "40px", rotate: "rotate(20deg)" },
-    { top: "50%", left: "30%", size: "60px", rotate: "rotate(10deg)" },
-    { top: "80%", left: "60%", size: "50px", rotate: "rotate(30deg)" },
-    { top: "30%", left: "80%", size: "30px", rotate: "rotate(0deg)" },
-    { top: "70%", left: "80%", size: "45px", rotate: "rotate(150deg)" },
-  ];
+
   return (
     <div className="bg- py-4 relative">
       <div className="absolute inset-0 opacity-40 bg-cover bg-center z-0"></div>
@@ -71,7 +65,7 @@ const Products = () => {
               </Link>
 
               <div className="w-[50%] flex justify-center">
-                <div className="flex max-w-[400px] flex-col gap-2 md:gap-4">
+                <div className="flex max-w-[400px] flex-col gap-2 md:gap-4 z-50">
                   <div>
                     <Link href={`/product/${product._id}`}>
                       <h3 className="text-xl font-semibold md:text-2xl tracking-widest">

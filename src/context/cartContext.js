@@ -146,8 +146,10 @@ export const CartProvider = ({ children }) => {
       });
 
       if (itemAlreadyInCart) {
+        toast.error("Item Already In Cart");
         return false;
       } else {
+        toast.success("Product added to cart!");
         return true;
       }
     }
@@ -163,6 +165,25 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const clearCart = async () => {
+    try {
+      await axios.post(
+        `${serverUrl}/api/cart/sync`,
+        {
+          userId: user._id,
+          cart: [],
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      setCart([]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -170,6 +191,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         loading,
+        clearCart,
       }}
     >
       {children}

@@ -42,10 +42,10 @@ const Consult = () => {
         <div className="w-full md:w-1/2 flex flex-col justify-between px-4 py-2 md:px-0 md:py-4">
           <h2 className="text-xl font-bold mb-4">Last Long</h2>
           <p className="text-xs">
-            Long-lasting problems in sexual wellness can significantly impact
-            quality of life and relationships. These issues may be physical,
-            psychological, or relational, and addressing them often requires a
-            comprehensive approach.
+            Many Indian men silently struggle with issues of premature
+            ejaculation, impacting their confidence and intimate relationships.
+            Stress, lifestyle, and lack of open conversations often leave them
+            feeling isolated and unsure of solutions.
           </p>
           <Link
             href="/product/66c9b27a0686cead3079c844"
@@ -70,10 +70,10 @@ const Consult = () => {
         <div className="w-full md:w-1/2 flex flex-col justify-between px-4 md:px-0 py-2 md:py-4">
           <h2 className="text-xl font-bold mb-4">Erection Support</h2>
           <p className="text-xs">
-            Erection support involves various strategies and treatments to help
-            individuals achieve and maintain an erection. Effective approaches
-            include- <br />
-            Medical Treatments <br /> Lifestyle Changes
+            Stress, aging, and lifestyle factors can take a toll on men&apos;s
+            confidence and intimacy, causing erection difficulties that are
+            often left unspoken. You’re not alone, and there’s support to help
+            you regain control.
           </p>
           <Link
             href="/product/66c9a2fe0686cead3079c72a"
@@ -85,9 +85,58 @@ const Consult = () => {
       </div>
     ),
     modal3: (
-      <div>
-        <h2 className="text-xl font-bold mb-4">Wellness</h2>
-        <p>Details about Nutrition Metabolism Immunity...</p>
+      <div className="flex flex-col md:flex-row gap-4">
+        <div className="w-full md:w-1/2">
+          <Image
+            src="/images/indian_partner.webp"
+            alt="last long"
+            height={1000}
+            width={1000}
+            className="w-full rounded"
+          />
+        </div>
+        <div className="w-full md:w-1/2 flex flex-col justify-between px-4 md:px-0 py-2 md:py-4">
+          <h2 className="text-xl font-bold mb-4"> Wellness/Sleep Booster</h2>
+          <p className="text-xs">
+            Stress, late nights, and lifestyle habits can rob men of the deep
+            sleep their bodies need, affecting energy, mood, and focus. Let’s
+            turn those restless nights into rejuvenating rest.
+          </p>
+          <Link
+            href="/product/66c9a2fe0686cead3079c72a"
+            className="rounded-full text-center px-4 py-2 bg-[var(--dark-bg)] text-white w-full mt-4"
+          >
+            Solution for it
+          </Link>
+        </div>
+      </div>
+    ),
+    modal4: (
+      <div className="flex flex-col md:flex-row gap-4">
+        <div className="w-full md:w-1/2">
+          <Image
+            src="/images/indian_partner.webp"
+            alt="last long"
+            height={1000}
+            width={1000}
+            className="w-full rounded"
+          />
+        </div>
+        <div className="w-full md:w-1/2 flex flex-col justify-between px-4 md:px-0 py-2 md:py-4">
+          <h2 className="text-xl font-bold mb-4">Hygiene/Immunity Booster</h2>
+          <p className="text-xs">
+            Busy schedules and environmental stressors can lead to frequent
+            fatigue and increased illness, which are often signs of low
+            immunity—a challenge many men face today. Let’s fortify your health
+            and reclaim your vitality.
+          </p>
+          <Link
+            href="/product/66c9a2fe0686cead3079c72a"
+            className="rounded-full text-center px-4 py-2 bg-[var(--dark-bg)] text-white w-full mt-4"
+          >
+            Solution for it
+          </Link>
+        </div>
       </div>
     ),
   };
@@ -96,6 +145,22 @@ const Consult = () => {
 
   return (
     <div className="p-4 md:py-8 mt-4 max-w-screen-xl overflow-x-hidden mx-auto z-0">
+      {/* <div className="mb-24 mt-4 md:mt-12">
+        <p className="text-md mb-12">
+          At <span className="text-xl font-bold">Yes N More</span>, we believe
+          that every man deserves a fulfilling and healthy intimate life. Our
+          mission is to provide safe, discreet, and personalized care for your
+          wellness journey. With expert consultations, science-backed products,
+          and a commitment to your privacy, we’re here to support you every step
+          of the way.
+        </p>
+        <Link
+          href="/products"
+          className="px-4 py-2 text-lg rounded-full border w-full mx-auto bg-[#3a472e] text-white hover:bg-transparent hover:text-[#3a472e]"
+        >
+          Start Your Journey
+        </Link>
+      </div> */}
       {/* Wide Cards Section */}
       <div className="relative mb-24 flex w-full flex-col items-end md:flex-row gap-8 justify-between">
         <div className="w-48 h-48 md:w-80 md:h-80 absolute z-0 rounded-full md:top-1/2 md:-translate-y-[42%] -left-12 md:-left-28 border-[3px] border-[#fbd354] "></div>
@@ -104,8 +169,9 @@ const Consult = () => {
             Expert Advice <br /> that Works
           </h2>
           <p className="text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt
-            maxime dolore dicta nostrum porro debitis.
+            Take the first step toward feeling your best—start your assessment
+            today. We’re here to make your health journey simple, stress-free,
+            and empowering.
           </p>
         </div>
         {/* doctors card with bg too */}

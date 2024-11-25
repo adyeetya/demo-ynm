@@ -26,8 +26,8 @@ export default function Home() {
       <Usp />
       <About />
       {/* <CoaSection /> */}
-      <Reviews />
-      <Info />
+      {/* <Reviews />
+      <Info /> */}
       {/* <PaymentSlider /> */}
     </main>
   );
