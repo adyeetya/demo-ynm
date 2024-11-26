@@ -13,13 +13,12 @@ import { useProducts } from "../../context/productContext";
 const banners = [
   {
     id: 1,
-    imageUrl: "/images/hero/nutra_bottle_banner_web.webp",
+    imageUrl: "/images/hero/Nutra_bottle_banner_web2.webp",
   },
   {
     id: 2,
     imageUrl: "/images/hero/daa_banner_web.webp",
   },
-
   {
     id: 3,
     imageUrl: "/images/hero/sleep_banner_web1.webp",
@@ -35,10 +34,6 @@ const banners = [
   {
     id: 6,
     imageUrl: "/images/hero/long_lasting_spray_web_banner.webp",
-  },
-  {
-    id: 7,
-    imageUrl: "/images/hero/nutra_bottle_banner_web.webp",
   },
 ];
 
