@@ -59,7 +59,7 @@ const Products = () => {
           {products.map((product, index) => (
             <div
               key={product._id}
-              className={`w-full p-2 md:p-2 flex justify-center items-center gap-4 md:gap-4 my-12 ${
+              className={`w-full p-2 md:p-2 flex justify-center items-center gap-4 md:gap-4 my-8 md:my-12 ${
                 index % 2 === 0
                   ? "flex-row md:flex-row"
                   : "flex-row-reverse md:flex-row"

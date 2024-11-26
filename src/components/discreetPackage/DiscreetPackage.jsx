@@ -25,6 +25,7 @@ const WaveSection = ({ buynow }) => {
                 width={1000}
                 height={1000}
                 alt="discreet package"
+                loading="lazy"
                 className="w-full max-w-md"
               />
             </div>
@@ -78,8 +79,9 @@ const WaveSection = ({ buynow }) => {
             <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
               <Image
                 src="/images/hero/FDA.webp"
-                height={200}
-                width={200}
+                height={1000}
+                width={1000}
+                loading="lazy"
                 alt="FDA"
                 className="w-20 h-20 md:w-32 md:h-32"
               />
@@ -87,8 +89,9 @@ const WaveSection = ({ buynow }) => {
             <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
               <Image
                 src="/images/hero/fssai.webp"
-                height={200}
-                width={200}
+                height={1000}
+                width={1000}
+                loading="lazy"
                 alt="FDA"
                 className="w-20 h-20 md:w-32 md:h-32"
               />
@@ -96,27 +99,30 @@ const WaveSection = ({ buynow }) => {
             <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
               <Image
                 src="/images/hero/GMP.webp"
-                height={200}
-                width={200}
+                height={1000}
+                width={1000}
                 alt="FDA"
+                loading="lazy"
                 className="w-20 h-20 md:w-32 md:h-32"
               />
             </div>
             <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
               <Image
                 src="/images/hero/clinically_tested.webp"
-                height={200}
-                width={200}
+                height={1000}
+                width={1000}
                 alt="FDA"
+                loading="lazy"
                 className="w-20 h-20 md:w-32 md:h-32"
               />
             </div>
             <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
               <Image
                 src="/images/hero/who_badge.webp"
-                height={200}
-                width={200}
+                height={1000}
+                width={1000}
                 alt="FDA"
+                loading="lazy"
                 className="w-20 h-20 md:w-32 md:h-32"
               />
             </div>
