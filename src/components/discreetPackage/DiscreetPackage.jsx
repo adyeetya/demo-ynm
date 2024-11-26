@@ -5,7 +5,7 @@ import React from "react";
 const WaveSection = ({ buynow }) => {
   return (
     <section
-      className="relative w-full min-h-[706px] bg-cover bg-center bg-no-repeat overflow-hidden -mt-20"
+      className="relative w-full bg-cover bg-center bg-no-repeat overflow-hidden -mt-20"
       style={{
         backgroundImage: 'url("/images/hero/Web_descreet_bg.png")',
         backgroundSize: "150vw 100%",
