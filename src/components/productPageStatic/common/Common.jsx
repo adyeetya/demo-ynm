@@ -114,9 +114,9 @@ export const DiscreetSection = () => {
               </div>
             </div>
           </div>
-          {/* <h2 className="mt-24 mb-8 text-left mx-4 text-lg font-semibold text-[#3a472e]">
+          <h2 className="mt-24 mb-8 text-left mx-4 text-lg font-semibold text-[#3a472e]">
             Certified by Renowned Authorities
-          </h2> */}
+          </h2>
           {/* <div className="grid grid-cols-3 lg:grid-cols-5 p-4 justify-center gap-4 md:gap-8 w-full">
             <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
               <Image
@@ -164,6 +164,15 @@ export const DiscreetSection = () => {
               />
             </div>
           </div> */}
+          <div className="w-full p-4 max-w-screen-xl mx-auto mb-12">
+            <Image
+              src="/images/hero/badges_web.webp"
+              alt=""
+              width={1000}
+              height={1000}
+              className="w-full h-auto"
+            />
+          </div>
         </div>
       </div>
     </section>
