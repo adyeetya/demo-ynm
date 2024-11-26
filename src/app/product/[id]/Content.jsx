@@ -701,7 +701,7 @@ const ProductPage = ({ product }) => {
         </div>
 
         {/* this is the right side with the text and details */}
-        <div className="mt-4 md:-mt-0 flex flex-col justify- gap-4  w-full md:w-1/2">
+        <div className="mt-14 md:mt-0 flex flex-col justify- gap-4  w-full md:w-1/2">
           <div className="flex justify-between items-start">
             <div className="flex flex-col justify-between">
               <h1 className="text-xl md:text-5xl font-bold  md:mt-0">

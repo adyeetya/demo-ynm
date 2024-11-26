@@ -393,41 +393,22 @@ const GeneralInfo = () => {
           </div>
         </div>
       </section>
-      <div className="mx-auto relative w-full md:mx-auto bg-gray-200 mb-4">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/images/product/maxt_background.webp')",
-          }}
+      <section className="mb-12 ">
+        <Image
+          src="/images/product_page_img/lls/lls_hero.webp"
+          alt="Daa"
+          width={1000}
+          height={1000}
+          className="w-full h-auto object-cover hidden md:block"
         />
-        <div className="relative flex justify-center items-center h-full bg-opacity-50 text-gray-100 py-8 ">
-          <div className="w-1/2 md:w-fit md:gap-4 flex flex-col justify-center p-2 md:text-right max-w-4xl">
-            <h1 className="text-2xl md:text-6xl mb-1">The Hero</h1>
-            <h1 className="text-lg md:text-3xl italic mb-2">
-              <span className="underline font-semibold"> Lidocaine 10%</span>
-              <span className="text-sm md:text-xl">
-                {" "}
-                Our Primary Ingredient
-              </span>
-            </h1>
-            <p className="text-[10px] md:text-sm ">
-              Lidocaine is a clinically studied desensitizing agent used in
-              wellness products to help reduce over-sensitivity and allow for
-              more prolonged enjoyment. Each spray is formulated with precision
-              to provide a safe, effective experience that you can trust.
-            </p>
-          </div>
-          <div className="w-1/2 flex items-center justify-center p-2">
-            <Image
-              src="/images/products/Arkyn/daa-molecule.webp"
-              alt="Right Side Image"
-              width={1000}
-              height={1000}
-              className="w-auto h-auto rounded-lg max-h-[600px]"
-            />
-          </div>
-        </div>
-      </div>
+        <Image
+          src="/images/product_page_img/lls/lls_hero.webp"
+          alt="Daa"
+          width={1000}
+          height={1000}
+          className="w-full h-auto object-cover md:hidden"
+        />
+      </section>
     </div>
   );
 };
@@ -493,10 +474,11 @@ const ProductQualities = () => {
         </div>
       </div>
 
-      <h3 className="font-bold mb-2 mt-12">
+      {/* <h3 className="font-bold mb-2 mt-12">
         What does it do and how does it do it?
-      </h3>
-      <div className="md:flex gap-2">
+      </h3> */}
+
+      <div className="hidden gap-2">
         <div className="w-full md:hidden">
           <Swiper spaceBetween={10} slidesPerView={1.2}>
             <SwiperSlide>
