@@ -343,15 +343,7 @@ const OtherIngredients = () => {
       modalDescription:
         "Reduces stress, balances hormones, and enhances sperm quality and reproductive health.",
     },
-    {
-      id: 2,
-      title: "Shilajit",
 
-      imageUrl: "/images/product_page_img/daa/shilajit.png",
-      modalTitle: "Shilajit",
-      modalDescription:
-        "A powerful adaptogen that improves energy levels, cognitive function, and sexual endurance.",
-    },
     {
       id: 3,
       title: "Safed Musli",

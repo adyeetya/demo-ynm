@@ -155,7 +155,7 @@ const Navbar = () => {
     <nav
       className={`${
         !isScrolled > 0 && isHomePage ? "bg-[#3a472e]" : "bg-[#3a472e]"
-      } text-gray-100 sticky inset-x-0 top-0 z-30 transition-all duration-300 ease-in-out`}
+      } text-gray-100 sticky inset-x-0 top-0 transition-all duration-300 ease-in-out z-[100]`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
