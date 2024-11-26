@@ -707,14 +707,10 @@ const ProductPage = ({ product }) => {
               <h1 className="text-xl md:text-5xl font-bold  md:mt-0">
                 {product.name}
               </h1>
-              <h1 className="text-xl mt-2">{product.description}</h1>
-              <p className="text-gray-900 text-md md:mt-2">
-                {product.category}
-              </p>
             </div>
 
-            <div className="flex justify-between items-center"></div>
-            <div className="text-gray-600 flex justify-start items-center mt-2">
+            {/* ratings */}
+            <div className="text-gray-600 flex justify-start items-center">
               <p className="text-base md:text-lg mr-1">1.2k</p>
               {Array.from(
                 { length: Math.floor(product.rating) },
@@ -733,6 +729,10 @@ const ProductPage = ({ product }) => {
                 Ratings
               </Link>
             </div>
+          </div>
+          <div>
+            <h1 className="text-xl mt-2">{product.description}</h1>
+            <p className="text-gray-900 text-md md:mt-2">{product.category}</p>
           </div>
 
           <div>

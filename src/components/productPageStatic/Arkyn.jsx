@@ -435,8 +435,8 @@ const OtherIngredients = () => {
 
       {/* Modal */}
       {isModalOpen && modalContent && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4">
+          <div className="bg-white p-8 rounded-lg shadow-lg md:w-1/3">
             <h2 className="text-2xl font-semibold mb-4">
               {modalContent.title}
             </h2>

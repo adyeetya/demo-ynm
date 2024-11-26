@@ -29,85 +29,87 @@ import { Badges, DiscreetSection } from "./common/Common";
 
 const details = [
   {
-    description: "Promotes healthy testosterone levels naturally.",
+    description: "Promotes deep and restorative sleep.",
   },
   {
-    description: "Boosts libido and enhances sexual performance.",
+    description: "Reduces fatigue and improves energy levels.",
   },
   {
-    description: "Supports lean muscle mass and improved strength.",
+    description: "Calms the mind to help you relax and unwind.",
   },
   {
-    description: "Reduces fatigue and boosts energy for active living.",
+    description: "Supports hormonal balance for overall health.",
   },
   {
-    description: "Improves sperm quality and reproductive health.",
+    description: "Enhances focus and boosts enthusiasm for daily activities.",
   },
   {
-    description: "Reduces stress and promotes hormonal balance.",
+    description:
+      "Contributes to better sexual health by improving libido and fertility ",
   },
 ];
 
 const questions = [
   {
     id: 1,
-    question: "How long does it take to see results?",
+    question: "What is the Sleep Booster, and how does it work?",
     answer:
-      "Results vary by individual, but noticeable improvements in energy and vitality are usually observed within 2–4 weeks of consistent use.",
+      "The Sleep Booster is a dietary supplement formulated with melatonin, chamomile, L-Theanine, and magnesium to enhance sleep quality. It works by regulating your natural sleep cycle, calming the mind, and reducing stress to help you fall asleep faster, stay asleep longer, and wake up feeling refreshed.",
   },
   {
     id: 2,
-    question: "Can this be taken with other supplements?",
+    question: "Is the Sleep Booster safe to use daily?",
     answer:
-      " Yes, this product can generally be taken alongside other supplements. However, consult your physician for personalized advice.",
+      " Yes, the Sleep Booster is safe for daily use when taken as directed. It is formulated with natural and scientifically backed ingredients, but we recommend consulting a healthcare professional before starting any new supplement, especially if you have underlying medical conditions or are on medication.",
   },
   {
     id: 3,
-    question: "Is it safe for long-term use?",
+    question: "Will it make me feel groggy the next day?",
     answer:
-      " Yes, the Testosterone Booster is non-habit forming and safe for long-term use when taken as recommended.",
+      "No, the Sleep Booster is designed to improve the quality of your sleep without causing morning grogginess. By supporting your natural sleep cycle, it helps you wake up feeling refreshed and energized.",
   },
   {
     id: 4,
-    question: "Are there any side effects?",
+    question: "How long does it take to see results?",
     answer:
-      "The product is made from natural ingredients and is generally well-tolerated. Minor side effects like mild digestive discomfort may occur initially but typically subside.",
+      "Many users experience improved sleep within the first few days of use. However, consistent use for a few weeks may provide the most noticeable benefits as your body adjusts to the supplement.",
   },
   {
     id: 5,
-    question: "Can this product help with fertility issues?",
+    question:
+      "Can I take the Sleep Booster with other medications or supplements?",
     answer:
-      "Yes, ingredients like Ashwagandha, Zinc, and Safed Musli are known to support sperm quality and overall reproductive health.",
+      "While the Sleep Booster is generally safe, it’s always best to consult your doctor before combining it with other medications or supplements to ensure there are no interactions.",
   },
   {
     id: 6,
-    question: "Is this suitable for vegetarians or vegans?",
-    answer: " Yes, this product is 100% vegan and cruelty-free.",
+    question: "Is the Sleep Booster habit-forming?",
+    answer:
+      " No, the Sleep Booster is non-habit-forming. It uses natural ingredients like melatonin and chamomile to gently support your body’s sleep mechanisms without causing dependency.",
   },
   {
     id: 7,
-    question: " Can this product be taken by men of all ages?",
+    question: " Who should avoid using the Sleep Booster?",
     answer:
-      "The Testosterone Booster is designed for adult men. It is generally recommended for men aged 18 and above. Consult a healthcare professional if you have specific concerns.",
+      "This product is not recommended for pregnant or breastfeeding women, children, or individuals with known allergies to any of its ingredients. Those with medical conditions or taking medications should consult a doctor before use.",
   },
   {
     id: 8,
-    question: "Does this product help with weight management?",
+    question: "How do I take the Sleep Booster for the best results?",
     answer:
-      "Yes, balanced testosterone levels can support healthy fat distribution and help reduce obesity risk. Combined with regular exercise and a healthy diet, this product may aid in weight management.",
+      "Take 2 tablets daily with water or milk, preferably 30 minutes before bedtime. Follow the recommended dosage unless otherwise directed by a physician.",
   },
   {
     id: 9,
-    question: "Can this product be used to enhance athletic performance?",
+    question: "Can the Sleep Booster improve overall health besides sleep?",
     answer:
-      "Absolutely! Ingredients like Tribulus Terrestris, Ashwagandha, and Ginseng may improve stamina, strength, and recovery, making it beneficial for athletes and fitness enthusiasts.",
+      "Yes, by enhancing sleep, the supplement supports overall well-being, including reduced stress, improved hormonal balance, better cognitive function, and increased energy levels, all of which contribute to a healthier lifestyle.",
   },
   {
     id: 10,
-    question:
-      "Can I take this if I have a medical condition or am on medication?",
+    question: "Does it have any side effects?",
     answer:
-      "If you have a medical condition or are taking medication, consult your physician before starting this supplement to ensure it is safe for you.",
+      "The Sleep Booster is formulated with natural, safe ingredients. Some users may experience mild side effects like drowsiness if taken during the day. If you notice any adverse effects, discontinue use and consult a healthcare professional.",
   },
 ];
 
@@ -402,8 +404,8 @@ const OtherIngredients = () => {
 
       {/* Modal */}
       {isModalOpen && modalContent && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4">
+          <div className="bg-white p-8 rounded-lg shadow-lg md:w-1/3">
             <h2 className="text-2xl font-semibold mb-4">
               {modalContent.title}
             </h2>

@@ -29,85 +29,87 @@ import { Badges, DiscreetSection } from "./common/Common";
 
 const details = [
   {
-    description: "Promotes healthy testosterone levels naturally.",
+    description:
+      "Strengthens immune response to fight infections and illnesses.",
   },
   {
-    description: "Boosts libido and enhances sexual performance.",
+    description: "Rejuvenates cells for improved energy and vitality.",
   },
   {
-    description: "Supports lean muscle mass and improved strength.",
+    description: "Boosts overall immunity with clinically proven ingredients.",
   },
   {
-    description: "Reduces fatigue and boosts energy for active living.",
+    description: "Promotes skin health and antioxidant protection.  ",
   },
   {
-    description: "Improves sperm quality and reproductive health.",
+    description: "Enhances resistance to colds, flu, and seasonal allergies.",
   },
   {
-    description: "Reduces stress and promotes hormonal balance.",
+    description:
+      "Supports men’s sexual health by improving blood flow and testosterone levels.",
   },
 ];
 
 const questions = [
   {
     id: 1,
-    question: "How long does it take to see results?",
+    question: "Who can use the Immunity Booster?",
     answer:
-      "Results vary by individual, but noticeable improvements in energy and vitality are usually observed within 2–4 weeks of consistent use.",
+      "This product is suitable for adults looking to improve their immune system, fight fatigue, and enhance overall health. Consult a physician if you have specific medical conditions.",
   },
   {
     id: 2,
-    question: "Can this be taken with other supplements?",
+    question: "Can it help with frequent colds or infections?",
     answer:
-      " Yes, this product can generally be taken alongside other supplements. However, consult your physician for personalized advice.",
+      "Yes, the combination of Vitamin C, Zinc, and other natural ingredients strengthens your immunity, reducing susceptibility to colds, flu, and other infections.",
   },
   {
     id: 3,
-    question: "Is it safe for long-term use?",
+    question: "Does it improve energy levels?",
     answer:
-      " Yes, the Testosterone Booster is non-habit forming and safe for long-term use when taken as recommended.",
+      " Absolutely! The blend of rejuvenating ingredients like Vitamin B6 and Amla helps combat fatigue and enhances energy levels.",
   },
   {
     id: 4,
-    question: "Are there any side effects?",
+    question: "Is it safe for daily use?",
     answer:
-      "The product is made from natural ingredients and is generally well-tolerated. Minor side effects like mild digestive discomfort may occur initially but typically subside.",
+      " Yes, this non-GMO and natural formula is designed for safe daily consumption when taken as directed.",
   },
   {
     id: 5,
-    question: "Can this product help with fertility issues?",
+    question: "Can it support men’s sexual health?",
     answer:
-      "Yes, ingredients like Ashwagandha, Zinc, and Safed Musli are known to support sperm quality and overall reproductive health.",
+      "Yes, with ingredients like Vitamin C and Zinc, this booster improves blood flow, testosterone production, and overall vitality, supporting men’s sexual health.",
   },
   {
     id: 6,
-    question: "Is this suitable for vegetarians or vegans?",
-    answer: " Yes, this product is 100% vegan and cruelty-free.",
+    question: "Are there any side effects?",
+    answer:
+      " The product is made from natural ingredients and is generally well-tolerated. However, if you experience any adverse effects, discontinue use and consult a physician.",
   },
   {
     id: 7,
-    question: " Can this product be taken by men of all ages?",
+    question: "Can women use this Immunity Booster?",
     answer:
-      "The Testosterone Booster is designed for adult men. It is generally recommended for men aged 18 and above. Consult a healthcare professional if you have specific concerns.",
+      " While the product is tailored for men’s health, its immune-boosting and energy-enhancing properties are beneficial for women as well. However, consult a physician before use.",
   },
   {
     id: 8,
-    question: "Does this product help with weight management?",
+    question: "How long does it take to see results?",
     answer:
-      "Yes, balanced testosterone levels can support healthy fat distribution and help reduce obesity risk. Combined with regular exercise and a healthy diet, this product may aid in weight management.",
+      "Results vary by individual, but most users notice improved energy and reduced fatigue within 2–3 weeks of consistent use. For immunity benefits, long-term usage is recommended.",
   },
   {
     id: 9,
-    question: "Can this product be used to enhance athletic performance?",
+    question: "Can I take this with other supplements or medications?",
     answer:
-      "Absolutely! Ingredients like Tribulus Terrestris, Ashwagandha, and Ginseng may improve stamina, strength, and recovery, making it beneficial for athletes and fitness enthusiasts.",
+      "Yes, it is generally safe to take alongside other supplements or medications. However, consult your healthcare provider to avoid any potential interactions.",
   },
   {
     id: 10,
-    question:
-      "Can I take this if I have a medical condition or am on medication?",
+    question: "Does this product contain allergens?",
     answer:
-      "If you have a medical condition or are taking medication, consult your physician before starting this supplement to ensure it is safe for you.",
+      "The Immunity Booster is free from common allergens like gluten and soy. However, review the ingredient list for specific sensitivities.",
   },
 ];
 
@@ -409,8 +411,8 @@ const OtherIngredients = () => {
 
       {/* Modal */}
       {isModalOpen && modalContent && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4">
+          <div className="bg-white p-8 rounded-lg shadow-lg md:w-1/3">
             <h2 className="text-2xl font-semibold mb-4">
               {modalContent.title}
             </h2>

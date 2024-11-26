@@ -42,28 +42,29 @@ const Footer = () => {
             {/* social links */}
             <div className="z-10">
               <ul className="flex justify-start space-x-4 md:space-x-8">
-                <li className="bg-white rounded-full w-8 h-8 flex justify-center items-center">
+                <li className=" rounded-full w-8 h-8 flex justify-center items-center">
                   <a href="#" className=" ">
-                    <FaFacebookF className="text-gray-900 w-6 h-6" />
+                    <FaFacebookF className="text-gray-100 w-6 h-6" />
                   </a>
                 </li>
-                <li className="bg-white rounded-full w-8 h-8 flex justify-center items-center">
+                <li className=" rounded-full w-8 h-8 flex justify-center items-center">
                   <a href="#" className="hover:underline">
-                    <FaTwitter className="text-gray-900 w-6 h-6" />
+                    <FaTwitter className="text-gray-100 w-6 h-6" />
                   </a>
                 </li>
-                <li className="bg-white rounded-full w-8 h-8 flex justify-center items-center">
+
+                <li className=" rounded-full w-8 h-8 flex justify-center items-center">
+                  <a href="#" className="hover:underline">
+                    <FaLinkedinIn className="text-gray-100 w-6 h-6" />
+                  </a>
+                </li>
+                <li className=" rounded-full w-8 h-8 flex justify-center items-center">
                   <a
                     href="https://www.instagram.com/yesnmoreofficial/"
                     className="hover:underline"
                     target="_blank"
                   >
-                    <FaInstagram className="text-gray-900 w-6 h-6" />
-                  </a>
-                </li>
-                <li className="bg-white rounded-full w-8 h-8 flex justify-center items-center">
-                  <a href="#" className="hover:underline">
-                    <FaLinkedinIn className="text-gray-900 w-6 h-6" />
+                    <FaInstagram className="text-gray-100 w-6 h-6" />
                   </a>
                 </li>
               </ul>
@@ -163,14 +164,16 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="ml-auto">
+          <div className="">
             <p className="text-sm mb-2 text-right">Accepted Payments</p>
-            <div className="flex flex-row gap-4">
-              <div className="h-4 w-8 bg-white"></div>
-              <div className="h-4 w-8 bg-white"></div>
-              <div className="h-4 w-8 bg-white"></div>
-              <div className="h-4 w-8 bg-white"></div>
-              <div className="h-4 w-8 bg-white"></div>
+            <div className="flex justify-end items-center">
+              <Image
+                src="/images/payments/payment_png.webp"
+                alt="UPI-CARDS-COD"
+                width={1000}
+                height={100}
+                className="w-1/2 "
+              />
             </div>
           </div>
         </div>
