@@ -15,7 +15,7 @@ const Footer = () => {
       {/* Background image with noise */}
       <div className="absolute inset-0 bg-[url('/images/noiseEffect-bg.webp')] opacity-40 bg-cover bg-center z-0"></div>
       <div className="flex flex-col md:flex-row text-center max-w-screen-xl mx-auto">
-        <div className="w-full md:w-1/2 flex flex-row md:flex-col items-start justify-between px-4 mb-4">
+        <div className="w-full md:w-1/2 flex flex-row md:flex-col items-start justify-between px-4 mb-4 gap-4">
           <div className="flex flex-col gap-4 md:w-3/4">
             {/* Images and Text Section */}
             <div className="flex flex-col justify-center items-start gap-2 z-10">
@@ -70,7 +70,7 @@ const Footer = () => {
             </div>
           </div>
           {/* address */}
-          <div className="text-white text-left text-sm md:w-1/3">
+          <div className="text-white text-left text-xs md:text-sm md:w-1/3">
             <h2>
               Innov8 Ras Vilas, Lower Ground Floor, <br /> Salcon Rasvilas, D-1,{" "}
               <br />

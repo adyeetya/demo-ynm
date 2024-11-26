@@ -20,36 +20,25 @@ const banners = [
     id: 2,
     imageUrl: "/images/hero/daa_banner_web.webp",
   },
+  // {
+  //   id: 3,
+  //   imageUrl: "/images/hero/Nutra_bottle_banner_web2.webp",
+  // },
+
   {
     id: 3,
-    imageUrl: "/images/hero/Nutra_bottle_banner_web2.webp",
+    imageUrl: "/images/hero/sleep_banner_web1.webp",
   },
-  // {
-  //   id: 4,
-  //   imageUrl: "/images/hero/saucha banner_web.webp",
-  // },
+  {
+    id: 4,
+    imageUrl: "/images/hero/boostwave_banner_web.webp",
+  },
   {
     id: 5,
     imageUrl: "/images/hero/DAA_banner_web_2.webp",
   },
   {
     id: 6,
-    imageUrl: "/images/hero/sleep_banner_web.webp",
-  },
-  {
-    id: 7,
-    imageUrl: "/images/hero/sleep_banner_web1.webp",
-  },
-  {
-    id: 8,
-    imageUrl: "/images/hero/boostwave_banner_web.webp",
-  },
-  {
-    id: 9,
-    imageUrl: "/images/hero/Daa_banner_web3.webp",
-  },
-  {
-    id: 10,
     imageUrl: "/images/hero/long_lasting_spray_web_banner.webp",
   },
 ];
@@ -63,12 +52,9 @@ const mobilebBanners = [
     id: 2,
     imageUrl: "/images/hero/long_lasting_phone_banner.webp",
   },
+
   {
     id: 3,
-    imageUrl: "/images/hero/saucha_banner_phone.webp",
-  },
-  {
-    id: 4,
     imageUrl: "/images/hero/all_productbanner_phone2.webp",
   },
 ];
@@ -229,19 +215,22 @@ const Hero = () => {
                 <div
                   className="w-12 h-12 bg-cover bg-center border bg-white border-gray-400 rounded-full"
                   style={{
-                    backgroundImage: 'url("/images/Long_lasting_box.webp")',
+                    backgroundImage:
+                      'url("/images/productimages/daa_mockup.png")',
                   }}
                 ></div>
                 <div
                   className="w-12 h-12 bg-cover bg-center border bg-white border-gray-400 rounded-full"
                   style={{
-                    backgroundImage: 'url("/images/Long_lasting_box.webp")',
+                    backgroundImage:
+                      'url("/images/productimages/immunity_mockup.png")',
                   }}
                 ></div>
                 <div
                   className="w-12 h-12 bg-cover bg-center bg-white border border-gray-400 rounded-full flex items-center justify-center"
                   style={{
-                    backgroundImage: 'url("/images/Long_lasting_box.webp")',
+                    backgroundImage:
+                      'url("/images/productimages/sleep_mockup.png")',
                   }}
                 ></div>
                 {/* <span>+2</span> */}

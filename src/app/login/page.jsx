@@ -303,7 +303,7 @@ const Page = () => {
       <div className="flex flex-col md:flex-row justify-center items-center gap-4">
         <div className="w-full md:w-1/2 h-64 md:h-96 bg-gray-200 flex items-center justify-center rounded-lg">
           <Image
-            src="/images/login/phone-banner-2.png"
+            src="/images/hero/maxt6.png"
             alt="Banner"
             width={1000}
             height={1000}

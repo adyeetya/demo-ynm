@@ -9,17 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FaFlask,
-  FaCheckCircle,
-  FaSprayCan,
-  FaHourglass,
-  FaShieldAlt,
-  FaLeaf,
-  FaTimes,
-  FaChevronDown,
-  FaChevronUp,
-} from "react-icons/fa";
+import { FaCheckCircle, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import {
   Carousel,
@@ -35,7 +25,7 @@ import {
   AccordionTrigger,
 } from "../../components/ui/accordion";
 
-import DiscreetSection from "../discreetPackage/DiscreetPackage";
+import { Badges, DiscreetSection } from "./common/Common";
 
 const details = [
   {
@@ -434,69 +424,14 @@ const OtherIngredients = () => {
 const ProductQualities = () => {
   return (
     <div className="py-4 text-xs md:text-base">
-      <div className="flex justify-around my-12 items-center overflow-hidden">
-        <div className="flex flex-col justify-between items-center w-24">
-          <Image
-            src="/images/product/medical-globe.png"
-            alt="WHO Certified"
-            width={100}
-            height={100}
-            className="w-12 h-12"
-          />
-          <p className="mt-2 text-[10px] md:text-sm text-center">
-            WHO <br className="hidden md:block" /> Certified
-          </p>
-        </div>
-        <div className="flex flex-col justify-between items-center w-24">
-          <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
-            <Image
-              src="/images/product/rabit.png"
-              alt="Cruelty Free"
-              width={100}
-              height={100}
-              className="w-12 h-12"
-            />
-          </div>
-          <p className="mt-2 text-[10px] md:text-sm text-center">
-            Cruelty <br className="hidden md:block" /> Free
-          </p>
-        </div>
-        <div className="flex flex-col justify-between items-center w-24">
-          <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
-            <Image
-              src="/images/product/test.png"
-              alt="Lab Tested"
-              width={100}
-              height={100}
-              className="w-8 h-8"
-            />
-          </div>
-          <p className="mt-2 text-[10px] md:text-sm text-center">
-            Lab <br className="hidden md:block" /> Tested
-          </p>
-        </div>
-        <div className="flex flex-col justify-between items-center w-28">
-          <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
-            <Image
-              src="/images/product/atom.png"
-              alt="Scientifically Proven"
-              width={100}
-              height={100}
-              className="w-8 h-8"
-            />
-          </div>
-          <p className="mt-2 text-[10px] md:text-sm text-center">
-            Scientifically <br className="hidden md:block" /> Proven
-          </p>
-        </div>
-      </div>
+      <Badges />
 
       {/* <h3 className="font-bold mb-2 mt-12">
         {" "}
         What Does It Do and How Does It Do It?
       </h3> */}
       <div className=" gap-2 hidden">
-        <div className="w-full md:hidden">
+        {/* <div className="w-full md:hidden">
           <Swiper spaceBetween={10} slidesPerView={1.2}>
             <SwiperSlide>
               <div className="text-left text-sm p-4">
@@ -552,9 +487,9 @@ const ProductQualities = () => {
               </div>
             </SwiperSlide>
           </Swiper>
-        </div>
-        <div className="hidden md:flex gap-2">
-          {/* 1 */}
+        </div> */}
+        {/* <div className="hidden md:flex gap-2">
+       
           <div className="text-left text-sm md:p-8 w-1/3">
             <Image
               width={1000}
@@ -571,7 +506,7 @@ const ProductQualities = () => {
               testosterone levels and overall vitality.
             </p>
           </div>
-          {/* 2 */}
+         
           <div className="text-left text-sm md:p-8 w-1/3">
             <Image
               width={1000}
@@ -588,7 +523,7 @@ const ProductQualities = () => {
               healthier and more active lifestyle.
             </p>
           </div>
-          {/* 3 */}
+         
           <div className="text-left text-sm md:p-8 w-1/3">
             <Image
               width={1000}
@@ -604,7 +539,7 @@ const ProductQualities = () => {
               motivated, and energized throughout the day.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -699,7 +634,7 @@ export const SleepBooster = () => {
         <ProductQualities />
       </div>
       <div className="max-w-screen-xl mx-auto p-4">
-        <DiscreetSection buynow={false} />
+        <DiscreetSection />
       </div>
       {/* other details */}
       <div className="max-w-screen-xl mx-auto p-4">

@@ -8,15 +8,10 @@ const lora = Lora({ weight: "400", subsets: ["latin"] });
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
-import Link from "next/link";
+
 import {
   FaFlask,
   FaCheckCircle,
-  FaSprayCan,
-  FaHourglass,
-  FaShieldAlt,
-  FaLeaf,
-  FaTimes,
   FaChevronDown,
   FaChevronUp,
 } from "react-icons/fa";
@@ -27,7 +22,7 @@ import {
   AccordionTrigger,
 } from "../../components/ui/accordion";
 
-import DiscreetSection from "../discreetPackage/DiscreetPackage";
+import { Badges, DiscreetSection } from "./common/Common";
 
 const questions = [
   {
@@ -417,69 +412,14 @@ const ProductQualities = () => {
   return (
     <div className="my-12 text-xs md:text-base">
       {/* badges */}
-      <div className=" my-12 flex justify-around mt-6 items-center overflow-hidden">
-        <div className="flex flex-col justify-between items-center w-24">
-          <Image
-            src="/images/product/medical-globe.png"
-            alt="WHO Certified"
-            width={100}
-            height={100}
-            className="w-12 h-12"
-          />
-          <p className="mt-2 text-[10px] md:text-sm text-center">
-            WHO <br className="hidden md:block" /> Certified
-          </p>
-        </div>
-        <div className="flex flex-col justify-between items-center w-24">
-          <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
-            <Image
-              src="/images/product/rabit.png"
-              alt="Cruelty Free"
-              width={100}
-              height={100}
-              className="w-12 h-12"
-            />
-          </div>
-          <p className="mt-2 text-[10px] md:text-sm text-center">
-            Cruelty <br className="hidden md:block" /> Free
-          </p>
-        </div>
-        <div className="flex flex-col justify-between items-center w-24">
-          <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
-            <Image
-              src="/images/product/test.png"
-              alt="Lab Tested"
-              width={100}
-              height={100}
-              className="w-8 h-8"
-            />
-          </div>
-          <p className="mt-2 text-[10px] md:text-sm text-center">
-            Lab <br className="hidden md:block" /> Tested
-          </p>
-        </div>
-        <div className="flex flex-col justify-between items-center w-28">
-          <div className="rounded-full border-2 border-gray-800 w-12 h-12 flex justify-center items-center">
-            <Image
-              src="/images/product/atom.png"
-              alt="Scientifically Proven"
-              width={100}
-              height={100}
-              className="w-8 h-8"
-            />
-          </div>
-          <p className="mt-2 text-[10px] md:text-sm text-center">
-            Scientifically <br className="hidden md:block" /> Proven
-          </p>
-        </div>
-      </div>
+      <Badges />
 
       {/* <h3 className="font-bold mb-2 mt-12">
         What does it do and how does it do it?
       </h3> */}
 
-      <div className="hidden gap-2">
-        <div className="w-full md:hidden">
+      <div className=" gap-2 hidden">
+        {/* <div className="w-full md:hidden">
           <Swiper spaceBetween={10} slidesPerView={1.2}>
             <SwiperSlide>
               <div className="text-left text-sm p-4">
@@ -491,11 +431,11 @@ const ProductQualities = () => {
                   className="mb-2 mx-auto"
                 />
                 <p>
-                  Lidocaine temporarily numbs the skin it’s applied to, which
-                  can help decrease sensitivity in the penis. By dulling
-                  sensation, it can make it easier for men to control
-                  ejaculation and prolong the duration of sexual activity before
-                  reaching climax.
+                  Testosterone Booster combines clinically backed ingredients
+                  like D-Aspartic Acid and Tribulus Terrestris to stimulate
+                  natural testosterone production. These ingredients enhance
+                  hormonal activity in the pituitary gland and testes, leading
+                  to improved testosterone levels and overall vitality.
                 </p>
               </div>
             </SwiperSlide>
@@ -509,10 +449,11 @@ const ProductQualities = () => {
                   className="mb-2 mx-auto"
                 />
                 <p>
-                  Lidocaine reduces the responsiveness of nerve endings in the
-                  penis, which can delay the signals that trigger ejaculation.
-                  This effect allows men to have more control over the timing of
-                  ejaculation.
+                  The blend of Ashwagandha, Safed Musli, and Zinc supports
+                  reproductive health by improving sperm quality, boosting
+                  libido, and promoting better blood circulation. These benefits
+                  enhance sexual performance and overall physical stamina,
+                  enabling a healthier and more active lifestyle.
                 </p>
               </div>
             </SwiperSlide>
@@ -526,18 +467,17 @@ const ProductQualities = () => {
                   className="mb-2 mx-auto"
                 />
                 <p>
-                  The numbing effect of lidocaine is temporary, lasting for
-                  around 20–60 minutes depending on the product and amount used.
-                  Men need to follow recommended guidelines to avoid overuse, as
-                  excessive application can lead to excessive numbness or even
-                  irritation.
+                  Ingredients like Shilajit and Ginseng act as adaptogens,
+                  reducing stress and fatigue while improving energy levels.
+                  Vitamins B6 and B12 support energy metabolism, helping you
+                  stay focused, motivated, and energized throughout the day.
                 </p>
               </div>
             </SwiperSlide>
           </Swiper>
-        </div>
-        <div className="hidden md:flex gap-2">
-          {/* 1 */}
+        </div> */}
+        {/* <div className="hidden md:flex gap-2">
+       
           <div className="text-left text-sm md:p-8 w-1/3">
             <Image
               width={1000}
@@ -547,13 +487,14 @@ const ProductQualities = () => {
               className="mb-2 mx-auto "
             />
             <p>
-              Lidocaine temporarily numbs the skin it’s applied to, which can
-              help decrease sensitivity in the penis. By dulling sensation, it
-              can make it easier for men to control ejaculation and prolong the
-              duration of sexual activity before reaching climax.
+              Testosterone Booster combines clinically backed ingredients like
+              D-Aspartic Acid and Tribulus Terrestris to stimulate natural
+              testosterone production. These ingredients enhance hormonal
+              activity in the pituitary gland and testes, leading to improved
+              testosterone levels and overall vitality.
             </p>
           </div>
-          {/* 2 */}
+         
           <div className="text-left text-sm md:p-8 w-1/3">
             <Image
               width={1000}
@@ -563,13 +504,14 @@ const ProductQualities = () => {
               className="mb-2 mx-auto "
             />
             <p>
-              Lidocaine reduces the responsiveness of nerve endings in the
-              penis, which can delay the signals that trigger ejaculation. This
-              effect allows men to have more control over the timing of
-              ejaculation.
+              The blend of Ashwagandha, Safed Musli, and Zinc supports
+              reproductive health by improving sperm quality, boosting libido,
+              and promoting better blood circulation. These benefits enhance
+              sexual performance and overall physical stamina, enabling a
+              healthier and more active lifestyle.
             </p>
           </div>
-          {/* 3 */}
+         
           <div className="text-left text-sm md:p-8 w-1/3">
             <Image
               width={1000}
@@ -579,13 +521,13 @@ const ProductQualities = () => {
               className="mb-2 mx-auto "
             />
             <p>
-              The numbing effect of lidocaine is temporary, lasting for around
-              20–60 minutes depending on the product and amount used. Men need
-              to follow recommended guidelines to avoid overuse, as excessive
-              application can lead to excessive numbness or even irritation
+              Ingredients like Shilajit and Ginseng act as adaptogens, reducing
+              stress and fatigue while improving energy levels. Vitamins B6 and
+              B12 support energy metabolism, helping you stay focused,
+              motivated, and energized throughout the day.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -748,7 +690,7 @@ export const LongLasting = () => {
         <ProductQualities />
       </div>
       <div className="max-w-screen-xl mx-auto p-4">
-        <DiscreetSection buynow={false} />
+        <DiscreetSection />
       </div>
       {/* other details */}
       <div className="max-w-screen-xl mx-auto p-4">

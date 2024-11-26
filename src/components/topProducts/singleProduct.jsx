@@ -1,43 +1,42 @@
-'use client'
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { IoMdStar } from 'react-icons/io'
-import { useCart } from '../../context/cartContext'
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
-import Link from 'next/link'
-import { useProducts } from '../../context/productContext'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+"use client";
+import React, { useState } from "react";
+import Image from "next/image";
+import { IoMdStar } from "react-icons/io";
+import { useCart } from "../../context/cartContext";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+import Link from "next/link";
+import { useProducts } from "../../context/productContext";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '../../components/ui/carousel'
+} from "../../components/ui/carousel";
 const Products = () => {
-  const [mainImageIndex, setMainImageIndex] = useState(0)
+  const [mainImageIndex, setMainImageIndex] = useState(0);
 
-  const { products, isLoading, isError } = useProducts()
-  const { addToCart } = useCart()
+  const { products, isLoading, isError } = useProducts();
+  const { addToCart } = useCart();
   const handleAddToCart = (product) => {
-    addToCart(product)
-  }
+    addToCart(product);
+  };
 
   // Assuming you want to display only the first product
-  const product = products[0]
- 
+  const product = products[0];
 
   const handleThumbnailClick = (index) => {
-    setMainImageIndex(index)
-  }
+    setMainImageIndex(index);
+  };
   if (isLoading)
     return (
       <div className="flex justify-center w-full text-xl p-4 md:py-6 max-w-screen-xl mx-auto">
         <AiOutlineLoading3Quarters className="animate-spin w-8 h-8" />
       </div>
-    )
-  if (isError) return <div>Error loading products</div>
+    );
+  if (isError) return <div>Error loading products</div>;
   return (
     <div className="p-4 md:py-6 max-w-screen-xl mx-auto">
       <div className="flex justify-between items-center mb-8">
@@ -57,7 +56,7 @@ const Products = () => {
             <div className="hidden lg:flex justify-center items-center h-fit">
               <Carousel
                 opts={{
-                  align: 'center',
+                  align: "center",
                   loop: true,
                 }}
                 orientation="vertical"
@@ -70,8 +69,8 @@ const Products = () => {
                         onClick={() => handleThumbnailClick(index)}
                         className={`cursor-pointer w-16 h-16 rounded-lg overflow-hidden ${
                           index === mainImageIndex
-                            ? 'border-2 border-blue-500'
-                            : ''
+                            ? "border-2 border-blue-500"
+                            : ""
                         }`}
                       >
                         <Image
@@ -93,7 +92,7 @@ const Products = () => {
             <div className="lg:hidden flex justify-center items-center">
               <Carousel
                 opts={{
-                  align: 'start',
+                  align: "start",
                   loop: true,
                 }}
                 className="bg flex justify-center items-center"
@@ -105,8 +104,8 @@ const Products = () => {
                         onClick={() => handleThumbnailClick(index)}
                         className={`cursor-pointer w-16 h-16 rounded-lg overflow-hidden ${
                           index === mainImageIndex
-                            ? 'border-2 border-blue-500'
-                            : ''
+                            ? "border-2 border-blue-500"
+                            : ""
                         }`}
                       >
                         <Image
@@ -154,7 +153,7 @@ const Products = () => {
             <div className="flex justify-around items-center overflow-hidden mt-auto md:mx-8">
               <div className="flex flex-col justify-between items-center w-16 md:w-24 my-4 md:my-0">
                 <Image
-                  src="/images/product/medical-globe.png"
+                  src="/images/product_page_img/medical-globe.png"
                   alt="WHO Certified"
                   width={100}
                   height={100}
@@ -167,7 +166,7 @@ const Products = () => {
               <div className="flex flex-col justify-between items-center w-16 md:w-24">
                 <div className="rounded-full border-2 border-gray-800 w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
                   <Image
-                    src="/images/product/rabit.png"
+                    src="/images/product_page_img/rabit.png"
                     alt="Cruelty Free"
                     width={100}
                     height={100}
@@ -181,7 +180,7 @@ const Products = () => {
               <div className="flex flex-col justify-between items-center w-16 md:w-24">
                 <div className="rounded-full border-2 border-gray-800 w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
                   <Image
-                    src="/images/product/test.png"
+                    src="/images/product_page_img/test.png"
                     alt="Lab Tested"
                     width={100}
                     height={100}
@@ -195,7 +194,7 @@ const Products = () => {
               <div className="flex flex-col justify-between items-center w-16 md:w-24">
                 <div className="rounded-full border-2 border-gray-800 w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
                   <Image
-                    src="/images/product/atom.png"
+                    src="/images/product_page_img/atom.png"
                     alt="Scientifically Proven"
                     width={100}
                     height={100}
@@ -228,7 +227,7 @@ const Products = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

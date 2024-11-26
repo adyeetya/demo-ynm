@@ -860,18 +860,37 @@ const ProductPage = ({ product }) => {
           </div>
 
           <div className=" md:mx-0 w-full flex gap-4 ">
-            <button
-              onClick={handleAddToCart}
-              className="rounded-full w-fit text-xl mt-1 md:mt-4 border border-black hover:bg-black hover:text-gray-100 px-8 py-1 transition-colors"
-            >
-              <IoCartOutline />
-            </button>
-            <button
-              onClick={handleBuyNow}
-              className="rounded-full bg-[#3a472e] text-white w-full text-xl mt-1 md:mt-4 border border-black font-semibold px-4 py-1 hover:bg-black hover:text-gray-100  transition-colors"
-            >
-              Buy Now
-            </button>
+            {product.name === "Long Lasting Spray" ? (
+              <button
+                onClick={handleAddToCart}
+                className="rounded-full w-fit text-xl mt-1 md:mt-4 bg-[#3a472e] text-white border border-black hover:bg-white hover:text-black px-8 py-1 transition-colors"
+              >
+                <IoCartOutline />
+              </button>
+            ) : (
+              <button
+                onClick={handleAddToCart}
+                className="rounded-full w-fit text-xl mt-1 md:mt-4 border border-black hover:bg-black hover:text-gray-100 px-8 py-1 transition-colors"
+              >
+                <IoCartOutline />
+              </button>
+            )}
+
+            {product.name === "Long Lasting Spray" ? (
+              <button
+                disabled
+                className="rounded-full border-[#3a472e] text-red-600 w-full text-xl mt-1 md:mt-4 border font-semibold px-4 py-1 hover:bg-black hover:text-gray-100  transition-colors"
+              >
+                Sold Out
+              </button>
+            ) : (
+              <button
+                onClick={handleBuyNow}
+                className="rounded-full bg-[#3a472e] text-white w-full text-xl mt-1 md:mt-4 border border-black font-semibold px-4 py-1 hover:bg-black hover:text-gray-100  transition-colors"
+              >
+                Buy Now
+              </button>
+            )}
           </div>
 
           {/* details */}

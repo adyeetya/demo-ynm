@@ -98,7 +98,7 @@ const BrandsCarousel = React.forwardRef(
 
       const interval = setInterval(() => {
         scrollNext();
-      }, 5000);
+      }, 3000);
 
       return () => clearInterval(interval);
     }, [api, scrollNext, autoplay]);
