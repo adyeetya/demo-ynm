@@ -14,16 +14,11 @@ const banners = [
   {
     id: 1,
     imageUrl: "/images/hero/nutra_bottle_banner_web.webp",
-    link: "/products",
   },
   {
     id: 2,
     imageUrl: "/images/hero/daa_banner_web.webp",
   },
-  // {
-  //   id: 3,
-  //   imageUrl: "/images/hero/Nutra_bottle_banner_web2.webp",
-  // },
 
   {
     id: 3,
@@ -40,6 +35,10 @@ const banners = [
   {
     id: 6,
     imageUrl: "/images/hero/long_lasting_spray_web_banner.webp",
+  },
+  {
+    id: 7,
+    imageUrl: "/images/hero/nutra_bottle_banner_web.webp",
   },
 ];
 
