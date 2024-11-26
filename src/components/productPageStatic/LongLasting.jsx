@@ -766,7 +766,7 @@ export const LongLasting = () => {
         <ProductQualities />
       </div>
       <div className="max-w-screen-xl mx-auto p-4">
-        <DiscreetSection />
+        <DiscreetSection buynow={false} />
       </div>
       {/* other details */}
       <div className="max-w-screen-xl mx-auto p-4">

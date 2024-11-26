@@ -123,17 +123,17 @@ const questions = [
 
 const CertificationSection = () => {
   return (
-    <div className="my-12 max-w-screen-xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-      <div className="w-full md:w-1/2">
-        <h2 className={`text-xl md:text-3xl font-bold mb-6`}>
+    <div className="my-12 max-w-screen-xl mx-auto px-4 flex items-center justify-between">
+      <div className="w-1/2">
+        <h2 className={`text-3xl font-bold mb-6 ${lora.className}`}>
           Certified for effectiveness: <br />{" "}
-          <span className="text-[#3a472e] text-lg md:text-xl">
+          <span className="text-[#3a472e] text-xl">
             Each product undergoes rigorous testing to ensure it delivers as
             promised.
           </span>
         </h2>
       </div>
-      <div className="w-full md:w-1/2 flex justify-center ">
+      <div className="w-1/2 flex justify-center ">
         <a
           href="/certificate.jpg" // Adjust the path to your certificate image
           download="Certificate_of_Effectiveness.jpg"
@@ -160,7 +160,7 @@ const CertificationSection = () => {
   );
 };
 
-export const DetailsHowToUseArkyn = () => {
+export const DetailsHowToUseSleepBooster = () => {
   const [activeTab, setActiveTab] = useState("details");
 
   return (
@@ -316,20 +316,22 @@ const HeroElements = () => {
         </div>
       </section>
       <section className="mb-12 ">
-        <Image
-          src="/images/product_page_img/daa/daa-hero.webp"
-          alt="Daa"
-          width={1000}
-          height={1000}
-          className="w-full h-auto object-cover hidden md:block"
-        />
-        <Image
-          src="/images/product_page_img/daa/daa-hero-phone.webp"
-          alt="Daa"
-          width={1000}
-          height={1000}
-          className="w-full h-auto object-cover md:hidden"
-        />
+        <section className="mb-12 ">
+          <Image
+            src="/images/product_page_img/sleep/sleep-hero.webp"
+            alt="Daa"
+            width={1000}
+            height={1000}
+            className="w-full h-auto object-cover hidden md:block"
+          />
+          <Image
+            src="/images/product_page_img/sleep/sleep-hero-phone.webp"
+            alt="Daa"
+            width={1000}
+            height={1000}
+            className="w-full h-auto object-cover md:hidden"
+          />
+        </section>
       </section>
     </div>
   );
@@ -347,57 +349,21 @@ const OtherIngredients = () => {
   const dummyData = [
     {
       id: 1,
-      title: "Ashwagandha Root",
+      title: "L-Theanine",
 
-      imageUrl: "/images/product_page_img/daa/ashwagandha_root.png",
-      modalTitle: "Ashwagandha Root",
+      imageUrl: "/images/product_page_img/sleep/L-Theanine.png",
+      modalTitle: "L-Theanine",
       modalDescription:
-        "Reduces stress, balances hormones, and enhances sperm quality and reproductive health.",
+        "A natural amino acid known for its calming effects, L-Theanine helps reduce stress and anxiety, promoting a stable mood and improved focus. By fostering relaxation, it indirectly supports overall well-being, including men's sexual health.",
     },
     {
       id: 2,
-      title: "Shilajit",
+      title: "Magnesium",
 
-      imageUrl: "/images/product_page_img/daa/shilajit.png",
-      modalTitle: "Shilajit",
+      imageUrl: "/images/product_page_img/sleep/magnesium.png",
+      modalTitle: "Magnesium",
       modalDescription:
-        "A powerful adaptogen that improves energy levels, cognitive function, and sexual endurance.",
-    },
-    {
-      id: 3,
-      title: "Safed Musli",
-
-      imageUrl: "/images/product_page_img/daa/safed_musli.png",
-      modalTitle: "Safed Musli",
-      modalDescription:
-        "A natural aphrodisiac that supports libido, sexual performance, and stamina.",
-    },
-    {
-      id: 4,
-      title: "Ginseng",
-
-      imageUrl: "/images/product_page_img/daa/Ginseng.png",
-      modalTitle: "Ginseng",
-      modalDescription:
-        "Enhances energy and vitality, supporting overall stamina.",
-    },
-    {
-      id: 5,
-      title: "Zinc",
-
-      imageUrl: "/images/product_page_img/daa/zinc.png",
-      modalTitle: "Zinc",
-      modalDescription:
-        "Critical for testosterone production, immune function, and improved energy levels.",
-    },
-    {
-      id: 6,
-      title: "Vitamins",
-
-      imageUrl: "/images/product_page_img/daa/vitamin b.png",
-      modalTitle: "Vitamin D2, B6, and B12",
-      modalDescription:
-        " Vital for energy metabolism, mood regulation, and overall health.",
+        "An essential mineral, magnesium plays a vital role in numerous bodily functions. It supports testosterone levels, enhances blood flow for better erectile function, and reduces stress while promoting relaxation, contributing to both physical and sexual health.",
     },
   ];
 
@@ -526,7 +492,7 @@ const ProductQualities = () => {
       </div>
 
       {/* <h3 className="font-bold mb-2 mt-12">
-      
+        {" "}
         What Does It Do and How Does It Do It?
       </h3> */}
       <div className=" gap-2 hidden">
@@ -716,7 +682,7 @@ function Faq() {
   );
 }
 
-export const Arkyn = () => {
+export const SleepBooster = () => {
   return (
     <div>
       <div>

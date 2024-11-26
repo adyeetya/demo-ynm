@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const WaveSection = () => {
+const WaveSection = ({ buynow }) => {
   return (
     <section
       className="relative w-full min-h-[706px] bg-cover bg-center bg-no-repeat overflow-hidden -mt-20"
@@ -61,12 +61,14 @@ const WaveSection = () => {
                   </p>
                 </div>
               </div>
-              <Link
-                href="/products"
-                className="text-xl bg-[#3a472e] px-6 py-2 rounded-full border border-[#3a472e] text-white w-fit"
-              >
-                Buy Now
-              </Link>
+              {buynow && (
+                <Link
+                  href="/products"
+                  className="text-xl bg-[#3a472e] px-6 py-2 rounded-full border border-[#3a472e] text-white w-fit"
+                >
+                  Buy Now
+                </Link>
+              )}
             </div>
           </div>
           <h2 className="mt-24 mb-8 text-left mx-4 text-lg font-semibold text-[#3a472e]">

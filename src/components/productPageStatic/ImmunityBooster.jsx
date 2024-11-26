@@ -160,7 +160,7 @@ const CertificationSection = () => {
   );
 };
 
-export const DetailsHowToUseArkyn = () => {
+export const DetailsHowToUseImmunityBooster = () => {
   const [activeTab, setActiveTab] = useState("details");
 
   return (
@@ -317,14 +317,14 @@ const HeroElements = () => {
       </section>
       <section className="mb-12 ">
         <Image
-          src="/images/product_page_img/daa/daa-hero.webp"
+          src="/images/product_page_img/immunity/immunity-hero.webp"
           alt="Daa"
           width={1000}
           height={1000}
           className="w-full h-auto object-cover hidden md:block"
         />
         <Image
-          src="/images/product_page_img/daa/daa-hero-phone.webp"
+          src="/images/product_page_img/immunity/immunity-hero-phone.webp"
           alt="Daa"
           width={1000}
           height={1000}
@@ -347,57 +347,30 @@ const OtherIngredients = () => {
   const dummyData = [
     {
       id: 1,
-      title: "Ashwagandha Root",
+      title: "Amla",
 
-      imageUrl: "/images/product_page_img/daa/ashwagandha_root.png",
-      modalTitle: "Ashwagandha Root",
+      imageUrl: "/images/product_page_img/immunity/amala.png",
+      modalTitle: "Amla",
       modalDescription:
-        "Reduces stress, balances hormones, and enhances sperm quality and reproductive health.",
+        "Rich in Vitamin C and antioxidants, Amla strengthens immune function, fights free radicals, and supports digestive health.",
     },
     {
       id: 2,
-      title: "Shilajit",
+      title: "Vitamin B6",
 
-      imageUrl: "/images/product_page_img/daa/shilajit.png",
-      modalTitle: "Shilajit",
+      imageUrl: "/images/product_page_img/immunity/vitamin b.png",
+      modalTitle: "Vitamin B6",
       modalDescription:
-        "A powerful adaptogen that improves energy levels, cognitive function, and sexual endurance.",
+        "Vitamin B6 is essential in a multivitamin booster as it supports immune health, enhances brain function, and helps regulate mood by aiding in neurotransmitter production. It also assists in metabolizing proteins and converting food into energy, boosting overall vitality",
     },
     {
       id: 3,
-      title: "Safed Musli",
+      title: "Vitamin E",
 
-      imageUrl: "/images/product_page_img/daa/safed_musli.png",
-      modalTitle: "Safed Musli",
+      imageUrl: "/images/product_page_img/immunity/vitamin e.png",
+      modalTitle: "Vitamin E",
       modalDescription:
-        "A natural aphrodisiac that supports libido, sexual performance, and stamina.",
-    },
-    {
-      id: 4,
-      title: "Ginseng",
-
-      imageUrl: "/images/product_page_img/daa/Ginseng.png",
-      modalTitle: "Ginseng",
-      modalDescription:
-        "Enhances energy and vitality, supporting overall stamina.",
-    },
-    {
-      id: 5,
-      title: "Zinc",
-
-      imageUrl: "/images/product_page_img/daa/zinc.png",
-      modalTitle: "Zinc",
-      modalDescription:
-        "Critical for testosterone production, immune function, and improved energy levels.",
-    },
-    {
-      id: 6,
-      title: "Vitamins",
-
-      imageUrl: "/images/product_page_img/daa/vitamin b.png",
-      modalTitle: "Vitamin D2, B6, and B12",
-      modalDescription:
-        " Vital for energy metabolism, mood regulation, and overall health.",
+        "Vitamin E in a multivitamin booster acts as a powerful antioxidant, protecting cells from damage and supporting skin health. It also strengthens immune function and promotes heart health by improving blood circulation and reducing oxidative stress.",
     },
   ];
 
@@ -526,7 +499,7 @@ const ProductQualities = () => {
       </div>
 
       {/* <h3 className="font-bold mb-2 mt-12">
-      
+        {" "}
         What Does It Do and How Does It Do It?
       </h3> */}
       <div className=" gap-2 hidden">
@@ -716,7 +689,7 @@ function Faq() {
   );
 }
 
-export const Arkyn = () => {
+export const ImmunityBooster = () => {
   return (
     <div>
       <div>

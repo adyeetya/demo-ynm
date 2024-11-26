@@ -64,7 +64,7 @@ const Aboutus = () => {
 
         <div className="flex flex-row justify-center gap-4 md:gap-12 max-w-screen-xl mx-auto px-4 py-8 md:py-16">
           <Image
-            src="/images/FDA.webp"
+            src="/images/hero/FDA.webp"
             alt=""
             width={1000}
             height={1000}

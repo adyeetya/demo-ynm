@@ -51,8 +51,8 @@ export const Usp = () => {
             height={150}
             className="mx-auto rounded-full"
           /> */}
-          <h2 className="text- font-bold mt-4">Right Diagnose</h2>
-          <p className="mt-2 text-xs text-gray-600 text-justify">
+          <h2 className="text-lg font-bold mt-4">Right Diagnose</h2>
+          <p className="mt-2 text-sm text-gray-600 text-justify">
             Understanding your unique health concerns is where it all begins. We
             focus on identifying the root cause of your issues to create a
             treatment plan tailored to your needs.
@@ -67,8 +67,8 @@ export const Usp = () => {
             height={150}
             className="mx-auto rounded-full"
           /> */}
-          <h2 className="text- font-bold mt-4">Precise Prescription</h2>
-          <p className="mt-2 text-xs text-gray-600 text-justify">
+          <h2 className="text-lg font-bold mt-4">Precise Prescription</h2>
+          <p className="mt-2 text-sm text-gray-600 text-justify">
             Clear and detailed instructions are key. We provide a prescription
             that aligns perfectly with your diagnosis to ensure effective
             results.
@@ -83,8 +83,8 @@ export const Usp = () => {
             height={150}
             className="mx-auto rounded-full"
           /> */}
-          <h2 className="text- font-bold mt-4">Tailored Medication</h2>
-          <p className="mt-2 text-xs text-gray-600 text-justify">
+          <h2 className="text-lg font-bold mt-4">Tailored Medication</h2>
+          <p className="mt-2 text-sm text-gray-600 text-justify">
             No one-size-fits-all solutions here. Our carefully curated
             medications are designed to address your specific concerns and
             promote recovery efficiently.

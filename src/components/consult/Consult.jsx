@@ -32,7 +32,7 @@ const Consult = () => {
       <div className="flex flex-col md:flex-row gap-4">
         <div className="w-full md:w-1/2">
           <Image
-            src="/images/indian_partner.webp"
+            src="/images/hero/longlast6.png"
             alt="last long"
             height={1000}
             width={1000}
@@ -60,7 +60,7 @@ const Consult = () => {
       <div className="flex flex-col md:flex-row gap-4">
         <div className="w-full md:w-1/2">
           <Image
-            src="/images/indian_partner.webp"
+            src="/images/hero/maxt6.png"
             alt="last long"
             height={1000}
             width={1000}
@@ -88,7 +88,7 @@ const Consult = () => {
       <div className="flex flex-col md:flex-row gap-4">
         <div className="w-full md:w-1/2">
           <Image
-            src="/images/indian_partner.webp"
+            src="/images/hero/Sleep6.webp"
             alt="last long"
             height={1000}
             width={1000}
@@ -115,7 +115,7 @@ const Consult = () => {
       <div className="flex flex-col md:flex-row gap-4">
         <div className="w-full md:w-1/2">
           <Image
-            src="/images/indian_partner.webp"
+            src="/images/hero/immune1.webp"
             alt="last long"
             height={1000}
             width={1000}

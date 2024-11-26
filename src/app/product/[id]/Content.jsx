@@ -40,6 +40,16 @@ import {
   DetailsHowToUseLongLasting,
 } from "@/components/productPageStatic/LongLasting";
 
+import {
+  SleepBooster,
+  DetailsHowToUseSleepBooster,
+} from "@/components/productPageStatic/SleepBooster";
+
+import {
+  ImmunityBooster,
+  DetailsHowToUseImmunityBooster,
+} from "@/components/productPageStatic/ImmunityBooster";
+
 const RatingsReviews = ({
   user,
   product,
@@ -457,9 +467,6 @@ const ProductPage = ({ product }) => {
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [, setProduct] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [theme, setTheme] = useState("default");
   const [DetailsHowToUse, setDetailsHowToUse] = useState(null);
   const [ProductContent, setProductContent] = useState(null);
   const [hasPurchased, setHasPurchased] = useState(false);
@@ -470,13 +477,17 @@ const ProductPage = ({ product }) => {
 
   useEffect(() => {
     if (product?.name === "Testosterone Booster") {
-      setTheme("maxt");
       setDetailsHowToUse(() => DetailsHowToUseArkyn);
       setProductContent(() => Arkyn);
     } else if (product?.name === "Long Lasting Spray") {
-      setTheme("lls");
       setDetailsHowToUse(() => DetailsHowToUseLongLasting);
       setProductContent(() => LongLasting);
+    } else if (product?.name === "Sleep Booster") {
+      setDetailsHowToUse(() => DetailsHowToUseSleepBooster);
+      setProductContent(() => SleepBooster);
+    } else if (product?.name === "Immunity Booster") {
+      setDetailsHowToUse(() => DetailsHowToUseImmunityBooster);
+      setProductContent(() => ImmunityBooster);
     }
   }, [product]);
 
@@ -575,12 +586,7 @@ const ProductPage = ({ product }) => {
       </p>
     );
   }
-  if (isError)
-    return (
-      <div className="text-red-500 flex justify-center items-center w-full text-xl min-h-screen">
-        Error loading products
-      </div>
-    );
+
   return (
     <div className={` md:py-8 mx-auto min-h-screen `}>
       <div className="hidden md:flex max-w-screen-xl mx-auto p-4">
@@ -701,7 +707,8 @@ const ProductPage = ({ product }) => {
               <h1 className="text-xl md:text-5xl font-bold  md:mt-0">
                 {product.name}
               </h1>
-              <p className="text-gray-900 text-md md:text-lg md:mt-2">
+              <h1 className="text-xl mt-2">{product.description}</h1>
+              <p className="text-gray-900 text-md md:mt-2">
                 {product.category}
               </p>
             </div>

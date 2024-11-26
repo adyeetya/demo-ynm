@@ -2,14 +2,33 @@
 import React from "react";
 import Image from "next/image";
 import { IoMdStar, IoMdStarHalf } from "react-icons/io";
-import { products } from "../../data/Products";
+
 import { useCart } from "../../context/cartContext";
 import { useProducts } from "../../context/productContext";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 import { FiShoppingBag } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import "./Product.css";
+
+const floatImages = [
+  {
+    name: "Testosterone Booster",
+    img: "/images/productimages/daa_mockup.png",
+  },
+  {
+    name: "Long Lasting Spray",
+    img: "/images/productimages/lls_mockup.png",
+  },
+  {
+    name: "Sleep Booster",
+    img: "/images/productimages/sleep_mockup.png",
+  },
+  {
+    name: "Immunity Booster",
+    img: "/images/productimages/immunity_mockup.png",
+  },
+];
 
 const Products = () => {
   const { addToCart } = useCart();
@@ -40,7 +59,7 @@ const Products = () => {
           {products.map((product, index) => (
             <div
               key={product._id}
-              className={`w-full p-2 md:p-2 flex justify-center items-center gap-4 md:gap-4 ${
+              className={`w-full p-2 md:p-2 flex justify-center items-center gap-4 md:gap-4 my-12 ${
                 index % 2 === 0
                   ? "flex-row md:flex-row"
                   : "flex-row-reverse md:flex-row"
@@ -53,6 +72,8 @@ const Products = () => {
                 <div className="">
                   <Image
                     src={
+                      floatImages.find((img) => img.name === product.name)
+                        ?.img ||
                       product.productImages[product.productImages.length - 1]
                     }
                     alt={product.name}
@@ -65,7 +86,7 @@ const Products = () => {
               </Link>
 
               <div className="w-[50%] flex justify-center">
-                <div className="flex max-w-[400px] flex-col gap-2 md:gap-4 z-50">
+                <div className="flex max-w-[400px] flex-col gap-2 md:gap-4 z-10">
                   <div>
                     <Link href={`/product/${product._id}`}>
                       <h3 className="text-xl font-semibold md:text-2xl tracking-widest">
