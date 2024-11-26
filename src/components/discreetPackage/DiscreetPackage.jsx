@@ -72,10 +72,10 @@ const WaveSection = ({ buynow }) => {
               )}
             </div>
           </div>
-          <h2 className="mt-24 mb-8 text-left mx-4 text-lg font-semibold text-[#3a472e]">
+          {/* <h2 className="mt-24 mb-8 text-left mx-4 text-lg font-semibold text-[#3a472e]">
             Certified by Renowned Authorities
-          </h2>
-          <div className="grid grid-cols-3 lg:grid-cols-5 p-4 justify-center gap-4 md:gap-8 w-full">
+          </h2> */}
+          {/* <div className="grid grid-cols-3 lg:grid-cols-5 p-4 justify-center gap-4 md:gap-8 w-full">
             <div className="text-center flex justify-center items-center p-4 border rounded-xl ">
               <Image
                 src="/images/hero/FDA.webp"
@@ -126,7 +126,7 @@ const WaveSection = ({ buynow }) => {
                 className="w-20 h-20 md:w-32 md:h-32"
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
