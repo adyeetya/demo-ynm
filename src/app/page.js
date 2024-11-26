@@ -20,7 +20,7 @@ export default function Home() {
       <Consult />
       {/* <Experts /> */}
       <Products />
-      <DiscreetPackage buynow={true} />
+      {/* <DiscreetPackage buynow={true} /> */}
       {/* <SingleProduct /> */}
       {/* <Aboutus /> */}
       <Usp />
