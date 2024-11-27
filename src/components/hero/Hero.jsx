@@ -21,7 +21,7 @@ const banners = [
   },
   {
     id: 3,
-    imageUrl: "/images/hero/daa_banner_web_2.webp",
+    imageUrl: "/images/hero/daa_banner_web.webp",
   },
   {
     id: 4,
