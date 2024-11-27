@@ -13,34 +13,38 @@ import { useProducts } from "../../context/productContext";
 const banners = [
   {
     id: 1,
-    imageUrl: "/images/hero/Nutra_bottle_banner_web2.webp",
+    imageUrl: "/images/hero/All_product_banner.webp",
   },
   {
     id: 2,
-    imageUrl: "/images/hero/daa_banner_web.webp",
+    imageUrl: "/images/hero/Immunity_banner2.webp",
   },
   {
     id: 3,
-    imageUrl: "/images/hero/sleep_banner_web1.webp",
+    imageUrl: "/images/hero/daa_banner_web_2.webp",
   },
   {
     id: 4,
-    imageUrl: "/images/hero/boostwave_banner_web.webp",
+    imageUrl: "/images/hero/sleepbooster_banner_web.webp",
   },
   {
     id: 5,
-    imageUrl: "/images/hero/DAA_banner_web_2.webp",
+    imageUrl: "/images/hero/DAA_banner2.webp",
   },
   {
     id: 6,
-    imageUrl: "/images/hero/long_lasting_spray_web_banner.webp",
+    imageUrl: "/images/hero/Sleep_product banner.webp",
+  },
+  {
+    id: 7,
+    imageUrl: "/images/hero/long lasting_product_banner.webp",
   },
 ];
 
 const mobilebBanners = [
   {
     id: 1,
-    imageUrl: "/images/hero/Nutra_product_phone1.webp",
+    imageUrl: "/images/hero/phone_banner.webp",
   },
   {
     id: 2,
@@ -49,7 +53,7 @@ const mobilebBanners = [
 
   {
     id: 3,
-    imageUrl: "/images/hero/all_productbanner_phone2.webp",
+    imageUrl: "/images/hero/phone_banner.webp",
   },
 ];
 
