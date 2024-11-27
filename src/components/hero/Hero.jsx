@@ -31,12 +31,9 @@ const banners = [
     id: 5,
     imageUrl: "/images/hero/DAA_banner2.webp",
   },
+
   {
     id: 6,
-    imageUrl: "/images/hero/Sleep_product banner.webp",
-  },
-  {
-    id: 7,
     imageUrl: "/images/hero/long lasting_product_banner.webp",
   },
 ];
