@@ -215,7 +215,7 @@ export const DetailsHowToUseArkyn = () => {
 const HeroElements = () => {
   return (
     <div className="mx-auto py-4 bg- rounded-lg">
-      <section className="bg-[#f7faf0] py-16 px-4">
+      <section className=" py-16 px-4">
         <div className="max-w-screen-xl mx-auto text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">
             The Importance of Testosterone for Men&apos;s Health
@@ -393,29 +393,32 @@ const OtherIngredients = () => {
             ({
               id,
               title,
-              description,
+
               imageUrl,
               modalTitle,
               modalDescription,
             }) => (
               <CarouselItem key={id} className="md:basis-1/2 lg:basis-1/3">
                 <div className="relative p-4 border rounded-3xl bg-[#a5b398] text-white shadow-md flex">
-                  <div className="flex-1 p-4">
+                  <div className="flex-1">
                     <h3 className="text-xl font-semibold">{title}</h3>
+                    <p className="text-sm mt-2">{modalDescription}</p>
                   </div>
-                  <div className="w-1/2 p-2 flex items-center justify-center">
-                    <img
+                  <div className="w-1/3 p-2 flex items-center justify-center">
+                    <Image
+                      width={1000}
+                      height={1000}
                       src={imageUrl}
                       alt={title}
                       className="object-contain w-full h-32 rounded-lg"
                     />
                   </div>
-                  <button
+                  {/* <button
                     className="absolute bottom-4 rounded-full left-8 bg-[#3a472e] text-white px-2 py-1"
                     onClick={() => handleCardClick({ title, modalDescription })}
                   >
                     Learn More
-                  </button>
+                  </button> */}
                 </div>
               </CarouselItem>
             )
@@ -426,7 +429,7 @@ const OtherIngredients = () => {
       </Carousel>
 
       {/* Modal */}
-      {isModalOpen && modalContent && (
+      {/* {isModalOpen && modalContent && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4">
           <div className="bg-white p-8 rounded-lg shadow-lg md:w-1/3">
             <h2 className="text-2xl font-semibold mb-4">
@@ -441,7 +444,7 @@ const OtherIngredients = () => {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </section>
   );
 };

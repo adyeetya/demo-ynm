@@ -2,13 +2,13 @@ import Image from "next/image";
 export const Badges = () => {
   return (
     <div className="flex justify-around mt-12 items-center overflow-hidden">
-      <div className="flex flex-col justify-between items-center w-24">
+      <div className="flex flex-col justify-between items-center w-24 md:w-32">
         <Image
           src="/images/product_page_img/medical-globe.png"
           alt="WHO Certified"
-          width={100}
-          height={100}
-          className="w-12 h-12"
+          width={1000}
+          height={1000}
+          className="w-12 h-12 md:w-20 md:h-20"
         />
         <p className="mt-2 text-[10px] md:text-sm text-center">
           WHO <br className="hidden md:block" /> Certified
@@ -170,7 +170,14 @@ export const DiscreetSection = () => {
               alt=""
               width={1000}
               height={1000}
-              className="w-full h-auto"
+              className="w-full h-auto hidden md:block"
+            />
+            <Image
+              src="/images/hero/badges_phone.webp"
+              alt=""
+              width={1000}
+              height={1000}
+              className="w-full h-auto md:hidden"
             />
           </div>
         </div>

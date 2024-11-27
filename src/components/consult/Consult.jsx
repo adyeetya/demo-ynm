@@ -96,7 +96,7 @@ const Consult = () => {
           />
         </div>
         <div className="w-full md:w-1/2 flex flex-col justify-between px-4 md:px-0 py-2 md:py-4">
-          <h2 className="text-xl font-bold mb-4"> Wellness/Sleep Booster</h2>
+          <h2 className="text-xl font-bold mb-4">Sleep Booster</h2>
           <p className="text-xs">
             Stress, late nights, and lifestyle habits can rob men of the deep
             sleep their bodies need, affecting energy, mood, and focus. Let’s
@@ -123,7 +123,7 @@ const Consult = () => {
           />
         </div>
         <div className="w-full md:w-1/2 flex flex-col justify-between px-4 md:px-0 py-2 md:py-4">
-          <h2 className="text-xl font-bold mb-4">Hygiene/Immunity Booster</h2>
+          <h2 className="text-xl font-bold mb-4">Immunity Booster</h2>
           <p className="text-xs">
             Busy schedules and environmental stressors can lead to frequent
             fatigue and increased illness, which are often signs of low
@@ -295,7 +295,7 @@ const ConcernCards = ({ setOpenModal }) => {
       modalId: "modal3",
     },
     {
-      title: "Hygiene",
+      title: "Immunity",
       imageSrc: "/images/hero/wellness.webp",
       modalId: "modal4",
     },

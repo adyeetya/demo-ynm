@@ -133,7 +133,14 @@ const WaveSection = ({ buynow }) => {
               alt=""
               width={1000}
               height={1000}
-              className="w-full h-auto"
+              className="w-full h-auto hidden md:block"
+            />
+            <Image
+              src="/images/hero/badges_phone.webp"
+              alt=""
+              width={1000}
+              height={1000}
+              className="w-[100vh] h-auto md:hidden"
             />
           </div>
         </div>
