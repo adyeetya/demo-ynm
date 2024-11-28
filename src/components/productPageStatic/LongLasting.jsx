@@ -397,7 +397,7 @@ const GeneralInfo = () => {
           className="w-full h-auto object-cover hidden md:block"
         />
         <Image
-          src="/images/product_page_img/lls/lls_hero.webp"
+          src="/images/product_page_img/lls/lls_hero_phone.webp"
           alt="Daa"
           width={1000}
           height={1000}
@@ -412,7 +412,7 @@ const ProductQualities = () => {
   return (
     <div className="my-12 text-xs md:text-base">
       {/* badges */}
-      <Badges />
+      {/* <Badges /> */}
 
       {/* <h3 className="font-bold mb-2 mt-12">
         What does it do and how does it do it?

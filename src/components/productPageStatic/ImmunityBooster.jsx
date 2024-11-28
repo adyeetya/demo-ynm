@@ -436,7 +436,7 @@ const OtherIngredients = () => {
 const ProductQualities = () => {
   return (
     <div className="py-4 text-xs md:text-base">
-      <Badges />
+      {/* <Badges /> */}
 
       {/* <h3 className="font-bold mb-2 mt-12">
         {" "}

@@ -103,7 +103,7 @@ const Consult = () => {
             turn those restless nights into rejuvenating rest.
           </p>
           <Link
-            href="/product/66c9a2fe0686cead3079c72a"
+            href="/product/674473b98ce479ba14094372"
             className="rounded-full text-center px-4 py-2 bg-[var(--dark-bg)] text-white w-full mt-4"
           >
             Solution for it
@@ -131,7 +131,7 @@ const Consult = () => {
             and reclaim your vitality.
           </p>
           <Link
-            href="/product/66c9a2fe0686cead3079c72a"
+            href="/product/674481b38ce479ba14094465"
             className="rounded-full text-center px-4 py-2 bg-[var(--dark-bg)] text-white w-full mt-4"
           >
             Solution for it
