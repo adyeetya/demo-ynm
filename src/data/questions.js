@@ -4,10 +4,30 @@ export const questions = [
     text: "How can I help you today? What are your top concerns?",
     number: 1,
     options: [
-      { id: 1, text: "Performance", next: 3 },
-      { id: 2, text: "Nutrition", next: 2 },
-      { id: 3, text: "Hygiene", next: 2 },
-      { id: 4, text: "Wellness", next: 2 },
+      {
+        id: 1,
+        text: "Performance",
+        next: 3,
+        imageUrl: "/images/hero/longlast.webp",
+      },
+      {
+        id: 2,
+        text: "Erection Support",
+        next: 2,
+        imageUrl: "/images/hero/erection.webp",
+      },
+      {
+        id: 3,
+        text: "Wellness",
+        next: 2,
+        imageUrl: "/images/hero/fitness.webp",
+      },
+      {
+        id: 4,
+        text: "Immunity",
+        next: 2,
+        imageUrl: "/images/hero/wellness.webp",
+      },
     ],
   },
   {

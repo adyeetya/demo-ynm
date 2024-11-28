@@ -567,7 +567,7 @@ const OtherInformation = () => {
               <span>60 tablets per bottle</span>
             </p>
             <p className="flex justify-between">
-              <span className="font-semibold">Price:</span> <span>₹899</span>
+              <span className="font-semibold">Price:</span> <span>₹299</span>
             </p>
             <p className="flex justify-between">
               <span className="font-semibold">Lasts for:</span>{" "}

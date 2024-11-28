@@ -157,10 +157,15 @@ const SelfAssessmentPage = () => {
                       {currentQuestion.options.map((option) => (
                         <div
                           key={option.id}
-                          className="w-full h-40 md:w-60 md:h-72 bg-gray-100 p-2 rounded flex justify-center items-center hover:scale-110 transition-all cursor-pointer"
+                          className="w-full h-40 md:w-full md:h-72 bg-gray-100 p-2 rounded flex justify-center items-center hover:scale-110 transition-all cursor-pointer"
+                          style={{
+                            backgroundImage: `url(${option.imageUrl})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                          }}
                         >
                           <button
-                            className=""
+                            className="bg-white bg-opacity-70 px-4 py-2 rounded-full text-black hover:bg-opacity-90"
                             onClick={() => handleOptionClick(option)}
                           >
                             {option.text}
