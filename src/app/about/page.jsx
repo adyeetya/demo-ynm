@@ -57,7 +57,7 @@ const AboutUs = () => {
           is designed to enhance your sexual experience and tackle sexual
           dysfunction effectively.
         </p>
-        <div className="grid grid-cols-2 gap-4 lg:gap-8">
+        <div className="grid md:grid-cols-2 gap-4 lg:gap-8">
           <p className="text-base font-semibold md:text-lg bg-gray-200 p-2 flex justify-center items-center rounded">
             We prioritise using organic botanicals whenever possible, ensuring
             our formulas meet the highest standards. What’s printed on our

@@ -63,7 +63,7 @@ export const Stepper = () => {
                 {steps.map((step, idx) => (
                   <div
                     key={step.title}
-                    className={`h-8 w-8 md:h-12 md:w-12 rounded-full bg-center bg-cover ${
+                    className={`h-8 w-8 md:h-12 md:w-12 whitespace-nowrap rounded-full bg-center bg-cover ${
                       index === idx ? "border-2 border-white" : "brightness-75"
                     } `}
                     style={{ backgroundImage: `url(${step.image})` }}
@@ -79,7 +79,7 @@ export const Stepper = () => {
                   <button
                     key={index}
                     onClick={() => handleStepClick(index)}
-                    className={`text-xs lg:text-lg font-semibold ${
+                    className={`text-xs lg:text-lg font-semibold whitespace-nowrap ${
                       activeStep === index
                         ? "text-[var(--dark-bg)] underline underline-offset-8"
                         : "text-gray-700 hover:text-gray-900"

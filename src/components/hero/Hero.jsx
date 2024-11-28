@@ -208,21 +208,21 @@ const Hero = () => {
             <div className="z-50 flex flex-row justify-between gap-3 items-center w-full">
               <div className="flex -space-x-4">
                 <div
-                  className="w-12 h-12 bg-cover bg-center border bg-white border-gray-400 rounded-full"
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-cover bg-center border bg-white border-gray-400 rounded-full"
                   style={{
                     backgroundImage:
                       'url("/images/productimages/daa_mockup.png")',
                   }}
                 ></div>
                 <div
-                  className="w-12 h-12 bg-cover bg-center border bg-white border-gray-400 rounded-full"
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-cover bg-center border bg-white border-gray-400 rounded-full"
                   style={{
                     backgroundImage:
                       'url("/images/productimages/immunity_mockup.png")',
                   }}
                 ></div>
                 <div
-                  className="w-12 h-12 bg-cover bg-center bg-white border border-gray-400 rounded-full flex items-center justify-center"
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-cover bg-center bg-white border border-gray-400 rounded-full flex items-center justify-center"
                   style={{
                     backgroundImage:
                       'url("/images/productimages/sleep_mockup.png")',

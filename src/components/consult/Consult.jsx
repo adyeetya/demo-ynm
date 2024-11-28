@@ -190,12 +190,12 @@ const Consult = () => {
               width={1000}
               height={1000}
               alt="."
-              className="w-56 "
+              className="w-56 z-10"
             />
           </div>
 
           {/* Card with green glass effect */}
-          <div className="absolute bottom-0 p-4 rounded-3xl shadow-xl h-44 w-full flex justify-start items-center bg-gradient-to-r from-[#a5b398]/50 via-from-[#a5b398]/20 to-transparent backdrop-blur-[4px]  z-10">
+          <div className="absolute bottom-0 p-4 rounded-3xl shadow-xl h-44 w-full flex justify-start items-center bg-gradient-to-r from-[#a5b398]/50 via-from-[#a5b398]/20 to-transparent backdrop-blur-[4px]  z-0">
             <div className="text-xs h-full w-[70%] flex flex-col justify-between py-4">
               <div>
                 <h2 className="font-semibold mb-2">Dr. Ankit Tyagi</h2>
@@ -204,7 +204,7 @@ const Consult = () => {
               </div>
               <Link
                 href="/self-assessment"
-                className="whitespace-nowrap text-base w-fit border px-4 py-1 rounded-full bg-white border-[#3a472e] "
+                className="absolute bottom-4 z-10 sm:whitespace-nowrap text-base w-fit border px-4 py-1 rounded-full bg-white border-[#3a472e] "
               >
                 Take Online Assessment
               </Link>
@@ -218,7 +218,7 @@ const Consult = () => {
               alt="Wide Card 1"
               width={1000}
               height={1000}
-              className="absolute top-0 right-2 md:right-4 z-10 h-full w-auto"
+              className="absolute top-0 right-2 md:right-4 z-0 h-full w-auto"
             />
           </div>
         </div>

@@ -116,12 +116,21 @@ const Products = () => {
                       >
                         <FiShoppingBag />
                       </button>
-                      <button
-                        onClick={() => handleBuyNow(product)}
-                        className="text-sm md:text-base border border-black px-4 md:px-6 py-1 md:py-2 rounded-full active:scale-95"
-                      >
-                        Buy Now
-                      </button>
+                      {product.stock === 0 ? (
+                        <button
+                          disabled
+                          className="text-xs whitespace-nowrap sm:text-sm md:text-base border border-black px-4 md:px-6 py-1 md:py-2 rounded-full active:scale-95"
+                        >
+                          Sold Out
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleBuyNow(product)}
+                          className="text-xs whitespace-nowrap sm:text-sm md:text-base border border-black px-4 md:px-6 py-1 md:py-2 rounded-full active:scale-95"
+                        >
+                          Buy Now
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
