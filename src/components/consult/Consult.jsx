@@ -176,15 +176,7 @@ const Consult = () => {
         </div>
         {/* doctors card with bg too */}
         <div className="group relative w-full md:w-1/2 h-52">
-          {/* White circles grid behind the card and doctor image */}
           <div className="absolute -right-8 top-0 z-0 ">
-            {/* Each circle */}
-            {/* {Array.from({ length: 54 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-4 h-4 rounded-full border bg-[#ffd037] border-[#f9ce40] opacity-50 "
-              />
-            ))} */}
             <Image
               src="/images/hero/Dots.svg"
               width={1000}

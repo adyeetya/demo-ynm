@@ -302,7 +302,7 @@ const GeneralInfo = () => {
   return (
     <div className="mx-auto py-4  rounded-lg">
       {/* Information Section */}
-      <section className="bg-[#f7faf0] py-16 px-4">
+      <section className=" py-16 px-4">
         <div className="max-w-screen-xl mx-auto text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">
             Why Does Premature Ejaculation (PE) Occur?

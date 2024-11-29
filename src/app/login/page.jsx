@@ -3,11 +3,12 @@ import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { Poppins } from "next/font/google";
 import { toast } from "react-hot-toast";
-import CustomDropdown from "./StateDropdown"; // Import the CustomDropdown component
+// import CustomDropdown from "./StateDropdown";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useUser } from "../../context/userContext";
+import isValidCityState from "../../data/cityState";
 import axios from "axios";
 import Image from "next/image";
 
@@ -106,7 +107,12 @@ const Page = () => {
   // };
 
   const handleStep3Submit = async (values) => {
-    // console.log('Form submitted step3:', values)
+    const { city, state } = values;
+
+    if (!isValidCityState(city, state)) {
+      toast.error("The city does not match the selected state.");
+      return; // Prevent form submission
+    }
 
     await handleRegister(values);
   };
@@ -118,14 +124,6 @@ const Page = () => {
     validationSchema: step1ValidationSchema,
     onSubmit: handleStep1Submit,
   });
-
-  // const formikStep2 = useFormik({
-  //   initialValues: {
-  //     otp: "",
-  //   },
-  //   validationSchema: step2ValidationSchema,
-  //   onSubmit: handleStep2Submit,
-  // });
 
   const formikStep3 = useFormik({
     initialValues: {
@@ -464,135 +462,176 @@ const Step2Form = ({
   );
 };
 
-const Step3Form = ({ formik, states }) => (
-  <form onSubmit={formik.handleSubmit}>
-    <h2 className="text-xl font-semibold">Complete your registration</h2>
+const Step3Form = ({ formik, states }) => {
+  const [filteredStates, setFilteredStates] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
-    <div className="my-2">
-      <label htmlFor="name" className="block text-left text-gray-700">
-        Name
-      </label>
-      <input
-        type="text"
-        name="name"
-        value={formik.values.name}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        className="border border-gray-300 rounded-lg p-2 w-full"
-      />
-      {formik.touched.name && formik.errors.name && (
-        <div className="text-red-500">{formik.errors.name}</div>
-      )}
-    </div>
+  const handleStateInputChange = (e) => {
+    const userInput = e.target.value;
+    formik.setFieldValue("state", userInput);
 
-    <div className="my-2">
-      <label htmlFor="email" className="block text-left text-gray-700">
-        Email
-      </label>
-      <input
-        type="email"
-        name="email"
-        value={formik.values.email}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        className="border border-gray-300 rounded-lg p-2 w-full"
-      />
-      {formik.touched.email && formik.errors.email && (
-        <div className="text-red-500">{formik.errors.email}</div>
-      )}
-    </div>
+    if (userInput.trim() === "") {
+      setFilteredStates([]);
+      setShowSuggestions(false);
+      return;
+    }
 
-    <div className="my-2">
-      <label htmlFor="address" className="block text-left text-gray-700">
-        Address Line 1
-      </label>
-      <textarea
-        name="address"
-        value={formik.values.address}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        className="border border-gray-300 rounded-lg p-2 w-full h-24"
-      />
-      {formik.touched.address && formik.errors.address && (
-        <div className="text-red-500">{formik.errors.address}</div>
-      )}
-    </div>
+    const suggestions = states.filter((state) =>
+      state.toLowerCase().startsWith(userInput.toLowerCase())
+    );
+    setFilteredStates(suggestions);
+    setShowSuggestions(true);
+  };
 
-    <div className="my-2">
-      <label htmlFor="landmark" className="block text-left text-gray-700">
-        Landmark
-      </label>
-      <input
-        type="text"
-        name="landmark"
-        value={formik.values.landmark}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        className="border border-gray-300 rounded-lg p-2 w-full"
-      />
-      {formik.touched.landmark && formik.errors.landmark && (
-        <div className="text-red-500">{formik.errors.landmark}</div>
-      )}
-    </div>
+  const handleStateSelect = (state) => {
+    formik.setFieldValue("state", state);
+    setFilteredStates([]);
+    setShowSuggestions(false);
+  };
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <h2 className="text-xl font-semibold">Complete your registration</h2>
 
-    <div className="my-2">
-      <label htmlFor="pincode" className="block text-left text-gray-700">
-        Pincode
-      </label>
-      <input
-        type="text"
-        name="pincode"
-        value={formik.values.pincode}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        className="border border-gray-300 rounded-lg p-2 w-full"
-      />
-      {formik.touched.pincode && formik.errors.pincode && (
-        <div className="text-red-500">{formik.errors.pincode}</div>
-      )}
-    </div>
+      <div className="my-2">
+        <label htmlFor="name" className="block text-left text-gray-700">
+          Name
+        </label>
+        <input
+          type="text"
+          name="name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          className="border border-gray-300 rounded-lg p-2 w-full"
+        />
+        {formik.touched.name && formik.errors.name && (
+          <div className="text-red-500">{formik.errors.name}</div>
+        )}
+      </div>
 
-    <div className="my-2">
-      <label htmlFor="city" className="block text-left text-gray-700">
-        City
-      </label>
-      <input
-        type="text"
-        name="city"
-        value={formik.values.city}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        className="border border-gray-300 rounded-lg p-2 w-full"
-      />
-      {formik.touched.city && formik.errors.city && (
-        <div className="text-red-500">{formik.errors.city}</div>
-      )}
-    </div>
+      <div className="my-2">
+        <label htmlFor="email" className="block text-left text-gray-700">
+          Email
+        </label>
+        <input
+          type="email"
+          name="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          className="border border-gray-300 rounded-lg p-2 w-full"
+        />
+        {formik.touched.email && formik.errors.email && (
+          <div className="text-red-500">{formik.errors.email}</div>
+        )}
+      </div>
 
-    <div className="my-2">
-      <label htmlFor="state" className="block text-left text-gray-700">
-        State
-      </label>
-      <CustomDropdown
-        options={states}
-        selected={formik.values.state}
-        onSelectedChange={(selectedState) =>
-          formik.setFieldValue("state", selectedState)
-        }
-        className="border border-gray-300 rounded-lg p-2 w-full"
-      />
-      {formik.touched.state && formik.errors.state && (
-        <div className="text-red-500">{formik.errors.state}</div>
-      )}
-    </div>
+      <div className="my-2">
+        <label htmlFor="address" className="block text-left text-gray-700">
+          Address Line 1
+        </label>
+        <textarea
+          name="address"
+          value={formik.values.address}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          className="border border-gray-300 rounded-lg p-2 w-full h-24"
+        />
+        {formik.touched.address && formik.errors.address && (
+          <div className="text-red-500">{formik.errors.address}</div>
+        )}
+      </div>
 
-    <button
-      type="submit"
-      className="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600"
-    >
-      Login
-    </button>
-  </form>
-);
+      <div className="my-2">
+        <label htmlFor="landmark" className="block text-left text-gray-700">
+          Landmark
+        </label>
+        <input
+          type="text"
+          name="landmark"
+          value={formik.values.landmark}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          className="border border-gray-300 rounded-lg p-2 w-full"
+        />
+        {formik.touched.landmark && formik.errors.landmark && (
+          <div className="text-red-500">{formik.errors.landmark}</div>
+        )}
+      </div>
+
+      <div className="my-2">
+        <label htmlFor="pincode" className="block text-left text-gray-700">
+          Pincode
+        </label>
+        <input
+          type="text"
+          name="pincode"
+          value={formik.values.pincode}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          className="border border-gray-300 rounded-lg p-2 w-full"
+        />
+        {formik.touched.pincode && formik.errors.pincode && (
+          <div className="text-red-500">{formik.errors.pincode}</div>
+        )}
+      </div>
+
+      <div className="my-2">
+        <label htmlFor="city" className="block text-left text-gray-700">
+          City
+        </label>
+        <input
+          type="text"
+          name="city"
+          value={formik.values.city}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          className="border border-gray-300 rounded-lg p-2 w-full"
+        />
+        {formik.touched.city && formik.errors.city && (
+          <div className="text-red-500">{formik.errors.city}</div>
+        )}
+      </div>
+
+      <div className="my-2 relative">
+        <label htmlFor="state" className="block text-left text-gray-700">
+          State
+        </label>
+        <input
+          type="text"
+          name="state"
+          value={formik.values.state}
+          onChange={handleStateInputChange}
+          onBlur={formik.handleBlur}
+          autoComplete="off"
+          className="border border-gray-300 rounded-lg p-2 w-full"
+        />
+        {formik.touched.state && formik.errors.state && (
+          <div className="text-red-500">{formik.errors.state}</div>
+        )}
+        {showSuggestions && filteredStates.length > 0 && (
+          <ul className="absolute z-10 bg-white border border-gray-300 rounded-lg w-full max-h-40 overflow-y-auto">
+            {filteredStates.map((state) => (
+              <li
+                key={state}
+                onClick={() => handleStateSelect(state)}
+                className="p-2 hover:bg-gray-100 cursor-pointer"
+              >
+                {state}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <button
+        type="submit"
+        className="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600"
+      >
+        Login
+      </button>
+    </form>
+  );
+};
 
 export default Page;
