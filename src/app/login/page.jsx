@@ -300,13 +300,13 @@ const Page = () => {
       className={`max-w-screen-lg mx-auto min-h-[calc(100vh-64px)] flex items-center justify-center ${poppins.className}`}
     >
       <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-        <div className="w-full md:w-1/2 mt-24 md:mt-0 h-64 md:h-96 bg-gray-200 flex items-center justify-center rounded-lg">
+        <div className="w-full md:w-1/2 mt-24 md:mt-0 h-64 md:h-96 flex items-center justify-center rounded-lg">
           <Image
             src="/images/hero/maxt6.png"
             alt="Banner"
             width={1000}
             height={1000}
-            className="w-full h-full object-cover rounded-lg"
+            className="w-full h-full object-contain rounded-lg"
           />
         </div>
 
@@ -392,28 +392,6 @@ const Step2Form = ({
       setError("");
     }
   };
-
-  // Function to initiate the Web OTP API
-  useEffect(() => {
-    const autoDetectOtp = async () => {
-      if ("OTPCredential" in window) {
-        try {
-          const otp = await navigator.credentials.get({
-            otp: { transport: ["sms"] },
-          });
-
-          if (otp && otp.code) {
-            setOtp(otp.code); // Automatically populate the OTP
-            handleVerifyOtp(otp.code); // Optionally auto-verify if desired
-          }
-        } catch (error) {
-          console.error("Error with OTP auto-detection:", error);
-        }
-      }
-    };
-
-    autoDetectOtp();
-  }, [handleVerifyOtp, setOtp]);
 
   return (
     <form onSubmit={handleSubmit}>
