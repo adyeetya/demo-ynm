@@ -4,6 +4,7 @@ import React, { useState } from "react";
 const Location = ({ onAddressFetch }) => {
   const [isLocationEnabled, setIsLocationEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const googleApiKey = process.env.NEXT_PUBLIC_GEOCODING_API_KEY;
 
   const loadGoogleMapsScript = () => {
     return new Promise((resolve, reject) => {
@@ -14,8 +15,8 @@ const Location = ({ onAddressFetch }) => {
 
       const script = document.createElement("script");
       const url =
-        ' src="https://maps.googleapis.com/maps/api/js?key=INSERT_YOUR_API_KEY&callback=initMap&libraries=marker&v=beta&solution_channel=GMP_CCS_reversegeocoding_v3"';
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GEOCODING_API_KEY}&libraries=marker&v=beta&solution_channel=GMP_CCS_reversegeocoding_v3`;
+        'src="https://maps.googleapis.com/maps/api/js?key=INSERT_YOUR_API_KEY&callback=initMap&libraries=marker&v=beta&solution_channel=GMP_CCS_reversegeocoding_v3"';
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${googleApiKey}&libraries=marker&v=beta&solution_channel=GMP_CCS_reversegeocoding_v3`;
       script.async = true;
       script.onload = resolve;
       script.onerror = () => reject("Failed to load Google Maps script");
@@ -106,7 +107,7 @@ const Location = ({ onAddressFetch }) => {
         <label>
           <input
             type="checkbox"
-            className="mr-2 w-4 h-4 bg-green-500"
+            className="mr-2 w-4 h-4"
             checked={isLocationEnabled}
             onChange={(e) => {
               const checked = e.target.checked;
