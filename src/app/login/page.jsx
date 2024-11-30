@@ -9,6 +9,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useUser } from "../../context/userContext";
 import isValidCityState from "../../data/cityState";
+import Location from "./Location";
 import axios from "axios";
 import Image from "next/image";
 
@@ -87,7 +88,7 @@ const Page = () => {
       .email("Invalid email address")
       .required("Email is required"),
     address: Yup.string().required("Address is required"),
-    landmark: Yup.string().required("Landmark is required"),
+    landmark: Yup.string(),
     pincode: Yup.string()
       .matches(/^[0-9]{6}$/, "Pincode must be exactly 6 digits")
       .required("Pincode is required"),
@@ -488,6 +489,15 @@ const Step3Form = ({ formik, states }) => {
     setFilteredStates([]);
     setShowSuggestions(false);
   };
+
+  const handleAddressFetch = (locationDetails) => {
+    // Autofill the form fields with the fetched location details
+    console.log(locationDetails);
+    formik.setFieldValue("address", locationDetails.address);
+    formik.setFieldValue("city", locationDetails.city);
+    formik.setFieldValue("state", locationDetails.state);
+    formik.setFieldValue("pincode", locationDetails.postalCode);
+  };
   return (
     <form onSubmit={formik.handleSubmit}>
       <h2 className="text-xl font-semibold">Complete your registration</h2>
@@ -622,6 +632,9 @@ const Step3Form = ({ formik, states }) => {
             ))}
           </ul>
         )}
+      </div>
+      <div className="my-4">
+        <Location onAddressFetch={handleAddressFetch} />
       </div>
 
       <button
