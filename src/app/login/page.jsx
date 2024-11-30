@@ -300,7 +300,7 @@ const Page = () => {
       className={`max-w-screen-lg mx-auto min-h-[calc(100vh-64px)] flex items-center justify-center ${poppins.className}`}
     >
       <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-        <div className="w-full md:w-1/2 h-64 md:h-96 bg-gray-200 flex items-center justify-center rounded-lg">
+        <div className="w-full md:w-1/2 mt-24 md:mt-0 h-64 md:h-96 bg-gray-200 flex items-center justify-center rounded-lg">
           <Image
             src="/images/hero/maxt6.png"
             alt="Banner"
@@ -376,38 +376,44 @@ const Step2Form = ({
 }) => {
   const [error, setError] = useState("");
 
-  const handleChange = (e, index) => {
-    const value = e.target.value;
-    const newOtp = [...otp];
-    newOtp[index] = value.slice(-1); // Only take the last character typed
-    setOtp(newOtp);
-    setError(""); // Clear the error when typing
-
-    // Move to the next input if value is entered
-    if (value && index < 5) {
-      document.getElementById(`otp-${index + 1}`).focus();
-    }
-  };
-
-  const handleKeyDown = (e, index) => {
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
-      // Move to the previous input if the current one is empty
-      document.getElementById(`otp-${index - 1}`).focus();
-    }
+  const handleChange = (e) => {
+    const value = e.target.value.replace(/\D/g, ""); // Allow only numeric values
+    setOtp(value); // Update the OTP state
+    setError(""); // Clear any existing error
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("verify");
-    if (otp.join("").length < 6) {
+    if (otp.length < 6) {
       setError("Please enter the full 6-digit OTP.");
     } else {
-      // Handle OTP submission here
-      console.log("OTP Submitted:", typeof otp.join(""), otp.join(""));
-      handleVerifyOtp(otp.join(""));
+      console.log("OTP Submitted:", typeof otp, otp);
+      handleVerifyOtp(otp);
       setError("");
     }
   };
+
+  // Function to initiate the Web OTP API
+  useEffect(() => {
+    const autoDetectOtp = async () => {
+      if ("OTPCredential" in window) {
+        try {
+          const otp = await navigator.credentials.get({
+            otp: { transport: ["sms"] },
+          });
+
+          if (otp && otp.code) {
+            setOtp(otp.code); // Automatically populate the OTP
+            handleVerifyOtp(otp.code); // Optionally auto-verify if desired
+          }
+        } catch (error) {
+          console.error("Error with OTP auto-detection:", error);
+        }
+      }
+    };
+
+    autoDetectOtp();
+  }, [handleVerifyOtp, setOtp]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -423,31 +429,23 @@ const Step2Form = ({
       </div>
       <div className="my-4">
         <label htmlFor="otp" className="block text-left text-gray-700">
-          OTP
+          Enter OTP
         </label>
-        <div className="flex space-x-2">
-          {Array(6)
-            .fill("")
-            .map((_, index) => (
-              <input
-                key={index}
-                id={`otp-${index}`}
-                type="text"
-                name={`otp-${index}`}
-                value={otp[index] || ""}
-                onChange={(e) => handleChange(e, index)}
-                onKeyDown={(e) => handleKeyDown(e, index)}
-                maxLength={1}
-                className="border border-gray-300 rounded-lg p-2 w-10 text-center"
-              />
-            ))}
-        </div>
+        <input
+          id="otp"
+          type="text"
+          name="otp"
+          value={otp}
+          onChange={handleChange}
+          maxLength={6} // Limit input to 6 digits
+          className="border border-gray-300 rounded-lg p-2 w-full text-center"
+        />
         {error && <div className="text-red-500">{error}</div>}
       </div>
 
       <button
         type="submit"
-        className="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600"
+        className="rounded-full px-3 py-2 border border-[#3a472e] text-[#3a472e] hover:text-white hover:bg-[#3a472e] hover:border-[#3a472e]"
       >
         Verify OTP
       </button>
@@ -639,7 +637,7 @@ const Step3Form = ({ formik, states }) => {
 
       <button
         type="submit"
-        className="bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-600"
+        className="rounded-full px-3 py-2 border border-[#3a472e] text-[#3a472e] hover:text-white hover:bg-[#3a472e] hover:border-[#3a472e]"
       >
         Login
       </button>

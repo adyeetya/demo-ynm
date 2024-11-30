@@ -102,7 +102,7 @@ export const OrdersInfo = () => {
                       </p>
                     </div>
                     <div className="text-right">
-                      <p>₹{product.mrp}</p>
+                      <p>₹{product.price}</p>
                       <p className="text-sm text-gray-500">
                         Quantity: {product.quantity}
                       </p>

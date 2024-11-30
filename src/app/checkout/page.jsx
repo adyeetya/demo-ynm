@@ -46,7 +46,15 @@ const CheckoutPage = () => {
   const [paymentMethod, setPaymentMethod] = useState(null); // Track selected payment method
   const [modalVisibile, setModalVisible] = useState(false);
   const [orderInfo, setOrderInfo] = useState(null);
+
+  const [hasOutOfStockItems, setHasOutOfStockItems] = useState(false);
   const router = useRouter();
+
+  // Check if any product in the cart is out of stock
+  useEffect(() => {
+    const outOfStock = cart.some((item) => item?.productId?.stock === 0);
+    setHasOutOfStockItems(outOfStock);
+  }, [cart]);
 
   const handlePaymentMethodChange = (method) => {
     console.log("Selected payment method:", method);
@@ -101,25 +109,6 @@ const CheckoutPage = () => {
 
     fetchCart();
   }, [user, token]);
-
-  // const clearCart = async () => {
-  //   try {
-  //     await axios.post(
-  //       `${serverUrl}/api/cart/sync`,
-  //       {
-  //         userId: user._id,
-  //         cart: [],
-  //       },
-  //       {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       }
-  //     );
-
-  //     setCart([]);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   // Calculate total price based on quantity
   const totalPrice = cart.reduce(
@@ -178,6 +167,12 @@ const CheckoutPage = () => {
 
   const simulatePayment = async () => {
     console.log("payment method: ", paymentMethod);
+    if (hasOutOfStockItems) {
+      toast.error(
+        "Some items are out of stock. Please remove them from the cart."
+      );
+      return;
+    }
     try {
       const orderDetails = {
         cart, // Items in the cart
@@ -514,6 +509,11 @@ const CheckoutPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="col-span-1">
           <h2 className="text-xl font-semibold mb-4">Your Items</h2>
+          {hasOutOfStockItems && (
+            <div className="text-red-600 font-semibold mb-4 text-sm">
+              Some items in your cart are out of stock!
+            </div>
+          )}
           {cart.map((item) => (
             <div
               key={item._id}
@@ -529,7 +529,9 @@ const CheckoutPage = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <h3 className="text-lg font-semibold">
+                <h3
+                  className={`text-lg font-semibold ${item?.productId?.stock <= item?.quantity ? "text-red-600" : ""}`}
+                >
                   {item?.productId?.name}
                 </h3>
                 <p className="text-gray-600">Quantity: {item.quantity}</p>
